@@ -1,0 +1,24 @@
+{
+  "archive": "AISTRO-0.5.2-Full-Portable-Launcher.zip",
+  "bytes": 38883822,
+  "sha256": "7f68bbee8c25c0c9c6a7a52d70c569cab915730fcffea57aca248d8f6945f9f1",
+  "exe_unchanged": true,
+  "key_pattern_candidates": 0,
+  "credential_vault_files": 0,
+  "included_files": [
+    "AISTRO-0.5.2/SpaceApps1.exe",
+    "AISTRO-0.5.2/THIRD_PARTY_NOTICES.txt",
+    "AISTRO-0.5.2/LICENSE",
+    "AISTRO-0.5.2/NOTICE",
+    "AISTRO-0.5.2/PREPARE_FULL_PORTABLE.cmd",
+    "AISTRO-0.5.2/setup/download-dataset.ps1",
+    "AISTRO-0.5.2/setup/verify-dataset.py",
+    "AISTRO-0.5.2/setup/dataset-release.json",
+    "AISTRO-0.5.2/START_HERE.txt"
+  ],
+  "credential_tests": {
+    "passed": 2,
+    "provider_calls": 0
+  },
+  "new_exe_execution": false
+}

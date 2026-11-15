@@ -4,7 +4,7 @@
 
 An independent student hackathon project for the **2026 NASA Space Apps Challenge**, developed by the AISTRO team. The application brings NASA Physical Sciences Informatics (PSI) research, material references, document reading, and an AI research conversation into one workspace.
 
-**[Open the live application](https://aistro-flame-freefall.duckdns.org)** · **[Download Windows portable 0.5.2](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/v0.5.2/SpaceApps1-0.5.2.zip)** · **[Get the dataset](data/README.md)** · **[Browse source](app/)** · **[Space Apps project](https://www.spaceappschallenge.org/2026/find-a-team/aistro/?tab=project)**
+**[Open the live application](https://aistro-flame-freefall.duckdns.org)** · **[Download full portable: application + dataset](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/dataset-2026.11.15)** · **[Get the dataset](data/README.md)** · **[Browse source](app/)** · **[Space Apps project](https://www.spaceappschallenge.org/2026/find-a-team/aistro/?tab=project)**
 
 ![AISTRO research workspace with source reading, optional conditions, and the Safety panel](docs/assets/workspace.png)
 
@@ -13,7 +13,7 @@ An independent student hackathon project for the **2026 NASA Space Apps Challeng
 | You want to… | Go to… |
 |---|---|
 | Try the project without installing software | [Live application](https://aistro-flame-freefall.duckdns.org), no sign-in required |
-| Run it on Windows | [Portable release](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/v0.5.2) and the [data installation guide](data/README.md) |
+| Run it on Windows | [Full portable release: app + dataset](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/dataset-2026.11.15) and [preparation guide](docs/full-portable.md) |
 | Inspect or reproduce the implementation | [Source](app/), [architecture](docs/architecture.md), and [reproducibility](docs/reproducibility.md) |
 | Check where the information comes from | [Data provenance and distribution](data/README.md), [third-party notices](THIRD_PARTY_NOTICES.md), and the original-source links shown in the app |
 | Review how AI was used | [AI disclosure](docs/ai-disclosure.md) |
@@ -28,24 +28,25 @@ An independent student hackathon project for the **2026 NASA Space Apps Challeng
 
 ## Run the portable application
 
-1. Download and extract **[SpaceApps1-0.5.2.zip](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/v0.5.2/SpaceApps1-0.5.2.zip)**.
-2. Follow the **[dataset guide](data/README.md)**. Place the resulting `Veri_Seti` folder **beside `SpaceApps1.exe`**; retain its subfolder names and pinned indexes.
-3. Double-click `SpaceApps1.exe`. A local server starts on a free loopback port and opens your browser. **No Node.js or Rust installation is required.**
-4. For AI responses, enter your own OpenAI API key in **Settings**. It is stored with Windows account encryption, outside the application folder. Provider access and usage charges belong to that API account.
+1. Open the **[full portable release](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/dataset-2026.11.15)** and extract `AISTRO-0.5.2-Full-Portable-Launcher.zip` onto a drive with at least **24 GB free disk space**.
+2. Run `PREPARE_FULL_PORTABLE.cmd` inside the extracted folder. With **PowerShell 7 and Python 3** installed, it downloads and verifies all 57 data archives into the adjacent `Veri_Seti` folder. Each temporary archive is removed after verification.
+3. After preparation, double-click `SpaceApps1.exe`. A local server starts on a free loopback port and opens your browser. The EXE requires **no separate Node.js or Rust installation**.
+4. Open **Settings → OpenAI API key → Save** and enter **your own key** for AI responses. **The distribution contains no preconfigured API key or credential vault.** Keys are encrypted for the Windows user account outside the application folder. Provider availability and usage charges belong to that account. Use **Remove key** to clear a saved key.
 
 ```text
-SpaceApps1/
+AISTRO-0.5.2/
 ├── SpaceApps1.exe
+├── PREPARE_FULL_PORTABLE.cmd
 ├── START_HERE.txt
-├── THIRD_PARTY_NOTICES.txt
+├── setup/
 └── Veri_Seti/
     ├── DATASET.json
     └── … data and versioned indexes
-Developer Patch/
-└── … source, engineering records, and release evidence
 ```
 
-The application ZIP and dataset are separate downloads. Local source browsing and numerical comparison do not require an AI response; AI interpretation requires a configured, available provider. An absent or incomplete dataset limits the evidence available to either workflow.
+**The full portable release is multipart: application + 57 dataset archives on the same release page.** The small launcher ZIP alone is not the dataset. Preparation produces one folder containing both; see [automatic and offline preparation](docs/full-portable.md). The public dataset contains **114,686 files / 22.51 GB expanded**. Original manufacturer/FSRI material sources with unresolved redistribution terms are excluded; the material-applicability panel can report unavailable/invalid data without those optional originals. PSI research remains available.
+
+Local source browsing and numerical comparison do not require an AI response. AI interpretation needs Internet access and a configured compatible provider. An existing key saved by the user on this Windows account can still be loaded; it is not embedded in the package. Moving the prepared folder does not transfer credentials or conversation history. The [original application-only ZIP and engineering records](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/v0.5.2) remain available separately.
 
 ## Run from source
 

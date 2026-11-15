@@ -14,7 +14,7 @@ pwsh -File scripts/download-dataset.ps1 -DestinationDirectory 'D:/AISTROData'
 
 It downloads one archive at a time, verifies its checksum, safely extracts and verifies its files, and removes only that downloaded archive after success. The installed dataset still requires space for its expanded files; this process avoids keeping a second complete compressed copy. It never deletes your existing dataset. An existing file with different bytes is left untouched and stops extraction.
 
-Put the resulting `Veri_Seti` directory beside `SpaceApps1.exe`, or select that directory using the application's dataset-folder setting. The correct layout is `SpaceApps1/SpaceApps1.exe` and `SpaceApps1/Veri_Seti/DATASET.json`. Do not create an extra `Veri_Seti/Veri_Seti` nesting.
+Put the resulting `Veri_Seti` directory beside `SpaceApps1.exe`. The portable executable loads that adjacent folder at startup; restart it after restoring the data. The correct layout is `SpaceApps1/SpaceApps1.exe` and `SpaceApps1/Veri_Seti/DATASET.json`. Do not create an extra `Veri_Seti/Veri_Seti` nesting.
 
 To verify an already installed dataset without changing it:
 
