@@ -1,15 +1,9 @@
-# Publication verification · 15 November 2026
+# Publication verification · 0.5.3
 
-The public source snapshot matches all **565 files** in the sealed AISTRO 0.5.2 source baseline. See [per-file source hashes](source-manifest-0.5.2.json).
+The public application is 0.5.3. See [release identity and hashes](reproducibility.md), [568-file source baseline](source-manifest-0.5.3.json), and [versioned verification receipts](releases/0.5.3/).
 
-The Windows ZIP was uploaded unchanged, downloaded from GitHub, and SHA-256 verified. Its recorded Linux test evidence remains **609 passed, 1 skipped, 0 failed**; no new Windows execution or paid model test is claimed.
+The app ZIP contains English transition records, historical overall-project documentation, a 239-file code index, current/prior sources, defects and test evidence. Source data, credentials and conversations are excluded. The scientific dataset release is unchanged; its earlier download/hash/rights audit remains in [the 0.5.2 publication record](history/0.5.2/publication-verification.md).
 
-The public dataset contains **114,686 files / 22,509,766,410 uncompressed bytes**, in **57 independent tar.gz parts**. Every archive and the file inventory was downloaded from GitHub and hashed. All uploaded file hashes match the complete local selected-file snapshot. Source data were read without altering the running hosted application.
+AWS mocked checks: 622 passed, 1 skipped, 0 failed. Hosted version, public assets, retired routes and browser navigation were checked. The 24-study audit has 16 numeric cases and eight explicit coverage limits. No new local EXE run or paid AI test is claimed. Uploaded GitHub assets are downloaded and hash-checked by the release publisher; final upload/readback evidence is recorded with the release.
 
-The publication excludes **572,869,570 bytes** of unresolved-rights third-party originals and obsolete caches. This is a documented public subset, not a claim to publish every locally collected document. See [licences and sources](../data/LICENSES.md).
-
-The repository, portable download, and live app were checked without authentication. The dataset release is public. Exact dataset asset hashes and links are in [the release manifest](../data/dataset-release.json).
-
-App branding and the eight submission-document covers were inspected: no official NASA insignia, worm or seal was found. Original cited NASA source documents retain their attribution. Nonendorsement and AI disclosures are in the root README and [AI disclosure](ai-disclosure.md).
-
-The team is preparing its separate demonstration video; no video URL or completed Space Apps submission is claimed here.
+This is a research prototype, not NASA certification or a completed competition submission. Current team identity/rights worksheets and historical submission records must be reviewed by the team before use.

@@ -37,7 +37,7 @@ export function sourceCoverageHtml(m){
 export function researchScoreHtml(m){
  const assessed=m.assessedMaxPoints??m.maxPoints-(m.unscoredPoints||0),partial=assessed<m.maxPoints,denominator=Number(assessed.toFixed(1));
  const points=m.total.toFixed(1)+' / '+denominator+' assessed points';
- if(m.parameterSupport?.percent!=null)return m.parameterSupport.percent.toFixed(1)+'%<small>Parameter proximity<br>'+m.coverage.compared+' / '+m.coverage.provided+' inputs supported<br>'+points+'<br>'+(m.mode==='local_discovery'?'Local search · AI unavailable':partial?'Overall match incomplete':'Research relevance, not burn equivalence')+'</small>';
+ if(m.parameterSupport?.percent!=null)return m.total.toFixed(1)+'<small>/ '+denominator+' assessed points<br>'+(partial?'Overall match incomplete':'Research relevance, not burn equivalence')+'<br>'+m.coverage.compared+' / '+m.coverage.provided+' inputs supported<br><span class="parameter-proximity">Parameter proximity: '+m.parameterSupport.percent.toFixed(1)+'% of supported inputs only</span>'+(m.mode==='local_discovery'?'<br>Local search · AI unavailable':'')+'</small>';
  if(m.parameterSupport&&m.conditionCoverage?.usability.sameMaterialSeries)return '<span class="material-source-label">Same-material source</span><small>'+(assessed?points:'No numerical inputs')+'<br>No numerical condition percentage'+(m.mode==='local_discovery'?'<br>AI unavailable':'')+'</small>';
  return m.total.toFixed(1)+'<small>/ '+denominator+' assessed points<br>'+(partial?'Overall match incomplete':'Research relevance')+'</small>';
 }
@@ -45,7 +45,7 @@ export function parameterEvidenceHtml(m){
  const p=m.parameterSupport;if(!p)return '';
  const location=c=>[c.provenance?.fileId,c.provenance?.page?'PDF page '+c.provenance.page:null,c.evidence?.sheet||c.provenance?.sheet,c.evidence?.cell,c.provenance?.row?'row '+c.provenance.row:null].filter(Boolean).map(esc).join(' / ');
  const items=p.contributions.map(c=>'<li><strong>'+esc(conditionNames[c.key])+': '+esc(c.input)+'</strong> · '+(c.score===null?'unassessed: no supported indexed value':c.score.toFixed(2)+'% proximity to '+(c.kind==='reported_marginal_span'?'reported span '+c.range.map(esc).join(' to ')+(c.withinSpan?' (inside span; no joint-trial claim)':''):esc(c.observed))+' · '+esc(c.kind.replaceAll('_',' '))+' · '+location(c)+(c.approximate?' · approximate source setting':''))+'</li>').join('');
- return '<h4>Source-backed parameter evidence</h4><ul>'+items+'</ul><p>'+esc(p.limitation)+'</p><p>'+(p.jointlyTested?'The compared values share one reported source row.':'Parameters may be supported by different source fragments. No combined experiment or burning outcome was created.')+'</p>';
+ return '<h4>Source-backed parameter evidence</h4>'+(p.selectedSourceMaterial!=null?'<p>Input material not supplied. Environmental comparison uses source material: <strong>'+esc(p.selectedSourceMaterial||'unidentified')+'</strong>.</p>':'')+'<ul>'+items+'</ul><p>'+esc(p.limitation)+'</p><p>'+(p.jointlyTested?'The compared values share one reported source row.':'Parameters may be supported by different source fragments. No combined experiment or burning outcome was created.')+'</p>';
 }
 export function researchCards(result,records){
  return sourceBriefingHtml(result.sourceBriefs,{title:'Findings for your scenario'})+(result.notice?'<p class="local-discovery-notice">'+esc(result.notice)+'</p>':'')+result.matches.map(m=>{

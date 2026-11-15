@@ -1,3 +1,11 @@
+## 0.5.3 — Input and scoring audit
+
+- Preserve explicit current conditions when asking for a paper; bind gas percentages, ambient temperatures and thickness correctly; retain composite material identity and named fuels.
+- Clear explicitly unknown conditions without erasing unrelated fields or importing quoted source values.
+- Isolate parameter support to one source material family when input material is absent; require source-file identity for joint-row claims.
+- Prefer close indexed same-material candidates; show ranked points and coverage before conditional proximity.
+- English engineering audit, severity/root-cause records, FIF-098 traceability, source index, deterministic 24-study coverage audit and isolated AWS regression receipts. Dataset and provider model unchanged. No local app execution or paid model trial.
+
 ## 0.5.2 - Incident entry opens Safety
 
 User-requested retirement of separate incident voice/text support. Incident support buttons remain but only expand the existing Safety workspace. Active voice wiring/assets and provider endpoints are removed/disabled. No microphone or extra AI session starts. Existing recommendations, research chat, source data and weights are preserved. Verified by AWS isolated mocked checks and hosted navigation; evidence in qa/release-0.5.2. No local application tests or live provider calls performed.

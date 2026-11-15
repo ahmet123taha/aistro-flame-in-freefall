@@ -1,0 +1,18 @@
+{
+  "version": "0.5.3",
+  "passed": true,
+  "method": "Live hosted in-app browser interaction",
+  "observed": [
+    "Header and browser title identify 0.5.3",
+    "Conditions expand and collapse with explanatory optional-input labels",
+    "Entering 0.2 g displays 1.96133 m/s2",
+    "Clear known conditions removes the test entry",
+    "Incident support opens existing Safety review, no microphone or separate dialog",
+    "Research workspace and conversation remain available"
+  ],
+  "limits": [
+    "Fresh anonymous navigation only; score cards and autofill verified with mocked HTTP and renderer tests, not a paid model response",
+    "No local executable runtime trial"
+  ],
+  "providerCalls": 0
+}

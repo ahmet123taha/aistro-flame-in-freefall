@@ -3259,6 +3259,127 @@
         "qa/release-0.5.2/browser/readback.json"
       ],
       "verification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    },
+    {
+      "id": "D-053-01",
+      "severity": "high",
+      "problem": "Current conditions lost when asking for a study",
+      "rootCause": "A whole-message source-word veto mistook discovery intent for source attribution.",
+      "fix": "Recognize attributed sentences, preserving current measurements elsewhere; retain quote, hypothetical and range guards.",
+      "implementation": [
+        "lib/dialogue-conditions.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-02",
+      "severity": "high",
+      "problem": "Wrong physical quantity or material identity",
+      "rootCause": "Gas percentages and specimen temperatures could collide with oxygen and ambient inputs; fuel vocabulary was incomplete and mixtures could lose their qualifier.",
+      "fix": "Bind gas percentage and thickness to their local labels; exclude explicit nonambient temperatures; retain explicit composition and add named fuel aliases.",
+      "implementation": [
+        "lib/dialogue-conditions.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-03",
+      "severity": "high",
+      "problem": "Stale values after an explicit unknown",
+      "rootCause": "An explicit unknown was treated like an absent field, preserving an old measurement.",
+      "fix": "Clear that explicitly named current field and its basis; keep other fields unchanged.",
+      "implementation": [
+        "lib/dialogue-conditions.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-04",
+      "severity": "high",
+      "problem": "Different materials assembled into one numerical score",
+      "rootCause": "With no user material, independent best values could come from different source materials.",
+      "fix": "Select one identified source material family for parameter-wise comparison; show it; do not credit unidentified families. Align diagnostics to awarded references.",
+      "implementation": [
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-05",
+      "severity": "high",
+      "problem": "Reused row identifiers implied a jointly tested tuple",
+      "rootCause": "The joint-reference check used runId without source file identity.",
+      "fix": "Require matching file identity, hash and runId, plus existing joint flags. Separate fragments remain separate.",
+      "implementation": [
+        "lib/parameter-support.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-06",
+      "severity": "medium",
+      "problem": "Partial evidence displayed as a headline 100 percent",
+      "rootCause": "The card emphasized supported-input proximity instead of ranked points, hiding incomplete coverage.",
+      "fix": "Display total earned points and assessed denominator first, supported-input count and conditional proximity second. Clarify Data / conditions reference wording.",
+      "implementation": [
+        "public/environment-panel.mjs",
+        "public/app.js"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-07",
+      "severity": "high",
+      "problem": "Close measured studies could miss the candidate shortlist",
+      "rootCause": "Material candidates were ordered primarily by text overlap rather than indexed numerical evidence.",
+      "fix": "Rank same-material candidates by parameter support before lexical tie breakers; retain content-retrieval slots and related-composite review.",
+      "implementation": [
+        "lib/research-candidates.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "G-053-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "Numerical proximity remains a discovery heuristic, not a material-specific calibrated tolerance or burn-equivalence probability. Eight PSI records have no reviewed numeric case in this audit; this does not establish that their original documents lack data.",
+      "mitigation": "Keep source coverage, provenance, nominal settings, material applicability and research usefulness visible. Do not manufacture missing measurements, calibration or live-model acceptance."
     }
   ]
 }

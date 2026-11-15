@@ -1,0 +1,121 @@
+{
+  "from": "0.5.2",
+  "to": "0.5.3",
+  "changes": [
+    {
+      "id": "D-053-01",
+      "severity": "high",
+      "problem": "Current conditions lost when asking for a study",
+      "rootCause": "A whole-message source-word veto mistook discovery intent for source attribution.",
+      "fix": "Recognize attributed sentences, preserving current measurements elsewhere; retain quote, hypothetical and range guards.",
+      "implementation": [
+        "lib/dialogue-conditions.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-02",
+      "severity": "high",
+      "problem": "Wrong physical quantity or material identity",
+      "rootCause": "Gas percentages and specimen temperatures could collide with oxygen and ambient inputs; fuel vocabulary was incomplete and mixtures could lose their qualifier.",
+      "fix": "Bind gas percentage and thickness to their local labels; exclude explicit nonambient temperatures; retain explicit composition and add named fuel aliases.",
+      "implementation": [
+        "lib/dialogue-conditions.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-03",
+      "severity": "high",
+      "problem": "Stale values after an explicit unknown",
+      "rootCause": "An explicit unknown was treated like an absent field, preserving an old measurement.",
+      "fix": "Clear that explicitly named current field and its basis; keep other fields unchanged.",
+      "implementation": [
+        "lib/dialogue-conditions.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-04",
+      "severity": "high",
+      "problem": "Different materials assembled into one numerical score",
+      "rootCause": "With no user material, independent best values could come from different source materials.",
+      "fix": "Select one identified source material family for parameter-wise comparison; show it; do not credit unidentified families. Align diagnostics to awarded references.",
+      "implementation": [
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-05",
+      "severity": "high",
+      "problem": "Reused row identifiers implied a jointly tested tuple",
+      "rootCause": "The joint-reference check used runId without source file identity.",
+      "fix": "Require matching file identity, hash and runId, plus existing joint flags. Separate fragments remain separate.",
+      "implementation": [
+        "lib/parameter-support.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-06",
+      "severity": "medium",
+      "problem": "Partial evidence displayed as a headline 100 percent",
+      "rootCause": "The card emphasized supported-input proximity instead of ranked points, hiding incomplete coverage.",
+      "fix": "Display total earned points and assessed denominator first, supported-input count and conditional proximity second. Clarify Data / conditions reference wording.",
+      "implementation": [
+        "public/environment-panel.mjs",
+        "public/app.js"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    },
+    {
+      "id": "D-053-07",
+      "severity": "high",
+      "problem": "Close measured studies could miss the candidate shortlist",
+      "rootCause": "Material candidates were ordered primarily by text overlap rather than indexed numerical evidence.",
+      "fix": "Rank same-material candidates by parameter support before lexical tie breakers; retain content-retrieval slots and related-composite review.",
+      "implementation": [
+        "lib/research-candidates.mjs"
+      ],
+      "status": "verified_by_isolated_regression_tests",
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ]
+    }
+  ],
+  "severityBasis": "High: incorrect scientific-input/selection semantics. Medium: misleading score presentation. No operational hazard classification or certification is asserted."
+}

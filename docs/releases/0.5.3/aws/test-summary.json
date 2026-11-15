@@ -1,0 +1,13 @@
+{
+  "version": "0.5.3",
+  "passed": true,
+  "counts": {
+    "tests": 623,
+    "pass": 622,
+    "fail": 0,
+    "skipped": 1
+  },
+  "liveProviderCalls": 0,
+  "environment": "AWS isolated network namespace; mocked providers; no credentials",
+  "localApplicationTests": false
+}

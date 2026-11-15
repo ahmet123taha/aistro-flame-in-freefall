@@ -632,6 +632,13 @@
       "status": "implementation_verified",
       "closure": "No formal compliance closure.",
       "actualVerification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    },
+    "matchingAudit053": {
+      "requirement": "FIF-098",
+      "design": "docs/MATCHING_AUDIT_053.md",
+      "tests": "tests/matching-regression-053.test.mjs",
+      "verification": "AWS isolated mocked suite and actual-dataset deterministic audit",
+      "status": "implementation_verified_not_compliance_closed"
     }
   },
   {
@@ -739,6 +746,13 @@
       "status": "implementation_verified",
       "closure": "No formal compliance closure.",
       "actualVerification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    },
+    "matchingAudit053": {
+      "requirement": "FIF-098",
+      "design": "docs/MATCHING_AUDIT_053.md",
+      "tests": "tests/matching-regression-053.test.mjs",
+      "verification": "AWS isolated mocked suite and actual-dataset deterministic audit",
+      "status": "implementation_verified_not_compliance_closed"
     }
   },
   {
@@ -894,6 +908,13 @@
       "status": "implementation_verified",
       "closure": "No formal compliance closure.",
       "actualVerification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    },
+    "matchingAudit053": {
+      "requirement": "FIF-098",
+      "design": "docs/MATCHING_AUDIT_053.md",
+      "tests": "tests/matching-regression-053.test.mjs",
+      "verification": "AWS isolated mocked suite and actual-dataset deterministic audit",
+      "status": "implementation_verified_not_compliance_closed"
     }
   },
   {
@@ -1136,6 +1157,13 @@
       "status": "implementation_verified",
       "closure": "No formal compliance closure.",
       "actualVerification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    },
+    "matchingAudit053": {
+      "requirement": "FIF-098",
+      "design": "docs/MATCHING_AUDIT_053.md",
+      "tests": "tests/matching-regression-053.test.mjs",
+      "verification": "AWS isolated mocked suite and actual-dataset deterministic audit",
+      "status": "implementation_verified_not_compliance_closed"
     }
   },
   {
@@ -1532,6 +1560,13 @@
       "status": "implementation_verified",
       "closure": "No formal compliance closure.",
       "actualVerification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    },
+    "matchingAudit053": {
+      "requirement": "FIF-098",
+      "design": "docs/MATCHING_AUDIT_053.md",
+      "tests": "tests/matching-regression-053.test.mjs",
+      "verification": "AWS isolated mocked suite and actual-dataset deterministic audit",
+      "status": "implementation_verified_not_compliance_closed"
     }
   },
   {

@@ -2,7 +2,7 @@
 
 Explore NASA combustion research, compare experimental conditions, and trace AI-assisted answers back to their sources.
 
-**[Try the live demo](https://aistro-flame-freefall.duckdns.org)** · **[Download for Windows](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/dataset-2026.11.15/AISTRO-0.5.2-Full-Portable-Launcher.zip)** · **[Installation guide](docs/full-portable.md)**
+**[Try the live demo](https://aistro-flame-freefall.duckdns.org)** · **[Download for Windows](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/v0.5.3/SpaceApps1-0.5.3.zip)** · **[Installation guide](docs/full-portable.md)**
 
 An independent student project for the **2026 NASA Space Apps Challenge**, by the AISTRO team. [View the Space Apps project](https://www.spaceappschallenge.org/2026/find-a-team/aistro/?tab=project).
 
@@ -20,13 +20,15 @@ AI interpretation requires your own compatible OpenAI API account. Source browsi
 
 ## Run on Windows
 
-1. **[Download the launcher ZIP](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/dataset-2026.11.15/AISTRO-0.5.2-Full-Portable-Launcher.zip)** and extract it on a drive with **at least 24 GB free**.
-2. With **PowerShell 7 and Python 3** installed, run **`PREPARE_FULL_PORTABLE.cmd`**. It downloads and verifies the dataset beside the application automatically.
+1. **[Download the portable ZIP](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/v0.5.3/SpaceApps1-0.5.3.zip)** and extract it on a drive with **at least 24 GB free**.
+2. With **PowerShell 7 and Python 3** installed, open the extracted **`SpaceApps1`** folder and run **`PREPARE_FULL_PORTABLE.cmd`**. It downloads and verifies the dataset beside the application automatically.
 3. Open **`SpaceApps1.exe`**, then **Settings → OpenAI API key → Save** to enter **your own key**.
 
 **No API key is included.** Saved keys are encrypted for your Windows account, outside the portable folder. AI usage is charged to your own provider account. The EXE needs no separate Node.js or Rust installation.
 
-The complete distribution is **application + 22.51 GB of expanded data (114,686 files)**. The small launcher ZIP downloads the 57 data parts during preparation; **you do not need to choose or download those parts manually**. [Offline preparation details](docs/full-portable.md).
+The complete distribution is **application + 22.51 GB of expanded data (114,686 files)**. The application ZIP includes preparation tools that download the 57 data parts; **you do not need to choose or download those parts manually**. [Offline preparation details](docs/full-portable.md).
+
+Current release: **[0.5.3 — input and scoring fixes](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/v0.5.3)**. Existing users can reuse their `Veri_Seti` folder. The ZIP includes a sibling **Developer Patch** folder with the detailed English PDF, defects, code index and verification records.
 
 ## Data and limitations
 
@@ -38,7 +40,7 @@ The public dataset is a documented subset. Manufacturer/FSRI originals with unre
 
 | Folder | Contents |
 |---|---|
-| [app/](app/) | Application source, version 0.5.2 |
+| [app/](app/) | Application source, version 0.5.3 |
 | [data/](data/) | Data sources, licenses and download manifest |
 | [docs/](docs/README.md) | Installation, development, architecture and verification |
 | [scripts/](scripts/) | Dataset preparation and verification tools |

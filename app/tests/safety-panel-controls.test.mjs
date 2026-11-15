@@ -4,6 +4,7 @@ import {setRecommendationsExpanded,installRecommendationsPanel} from '../public/
 import {safetyStepKey} from '../public/safety-workspace.mjs';
 import {workspaceEntryHtml} from '../public/workspace-entry.mjs';
 import {readFile} from 'node:fs/promises';
+import {VERSION} from '../lib/version.mjs';
 
 function panel(){
  const classes=new Set(['narrow-right']),buttonAttributes={},bodyAttributes={},incidentAttributes={},readingState={reviewed:['source-step-1'],detailsOpen:true};
@@ -81,7 +82,7 @@ test('active application loads Safety navigation and AI Astro chat without legac
  assert.doesNotMatch(app,/incident-voice|installIncidentVoice|incidentVoice/);
  assert.doesNotMatch(index,/incident-voice|incident-dialog|aria-haspopup="dialog"/);
  assert.match(index,/<button id="incident-access"[^>]*aria-expanded="false"[^>]*aria-controls="recommend-body"/);
- assert.match(index,/0\.5\.2/);
+ assert.ok(index.includes('<title>AISTRO '+VERSION+' '));
  assert.match(app,/installConversationPanel/);assert.match(app,/post\('\/api\/chat'/);
  assert.ok(app.indexOf('recommendations=installRecommendationsPanel()')<app.indexOf('async function init()'));
  const entry=workspaceEntryHtml();assert.match(entry,/data-open-safety aria-controls="recommend-body"/);assert.match(entry,/Open the Safety sidebar/);assert.doesNotMatch(entry,/voice or text|data-open-incident/);

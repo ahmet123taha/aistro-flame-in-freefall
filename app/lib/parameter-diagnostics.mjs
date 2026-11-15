@@ -12,7 +12,7 @@ export function parameterDiagnostics(corpus,sourceId,conditions,fields,support){
  const sourceGravityContext=fragments.filter(f=>f.parameters?.gravityMs2?.sourceRole==='nominal_gravity_setting').map(f=>({material:f.material,nominalSettingsMs2:f.parameters.gravityMs2.values,raw:f.parameters.gravityMs2.raw,provenance:f.provenance,meaning:'Explicit source figure labels, not measured residual acceleration; no identical burning behavior is implied.'}));
  const preferred=sameMaterialRows.length?sameMaterialRows:rows;
  const comparisons=fields.filter(key=>Number.isFinite(conditions[key])).map(key=>{
-  const accepted=sourceParameterCandidates(corpus,sourceId,conditions,key),all=sourceParameterCandidates(corpus,sourceId,conditions,key,{sameMaterialOnly:false});
+  const accepted=sourceParameterCandidates(corpus,sourceId,conditions,key).filter(c=>(Boolean(conditions.material?.trim())||Boolean(canonicalMaterial(c.material)))&&(support.selectedSourceMaterial==null||canonicalMaterial(c.material)===support.selectedSourceMaterial)),all=sourceParameterCandidates(corpus,sourceId,conditions,key,{sameMaterialOnly:false});
   const related=all.filter(c=>materialReview.compositeReferences.some(r=>canonicalMaterial(r.material)===canonicalMaterial(c.material)));
   const used=accepted[0],discrete=accepted.find(c=>c.kind!=='reported_marginal_span'),context=used?null:(related[0]||all[0]),contribution=support.contributions.find(c=>c.key===key);
   const raw=[];let reasonCode='comparable',reason='A supported same-material source reference is used by the existing matching rule.';

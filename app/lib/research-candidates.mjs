@@ -1,6 +1,8 @@
 import {contextSearchText} from '../public/context-fields.mjs';
 import {materialRelation} from './research-coverage.mjs';
 import {sourceMaterialReview} from './material-evidence-review.mjs';
+import {parameterSupport} from './parameter-support.mjs';
+import {CONDITION_FIELDS} from './research-coverage.mjs';
 const tokens=s=>new Set(String(s||'').toLowerCase().match(/[\p{L}\p{N}]+/gu)||[]);
 export function researchCandidates(corpus,request,limit=12){
  const records=corpus.records.filter(r=>request.ids.includes(r.id));
@@ -13,8 +15,9 @@ export function researchCandidates(corpus,request,limit=12){
  if(!materialSources.size&&!relatedSources.size&&!contentIds.length)return request.ids;
  const q=tokens(request.scenario+' '+request.question+' '+contextSearchText(request.contextDetails)),scored=records.map(r=>{
   const t=tokens(Object.values(r.content||{}).join(' ')+' '+r.title),overlap=[...q].filter(k=>k.length>3&&t.has(k)).length;
-  return {id:r.id,material:materialSources.has(r.id),related:relatedSources.has(r.id),overlap};
- }).sort((a,b)=>Number(b.material)-Number(a.material)||Number(b.related)-Number(a.related)||b.overlap-a.overlap||a.id.localeCompare(b.id));
+  const support=materialSources.has(r.id)?parameterSupport(corpus,r.id,request.conditions,CONDITION_FIELDS):null;
+  return {id:r.id,material:materialSources.has(r.id),related:relatedSources.has(r.id),overlap,numericPoints:support?.points||0,compared:support?.compared||0};
+ }).sort((a,b)=>Number(b.material)-Number(a.material)||Number(b.related)-Number(a.related)||b.numericPoints-a.numericPoints||b.compared-a.compared||b.overlap-a.overlap||a.id.localeCompare(b.id));
  if(!contentIds.length)return scored.slice(0,limit).map(r=>r.id);
  // Protect both literal content hits and reviewed material evidence. A study's
  // title need not name the finding. Lexical recall is not a scientific score.

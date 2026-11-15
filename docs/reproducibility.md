@@ -1,21 +1,13 @@
-# Reproduce and verify version 0.5.2
+# Reproduce and verify version 0.5.3
 
-This repository publishes the source snapshot associated with the sealed **SpaceApps1-0.5.2.zip** release. `app/` contains 565 files extracted from its `Developer Patch/Source/` directory without changing their bytes. Root documentation and data-distribution instructions are publication additions, not a new application version.
-
-## Identify the artifacts
+The public `app/` matches all 568 files in the sealed 0.5.3 source baseline. Hosted runtime hashes are independently checked against the same baseline. The fixed scientific dataset retains its own version and is not included in this application release.
 
 | Artifact | Bytes | SHA-256 |
 |---|---:|---|
-| `SpaceApps1-0.5.2.zip` | 66,136,392 | `4ac8f90d526d9666e296538a5cdbb7ef6a51b013856e95fdaf0ccb50859b8275` |
-| `SpaceApps1/SpaceApps1.exe` | 103,544,320 | `cfc0990ac7e81378ec228aaa57c8dedfdff61b1b9dfd540afe0c9cc3511c4f0a` |
+| SpaceApps1-0.5.3.zip | 66345760 | `92f4072469b65f87a96e2d0bdd8982b7eec70c1348804c7249ea060db4fb1f50` |
+| SpaceApps1/SpaceApps1.exe | 103548928 | `1ed025c162048ad1d0d971034b28060703907a84f0b68c39cc39b2a69ebdc126` |
 
-Check a downloaded archive in PowerShell:
-
-```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath '.\SpaceApps1-0.5.2.zip'
-```
-
-Dataset assets have their own manifest and checksums; follow [data/README.md](../data/README.md). The app expects dataset version `2026.11.14-v1` and the compatible pinned `Research_Content/0.4.2` layout. Do not combine indexes from unrelated snapshots or rename their internal folders.
+Verify with `Get-FileHash -Algorithm SHA256 -LiteralPath '.\SpaceApps1-0.5.3.zip'`.
 
 ## Source installation
 
@@ -56,14 +48,10 @@ This generates a new executable and build manifest. It does not by itself recrea
 
 ## What was verified
 
-The recorded 0.5.2 Linux/AWS run reports **609 passed, 1 skipped, 0 failed** tests with mocked provider interactions. Syntax checking covered **219 JavaScript files**. These are software checks, not an independent scientific evaluation or a real-model acceptance test.
+AWS Linux isolated mocked tests: **622 passed, 1 Windows-only skipped, 0 failed (623 total)**. Same-turn HTTP input/ranking, quote guards, material isolation, source identity, shortlist behavior and score rendering are covered. Actual-source deterministic audit: 24 PSI records, 16 numerical cases, 8 explicitly recorded coverage limitations. No paid provider call or local EXE execution was performed.
 
-The exact distributed Windows executable was **not newly launched in the publication workflow**. Archive/hash checks establish artifact identity, not Windows runtime success. The retained `scripts/verify-portable.mjs` still contains checks for retired incident assets, so it is historical tooling that needs version-specific review before being used as a 0.5.2 acceptance gate.
+See [English design/root-cause report](../app/docs/MATCHING_AUDIT_053.md), [per-file baseline](source-manifest-0.5.3.json) and [release evidence](releases/0.5.3/). The detailed English PDF, symbol/block index and previous/current source diff are inside the downloadable ZIP under `Developer Patch/`.
 
-Detailed release records remain inside `Developer Patch/` in the downloadable ZIP. Earlier-version receipts describe earlier versions; they are not promoted to current evidence. No additional paid model request is needed to run the offline test suite.
+Historical documents preserve their original versions. The retained `scripts/verify-portable.mjs` includes obsolete incident-asset checks and is not a current portable acceptance gate. The executable build/hash checks do not establish Windows runtime acceptance. NPR Class C is an incomplete engineering target, not certification.
 
-## Privacy when reproducing
-
-The Windows package saves its OpenAI key under the current Windows account using DPAPI. Conversation history is plain text in the user's local profile. Hosted mode saves anonymous session history in the operator's state directory. Neither credentials nor private histories belong in a public issue, screenshot, release, or source commit.
-
-AI requests transmit the question, bounded visible context, and selected evidence to the configured provider. `store:false` is not a claim of zero data retention; provider account terms and controls apply. See [AI disclosure](ai-disclosure.md).
+Do not commit provider keys, user history, private state or environment files. The source root expects compatible `Veri_Seti/Research_Content/0.4.2` indices; do not rename or mix snapshots.

@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "at": "2026-11-15T20:49:36.413710+00:00",
+  "version": "0.5.3",
+  "url": "https://aistro-flame-freefall.duckdns.org",
+  "checks": [
+    "Public browser-trusted HTTPS health identifies 0.5.3",
+    "Anonymous visitors receive distinct secure session identities; server credential presence confirmed without exposing it",
+    "Pinned research-content index is ready",
+    "Public current AISTRO HTML loads",
+    "Branding, graph reader and Safety navigation assets served",
+    "An original PDF is accessible with byte-range support",
+    "PSI-100 has 34 prepared plots and 24 documented figures; actual O2 graph retains original source hash",
+    "Operator controls and private paths are not public routes",
+    "Foreign browser origin is rejected",
+    "No provider request sent; incident status absent, retired routes return 410, voice assets return 404"
+  ],
+  "timingsSeconds": {
+    "/healthz": 0.265,
+    "/api/catalog": 0.266,
+    "/": 0.265,
+    "/branding/aistro-bee.jpeg": 0.578,
+    "/branding/astrobee-wordmark.jpeg": 0.282,
+    "/prepared-graph-reader.mjs": 0.359,
+    "/recommendations-panel.mjs": 0.25,
+    "/api/files/f800": 0.297,
+    "/api/files?accession=PSI-100&kind=plotted": 0.359,
+    "/api/files?accession=PSI-100&kind=documented": 0.344,
+    "/api/graphs/g-f3292-g": 0.719,
+    "/api/settings/key": 0.25,
+    "/api/shutdown": 0.282,
+    "/etc/spaceapps/runtime.env": 0.265,
+    "/.hosted-state/session-secret": 0.266,
+    "/api/status": 0.25,
+    "/api/incident/session": 0.281,
+    "/api/incident/message": 0.25,
+    "/api/incident/end": 0.281,
+    "/incident-voice.mjs": 0.25,
+    "/incident-voice.css": 0.266,
+    "/incident-audio.mjs": 0.281,
+    "/incident-capture-worklet.mjs": 0.281
+  },
+  "sourceRows": 1724,
+  "researchRecords": 35,
+  "configuredModels": {
+    "research": "gpt-6.1-sol",
+    "voice": "removed"
+  },
+  "datasetSourceContentState": "ready",
+  "providerCalls": 0,
+  "methodsUsed": [
+    "GET"
+  ],
+  "privateCookieOrTokenSaved": false,
+  "limits": [
+    "HTTP access and configured credentials do not prove live AI/voice service quality or quota.",
+    "Full dataset identity is established separately by server-side transfer SHA readback."
+  ]
+}

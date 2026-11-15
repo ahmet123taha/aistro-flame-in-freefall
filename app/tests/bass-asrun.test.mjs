@@ -44,7 +44,7 @@ test('blank inputs are excluded, while actual zero-proximity measurements keep t
  const m=scoreResearch(c,{conditions:{airflow:0}},{assessments:[assessment]},fields).matches[0];assert.equal(m.numericPoints,0);assert.equal(m.assessedMaxPoints,100);assert.equal(m.numericStatus,'complete');
 });
 test('0.16 to 0.2 m/s2 is computed only if a row really reports numeric gravity',()=>{
- const c={...corpus,experiments:{rows:[{...rows[0],values:{gravityMs2:.16,temperatureK:300,oxygen:21,pressure:100}}]}};
+ const c={...corpus,experiments:{rows:[{...rows[0],values:{material:'sibal',gravityMs2:.16,temperatureK:300,oxygen:21,pressure:100}}]}};
  const m=scoreResearch(c,{conditions:{gravityMs2:.2,temperatureK:300,oxygen:21,pressure:100}},{assessments:[assessment]},fields).matches[0];assert.ok(Math.abs(m.numericPoints-57)<1e-10);assert.equal(m.trial.contributions.find(c=>c.key==='gravityMs2').score,80);assert.equal(m.numericStatus,'complete');
  // This synthetic row tests arithmetic, not the actual PSI-26 gravity or physical transfer.
 });

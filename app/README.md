@@ -1,6 +1,6 @@
 # SpaceApps1 0.4.8
 
-Current 0.5.2: AI Astro research chat uses OpenAI GPT-6.1 Sol with medium reasoning. Incident support is a shortcut to the existing Safety panel only. The separate emergency voice/text dialog, microphone capture and incident provider routes have been retired. The fixed source dataset, numerical comparison and source validation remain unchanged. No web search or automatic provider fallback is enabled.
+Current 0.5.3: AI Astro research chat uses OpenAI GPT-6.1 Sol with medium reasoning. Incident support is a shortcut to the existing Safety panel only. The separate emergency voice/text dialog, microphone capture and incident provider routes have been retired. The fixed source dataset, source validation remain available; see docs/MATCHING_AUDIT_053.md for the input and scoring corrections. No web search or automatic provider fallback is enabled.
 
 Enter your OpenAI key in Settings on Windows; it is saved separately from the legacy Gemini vault. Hosted installations use private OPENAI_API_KEY and optional OPENAI_MODEL=gpt-6.1-sol. Existing Gemini conversations keep their original provider labels. Shared packages contain no credentials, private history or dataset.
 

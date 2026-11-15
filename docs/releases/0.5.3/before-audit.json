@@ -1,0 +1,237 @@
+{
+  "version": "0.5.2",
+  "dialogue": [
+    {
+      "question": "I use propane; temperature 300 K; oxygen 21%; pressure 1 bar. Find a study.",
+      "updates": [],
+      "ignored": [
+        {
+          "quote": "I use propane; temperature 300 K; oxygen 21%; pressure 1 bar. Find a study.",
+          "reason": "quoted_or_reported_context"
+        }
+      ]
+    },
+    {
+      "question": "I store cotton. Please find an article; temperature 300 K.",
+      "updates": [],
+      "ignored": [
+        {
+          "quote": "I store cotton. Please find an article; temperature 300 K.",
+          "reason": "quoted_or_reported_context"
+        }
+      ]
+    },
+    {
+      "question": "I use paper; oxygen 21% and nitrogen 79%; temperature 300 K",
+      "updates": [
+        {
+          "key": "material",
+          "value": "paper",
+          "unit": "text",
+          "quote": "I use paper",
+          "basis": "user_reported"
+        },
+        {
+          "key": "temperatureK",
+          "value": 300,
+          "unit": "K",
+          "quote": "temperature 300 K",
+          "basis": "user_reported",
+          "inputValue": 300,
+          "inputUnit": "k",
+          "conversion": "identity"
+        }
+      ],
+      "ignored": [
+        {
+          "key": "oxygen",
+          "reason": "conflicting_values"
+        }
+      ]
+    },
+    {
+      "question": "I store cotton; thickness 2 mm; specimen temperature 600 K; ambient temperature 300 K",
+      "updates": [
+        {
+          "key": "material",
+          "value": "cotton",
+          "unit": "text",
+          "quote": "I store cotton",
+          "basis": "user_reported"
+        },
+        {
+          "key": "thicknessMm",
+          "value": 2,
+          "unit": "mm",
+          "quote": "thickness 2 mm",
+          "basis": "user_reported",
+          "inputValue": 2,
+          "inputUnit": "mm",
+          "conversion": "identity"
+        }
+      ],
+      "ignored": [
+        {
+          "key": "temperatureK",
+          "reason": "conflicting_values"
+        }
+      ]
+    },
+    {
+      "question": "I use PMMA; gravity 0.2 g; temperature 25 C; pressure 100 kPa",
+      "updates": [
+        {
+          "key": "material",
+          "value": "pmma",
+          "unit": "text",
+          "quote": "I use PMMA",
+          "basis": "user_reported"
+        },
+        {
+          "key": "gravityMs2",
+          "value": 1.96133,
+          "unit": "m/s2",
+          "quote": "gravity 0.2 g",
+          "basis": "user_reported",
+          "inputValue": 0.2,
+          "inputUnit": "g",
+          "conversion": "g * 9.80665"
+        },
+        {
+          "key": "temperatureK",
+          "value": 298.15,
+          "unit": "K",
+          "quote": "temperature 25 C",
+          "basis": "user_reported",
+          "inputValue": 25,
+          "inputUnit": "c",
+          "conversion": "C + 273.15"
+        },
+        {
+          "key": "pressure",
+          "value": 100,
+          "unit": "kPa",
+          "quote": "pressure 100 kPa",
+          "basis": "user_reported",
+          "inputValue": 100,
+          "inputUnit": "kpa",
+          "conversion": "identity"
+        }
+      ],
+      "ignored": []
+    },
+    {
+      "question": "I use wood; gravity 0.2 G",
+      "updates": [
+        {
+          "key": "material",
+          "value": "wood",
+          "unit": "text",
+          "quote": "I use wood",
+          "basis": "user_reported"
+        },
+        {
+          "key": "gravityMs2",
+          "value": 1.96133,
+          "unit": "m/s2",
+          "quote": "gravity 0.2 G",
+          "basis": "user_reported",
+          "inputValue": 0.2,
+          "inputUnit": "g",
+          "conversion": "g * 9.80665"
+        }
+      ],
+      "ignored": []
+    },
+    {
+      "question": "I store cotton; oxygen is unknown",
+      "updates": [
+        {
+          "key": "material",
+          "value": "cotton",
+          "unit": "text",
+          "quote": "I store cotton",
+          "basis": "user_reported"
+        }
+      ],
+      "ignored": [
+        {
+          "quote": "oxygen is unknown",
+          "reason": "ambiguous_or_noncurrent_statement"
+        }
+      ]
+    },
+    {
+      "question": "My material is cotton/polyester blend; temperature 300 K",
+      "updates": [
+        {
+          "key": "temperatureK",
+          "value": 300,
+          "unit": "K",
+          "quote": "temperature 300 K",
+          "basis": "user_reported",
+          "inputValue": 300,
+          "inputUnit": "k",
+          "conversion": "identity"
+        }
+      ],
+      "ignored": [
+        {
+          "key": "material",
+          "quote": "My material is cotton/polyester blend",
+          "reason": "multiple_materials"
+        }
+      ]
+    }
+  ],
+  "unspecifiedMaterialSupport": {
+    "contributions": [
+      {
+        "key": "oxygen",
+        "input": 21,
+        "weight": 30,
+        "kind": "reported_value",
+        "observed": 21,
+        "score": 100,
+        "evidence": null,
+        "provenance": {
+          "fileId": "a"
+        },
+        "runId": "a",
+        "physicalTrialKey": null,
+        "jointlyTested": true,
+        "stageTemporalBasis": null,
+        "material": "cotton",
+        "points": 30
+      },
+      {
+        "key": "pressure",
+        "input": 100,
+        "weight": 30,
+        "kind": "reported_value",
+        "observed": 100,
+        "score": 100,
+        "evidence": null,
+        "provenance": {
+          "fileId": "b"
+        },
+        "runId": "b",
+        "physicalTrialKey": null,
+        "jointlyTested": true,
+        "stageTemporalBasis": null,
+        "material": "paper",
+        "points": 30
+      }
+    ],
+    "provided": 2,
+    "compared": 2,
+    "points": 60,
+    "assessedBudget": 60,
+    "percent": 100,
+    "jointlyTested": false,
+    "basis": "parameter_wise_source_proximity",
+    "materialGate": "material_not_supplied",
+    "limitation": "Parameter-wise proximity is a discovery aid, not equivalent burning or fire probability. Separate rows/spans may support different parameters; they are not merged into a tested experimental tuple. A reported span does not prove every combination or intermediate outcome was measured. Missing source fields remain unassessed; grade/composition and physical transfer still require review."
+  },
+  "sparseScore": "100.0%<small>Parameter proximity<br>1 / 4 inputs supported<br>40.0 / 55 assessed points<br>Overall match incomplete</small>"
+}

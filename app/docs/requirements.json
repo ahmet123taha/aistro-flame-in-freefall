@@ -2694,6 +2694,36 @@
       ],
       "status": "IMPLEMENTED_OFFLINE_AND_HOSTED_NAVIGATION_VERIFIED",
       "acceptanceLimitations": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    },
+    {
+      "id": "FIF-098",
+      "release": "0.5.3",
+      "requirement": "Current user conditions remain usable in discovery requests; values are bound to the correct quantity and material, missing inputs stay optional, and comparison cards disclose assessed coverage. Same-turn normalized conditions must reach the analyzer and ranking. Numerical candidate selection must retain close indexed same-material evidence.",
+      "design": "docs/MATCHING_AUDIT_053.md",
+      "implementation": [
+        "lib/dialogue-conditions.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/parameter-support.mjs",
+        "lib/research-candidates.mjs",
+        "public/app.js",
+        "public/environment-panel.mjs"
+      ],
+      "verification": [
+        "tests/matching-regression-053.test.mjs",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.5.3/aws/dataset-audit.json",
+        "qa/release-0.5.3/aws/test-summary.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-081",
+        "SWE-113"
+      ],
+      "status": "IMPLEMENTED_ISOLATED_VERIFICATION",
+      "acceptanceLimitations": "Real-source deterministic audit and isolated mocked tests; not a paid provider evaluation, physical calibration, Windows runtime acceptance or NASA certification."
     }
   ]
 }

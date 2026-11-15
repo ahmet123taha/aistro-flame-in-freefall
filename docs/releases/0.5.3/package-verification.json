@@ -1,0 +1,17 @@
+{
+  "version": "0.5.3",
+  "passed": true,
+  "at": "2026-11-15T20:54:12.226001+00:00",
+  "sha256": "92f4072469b65f87a96e2d0bdd8982b7eec70c1348804c7249ea060db4fb1f50",
+  "bytes": 66345760,
+  "members": 1561,
+  "allMembersCrcAndHashVerified": true,
+  "portableSha256": "1ed025c162048ad1d0d971034b28060703907a84f0b68c39cc39b2a69ebdc126",
+  "portableLocallyExecuted": false,
+  "providerCalls": 0,
+  "datasetIncluded": false,
+  "datasetChanged": false,
+  "englishEngineeringPdfPages": 7,
+  "liveUrl": "https://aistro-flame-freefall.duckdns.org",
+  "asset": "SpaceApps1-0.5.3.zip"
+}
