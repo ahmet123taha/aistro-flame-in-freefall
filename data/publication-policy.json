@@ -1,0 +1,288 @@
+{
+  "schema": 1,
+  "status": "review_proposal_not_legal_advice_or_blanket_license",
+  "created_utc": "2026-11-15T19:07:50.171023+00:00",
+  "latest_portable_version": "0.5.2",
+  "core_dataset_version": "2026.11.14-v1",
+  "active_research_version": "0.4.2",
+  "active_research_manifest_sha256": "aabd96c26908ca828583daf9cbcd8937ce54d9a6f13fea37ea1b63fc7ccc65d7",
+  "allow_prefixes": [
+    "PSI/",
+    "_app/",
+    "_manifests/",
+    "Destek_Kaynaklar/",
+    "Research_Content/0.4.2/",
+    "Prepared_Graphs/",
+    "Material_Sensitivity/",
+    "Third_Party/sources/MaCFP__macfp-db/",
+    "Third_Party/sources/MaCFP__matl-db/"
+  ],
+  "allow_files": [
+    "CURRENT_LIBRARY.json",
+    "DATASET.json",
+    "DENEY_INDEKSI.json",
+    "index.html",
+    "KLASOR_STANDARDI.txt",
+    "KULLANIM.txt",
+    "Third_Party/README.md",
+    "Third_Party/LICENSES_AND_CITATIONS.md",
+    "Third_Party/DATASET_EXTERNAL.json",
+    "Third_Party/SOURCE_REGISTRY.json",
+    "Third_Party/MATERIAL_COVERAGE.csv",
+    "Third_Party/MATERIAL_COVERAGE.json",
+    "Third_Party/FAILED_DOWNLOADS.json",
+    "Third_Party/INSPECTION_ISSUES.json"
+  ],
+  "exclude_prefixes": [
+    "Research_Content/.0.4.2-install-0c0eb1ab-7c92-46d8-ad3f-75717f5d12b5/",
+    "Research_Content/checkpoints/",
+    "Third_Party/derived/"
+  ],
+  "default_action": "exclude_unmatched",
+  "publication_conditions": [
+    "Preserve NASA scientific dataset attribution, DOI and original notices. 23 of 24 investigation metadata specify CC0-1.0; PSI-10 is unrestricted with blank license and NASA-led ACME/Flame Design data supported by NASA Science Data Portal default rule. Do not claim blanket CC0 for external publications.",
+    "NASA supporting documents retain original NASA/government source URLs and notices. NASA use policy does not extend rights to separately credited third-party works.",
+    "MaCFP original source directories include LICENSE files; retain MIT notices and source-specific attribution.",
+    "Material_Sensitivity consists of locally authored context and 66 active numeric fact transcriptions; do not assign a blanket open-data license to FSRI originals. Unavailable originals cause material applicability loader invalid/missing state without breaking PSI research.",
+    "Research_Content/0.4.2 is active and tied solely to core _app/files.json.gz. No Third_Party original source is referenced by its core catalog. Literal extraction has same underlying source terms and is not scientific validation.",
+    "Source inventory inspection.header_excerpt fields contain copied third-party text; publish this slim source mapping rather than full unfiltered SOURCE_INVENTORY.json or generated Third_Party/index.html.",
+    "No canonical delete or rewrite. Public archive is partial compared to local mixed-rights collection; say so plainly."
+  ],
+  "official_policy_urls": [
+    "https://science.data.nasa.gov/about/license",
+    "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+  ],
+  "retained_license_files": [
+    "Third_Party/sources/MaCFP__macfp-db/LICENSE",
+    "Third_Party/sources/MaCFP__matl-db/LICENSE",
+    "Third_Party/LICENSES_AND_CITATIONS.md"
+  ],
+  "metadata_licenses": [
+    {
+      "accession": "PSI-100",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/040q-4h36",
+      "metadataPath": "_app/metadata/PSI-100_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-101",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/2np7-jv14",
+      "metadataPath": "_app/metadata/PSI-101_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-102",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/gd4k-8h62",
+      "metadataPath": "_app/metadata/PSI-102_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-106",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/pm12-rg61",
+      "metadataPath": "_app/metadata/PSI-106_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-107",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/9kbh-e962",
+      "metadataPath": "_app/metadata/PSI-107_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-10",
+      "licenseIdentifier": "",
+      "licenseName": "",
+      "licenseLink": "",
+      "restricted": false,
+      "doi": "10.60555/w4zy-bt45",
+      "metadataPath": "_app/metadata/PSI-10_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-115",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/q0v5-1v28",
+      "metadataPath": "_app/metadata/PSI-115_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-117",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/gz0q-b577",
+      "metadataPath": "_app/metadata/PSI-117_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-142",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/80qf-vj95",
+      "metadataPath": "_app/metadata/PSI-142_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-159",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/cyt1-kh64",
+      "metadataPath": "_app/metadata/PSI-159_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-20",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/vb93-3y72",
+      "metadataPath": "_app/metadata/PSI-20_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-21",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/23e1-9950",
+      "metadataPath": "_app/metadata/PSI-21_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-22",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/se5a-8c73",
+      "metadataPath": "_app/metadata/PSI-22_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-23",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/k57n-p030",
+      "metadataPath": "_app/metadata/PSI-23_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-25",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/4qc4-de67",
+      "metadataPath": "_app/metadata/PSI-25_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-26",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/58h4-dy80",
+      "metadataPath": "_app/metadata/PSI-26_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-39",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/m6pj-a914",
+      "metadataPath": "_app/metadata/PSI-39_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-47",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/ztgj-d202",
+      "metadataPath": "_app/metadata/PSI-47_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-60",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/mzjm-yv57",
+      "metadataPath": "_app/metadata/PSI-60_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-62",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/e9xp-ex83",
+      "metadataPath": "_app/metadata/PSI-62_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-68",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/byp8-h018",
+      "metadataPath": "_app/metadata/PSI-68_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-69",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/mbq8-0451",
+      "metadataPath": "_app/metadata/PSI-69_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-98",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/0t15-1z43",
+      "metadataPath": "_app/metadata/PSI-98_investigation_metadata.json"
+    },
+    {
+      "accession": "PSI-99",
+      "licenseIdentifier": "CC0-1.0",
+      "licenseName": "Creative Commons Zero v1.0 Universal",
+      "licenseLink": "https://spdx.org/licenses/CC0-1.0.html",
+      "restricted": false,
+      "doi": "10.60555/2chp-m469",
+      "metadataPath": "_app/metadata/PSI-99_investigation_metadata.json"
+    }
+  ],
+  "known_limits": {
+    "core_catalog_files": 51151,
+    "known_missing": 67,
+    "review_needed": 2269,
+    "third_party_original_verified": 3807,
+    "third_party_original_records_total": 3817
+  },
+  "source_manifest": "third-party-sources.json",
+  "release_manifest": "dataset-release.json",
+  "local_collection_bytes_before_packaging": 23082635980
+}

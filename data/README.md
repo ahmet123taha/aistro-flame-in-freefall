@@ -30,6 +30,8 @@ python scripts/verify-dataset.py --root 'D:/AISTROData' --inventory 'dataset-fil
 
 The local working collection measured about **23.08 GB** before packaging. This public dataset is a **documented subset**, not a claim that every locally collected source has redistribution permission. Old extraction caches and third-party originals with unresolved redistribution terms are excluded. See [sources](SOURCES.md), [licenses](LICENSES.md), [publication policy](publication-policy.json) and the [optional-source manifest](third-party-sources.json). The release manifest gives the actual published size.
 
+Retained original collection documents and source inventories describe the local collection and may refer to optional files that are not bundled. The release's `dataset-files.jsonl.gz` is the authority for the files actually distributed here.
+
 ## Optional material sources
 
 The FSRI original files and certain manufacturer/laboratory references are linked in the optional-source manifest rather than republished. The material-applicability loader verifies those original files; without them, that panel reports unavailable/invalid material data while PSI research remains available. This is an intentional publication limitation, not a complete-material-database claim.
