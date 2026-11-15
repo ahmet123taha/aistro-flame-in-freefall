@@ -1,90 +1,52 @@
 # AISTRO · Flame in Freefall
 
-**Explore combustion research, compare reported conditions, and follow an answer back to its source.**
+Explore NASA combustion research, compare experimental conditions, and trace AI-assisted answers back to their sources.
 
-An independent student hackathon project for the **2026 NASA Space Apps Challenge**, developed by the AISTRO team. The application brings NASA Physical Sciences Informatics (PSI) research, material references, document reading, and an AI research conversation into one workspace.
+**[Try the live demo](https://aistro-flame-freefall.duckdns.org)** · **[Download for Windows](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/dataset-2026.11.15/AISTRO-0.5.2-Full-Portable-Launcher.zip)** · **[Installation guide](docs/full-portable.md)**
 
-**[Open the live application](https://aistro-flame-freefall.duckdns.org)** · **[Download full portable: application + dataset](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/dataset-2026.11.15)** · **[Get the dataset](data/README.md)** · **[Browse source](app/)** · **[Space Apps project](https://www.spaceappschallenge.org/2026/find-a-team/aistro/?tab=project)**
+An independent student project for the **2026 NASA Space Apps Challenge**, by the AISTRO team. [View the Space Apps project](https://www.spaceappschallenge.org/2026/find-a-team/aistro/?tab=project).
 
-![AISTRO research workspace with source reading, optional conditions, and the Safety panel](docs/assets/workspace.png)
+![AISTRO: research conversation, source reader, conditions and Safety panel](docs/assets/workspace.png)
 
-## Start here
+## What you can do
 
-| You want to… | Go to… |
+- **Ask research questions** with optional material, gravity, oxygen, pressure, temperature and flow conditions.
+- **Read the evidence** in original documents and available tables, with indexed source references.
+- **Compare experimental conditions** while keeping missing values unknown.
+- **Explore supported graphs** from reviewed tables and published equations, with their assumptions.
+- **Review safety considerations** linked to sources in the Safety panel.
+
+AI interpretation requires your own compatible OpenAI API account. Source browsing and numerical comparisons work locally after dataset preparation. This research prototype does not predict certified fire risk or provide emergency calls/procedures.
+
+## Run on Windows
+
+1. **[Download the launcher ZIP](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/dataset-2026.11.15/AISTRO-0.5.2-Full-Portable-Launcher.zip)** and extract it on a drive with **at least 24 GB free**.
+2. With **PowerShell 7 and Python 3** installed, run **`PREPARE_FULL_PORTABLE.cmd`**. It downloads and verifies the dataset beside the application automatically.
+3. Open **`SpaceApps1.exe`**, then **Settings → OpenAI API key → Save** to enter **your own key**.
+
+**No API key is included.** Saved keys are encrypted for your Windows account, outside the portable folder. AI usage is charged to your own provider account. The EXE needs no separate Node.js or Rust installation.
+
+The complete distribution is **application + 22.51 GB of expanded data (114,686 files)**. The small launcher ZIP downloads the 57 data parts during preparation; **you do not need to choose or download those parts manually**. [Offline preparation details](docs/full-portable.md).
+
+## Data and limitations
+
+NASA Physical Sciences Informatics (PSI) records are the main research foundation. The app retrieves selected indexed passages and numerical records; it does not read every raw file into each AI response. Reconstructed graphs are not new experimental measurements, and numerical similarity is not a fire probability.
+
+The public dataset is a documented subset. Manufacturer/FSRI originals with unresolved redistribution terms are excluded. Without those optional originals, the material-applicability panel may report unavailable/invalid data; PSI research remains available. [Sources, coverage and data licenses](data/README.md).
+
+## Documentation and source code
+
+| Folder | Contents |
 |---|---|
-| Try the project without installing software | [Live application](https://aistro-flame-freefall.duckdns.org), no sign-in required |
-| Run it on Windows | [Full portable release: app + dataset](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/dataset-2026.11.15) and [preparation guide](docs/full-portable.md) |
-| Inspect or reproduce the implementation | [Source](app/), [architecture](docs/architecture.md), and [reproducibility](docs/reproducibility.md) |
-| Check where the information comes from | [Data provenance and distribution](data/README.md), [third-party notices](THIRD_PARTY_NOTICES.md), and the original-source links shown in the app |
-| Review how AI was used | [AI disclosure](docs/ai-disclosure.md) |
+| [app/](app/) | Application source, version 0.5.2 |
+| [data/](data/) | Data sources, licenses and download manifest |
+| [docs/](docs/README.md) | Installation, development, architecture and verification |
+| [scripts/](scripts/) | Dataset preparation and verification tools |
 
-## What it does
+## Open source and AI disclosure
 
-- **Start with a question.** Describe a research scenario; add material, gravity, gas composition, pressure, temperature, or flow details when useful. Unknown conditions can stay unknown.
-- **Read the evidence.** Open original reports and available tables or figures alongside the conversation. Source references retain file locations and, where indexed, page, sheet, or row anchors.
-- **Compare reported conditions.** Inspect usable measurements and coverage instead of treating missing values as zero. Material applicability and numerical proximity remain separate from an AI interpretation.
-- **Explore reviewed graphs.** Inspect supported table-based plots and published-equation curves with their source assumptions. Reconstructed curves are not newly measured experiments.
-- **Review source-supported safety considerations.** The Safety panel organizes relevant findings and cautions. In version 0.5.2, Incident support opens this panel; it does not start a voice call or emergency service.
+Original code is licensed under **[Apache 2.0](LICENSE)**. Third-party libraries and data retain their own terms: [notices](THIRD_PARTY_NOTICES.md) · [data licenses](data/LICENSES.md).
 
-## Run the portable application
+**ChatGPT/Codex** assisted development, editing, tests, documentation and translation; **Gemini** was used for earlier technical advice. The bee artwork was generated with ChatGPT. Runtime AI interpretation uses the OpenAI API. [AI disclosure and limits](docs/ai-disclosure.md).
 
-1. Open the **[full portable release](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/dataset-2026.11.15)** and extract `AISTRO-0.5.2-Full-Portable-Launcher.zip` onto a drive with at least **24 GB free disk space**.
-2. Run `PREPARE_FULL_PORTABLE.cmd` inside the extracted folder. With **PowerShell 7 and Python 3** installed, it downloads and verifies all 57 data archives into the adjacent `Veri_Seti` folder. Each temporary archive is removed after verification.
-3. After preparation, double-click `SpaceApps1.exe`. A local server starts on a free loopback port and opens your browser. The EXE requires **no separate Node.js or Rust installation**.
-4. Open **Settings → OpenAI API key → Save** and enter **your own key** for AI responses. **The distribution contains no preconfigured API key or credential vault.** Keys are encrypted for the Windows user account outside the application folder. Provider availability and usage charges belong to that account. Use **Remove key** to clear a saved key.
-
-```text
-AISTRO-0.5.2/
-├── SpaceApps1.exe
-├── PREPARE_FULL_PORTABLE.cmd
-├── START_HERE.txt
-├── setup/
-└── Veri_Seti/
-    ├── DATASET.json
-    └── … data and versioned indexes
-```
-
-**The full portable release is multipart: application + 57 dataset archives on the same release page.** The small launcher ZIP alone is not the dataset. Preparation produces one folder containing both; see [automatic and offline preparation](docs/full-portable.md). The public dataset contains **114,686 files / 22.51 GB expanded**. Original manufacturer/FSRI material sources with unresolved redistribution terms are excluded; the material-applicability panel can report unavailable/invalid data without those optional originals. PSI research remains available.
-
-Local source browsing and numerical comparison do not require an AI response. AI interpretation needs Internet access and a configured compatible provider. An existing key saved by the user on this Windows account can still be loaded; it is not embedded in the package. Moving the prepared folder does not transfer credentials or conversation history. The [original application-only ZIP and engineering records](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/v0.5.2) remain available separately.
-
-## Run from source
-
-Use **Node.js 22.13 or newer** (required by the locked PDF.js dependency) and install the locked dependencies:
-
-```powershell
-git clone https://github.com/ahmet123taha/aistro-flame-in-freefall.git
-cd aistro-flame-in-freefall/app
-npm ci
-
-# Choose the parent directory that contains your Veri_Seti folder.
-$env:SPACEAPPS_DATA_ROOT = 'C:\AistroData'
-$env:SPACEAPPS_STATE_DIR = Join-Path $env:LOCALAPPDATA 'AistroSourceDemo'
-$env:PUBLIC_ORIGIN = 'http://127.0.0.1:8770'
-$env:PORT = '8770'
-npm run start:hosted
-```
-
-Open **http://127.0.0.1:8770**. To enable AI, supply `OPENAI_API_KEY` privately in the server process environment before starting; never put it in the repository. The current configured research model is `gpt-6.1-sol`. This entry point requires the compatible dataset and listens on loopback; public hosting needs a reverse proxy. See [reproducibility](docs/reproducibility.md) for configuration and verification details.
-
-## Data and evidence boundaries
-
-NASA PSI experimental records are the main research foundation. Supplementary material references are identified separately. The app retrieves selected indexed passages and reviewed numerical records; it does **not** load every raw file into an AI context or automatically interpret every report.
-
-The [dataset guide](data/README.md) describes the published contents, installation, provenance, and redistribution limits. Original documents and data keep their own rights and attribution. This repository's software license does not relicense those sources.
-
-**Numerical similarity is a retrieval aid, not a fire probability or proof of equivalent physical behavior.** AI answers can be incomplete or wrong. This prototype is for research and learning, not operational fire-safety decisions, emergency dispatch, or an approved emergency procedure.
-
-## Release and verification
-
-The current public snapshot is **0.5.2**. `app/` preserves the matching source from the sealed release; some internal documents describe historical versions. The root documentation describes the current distribution.
-
-Recorded 0.5.2 Linux verification: **609 tests passed, 1 skipped, 0 failed**, with mocked provider interactions; **219 JavaScript files** passed syntax checks. These checks do not establish real-model scientific accuracy or Windows execution. This publication does not claim a new Windows runtime test. Exact archive and executable hashes are in [reproducibility](docs/reproducibility.md).
-
-## Open development
-
-Original project code and this repository's original documentation are released under **[Apache License 2.0](LICENSE)**. Dependencies, source datasets, scientific publications, figures, fonts, and branding retain their respective terms; see [NOTICE](NOTICE), [third-party notices](THIRD_PARTY_NOTICES.md), and [data documentation](data/README.md).
-
-Contributions are welcome through [issues and pull requests](CONTRIBUTING.md). To cite this software, use [CITATION.cff](CITATION.cff) and cite the underlying scientific sources separately.
-
-**Independent student hackathon project. Not affiliated with, endorsed by, or certified by NASA or its Space Agency Partners.** NPR 7150.2D Class C is an incomplete engineering target in the historical records, not a certification or formal NASA classification.
+**Independent student hackathon project. Not affiliated with, endorsed by, or certified by NASA or its Space Agency Partners.**
