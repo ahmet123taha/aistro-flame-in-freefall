@@ -1,0 +1,60 @@
+{
+  "from": "0.1.1",
+  "to": "0.1.2",
+  "issues": [
+    {
+      "id": "D012-01",
+      "severity": "critical",
+      "status": "fixed_for_matching_path",
+      "before": "0.1.1 counted input topics found in metadata, yielding100% for gravity3 and temperature0.001.",
+      "cause": "Topic coverage was exposed where the user expected numerical condition closeness.",
+      "fix": "Compare normalized values in individual experiment rows. No numeric row means no result. Keyword retrieval remains only a chat discovery aid.",
+      "verification": "numeric-matching tests plus reproduced screenshot inputs in browser",
+      "files": [
+        "lib/numeric-matching.mjs",
+        "lib/experiment-tables.mjs",
+        "server.mjs"
+      ]
+    },
+    {
+      "id": "D012-02",
+      "severity": "high",
+      "status": "partially_mitigated",
+      "before": "Material identity and specimen geometry were missing from inputs.",
+      "cause": "Six scalar input fields could not represent the burning sample.",
+      "fix": "Material/fuel, specimen kind, flow direction; five more scalars. Mismatched specified material/geometry/direction excluded. Mixed recognized material names remain unknown.",
+      "verification": "gating, parser and request validation tests; live PMMA film selection",
+      "files": [
+        "lib/experiment-tables.mjs",
+        "lib/corpus.mjs",
+        "public/app.js"
+      ]
+    },
+    {
+      "id": "D012-03",
+      "severity": "high",
+      "status": "open_scientific_validation",
+      "before": "No justified numerical weights or critical similarity threshold.",
+      "cause": "A universal fire response relationship has not been established.",
+      "fix": "User example weights retained as visible editable draft total50; no fabricated remainder. Full score requires100 total and all weighted measurements. No critical fire classification.",
+      "verification": "missing-data and weight-sum tests; contribution UI",
+      "files": [
+        "lib/numeric-matching.mjs",
+        "public/numeric-card.mjs"
+      ]
+    },
+    {
+      "id": "D012-04",
+      "severity": "low",
+      "status": "fixed",
+      "before": "Generic descriptions obscured the calculation.",
+      "cause": "Cards lacked per-run values and source-row evidence.",
+      "fix": "Source run, exact values, units, proximity, weights and contributions in expandable table.",
+      "verification": "browser BASS B1 100 then88.461538 with changed thickness",
+      "files": [
+        "public/numeric-card.mjs",
+        "public/app.js"
+      ]
+    }
+  ]
+}

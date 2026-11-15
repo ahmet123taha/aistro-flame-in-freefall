@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import {rankFileShards} from '../lib/source-content-candidates.mjs';
+import {isConfined} from '../lib/source-content-index.mjs';
+const shard=(sha,index=0)=>({sha256:sha,fileId:'f'+sha,sourceIds:['PSI-'+sha],terms:['oxygen','flame'],path:'parts/'+sha+'/part-'+String(index).padStart(5,'0')+'.json.gz'});
+test('many parts from one original cannot crowd another file out of the first allocation pass',()=>{const manifest={shards:[...Array.from({length:50},(_,i)=>shard('a',i)),shard('b'),shard('c')]},r=rankFileShards(manifest,{ids:['PSI-a','PSI-b','PSI-c'],question:'oxygen flame'},3);assert.equal(new Set(r.plan.map(p=>p.shard.sha256)).size,3);assert.equal(r.matchingParts,52);});
+test('one-shard-per-file core order matches file-neutral lexical score and SHA tie ordering',()=>{const shards=[shard('c'),shard('a'),shard('b')],r=rankFileShards({shards},{ids:['PSI-a','PSI-b','PSI-c'],question:'oxygen flame'},3);assert.deepEqual(r.plan.map(p=>p.shard.sha256),['a','b','c']);});
+test('dictionary-backed terms preserve planning and unknown numeric-only lookups stay empty',()=>{const original={shards:[shard('a'),shard('b')]},encoded={lexicon:['oxygen','flame'],shards:original.shards.map(s=>({...s,terms:[0,1]}))},q={ids:['PSI-a','PSI-b'],question:'oxygen flame'};assert.deepEqual(rankFileShards(original,q).plan.map(p=>p.shard.path),rankFileShards(encoded,q).plan.map(p=>p.shard.path));assert.equal(rankFileShards(encoded,{...q,question:'101325 300'}).plan.length,0);});
+test('manifest/index/shard confinement rejects native, Windows cross-drive and UNC escapes',()=>{assert.equal(isConfined('/index','/index/shards/file',path.posix),true);assert.equal(isConfined('/index','/outside/file',path.posix),false);assert.equal(isConfined('C:\\index','C:\\index\\part.gz',path.win32),true);assert.equal(isConfined('C:\\index','D:\\payload.gz',path.win32),false);assert.equal(isConfined('C:\\index','C:\\outside\\part.gz',path.win32),false);assert.equal(isConfined('\\\\server\\one\\index','\\\\server\\two\\part.gz',path.win32),false);});

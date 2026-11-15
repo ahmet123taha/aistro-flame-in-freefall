@@ -1,0 +1,48 @@
+{
+  "fromVersion": "0.1.11",
+  "toVersion": "0.1.12",
+  "issues": [
+    {
+      "id": "D0112-01",
+      "severity": "high",
+      "status": "addressed_within_source_model_scope",
+      "before": "Boundary view showed local derivatives but no comparable finite output effect for the user-selected step.",
+      "fix": "Exact output excursions and normalized effects for oxygen/flow/diameter, with explicit material and source-window gates. General risk-weight calibration remains open."
+    },
+    {
+      "id": "D0112-02",
+      "severity": "high",
+      "status": "prevented",
+      "before": "At the empirical curve minimum a zero derivative can be mistaken for physical irrelevance.",
+      "fix": "Evaluate interval endpoints and interior minimum. Finite perturbation remains nonzero; exact versus linear discrepancy visible."
+    },
+    {
+      "id": "D0112-03",
+      "severity": "high",
+      "status": "prevented",
+      "before": "Clipping out-of-window probes or normalizing only surviving parameters could create misleading percent shares.",
+      "fix": "No clipping, partial effects remain visible, all shares withheld until all3 probes valid. Joint calculation separately checked."
+    },
+    {
+      "id": "D0112-04",
+      "severity": "medium",
+      "status": "fixed_during_UI_QA",
+      "before": "Reused interval calculation returned wording referring to uncertainty even for an analyst-chosen effect probe.",
+      "fix": "Probe-specific reason text; source measurement errors remain separate. Final EXE rebuilt and reverified."
+    },
+    {
+      "id": "D0112-05",
+      "severity": "low",
+      "status": "prevented",
+      "before": "An invalid hidden probe input could block another method submission or persist after reset.",
+      "fix": "Disable control outside boundary mode; validate probe only in that method; reset to explicit1percent."
+    },
+    {
+      "id": "D0112-06",
+      "severity": "high",
+      "status": "open",
+      "before": "No independent calibrated relationship between effect shares, material fire risk and generic matching weights.",
+      "fix": "Do not copy conditional model effects into universal matching weights. No safe/critical threshold or operating instruction generated."
+    }
+  ]
+}

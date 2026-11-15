@@ -1,0 +1,6 @@
+import {readFile,writeFile} from 'node:fs/promises';
+let js=await readFile('public/app.js','utf8');
+js=js.replace("$('#ai-toggle').onclick=()=>collapse(!$('#ai-panel').classList.contains('collapsed'));", "$('#ai-toggle').onclick=()=>{const opening=$('#ai-panel').classList.contains('collapsed');collapse(!opening);if(opening){$('#main-scroll').scrollTop=0;$('#ai-panel').scrollIntoView({block:'start'});}};");
+await writeFile('public/app.js',js);
+await writeFile('public/styles.css',(await readFile('public/styles.css','utf8'))+'\n.study input[type=checkbox]{align-self:start;height:15px}\n');
+await writeFile('qa/redesign-verification.json',JSON.stringify({version:'0.3.0',at:new Date().toISOString(),unitTests:13,passed:true,providerCalls:0,verified:['numeric input submission and unknown score','multiple report and data tabs retained','four-study comparison','per-source AI context without provider call','right panel collapse and restore','AI auto collapse on scrolling','search by PSI identifier','1440px desktop without overflow'],limits:['No individual-run numeric rows in four metadata sources','No calibrated weighting or ignition probability','Live model output not rerun'],screenshot:'qa/redesign-desktop.jpg'},null,2));

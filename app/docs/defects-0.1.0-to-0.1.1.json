@@ -1,0 +1,73 @@
+{
+  "from": "0.1.0",
+  "to": "0.1.1",
+  "date": "2026-11-14",
+  "issues": [
+    {
+      "id": "BUG-011-01",
+      "severity": "high",
+      "status": "fixed_local_validation",
+      "before": "Saving the API key rejected some formats.",
+      "cause": "A 20–200-character limit and an allowlist of letters/digits/underscore/hyphen rejected dotted or long keys before submission to the server. The user's actual key was not read; the precise trigger in their input was not verified.",
+      "fix": "Treat the key as an opaque HTTP-header value. Remove surrounding whitespace/one pair of quotes; retain the 4096-character limit and prohibition of internal whitespace/control characters. Preserve DPAPI storage.",
+      "files": [
+        "lib/credentials.mjs",
+        "server.mjs",
+        "public/index.html"
+      ],
+      "verification": "35 tests; HTTP saving, DPAPI restart and browser saving passed with a long dotted dummy key. Actual provider validity was not tested."
+    },
+    {
+      "id": "UI-011-02",
+      "severity": "low",
+      "status": "fixed",
+      "before": "The checkbox was on the card's left; generic descriptions repeated on every card.",
+      "cause": "The previous card template used a fixed subtitle and free text.",
+      "fix": "Checkbox at the far right below the source badge. Percentage in the left column; title and concise topic tags in the center. Fire-safety panel unchanged.",
+      "files": [
+        "public/result-card.mjs",
+        "public/app.js",
+        "public/styles.css"
+      ],
+      "verification": "Eight cards with real data; checkbox right/below badge; no overflow. Final EXE screenshot recorded."
+    },
+    {
+      "id": "MATCH-011-03",
+      "severity": "high",
+      "status": "topic_coverage_implemented_physical_similarity_open",
+      "before": "Local source relevance used a raw keyword score; the user requested a percentage and short reason.",
+      "cause": "No normalized individual trial conditions or validated physical thresholds.",
+      "fix": "Separate topicCoverage field: 100 × input topics present in source text / number of input topics. Synonyms count once; equal weights. Topic relevance label and green-to-red color steps; physical similarity remains null.",
+      "files": [
+        "lib/retrieval.mjs",
+        "public/result-card.mjs"
+      ],
+      "verification": "3/3=100, 1/3=33; O2 does not match CO2; changing numerical values leaves the topic score unchanged. Critical is reserved for the verified numerical-matching path."
+    },
+    {
+      "id": "PKG-011-04",
+      "severity": "low",
+      "status": "implemented_package_verification_required",
+      "before": "Reports were under the application or in separate/nested ZIPs.",
+      "cause": "Package structure did not meet the user's expectation.",
+      "fix": "A single version ZIP with sibling SpaceApps1 and Developer Patch directories. Only a short summary under application/Patches; technical documents, old/new code, diffs and index in the sibling directory.",
+      "files": [
+        "AGENTS.md",
+        "scripts/package-011.py"
+      ],
+      "verification": "Packaging requires two top-level directories, no nested ZIPs, SHA/CRC checks for every member and equality of tested/delivered EXE hashes."
+    },
+    {
+      "id": "GAP-011-05",
+      "severity": "critical",
+      "status": "open",
+      "before": "No actual numerical-condition similarity or critical thresholds.",
+      "cause": "Measurement tables have not been normalized and verified by unit, material, geometry, condition and uncertainty.",
+      "fix": "This release does not resolve that gap. Topic percentage is not physical correspondence, fire probability or critical classification. Sources discussing the same topics may contain different experimental values.",
+      "files": [
+        "lib/retrieval.mjs"
+      ],
+      "verification": "Tests enforce separation between topicCoverage and similarity. Scientific validation remains open."
+    }
+  ]
+}

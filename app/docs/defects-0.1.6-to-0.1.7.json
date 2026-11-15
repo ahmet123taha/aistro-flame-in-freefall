@@ -1,0 +1,48 @@
+{
+  "from": "0.1.6",
+  "to": "0.1.7",
+  "issues": [
+    {
+      "id": "D017-01",
+      "severity": "high",
+      "status": "addressed_for_source_table",
+      "before": "SIBAL Table7.1 outcomes and material construction were absent from normalized rows.",
+      "fix": "Add31 hash-bound source rows, geometry, area density and exposed length with material-construction identity gate."
+    },
+    {
+      "id": "D017-02",
+      "severity": "high",
+      "status": "prevented",
+      "before": "Unreliable O2 and consumed original dimensions could be treated as comparable measurements.",
+      "fix": "Exclude2 flagged O2 values and original thickness/area-density/length for8 reused rows; preserve nominal and unknown labels."
+    },
+    {
+      "id": "D017-03",
+      "severity": "high",
+      "status": "partially_addressed",
+      "before": "Only best row per research visible; contrasting observed outcomes hidden.",
+      "fix": "Expose up to50 alternative rows with per-row values/outcomes/provenance; explicit omitted count. Unique physical-trial resolution remains open."
+    },
+    {
+      "id": "D017-04",
+      "severity": "high",
+      "status": "documented_source_discrepancy",
+      "before": "No ignition and fixed oxygen chapter labels could suppress brief ignition and differing appendix readings.",
+      "fix": "Preserve source terms and explicit caveats; do not merge readings or classify material nonflammable."
+    },
+    {
+      "id": "D017-05",
+      "severity": "low",
+      "status": "addressed",
+      "before": "New material-specific inputs and other trials require discoverable UI.",
+      "fix": "Conditional fabric selector, specimen history and expandable trial details."
+    },
+    {
+      "id": "D017-06",
+      "severity": "high",
+      "status": "open",
+      "before": "SIBAL independent physics-based predictor and calibrated critical thresholds unavailable.",
+      "fix": "Do not apply PMMA equation or invent linear combustion weights from composition."
+    }
+  ]
+}

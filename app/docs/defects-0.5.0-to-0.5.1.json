@@ -1,0 +1,111 @@
+{
+  "release": "0.5.1",
+  "baseline": "0.5.0",
+  "status": "offline_verified_acceptance_open",
+  "reportedSessionRootCause": "Unknown: no captured authorized live-session evidence establishes why the user session ended after approximately three seconds.",
+  "severityScope": "Engineering defect prioritization, not calibrated fire severity.",
+  "defects": [
+    {
+      "id": "D-051-01",
+      "severity": "high",
+      "problem": "Recoverable voice response/transcription failures can incorrectly end the conversation instead of returning to a usable listening/text state.",
+      "requirements": [
+        "FIF-091"
+      ],
+      "rootCause": "Code-level lifecycle paths are addressed; no proof that this caused the user-reported approximately three-second session.",
+      "mitigation": "Distinguish response-level interruption from terminal transport/session failure; label partial output and preserve context.",
+      "release": "0.5.1",
+      "status": "IMPLEMENTED_OFFLINE_VERIFIED_ACCEPTANCE_OPEN",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "D-051-02",
+      "severity": "high",
+      "problem": "Concurrent responses, transient RTC disconnects and blocked autoplay can interrupt useful voice guidance.",
+      "requirements": [
+        "FIF-092"
+      ],
+      "rootCause": "Engineering failure modes, not a confirmed reconstruction of the reported user session.",
+      "mitigation": "Serialize responses; bounded RTC grace; explicit Enable audio recovery; retain model/token/time controls.",
+      "release": "0.5.1",
+      "status": "IMPLEMENTED_OFFLINE_VERIFIED_ACCEPTANCE_OPEN",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "D-051-03",
+      "severity": "high",
+      "problem": "Generic reassurance and unsupported operational advice can miss the next protective decision or imply user competence.",
+      "requirements": [
+        "FIF-093"
+      ],
+      "rootCause": "Prompt policy did not sufficiently prioritize fact-dependent concise decisions and continuity.",
+      "mitigation": "Next supported protective action, at most one useful question, no default stay-put/reassurance loop or invented equipment procedure.",
+      "release": "0.5.1",
+      "status": "IMPLEMENTED_OFFLINE_VERIFIED_ACCEPTANCE_OPEN",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "D-051-04",
+      "severity": "medium",
+      "problem": "Safety purpose, explicit ignition research intent and evolving checklist relevance need clearer separation.",
+      "requirements": [
+        "FIF-094",
+        "FIF-095"
+      ],
+      "rootCause": "Product/prompt guidance can overgeneralize safety or retain weak generic checklist actions.",
+      "mitigation": "Preserve educational intent, strengthen new source findings and conditional single-action steps; remove invalidated guidance.",
+      "release": "0.5.1",
+      "status": "IMPLEMENTED_OFFLINE_VERIFIED_ACCEPTANCE_OPEN",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "D-051-05",
+      "severity": "medium",
+      "problem": "Safety may be overlooked or attention may repeat unnecessarily after saved-state restore.",
+      "requirements": [
+        "FIF-096"
+      ],
+      "rootCause": "Presentation/notification lifecycle needs explicit fresh validated-result boundaries.",
+      "mitigation": "Concise primary empty state; finite accessible attention on accepted new findings only; no restore pulse.",
+      "release": "0.5.1",
+      "status": "IMPLEMENTED_OFFLINE_VERIFIED_ACCEPTANCE_OPEN",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    }
+  ],
+  "verification": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+}

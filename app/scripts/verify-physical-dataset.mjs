@@ -1,0 +1,18 @@
+import {writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {loadDataset} from '../lib/dataset.mjs';
+import {matchExperiments} from '../lib/numeric-matching.mjs';
+import {validateRequest} from '../lib/corpus.mjs';
+import {VERSION} from '../lib/version.mjs';
+const dataset=await loadDataset(process.argv[2]);
+assert.equal(dataset.corpus.experiments.physicalRows.length,3);
+const conditions={gravity:'other',material:'pmma',materialVariant:'cast-pmma',specimenKind:'rod',tipShape:'hemispherical',flowDirection:'concurrent',gravityRegime:'microgravity',airflow:.5,rodDiameterMm:6.36,flameRadiusMm:5.6};
+const request=method=>validateRequest({method,conditions,ids:['PSI-25'],question:'Kaynak gerinim değerleriyle karşılaştır.'},dataset.corpus.records.map(r=>r.id));
+const forced=matchExperiments(dataset.corpus,request('pmma-rod-forced')),total=matchExperiments(dataset.corpus,request('pmma-rod-total'));
+assert.ok(forced.matches[0].similarity>99.9);assert.ok(total.matches[0].similarity<100);assert.equal(total.matches[0].experiment.physics.calculated.curvature>0,true);
+const blocked=matchExperiments(dataset.corpus,{...request('pmma-rod-forced'),conditions:{...conditions,gravityMs2:3.9}});assert.equal(blocked.matches.length,0);
+const context=await dataset.context(request('pmma-rod-total'));
+assert.ok(context.records[0].fileSources.some(f=>f.id==='f45'&&f.sha256===dataset.corpus.experiments.physicalRows[0].provenance.sha256));
+assert.match(context.records[0].content.fileText,/local|Local/);assert.match(context.records[0].content.fileText,/elasticities/);assert.match(context.records[0].content.fileText,/cast-pmma/);
+const record={version:VERSION,at:new Date().toISOString(),passed:true,providerCalls:0,sourceVerified:dataset.corpus.experiments.summary.documentAudit.find(f=>f.fileId==='f45'),forced,total,blocked,checks:['3 hash-pinned reference estimates','forced and total modes differ','positive gravity outside model applicability rejected','equation, derivatives, source hash and limitations in local AI context'],limits:['no independent experimental validation of generalized risk','three representative author estimates, not full raw trial series','user-declared microgravity, grade and shape assumptions','critical threshold not produced']};
+await writeFile('qa/physical-dataset-verification-'+VERSION+'.json',JSON.stringify(record,null,2));console.log(JSON.stringify({passed:true,forced:forced.matches[0].similarity,total:total.matches[0].similarity,source:record.sourceVerified,providerCalls:0}));

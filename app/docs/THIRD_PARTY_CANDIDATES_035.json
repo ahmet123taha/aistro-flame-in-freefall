@@ -1,0 +1,40 @@
+{
+  "version": "0.3.5",
+  "checkedDate": "2026-11-15",
+  "authorization": "User explicitly allowed third-party experimental datasets when needed for physical/material/thermodynamic similarity.",
+  "productionImported": false,
+  "candidates": [
+    {
+      "id": "EXT-CAND-01",
+      "name": "MaCFP Condensed Phase Material Database",
+      "url": "https://github.com/MaCFP/matl-db",
+      "licenseUrl": "https://github.com/MaCFP/matl-db/blob/master/LICENSE",
+      "license": "Repository MIT license verified; individual dataset attribution and exact revision must still be pinned before import.",
+      "relevance": "PMMA and wood pyrolysis experiments/property parameterization; separate measurements from model predictions.",
+      "limitations": "Not a paper-specific 5-to-50 Celsius equivalence dataset; different material grades and apparatus need review."
+    },
+    {
+      "id": "EXT-CAND-02",
+      "name": "NIST Automated Tools for Material Property Calibration",
+      "url": "https://www.nist.gov/programs-projects/automated-tools-material-property-calibration",
+      "license": "No dataset license inferred from this overview page; obtain exact data source/terms before import.",
+      "relevance": "Kinetics, heat capacities, heats of reaction/combustion, conductivity, absorption and emissivity; calibration and validation workflow.",
+      "limitations": "Overview is a methodology source, not an imported property table or validated paper tolerance."
+    },
+    {
+      "id": "EXT-CAND-03",
+      "name": "UL FSRI Materials and Products Database",
+      "url": "https://materials.fsri.org/",
+      "license": "No redistribution permission inferred from public availability; review public data repository and per-record terms.",
+      "relevance": "Measured material properties, ignition and fire-test data for building materials, polymers and fibers.",
+      "limitations": "Exact paper/cellulose specimen coverage, test conditions and license remain to be checked before use."
+    }
+  ],
+  "acceptance": [
+    "Pin source revision, file checksum, citation, provenance and redistribution terms.",
+    "Distinguish measured experimental data, fitted material properties, predictions and digitized curves.",
+    "Match material grade/composition, moisture, specimen geometry and apparatus; preserve units and uncertainty.",
+    "Validate an outcome-specific model against held-out experiments before deriving tolerable parameter intervals.",
+    "Do not silently mix external data with NASA records or expose internet tools to the model."
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "fromVersion": "0.1.10",
+  "toVersion": "0.1.11",
+  "issues": [
+    {
+      "id": "D0111-01",
+      "severity": "high",
+      "status": "fixed_for_available_normalized_runs",
+      "before": "Comparison view showed collection metadata rather than measured individual experiments and reported outcomes.",
+      "fix": "Explicit2-6 run table with numeric contributions, conditions, source observations and PDF/CSV provenance."
+    },
+    {
+      "id": "D0111-02",
+      "severity": "high",
+      "status": "prevented",
+      "before": "A comparison referencing live form state could silently mix an old score with newly edited conditions.",
+      "fix": "Deep-copy request, method, rows and dataset hash when opening the tab. Input edits clear pending selection, not saved tabs. JSON export checked."
+    },
+    {
+      "id": "D0111-03",
+      "severity": "low",
+      "status": "fixed_during_UI_QA",
+      "before": "Opening comparison inherited prior results scroll and source enums were hard to read.",
+      "fix": "Scroll to top, show saved input summary and Turkish condition labels."
+    },
+    {
+      "id": "D0111-04",
+      "severity": "medium",
+      "status": "release_gate_passed",
+      "before": "Windows returned EBUSY during final executable subsystem write. Subsequent verifier rejected hash mismatch; intermediate binary was not packaged.",
+      "fix": "Bounded retry on EBUSY/EPERM only, up to10 seconds; manifest emitted only after successful write. Final clean build took0 retries and hash/portable checks passed. Lock cause and forced retry branch were not independently established."
+    },
+    {
+      "id": "D0111-05",
+      "severity": "high",
+      "status": "open",
+      "before": "Observed outcome differences are not a calibrated fire-risk model or a controlled causal comparison.",
+      "fix": "Explicit warnings and source terminology preserved; no risk percent, safe threshold or causal claim generated."
+    }
+  ]
+}

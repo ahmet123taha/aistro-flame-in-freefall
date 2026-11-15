@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite this release and cite the underlying scientific datasets and publications separately."
+title: "AISTRO: Flame in Freefall"
+type: software
+authors:
+  - name: "AISTRO project contributors"
+version: "0.5.2"
+date-released: 2026-11-15
+url: "https://github.com/ahmet123taha/aistro-flame-in-freefall"
+repository-code: "https://github.com/ahmet123taha/aistro-flame-in-freefall"
+license: Apache-2.0
+abstract: "An independent student hackathon research workspace for exploring NASA PSI combustion evidence, reading source documents, comparing reported conditions, and discussing selected evidence with an AI assistant. The software license does not replace the terms of third-party datasets, publications, libraries, or branding."
+keywords:
+  - combustion
+  - microgravity
+  - NASA PSI
+  - research tools
+  - source provenance
+  - NASA Space Apps

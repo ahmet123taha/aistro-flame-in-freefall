@@ -1,0 +1,111 @@
+{
+  "version": "0.2.0",
+  "severityDefinitions": {
+    "high": "Could invalidate safety/scientific or compliance claims; prevents operational acceptance.",
+    "medium": "Material engineering or verification gap; explicit scope limits required.",
+    "low": "Tracked maintainability or intended architecture gap."
+  },
+  "items": [
+    {
+      "id": "G-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "The scientific correctness of LLM interpretation has not been independently validated. A sample cache showed a weak inference from smoke-mixture findings to cool-flame behavior.",
+      "mitigation": "Source/hypothesis/inference boundaries are visible; no safety score or intervention order. No operational use before an expert comparison set and claim-evidence audit are developed.",
+      "related": [
+        "FIF-004",
+        "SWE-055",
+        "SWE-070"
+      ]
+    },
+    {
+      "id": "G-02",
+      "severity": "high",
+      "status": "open",
+      "problem": "A Class C target is not formal classification, software assurance, independent review or NASA approval.",
+      "mitigation": "The 92 applicable marked rows remain open/partial; no approval or tailoring is claimed. Intended use/safety-criticality must be reviewed against NASA-STD-8739.8.",
+      "related": [
+        "SWE-020",
+        "SWE-022",
+        "SWE-125",
+        "SWE-176",
+        "SWE-205"
+      ]
+    },
+    {
+      "id": "G-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Deep static analysis, code-coverage measurements, independent peer review and accreditation of development tools are not yet available.",
+      "mitigation": "Local automated and EXE smoke tests exist; they do not substitute for the missing activities.",
+      "related": [
+        "SWE-135",
+        "SWE-136",
+        "SWE-185",
+        "SWE-189",
+        "SWE-190",
+        "SWE-087"
+      ]
+    },
+    {
+      "id": "G-04",
+      "severity": "medium",
+      "status": "open",
+      "problem": "No clean second-Windows-device test or digital signature. Operating-system dependencies include Windows PowerShell/DPAPI and a browser.",
+      "mitigation": "Relocated-EXE and empty-PATH testing on the same machine; no separate installation/launcher; second-device acceptance is planned.",
+      "related": [
+        "FIF-008",
+        "SWE-073"
+      ]
+    },
+    {
+      "id": "G-05",
+      "severity": "medium",
+      "status": "open",
+      "problem": "The large curated dataset is not included in this demo's model context; only four metadata files are used.",
+      "mitigation": "UI scope is explicit; no raw-table/sensor/gravity interpolation is invented. Future source expansion requires separate user scope and data tests.",
+      "related": [
+        "FIF-001",
+        "FIF-003"
+      ]
+    },
+    {
+      "id": "G-06",
+      "severity": "medium",
+      "status": "open",
+      "problem": "NPR cost/schedule/training/organizational delivery and acceptance records have not yet been provided.",
+      "mitigation": "Preserve the user's product-plan preference without people/durations; do not remove those NPR evidence requirements and count them as satisfied. Complete them through a separate management process.",
+      "related": [
+        "SWE-015",
+        "SWE-151",
+        "SWE-174",
+        "SWE-017",
+        "SWE-077",
+        "SWE-194"
+      ]
+    },
+    {
+      "id": "G-07",
+      "severity": "medium",
+      "status": "open",
+      "problem": "A malicious process under the same Windows user can bypass the benefit of DPAPI protection; model-service and Windows-runtime changes are external dependencies.",
+      "mitigation": "Do not share the user profile; bind the local server to loopback; redact logs; change the model only by explicit decision. Do not guarantee operating-system security.",
+      "related": [
+        "FIF-007",
+        "SWE-027",
+        "SWE-154"
+      ]
+    },
+    {
+      "id": "G-08",
+      "severity": "low",
+      "status": "open",
+      "problem": "The Rust target is not implemented yet; the current demo uses Node SEA.",
+      "mitigation": "State the actual language/architecture clearly in README; handle Rust migration as a separately tested release.",
+      "related": [
+        "SWE-033",
+        "SWE-057"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+AISTRO — Flame in Freefall
+Version 0.5.2
+Copyright 2026 AISTRO project contributors.
+
+Original project code and original repository documentation are licensed under
+the Apache License, Version 2.0. This license does not replace any license or
+rights notice attached to third-party material.
+
+Excluded from that blanket license grant are third-party libraries and their
+assets, NASA and other source datasets, scientific publications, figures,
+fonts, trademarks, and branding assets. Their respective terms apply. See
+THIRD_PARTY_NOTICES.md, app/public/THIRD_PARTY_NOTICES.txt, and data/README.md.
+
+References to NASA and the NASA Space Apps Challenge identify the data source
+and event context only. This is an independent student hackathon project,
+not affiliated with, endorsed by, or certified by NASA or its Space Agency
+Partners. No trademark or official-logo rights are granted.
+
+The software is a research and learning prototype. Its comparisons and AI
+outputs are not fire probabilities, approved operating procedures, emergency
+dispatch, or a substitute for qualified scientific and safety review.
+
+The source snapshot includes historical engineering and AI-provider records.
+Historical claims retain their version context; the root documentation and
+version 0.5.2 release evidence describe this distribution.

@@ -1,0 +1,12 @@
+import {sourceReferenceHtml} from './source-reference.mjs';
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function sourceBriefHtml(b,{compact=false,incident=false}={}){
+ const basis=b.basis==='reported_result'?'Reported finding':'Study scope';
+ return `<article class="source-brief"><div class="brief-label"><strong class="brief-ai-label">AI summary</strong><span>${esc(b.sourceId)} · ${esc(b.topic)}</span><small>${basis}</small></div>${compact?'':`<h4>${esc(b.sourceTitle||b.sourceId)}</h4>`}<p class="brief-finding">${esc(b.finding)}</p>${incident?'':`<p><strong>For your question:</strong> ${esc(b.application)}</p>`}<p class="brief-limit"><strong>Limit:</strong> ${esc(b.limitation)}</p><details><summary>Original passage and file location</summary><blockquote>${esc(b.quote)}</blockquote>${sourceReferenceHtml(b.evidenceProvenance,{showHash:true})}${!b.evidenceProvenance?'<small>Catalog/study description; no original result passage is established.</small>':''}</details><div class="brief-actions"><button data-open="${esc(b.sourceId)}">Open report</button><button data-data="${esc(b.sourceId)}">Tables / graphs</button>${incident?'':`<button data-ai="${esc(b.sourceId)}">Discuss this source</button>`}</div></article>`;
+}
+export function sourceBriefingHtml(items=[],{compact=false,incident=false,stale=false,title='What the sources tell us'}={}){
+ if(!items.length)return '';
+ return `<section class="source-briefing" aria-label="Source findings"><h3>${esc(title)}</h3>${stale?'<p class="safety-stale">Earlier context: these findings have not been reassessed for your latest situation.</p>':''}${incident?'<p class="brief-scope">Experimental background only. This is not an approved incident procedure.</p>':''}${items.slice(0,incident?3:6).map(b=>sourceBriefHtml(b,{compact,incident})).join('')}</section>`;
+}
+export function briefingReviewHtml(review){return review?.issues?.length?'<p class="brief-review" role="status">Some source summaries could not be traced to their supplied passages and were omitted. The verified source references and valid research results remain available.</p>':'';}
+export function sourceBriefingText(items=[]){return items.map(b=>[b.sourceId+' — '+(b.sourceTitle||''),b.finding,'Relevance: '+b.application,'Limit: '+b.limitation,'Source passage: '+b.quote,b.evidenceProvenance?JSON.stringify(b.evidenceProvenance):'Catalog description'].join('\n')).join('\n\n');}

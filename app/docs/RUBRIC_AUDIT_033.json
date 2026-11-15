@@ -1,0 +1,89 @@
+{
+  "version": "0.3.3",
+  "previousVersion": "0.3.2",
+  "requirement": "FIF-042",
+  "date": "2026-11-15",
+  "observed": {
+    "model": "gemini-3.1-flash-lite",
+    "httpStatus": 200,
+    "responseId": "Cfv4aqyrHOGhkdUP44m3gAU",
+    "receivedAt": "2026-11-15T00:21:33.136Z",
+    "error": "RESEARCH_RUBRIC_REASON",
+    "assessmentCount": 2,
+    "recommendationCount": 1,
+    "promptTokens": 35532,
+    "outputTokens": 1525,
+    "exactMissingDimensionKnown": false
+  },
+  "findings": [
+    {
+      "id": "D033-01",
+      "severity": "high",
+      "title": "Scoring instructions and validation disagreed",
+      "cause": "The prompt required reasons only for intermediate scores and used an ambiguous rubricReasons placeholder; the validator required nonempty explanations for every dimension, including zero and anchor scores.",
+      "fix": "List all eight explanation keys explicitly and require 1-600 characters for every dimension. Keep the existing numeric rubric values and 60/40 scoring policy.",
+      "implementation": [
+        "lib/research.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/rubric-recovery.test.mjs",
+        "qa/release-0.3.3/test-results.log",
+        "qa/release-0.3.3/browser-review.json",
+        "qa/release-0.3.3/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D033-02",
+      "severity": "high",
+      "title": "One missing scoring explanation discarded the entire reply",
+      "cause": "RESEARCH_RUBRIC_REASON threw from inside the per-source loop, losing the conversation and otherwise valid peers after a successful provider response.",
+      "fix": "After mandatory source and numeric validation, quarantine only assessments with unexplained positive scores into an unscored list. Preserve source links, verified quotes, dialogue and valid peer scores. Zero-point missing reasons receive an administrative note without changing a number or inventing a scientific rationale.",
+      "implementation": [
+        "lib/rubric-review.mjs",
+        "lib/research.mjs",
+        "lib/research-scoring.mjs",
+        "public/environment-panel.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/rubric-recovery.test.mjs",
+        "qa/release-0.3.3/test-results.log",
+        "qa/release-0.3.3/browser-review.json",
+        "qa/release-0.3.3/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D033-03",
+      "severity": "medium",
+      "title": "Partial scoring needs honest state and durable diagnostic boundaries",
+      "cause": "The previous pipeline exposed only all-passed or all-rejected and logged the collection field, without the affected source or dimension. Revalidating sanitized partial responses from cache could lose the scoring warning.",
+      "fix": "Return partial validation receipts and per-source/per-dimension bounded diagnostics. Display the scoring limitation in chat and source cards. Preserve stale recommendation state during partial reviews. Do not cache recovered assessments; normal complete replies keep caching. Persist partial responses in chat history.",
+      "implementation": [
+        "lib/gemini.mjs",
+        "public/conversation-panel.mjs",
+        "lib/research.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/rubric-recovery.test.mjs",
+        "qa/release-0.3.3/test-results.log",
+        "qa/release-0.3.3/browser-review.json",
+        "qa/release-0.3.3/portable-verification.json"
+      ]
+    }
+  ],
+  "verification": [
+    "tests/rubric-recovery.test.mjs",
+    "qa/release-0.3.3/test-results.log",
+    "qa/release-0.3.3/browser-review.json",
+    "qa/release-0.3.3/portable-verification.json"
+  ],
+  "limitations": [
+    "The original rejected raw answer was not retained. The precise missing/empty/invalid/overlong dimension cannot be reconstructed; code inspection proves the prompt/validator mismatch and whole-response failure behavior.",
+    "No live provider call is authorized for this patch yet. The previous 0.3.2 live test covered only a language request; it is not evidence for this scientific scenario.",
+    "A valid quote and explanation establish traceability, not scientific correctness. Unscored sources receive no numerical total and are not inserted into the sorted scored list.",
+    "Partial scoring keeps previous recommendations unchanged/stale pending a complete review. Other invalid source references, quotes, rubric values, duplicate sources or envelope fields still reject the response; this is a bounded correction, not universal recovery.",
+    "No dataset, formula, weights, private API key or private transcript was changed. Node SEA remains the runtime; NPR 7150.2D Class C remains an incomplete engineering target, not certification."
+  ]
+}

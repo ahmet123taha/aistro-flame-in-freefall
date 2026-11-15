@@ -1,0 +1,11 @@
+import {contextSearchText} from '../public/context-fields.mjs';
+import {canonicalMaterial} from './material-identity.mjs';
+const STOP=new Set('the and with from this that what which under about into have has were their için veya nasıl olan olarak nedir'.split(' '));
+export function tokens(text){return [...new Set((String(text||'').toLocaleLowerCase('en-US').match(/[\p{L}\p{N}]+/gu)||[]).filter(t=>t.length>2&&!STOP.has(t)))];}
+export function lexicalTerms(text,spreadsheet=false){return tokens(spreadsheet?String(text).replace(/\b[A-Z]{1,3}\d+(?==)/g,''):text).filter(t=>/\p{L}/u.test(t)&&!/^\d+(?:e\d*)?$/i.test(t));}
+const ALIASES=[['duman','smoke','soot'],['sönme','sonme','extinction','extinguishment'],['oksijen','oxygen'],['akış','akis','airflow','flow'],['tutuşma','tutusma','ignition'],['söndürme','sondurme','söndürmek','suppression','extinguishing'],['kumaş','kumas','fabric'],['alev','flame'],['pamuk','cotton'],['yayılma','yayilma','spread'],['güvenlik','guvenlik','safety'],['yangın','yangin','fire'],['önleme','onleme','önlem','prevention','flammability'],['algılama','algilama','detection'],['söndürücü','sondurucu','extinguisher']];
+export function queryTokens(request){const out=new Set(tokens([request.question,request.scenario,request.conditions?.material,canonicalMaterial(request.conditions?.material),contextSearchText(request.contextDetails)].join(' ')));for(const group of ALIASES)if(group.some(t=>out.has(t)))for(const t of group)out.add(t);return out;}
+export function questionTokens(request){const material=new Set(tokens(canonicalMaterial(request.conditions?.material)));return new Set([...queryTokens({...request,conditions:{...request.conditions,material:''}})].filter(t=>!material.has(t)));}
+
+
+export function literalMaterialMention(value,text,words){const material=canonicalMaterial(value);if(!material)return false;if(material!=='paper')return tokens(material).every(t=>words.has(t));const normalized=String(text).normalize('NFKC').toLowerCase().replace(/\b[a-z]{1,3}\d+(?==)/g,'').replace(/[^\p{L}\p{N}]+/gu,' ');return /\bpaper (?:(?:fuel|specimen|sample|strip|sheet)s?|burning|combustion|cellulose)\b|\b(?:filter|cellulosic|cellulose|fuel|material|specimen|sample) (?:is |was )?paper\b/.test(normalized);}

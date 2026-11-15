@@ -1,0 +1,16 @@
+/* Conditions guidance only: field identity, numerical units and behavior stay unchanged. */
+#conditions-guidance{margin:12px 0 22px;padding:13px 14px;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:8px;background:color-mix(in srgb,var(--teal) 5%,transparent)}
+#conditions-guidance h3{font-size:13px;line-height:1.5;color:inherit;margin:0 0 7px}
+#conditions-guidance p{font-size:12px;font-weight:400;line-height:1.6;margin:0 0 9px;color:inherit}
+#conditions-guidance p:last-child{margin-bottom:0}
+#optional-conditions #environment-inputs{margin-top:0}
+#environment-inputs .condition-field{display:block;margin:0 0 24px;min-width:0}
+#environment-inputs .condition-field-heading{display:flex;flex-direction:column;align-items:flex-start;gap:3px;float:none;line-height:1.45;color:inherit}
+#environment-inputs .condition-title{float:none;color:inherit;font-weight:600;overflow-wrap:anywhere}
+#environment-inputs .condition-unit{float:none;font-size:11px;line-height:1.4;color:var(--muted,#617380);font-weight:400}
+#environment-inputs .condition-field-help{display:block;margin:6px 0 8px;font-size:11px;line-height:1.6;color:var(--muted,#617380);font-weight:400;overflow-wrap:anywhere}
+#environment-inputs .condition-field input{margin-top:0}
+#environment-inputs #material-origin:not(:empty),#environment-inputs #material-adaptive-note:not(:empty){display:block;margin:-15px 0 20px;font-size:11px;line-height:1.55;color:var(--muted,#617380)}
+#environment-inputs #material-origin:empty,#environment-inputs #material-adaptive-note:empty{display:none}
+[data-theme=dark] #environment-inputs .condition-field-help,[data-theme=dark] #environment-inputs .condition-unit,[data-theme=dark] #environment-inputs #material-origin,[data-theme=dark] #environment-inputs #material-adaptive-note{color:#b3c2d2}
+@media(max-width:850px){#environment-inputs #material-suggestions,#environment-inputs #material-origin,#environment-inputs #material-adaptive-note{grid-column:1/-1}#environment-inputs .condition-field{margin-bottom:22px}}

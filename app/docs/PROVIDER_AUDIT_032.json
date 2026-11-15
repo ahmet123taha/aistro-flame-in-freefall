@@ -1,0 +1,119 @@
+{
+  "version": "0.3.2",
+  "previousVersion": "0.3.1",
+  "requirement": "FIF-041",
+  "date": "2026-11-15",
+  "observed": {
+    "httpStatus": 400,
+    "model": "gemini-3.1-flash-lite",
+    "receivedAt": "2026-11-15T00:01:31.783Z",
+    "message": "Request contains an invalid argument.",
+    "intent": "research",
+    "candidateCount": 35,
+    "fieldIdentified": false
+  },
+  "findings": [
+    {
+      "id": "D032-01",
+      "severity": "high",
+      "title": "Provider rejected a research request after the 0.3.1 schema change",
+      "cause": "The actual local provider receipt records HTTP 400 with only Request contains an invalid argument. The 0.3.1 release introduced a nested responseJsonSchema with array/numeric bounds and unions; Google documents that schema complexity can cause 400 INVALID_ARGUMENT. This is a plausible regression source, not a proven rejection field.",
+      "fix": "Restore JSON MIME mode without a provider-compiled schema. Preserve authoritative routing, the explicit output contract, local shape/rubric/citation validation, no tools, same model and no automatic retries. Invalidate prior prompt cache with a new contract version.",
+      "implementation": [
+        "lib/gemini.mjs",
+        "lib/research-schema.mjs"
+      ],
+      "status": "compatibility_confirmed_for_one_live_conversation_original_cause_unspecified",
+      "verification": [
+        "tests/provider-compatibility.test.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.2/test-results.log",
+        "qa/release-0.3.2/browser-review.json",
+        "qa/release-0.3.2/browser-events.json",
+        "qa/release-0.3.2/portable-verification.json",
+        "qa/release-0.3.2/live-verification.json"
+      ]
+    },
+    {
+      "id": "D032-02",
+      "severity": "medium",
+      "title": "The exact polite Turkish language request became a research scenario",
+      "cause": "The recognizer accepted cevap verebilir misin but not cevap verir misin. The failed receipt confirms research intent with 35 candidate sources. The defect is confirmed independently of the provider rejection.",
+      "fix": "Recognize bounded polite language-only forms, including the exact reported sentence. Preserve mixed scientific questions as research. Both browser and server use the shared route; contaminated control-only scenario lines are filtered while transcript and actual scenario remain.",
+      "implementation": [
+        "public/dialogue-flow.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/provider-compatibility.test.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.2/test-results.log",
+        "qa/release-0.3.2/browser-review.json",
+        "qa/release-0.3.2/browser-events.json",
+        "qa/release-0.3.2/portable-verification.json",
+        "qa/release-0.3.2/live-verification.json"
+      ]
+    },
+    {
+      "id": "D032-03",
+      "severity": "medium",
+      "title": "Provider failure records omitted request-contract and available field diagnostics",
+      "cause": "The recorded message was generic and lacked provider status/field paths or a digest of the sent contract. The precise rejected argument could not be established from that record.",
+      "fix": "Record JSON contract, MIME, schema-presence flags, byte count and SHA-256 without storing request content. Preserve allowlisted provider status and sanitized BadRequest field paths if supplied. Never infer a field when none is supplied; do not retain arbitrary provider detail bodies.",
+      "implementation": [
+        "lib/provider-diagnostics.mjs",
+        "lib/gemini.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/provider-compatibility.test.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.2/test-results.log",
+        "qa/release-0.3.2/browser-review.json",
+        "qa/release-0.3.2/browser-events.json",
+        "qa/release-0.3.2/portable-verification.json",
+        "qa/release-0.3.2/live-verification.json"
+      ]
+    }
+  ],
+  "verification": [
+    "tests/provider-compatibility.test.mjs",
+    "tests/dialogue-flow.test.mjs",
+    "qa/release-0.3.2/test-results.log",
+    "qa/release-0.3.2/browser-review.json",
+    "qa/release-0.3.2/browser-events.json",
+    "qa/release-0.3.2/portable-verification.json",
+    "qa/release-0.3.2/live-verification.json"
+  ],
+  "officialReferences": [
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/structured-output",
+      "use": "Complex schemas, bounds and branching can exceed grammar limits and cause 400 INVALID_ARGUMENT. Application semantic validation remains required."
+    },
+    {
+      "url": "https://ai.google.dev/api/generate-content",
+      "use": "application/json MIME output is supported by GenerateContent."
+    }
+  ],
+  "limitations": [
+    "One explicitly authorized live language-only request passed HTTP 200 and local validation. Live research/ranking payloads and broader qualitative behavior were not tested. The old generic HTTP 400 still does not establish the exact rejection field.",
+    "The compatibility change removes provider-constrained JSON structure. Invalid JSON or semantic content is still rejected locally; no results are invented, silently applied or automatically retried.",
+    "Language recognition is intentionally bounded. Mixed scientific requests remain research. No claim is made that all possible language requests are recognized.",
+    "No dataset, score weights, numerical equations, private API key or private conversation history changed. Current runtime remains Node SEA, not Rust.",
+    "The NPR 7150.2D Class C engineering target remains incomplete and is not NASA certification."
+  ],
+  "liveVerification": {
+    "evidence": "qa/release-0.3.2/live-verification.json",
+    "authorizedCalls": 1,
+    "provider": "gemini-3.1-flash-lite",
+    "providerStatus": 200,
+    "validation": "passed",
+    "responseId": "O_n4apXrJPSOvdIP7oKXwQQ",
+    "receivedAt": "2026-11-15T00:13:47.064Z",
+    "promptTokens": 1810,
+    "outputTokens": 206,
+    "sourceCount": 0,
+    "privateHistoryIncluded": false,
+    "scope": "One exact language-only request through the delivered EXE. No scientific ranking or multi-turn qualitative evaluation."
+  }
+}

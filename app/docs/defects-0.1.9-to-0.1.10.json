@@ -1,0 +1,48 @@
+{
+  "fromVersion": "0.1.9",
+  "toVersion": "0.1.10",
+  "issues": [
+    {
+      "id": "D0110-01",
+      "severity": "high",
+      "status": "partially_addressed",
+      "before": "Direct matching displayed nominal proximity without input measurement error sensitivity.",
+      "fix": "Analytical per-parameter and weighted intervals; missing errors remain unknown. Source uncertainty is still not quantified."
+    },
+    {
+      "id": "D0110-02",
+      "severity": "high",
+      "status": "prevented",
+      "before": "Naive endpoint evaluation can miss a100 percent maximum inside an interval or the zero/zero discontinuity.",
+      "fix": "Piecewise exact extrema and deterministic dense-grid checks; no numerical sampling used in production."
+    },
+    {
+      "id": "D0110-03",
+      "severity": "low",
+      "status": "implemented",
+      "before": "No input-error controls or source/failure explanation in direct mode.",
+      "fix": "Optional collapsed inputs and result disclosure; reset and mode switching tested."
+    },
+    {
+      "id": "D0110-04",
+      "severity": "medium",
+      "status": "fixed_during_release_QA",
+      "before": "Portable verifier expected literal0.1.9;3 data QA scripts wrote their old version paths despite new code.",
+      "fix": "Import VERSION instead of duplicated literals; restore historical QA byte-for-byte from immutable0.1.9 ZIP and rerun under0.1.10. Old release never changed."
+    },
+    {
+      "id": "D0110-05",
+      "severity": "high",
+      "status": "open",
+      "before": "User weights are not material-specific calibrated fire-response coefficients; source errors and critical thresholds not validated.",
+      "fix": "Retain explicit engineering limits; no confidence level, critical classification or safety certificate invented."
+    },
+    {
+      "id": "D0110-06",
+      "severity": "low",
+      "status": "fixed_during_visual_QA",
+      "before": "New interval text inherited no-wrap style and overlapped result content in score column.",
+      "fix": "Dedicated wrapping style and line break; final EXE rebuilt, reverified and screenshot inspected."
+    }
+  ]
+}

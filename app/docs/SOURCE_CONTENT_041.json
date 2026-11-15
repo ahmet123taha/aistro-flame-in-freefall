@@ -1,0 +1,1517 @@
+{
+  "version": "0.4.1",
+  "previousVersion": "0.4.0",
+  "requirements": [
+    "FIF-051",
+    "FIF-052",
+    "FIF-053"
+  ],
+  "changedHistoricalRequirement": "FIF-042; prior clause retained in revisionHistory",
+  "implementation": [
+    "lib/source-content-index.mjs",
+    "lib/source-content-baseline.mjs",
+    "lib/dataset.mjs",
+    "lib/research-source-context.mjs",
+    "lib/research-evidence.mjs",
+    "lib/research-coverage.mjs",
+    "lib/research-candidates.mjs",
+    "lib/gemini.mjs",
+    "lib/corpus.mjs",
+    "lib/research.mjs",
+    "server.mjs",
+    "lib/recommendations.mjs",
+    "public/recommendations-panel.mjs",
+    "public/conversation-panel.mjs",
+    "lib/experiment-tables.mjs",
+    "lib/material-identity.mjs",
+    "lib/reviewed-normalization-evidence.mjs",
+    "lib/psi26-report-evidence.mjs",
+    "lib/bass-asrun.mjs",
+    "lib/study-evidence.mjs",
+    "lib/study-evidence-sorting.mjs",
+    "lib/parameter-support.mjs",
+    "lib/parameter-diagnostics.mjs",
+    "lib/numeric-matching.mjs",
+    "lib/research-scoring.mjs",
+    "public/parameter-comparison.mjs"
+  ],
+  "findings": [
+    {
+      "id": "D041-01",
+      "severity": "high",
+      "status": "mitigated_by_literal_preselection_and_explicit_recall_limits",
+      "problem": "Metadata-only preselection and first-fragment truncation could hide a relevant finding inside a report/table before the model received it.",
+      "mitigation": "Search all allowed sources before the candidate cut; preserve exact anchored fragments through coverage serialization. The frozen default benchmark retains 20/20 lexical candidate sources and 18/20 final exact anchors; it does not prove complete retrieval.",
+      "implementation": [
+        "lib/source-content-index.mjs",
+        "lib/source-content-baseline.mjs",
+        "lib/dataset.mjs",
+        "lib/research-source-context.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-coverage.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs",
+        "lib/corpus.mjs",
+        "lib/research.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/source-content-index.test.mjs",
+        "tests/source-content-loader.test.mjs",
+        "tests/source-content-manifest.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "qa/release-0.4.1/content-benchmark/panel-freeze.json",
+        "qa/release-0.4.1/content-benchmark/cases.json",
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "qa/release-0.4.1/content-benchmark/failure-review.json",
+        "qa/release-0.4.1/dataset-index-install/final-readback.json"
+      ]
+    },
+    {
+      "id": "D041-02",
+      "severity": "high",
+      "status": "prevented_by_server_derived_source_and_field_provenance",
+      "problem": "Shared document associations, model-supplied provenance or a mixed-source normalized row could falsely attribute a finding/measurement or make separate sources look like a synchronized joint trial.",
+      "mitigation": "Label catalog associations as contextual, resolve literal anchors from actual supplied chunks, strip model provenance, retain pressure XLSX and flow/width DOCX field locations, and preserve jointlyTested=false for nonsynchronized report/as-run links.",
+      "implementation": [
+        "lib/source-content-index.mjs",
+        "lib/source-content-baseline.mjs",
+        "lib/dataset.mjs",
+        "lib/research-source-context.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-coverage.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs",
+        "lib/corpus.mjs",
+        "lib/research.mjs",
+        "server.mjs",
+        "lib/experiment-tables.mjs",
+        "lib/material-identity.mjs",
+        "lib/reviewed-normalization-evidence.mjs",
+        "lib/psi26-report-evidence.mjs",
+        "lib/bass-asrun.mjs",
+        "lib/study-evidence.mjs",
+        "lib/study-evidence-sorting.mjs",
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/research-scoring.mjs",
+        "public/parameter-comparison.mjs"
+      ],
+      "verification": [
+        "tests/research-source-context.test.mjs",
+        "tests/reviewed-normalization.test.mjs",
+        "tests/parameter-diagnostics.test.mjs",
+        "qa/release-0.4.1/context-targeted-tests.log",
+        "qa/future-0.4.1/normalization/implementation-handoff.json",
+        "qa/future-0.4.1/normalization/verification-receipt.json",
+        "qa/future-0.4.1/normalization/isolated-seed-recheck.json",
+        "qa/future-0.4.1/normalization/psi26-table-asrun-link-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ]
+    },
+    {
+      "id": "D041-03",
+      "severity": "high",
+      "status": "resolved_by_atomic_independent_review_gates_with_semantic_limits_open",
+      "problem": "An unrelated incomplete scoring explanation could block a valid candidate replacement, while an unchanged candidate could look reviewed without its original source in current evidence.",
+      "mitigation": "Allow only an independently validated complete replacement; keep incomplete keep/clear pending and reject revalidation when prior source evidence was not supplied. Require the positive server flag in the reducer and preserve emergency notices. This is structural/provenance validation, not scientific approval.",
+      "implementation": [
+        "lib/recommendations.mjs",
+        "lib/research.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-source-context.mjs",
+        "lib/gemini.mjs",
+        "public/recommendations-panel.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "verification": [
+        "tests/recommendation-clarity.test.mjs",
+        "tests/recommendation-recovery.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/rubric-recovery.test.mjs",
+        "qa/future-0.4.1/recommendations/recorded-candidate-audit.json"
+      ]
+    },
+    {
+      "id": "D041-04",
+      "severity": "low",
+      "status": "implemented_with_recorded_browser_evidence",
+      "problem": "Recommendation cards could repeat a study name without a concrete next action and hide the relevance, material/condition limit or original source inside a closed disclosure.",
+      "mitigation": "Request short action/why/limit wording, keep limits/source action visible, label source basis and provide server-derived original-file anchors. Existing 25 recorded candidates were already short (115–232 characters), so no claim is made that all previous prose was long.",
+      "implementation": [
+        "public/recommendations-panel.mjs",
+        "public/conversation-panel.mjs",
+        "lib/recommendations.mjs"
+      ],
+      "verification": [
+        "tests/recommendation-clarity.test.mjs",
+        "tests/recommendation-recovery.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/rubric-recovery.test.mjs",
+        "qa/future-0.4.1/recommendations/recorded-candidate-audit.json",
+        "qa/release-0.4.1/browser-review.json"
+      ]
+    },
+    {
+      "id": "D041-05",
+      "severity": "high",
+      "status": "quarantined_or_corrected_by_reviewed_source_specific_adapters",
+      "problem": "Ambiguous 037 mm thickness, unsupported oxygen basis, unnamed mixtures or repeated stage/source records could acquire false measurement credit or inflated independent-trial counts.",
+      "mitigation": "Quarantine the ambiguous raw thickness, retain unresolved oxygen as unscored, accept only the named SIBAL composite alias, keep pure Cotton distinct, preserve stage sequences and collapse exact linked physical-trial identities. Additional report settings are reviewed source values rather than AIR conversions.",
+      "implementation": [
+        "lib/experiment-tables.mjs",
+        "lib/material-identity.mjs",
+        "lib/reviewed-normalization-evidence.mjs",
+        "lib/psi26-report-evidence.mjs",
+        "lib/bass-asrun.mjs",
+        "lib/study-evidence.mjs",
+        "lib/study-evidence-sorting.mjs",
+        "lib/dataset.mjs",
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/research-scoring.mjs",
+        "public/parameter-comparison.mjs"
+      ],
+      "verification": [
+        "tests/reviewed-normalization.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/parameter-diagnostics.test.mjs",
+        "qa/release-0.4.1/context-targeted-tests.log",
+        "qa/future-0.4.1/normalization/implementation-handoff.json",
+        "qa/future-0.4.1/normalization/verification-receipt.json",
+        "qa/future-0.4.1/normalization/isolated-seed-recheck.json",
+        "qa/future-0.4.1/normalization/psi26-table-asrun-link-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ]
+    },
+    {
+      "id": "G041-01",
+      "severity": "high",
+      "status": "open_incomplete_retrieval_and_semantic_coverage",
+      "problem": "The tested core index covers 1544 PDF/XLSX files from the larger catalog, not every source/report/table/graph. Default top-24-shard/top-ten-chunk selection misses two frozen expected anchors; lexical matches do not establish scientific relevance or adequate header/unit context.",
+      "mitigation": "Keep coverageComplete=false and explicit exclusions. Preserve two generic-query misses: f11451/page9 ranks 34 and remains absent from final chunks at cap 48; f51141/page1 ranks 25 and recovers at cap 48. Do not tune frozen queries, force an anchor, claim 20/20 final exact recall, infer absence from non-retrieval, or silently promote the unfinished broader logs index.",
+      "verification": [
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "qa/release-0.4.1/content-benchmark/failure-review.json",
+        "qa/release-0.4.1/content-benchmark/REVIEW.md"
+      ]
+    },
+    {
+      "id": "G041-02",
+      "severity": "high",
+      "status": "open_independent_scientific_and_transfer_validation",
+      "problem": "Quote membership, source hashes, prospective source labels and passing numerical arithmetic do not prove an inference follows from a passage, a recommendation is effective, or two materials/environments burn equivalently.",
+      "mitigation": "Retain hypothesis/objective/impact boundaries, material/condition limits, unreviewed source context, source-specific joint/temporal flags and no active-incident intervention instructions. The 60/40 evidence/retrieval budget is editorial and is not a calibrated physical tolerance, risk score or probability. Third-party Material_Sensitivity remains applicability-only.",
+      "verification": [
+        "tests/recommendation-clarity.test.mjs",
+        "tests/recommendation-recovery.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/rubric-recovery.test.mjs",
+        "qa/future-0.4.1/recommendations/recorded-candidate-audit.json",
+        "tests/reviewed-normalization.test.mjs",
+        "tests/parameter-diagnostics.test.mjs",
+        "qa/release-0.4.1/context-targeted-tests.log",
+        "qa/future-0.4.1/normalization/implementation-handoff.json",
+        "qa/future-0.4.1/normalization/verification-receipt.json",
+        "qa/future-0.4.1/normalization/isolated-seed-recheck.json",
+        "qa/future-0.4.1/normalization/psi26-table-asrun-link-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ],
+      "related": [
+        "G-01",
+        "G-02",
+        "G039-01",
+        "FIF-049",
+        "FIF-051",
+        "FIF-052",
+        "FIF-053"
+      ]
+    },
+    {
+      "id": "G041-03",
+      "severity": "medium",
+      "status": "open_performance_coverage_and_release_acceptance",
+      "problem": "Known-passage runtime QA and same-machine checks do not establish broad freeform/semantic recall, all workload memory bounds, new live-provider quality, independent assurance, clean second-device operation or completed final release artifacts.",
+      "mitigation": "Retain runtime byte hashes and frozen panel identity. Measured QA process high-water was about 565 MiB including catalog/index/diagnostics; no unmeasured optimization gain is claimed. Record actual final-suite, browser, PDF, exact EXE, index and ZIP receipts only after completion. No new API call occurred.",
+      "verification": [
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "qa/release-0.4.1/content-benchmark/summary.json",
+        "qa/release-0.4.1/test-results.log",
+        "qa/release-0.4.1/portable-verification.json",
+        "qa/release-0.4.1/exe-content-verification.json",
+        "qa/release-0.4.1/browser-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ],
+      "pendingReleaseVerification": [
+        {
+          "stage": "final_archive_readback",
+          "expectedPath": "qa/release-0.4.1/distribution-verification.json",
+          "status": "pending_release_owner_receipt"
+        },
+        {
+          "stage": "detailed_release_pdf",
+          "expectedPath": "Developer Patch/Reports (inside 0.4.1 ZIP)",
+          "status": "release_owner_produces_and_visually_verifies"
+        },
+        {
+          "stage": "final_source_inventory_and_full_code_index",
+          "expectedPath": "Developer Patch/Code_Index (inside 0.4.1 ZIP)",
+          "status": "release_owner_freezes_and_indexes_after_record_handoff"
+        }
+      ]
+    },
+    {
+      "id": "G041-04",
+      "severity": "high",
+      "status": "open_extraction_fidelity_and_per_file_warning_attribution",
+      "problem": "An extracted_unreviewed status means text was produced; it does not establish complete or faithful transcription. The initial pinned PDF extraction did not attribute font/recovered-text parser warnings to each individual source. Glyphs, subscripts, equations and labels may therefore be incomplete or altered even when source bytes are authenticated.",
+      "mitigation": "Keep literal extraction separate from reviewed numerical evidence and compare material claims or numerical fields with the original source before scientific use. Do not equate a SHA-verified original with validated extraction fidelity. Preserve no-OCR/no-graph-coordinate limits; add per-file parser-warning attribution and source-versus-text review in a separately versioned future extraction before claiming fidelity.",
+      "verification": [
+        "qa/future-0.4.1/content-reading/core-docs-index/manifest-receipt.json",
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "docs/SOURCE_CONTENT_041.md"
+      ],
+      "related": [
+        "FIF-051",
+        "G041-01",
+        "G041-02"
+      ]
+    }
+  ],
+  "coreIndex": {
+    "directory": "C:\\Users\\Ahmet Taha\\Documents\\ChatGPT\\Nasa Space Apps\\flame-dashboard\\qa\\future-0.4.1\\content-reading\\core-docs-index",
+    "manifestSha256": "f3fde5c031df8f82f16c854f8b35b2f5d2a20dba0392a524126734b1864428c7",
+    "manifestBytes": 2114540,
+    "extractorVersion": "prototype-2",
+    "shards": 1535,
+    "selectedFiles": 1544,
+    "totalCatalogFiles": 51151,
+    "coverageComplete": false,
+    "coverageSummary": {
+      "fileStatuses": {
+        "extracted_unreviewed": 974,
+        "no_extractable_text": 561,
+        "excluded_error": 9
+      },
+      "rawTextChunks": 918292,
+      "pdfPages": 12110,
+      "pdfPagesWithNoExtractableText": 1744,
+      "nonemptySheetRows": 847902,
+      "textLines": 0
+    },
+    "applicationPinnedManifestSha256": "f3fde5c031df8f82f16c854f8b35b2f5d2a20dba0392a524126734b1864428c7",
+    "catalogSha256": "60fa421bb604c1ac9c8bf67ddb2318607434a1548eda4189e0890f0f950cad54",
+    "installation": {
+      "verifiedAt": "2026-11-15T05:17:12.377154+00:00",
+      "installedManifestSha256": "f3fde5c031df8f82f16c854f8b35b2f5d2a20dba0392a524126734b1864428c7",
+      "shards": 1535,
+      "installedMembers": 1541,
+      "zipSha256": "ad1067b4a30c399342afc57c8b10f5561d31b335524927996755546450029255",
+      "zipBytes": 146301815,
+      "zipMembers": 1541,
+      "scopeOnlyResearchContent": true,
+      "readmeExplicitAddonNotFullDataset": true,
+      "installReceiptSha256": "323e379cd2f4425ec230e024953a650e9fbec7719fd220ec12b06efc05e78271"
+    }
+  },
+  "contentBenchmark": {
+    "primaryCases": 20,
+    "distinctPrimaryPsis": 20,
+    "candidateSourceRecall": 20,
+    "finalTopTenSourceRecall": 18,
+    "exactAnchorRecall": 18,
+    "postCandidateCutRecall": 18,
+    "additionalCases": 3,
+    "additionalExactAnchors": 3,
+    "contrastsPassed": true,
+    "missingExactAnchors": [
+      {
+        "id": "CONTENT-03",
+        "target": "PSI-21",
+        "expected": {
+          "fileId": "f11451",
+          "chunkId": "C-5e51779152e1290118010656",
+          "sha256": "fb028bca1f40922413d9f9fa712dd0ae55520dbc83dd2dc9d9c41a2ec25c6f63",
+          "location": {
+            "page": 9,
+            "start": 0,
+            "end": 1400
+          }
+        },
+        "candidate": true,
+        "topTen": false
+      },
+      {
+        "id": "CONTENT-12",
+        "target": "PSI-99",
+        "expected": {
+          "fileId": "f51141",
+          "chunkId": "C-ebd9278a7d766e96d6c19e23",
+          "sha256": "edb5b6f4ebc7c32bd26f45f728902d766affa395677d818e9ef932c704321dbe",
+          "location": {
+            "page": 1,
+            "start": 0,
+            "end": 1321
+          }
+        },
+        "candidate": true,
+        "topTen": false
+      }
+    ],
+    "panelSha256": "757e963cd29adf659135a3ce0308585f65db8f6bc229590217615c54b4acfc58",
+    "runtimeSourceIdentity": {
+      "rawSha256Before": "ea1b9f3c8f9f4b9381faca4824dba805a34d2f0378d398b619d4b0f71c72e539",
+      "lfNormalizedSha256Before": "e35b23c8f3ebff462ba4d82bf824bf60ec91c5c370a05d69f3d7c92bc3c7d1dc",
+      "rawSha256After": "ea1b9f3c8f9f4b9381faca4824dba805a34d2f0378d398b619d4b0f71c72e539",
+      "unchangedDuringRun": true
+    },
+    "performance": {
+      "elapsedMilliseconds": 31955.1998,
+      "maxQueryMilliseconds": 1685.9244999999996,
+      "minQueryMilliseconds": 468.77070000000003,
+      "peakSampledRssBytes": 530448384,
+      "finalResources": {
+        "memoryUsageBytes": {
+          "rss": 388399104,
+          "heapTotal": 238501888,
+          "heapUsed": 102832624,
+          "external": 46684843,
+          "arrayBuffers": 44280067
+        },
+        "nodeResourceUsage": {
+          "userCPUTime": 31687000,
+          "systemCPUTime": 4187000,
+          "maxRSS": 578660,
+          "sharedMemorySize": 0,
+          "unsharedDataSize": 0,
+          "unsharedStackSize": 0,
+          "minorPageFault": 0,
+          "majorPageFault": 1584219,
+          "swappedOut": 0,
+          "fsRead": 17101,
+          "fsWrite": 54,
+          "ipcSent": 0,
+          "ipcReceived": 0,
+          "signalsCount": 0,
+          "voluntaryContextSwitches": 0,
+          "involuntaryContextSwitches": 0
+        }
+      }
+    },
+    "comparisonToRun1": {
+      "firstRunLoadedRuntimeHash": "not_captured; postrun snapshot is not proof of loaded bytes",
+      "sameFrozenPanel": true,
+      "identicalSelectedChunkIds": true,
+      "sameRecallSummary": true
+    },
+    "originalFilesVerified": 81,
+    "originalFileVerificationCalls": 191,
+    "scope": "Fixed known-passage lexical recall through the runtime API; not semantic/model/scientific validation."
+  },
+  "numericalReplay": {
+    "scope": "Earlier isolated reviewed-normalization prototype; final actual-dataset integration is a separate stage",
+    "passed": true,
+    "numericalCases": 16,
+    "contextOnlyCases": 4,
+    "all20NumericalTotalsUnchanged": true,
+    "comparedAgainst": "frozen 0.3.8 source-derived inputs / previous scoring baseline",
+    "parameterPercentRange": [
+      97.5708641574354,
+      99.94207221640977
+    ],
+    "reportedPureCottonPsi26Compared": 0,
+    "liveDatasetIntegration": {
+      "scope": "Actual fixed-dataset 0.4.1 integration compared with preserved0.4.0; local recorded-answer replay only",
+      "startedAt": "2026-11-15T05:25:08.466Z",
+      "realProviderCalls": 0,
+      "checks": [
+        {
+          "id": "twenty_frozen_cases_actual_old_and_new_loader",
+          "passed": true,
+          "cases": 20,
+          "numericCases": 16,
+          "contextOnlyCases": 4,
+          "targetDiscovery": 20,
+          "wrongMaterialControls": 20,
+          "pointsPercentAndComparedExactlyPreserved": true
+        },
+        {
+          "id": "psi26_loaded_source_records_and_physical_trials",
+          "passed": true,
+          "sourceRecords": 132,
+          "uniquePhysicalTrials": 121,
+          "reportRows": 11,
+          "singleFlowRows": 6,
+          "linkedTwoRecordTrials": 11
+        },
+        {
+          "id": "six_one_percent_flow_probes_source_references_and_temporal_basis",
+          "passed": true,
+          "probes": 6,
+          "allFlowProximityAtLeast99": true,
+          "docxFlowXlsxPressureReferences": true,
+          "noJointClaim": true
+        },
+        {
+          "id": "five_multistage_discrete_fragments_and_44cm_s_probe",
+          "passed": true,
+          "reportFragments": 11,
+          "multistageSequences": 5,
+          "input": 44.44,
+          "usedSetting": 44,
+          "proximity": 99.009900990099,
+          "unlisted40Proximity": 90.9090909090909,
+          "newTrialRowsCreated": 0,
+          "noContinuousRange": true,
+          "noJointClaim": true,
+          "matchingSettingSurvivesSixFragmentCut": true
+        },
+        {
+          "id": "037mm_quarantine_visible_and_has_no_numeric_thickness_credit",
+          "passed": true,
+          "quarantinedRows": 3,
+          "rawValuePreserved": true,
+          "visibleWarnings": true,
+          "noThicknessCredit": true
+        },
+        {
+          "id": "actual_core_index_ready_and_material_property_isolation",
+          "passed": true,
+          "indexState": "ready",
+          "shards": 1535,
+          "chunks": 918292,
+          "coverageComplete": false,
+          "profiles": 11,
+          "propertyPoints": 66,
+          "noMatPsiEvidence": true,
+          "noMatNumericCredit": true,
+          "actualSourceChunksVerified": 3
+        },
+        {
+          "id": "actual_loader_document_hash_gates_fail_closed_in_independent_fixture",
+          "passed": true,
+          "validSourceRecords": 132,
+          "corruptDocxSourceRecords": 121,
+          "corruptAsrunSourceRecords": 0,
+          "canonicalOriginalHashesUnchanged": true,
+          "copiedFixtureFiles": 29,
+          "independentFixtureRemovedAfterResolvedPathCheck": true
+        },
+        {
+          "id": "index_manifest_catalog_shard_and_original_source_gates_fail_closed",
+          "passed": true,
+          "badManifestRejected": true,
+          "badCatalogRejected": true,
+          "tamperedShardRejected": true,
+          "changedOriginalExcluded": true,
+          "fixtureVerifierHandlesClosed": 3,
+          "canonicalFilesMutated": false
+        }
+      ],
+      "originalsVerified": [
+        {
+          "fileId": "f896",
+          "path": "PSI/PSI-10/Data/Incelenecek/efee0c2029a1dce29b15__PSI-10_Experimental table_Flame Design_Normal Flame.csv",
+          "sha256": "4a663292bd3f65201943cc71bd661a70383639276a9176f64105b285bf0b6deb",
+          "bytes": 26933,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f15150",
+          "path": "PSI/PSI-20/Data/Incelenecek/ec14a2adff59880e3689__PSI-20_Experimental table_ACME BRE.csv",
+          "sha256": "4aa5d3f98708ceacced5c620d46858b9965f8d4d941b203229f46467d53e5ab7",
+          "bytes": 1113,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f17650",
+          "path": "PSI/PSI-21/Data/Incelenecek/eb280fb50dd137fd21d7__PSI-21_Experimental table_CLD Flame.csv",
+          "sha256": "9fafbc5b3dddaf715ce8025ed9154ce297803f7b69a935f077ec26c8249e44c0",
+          "bytes": 2454,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f20515",
+          "path": "PSI/PSI-22/Data/Incelenecek/d7b2a02bd79d476bbdb5__PSI-22_Experimental table_ACME E-FIELD Flames.csv",
+          "sha256": "69090c357b83ae38d161d29001d1d32b40fd77b13324ca6585ee990cdceef524",
+          "bytes": 2475,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f22719",
+          "path": "PSI/PSI-23/Data/Incelenecek/e83dd676eacb889337f2__PSI-23_Experimental table_ACME s-Flame.csv",
+          "sha256": "16cd10f50bd2e962887c8eb4077e5a9b3e790c78de8e0361c0b77e19300be7cf",
+          "bytes": 2456,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f24946",
+          "path": "PSI/PSI-25/Data/Incelenecek/d67804d816f7429c7fc3__PSI-25_Experimental table_BASS-II.csv",
+          "sha256": "71e792bf6b5fb5ea620c5dd70fbbac05515992e12aefcf5dff47312caa48c042",
+          "bytes": 16590,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f24951",
+          "path": "PSI/PSI-25/Raporlar/Rapor_ve_Makaleler/6924805f7f6aa6a83021067c__PSI-25_Reports_BASS-II Summary Report.pdf",
+          "sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+          "bytes": 48972416,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f24955",
+          "path": "PSI/PSI-26/Data/Girdi_Sonuc_Tablolari/0617e9852d10035a8948__PSI-26_Science Documents_As Run_Test Matrix.xlsx",
+          "sha256": "850910541fc9c802d00aa9de14758205103642184249b419c09868df2fbea6e8",
+          "bytes": 111886,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f34162",
+          "path": "PSI/PSI-39/Data/Girdi_Sonuc_Tablolari/19f75f17c3f8def65f77__PSI-39_Analyzed Data_FLEX-1393_Summary.pdf",
+          "sha256": "2620445e3885e766c211612638a80535767e644c28b83459979efdf9f3889154",
+          "bytes": 484921,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f36766",
+          "path": "PSI/PSI-68/Data/Girdi_Sonuc_Tablolari/b77f8ff963055799368e__PSI-68_Experimental table_Flex2.csv",
+          "sha256": "cc57ad1bd9977aa13e7ac6c3aa618303012686e232b36c052c6a9f1a74e5f528",
+          "bytes": 1029,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f50351",
+          "path": "PSI/PSI-69/Data/Sayisal_Sonuclar/785ee2ece0f33319e2a4__PSI-69_Experimental table_FLEX.csv",
+          "sha256": "37c88ce8ae9391b7544ff630a45ce87543d04d317cdbfbed104fe7d5c27e1b96",
+          "bytes": 24776,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f51120",
+          "path": "PSI/PSI-98/Data/Incelenecek/e55411e2e3e202af673a__PSI-98_Experimental table_SAFFIRE-1.csv",
+          "sha256": "c01f29c62455f0a3b512290ab85e5687ecded326733189f002f580368402308d",
+          "bytes": 469,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f51147",
+          "path": "PSI/PSI-99/Data/Incelenecek/fc299b8d9af1d673c3d5__PSI-99_Experimental table_SAFFIRE-2.csv",
+          "sha256": "3c24390b9ef86f3d1ebaab911a1a3cc95a8759aebf42062371370e6d4b31b8ac",
+          "bytes": 1973,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f3288",
+          "path": "PSI/PSI-100/Data/Incelenecek/836806daf359cc9a4b7c__PSI-100_Experimental table_SAFFIRE-3.csv",
+          "sha256": "4d3c717ec20dd0247db670b2784a9fd7d746788bc54a936f80693e48eb8cd117",
+          "bytes": 239,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f3433",
+          "path": "PSI/PSI-101/Data/Incelenecek/f06b2800681b8f9a3b1e__PSI-101_Experimental table_SAME-R.csv",
+          "sha256": "87164b7dc9168a4273c159f7a9f23699afbd06ad97b77974377e79b9bf8a3bef",
+          "bytes": 5674,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f3553",
+          "path": "PSI/PSI-102/Data/Incelenecek/d928d882b07b5b75fe89__PSI-102_Experimental table_SAME.csv",
+          "sha256": "268d1e121d2f211b124407dd32b9475617bd269ede2c2d1749441da3e949a2af",
+          "bytes": 331,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f4106",
+          "path": "PSI/PSI-106/Data/Incelenecek/d874ae8e56388b1484e0__PSI-106_Experimental table_Slice.csv",
+          "sha256": "89ef980810ca6d9aa8be817b42e36cd2adff23f5e9058361b5a33d18b4363f4d",
+          "bytes": 734,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11467",
+          "path": "PSI/PSI-107/Data/Incelenecek/563debb8270d83134a8c__PSI-107_Experimental table_Spice.csv",
+          "sha256": "fb0d7e60cf5367afb429089e9901d27288f78038efd26c8de1db4fbe04117136",
+          "bytes": 31205,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11554",
+          "path": "PSI/PSI-117/Data/Sayisal_Sonuclar/1cfed08a36d8388387ac__PSI-117_Analyzed Data_PROCI_2023_C12_Extinction_Diameter_vs_pressure.csv",
+          "sha256": "4ab6f8c19f40a3349096eab8bdceb0a62611020af15e63f816922b149cfa7001",
+          "bytes": 449,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11568",
+          "path": "PSI/PSI-142/Data/Sayisal_Sonuclar/ed225f27ab1343c7f2ef__PSI-142_Analyzed Data_PSI data summary Princeton with links.xlsx",
+          "sha256": "b6324538ff12cc07061bd0931dfc3e1cd458cd2eee4747c477c728791aca2ee0",
+          "bytes": 735232,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f12313",
+          "path": "PSI/PSI-159/Data/Incelenecek/87c436a97880a38c5de4__PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+          "sha256": "d95a621c3fbd27d204dd32ed29fa17d68f2b779d6a523cde8479ed7ebaa5251a",
+          "bytes": 22166,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f34124",
+          "path": "PSI/PSI-26/Raporlar/Rapor_ve_Makaleler/465ab53b4bd968da41d8__PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+          "sha256": "434e9b2cade638d63dcb738d3355533db702649eca356c63e9277b1ef8eecac7",
+          "bytes": 8837026,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f24958",
+          "path": "PSI/PSI-26/Data/Incelenecek/91eb522201593d3d2f65__PSI-26_Science Documents_SRD_BASS.pdf",
+          "sha256": "768a7c289af30d47a2d519db9ba67ef1d944b6053760da3b79efa99df9c04707",
+          "bytes": 884257,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f3299",
+          "path": "PSI/PSI-100/Raporlar/Rapor_ve_Makaleler/3a369a017162b07ed049__PSI-100_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+          "sha256": "6cff0b55b8f1416f5b5b768b7fd22ae31991791ef633865471b72ff19ff4159b",
+          "bytes": 186259,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11439",
+          "path": "PSI/PSI-106/Raporlar/Rapor_ve_Makaleler/7b43b26249393aeacd8e__SLICE IP-D crew training 2011.pdf",
+          "sha256": "11ad76194acf095886b0baf33ac3cb960f266d55dce0ab5b15c69de0db7afb62",
+          "bytes": 1339967,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11433",
+          "path": "PSI/PSI-106/Raporlar/Rapor_ve_Makaleler/61269717db64ed01d008__SLICE IP-C crew training 2010.pdf",
+          "sha256": "1ec77f2a2a2a9835e7e94b5ba1f10f7e855c1a4339e4ad1458a8d1fc8effe192",
+          "bytes": 1348519,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f34126",
+          "path": "PSI/PSI-26/Raporlar/Rapor_ve_Makaleler/e13b535b447d6189af07__PSI-26_Presentations_FlammabilityAspectsofCottonFiberglassFabric_ASGSR2012.pdf",
+          "sha256": "28a684280119f6814812a9c62fbec77013c80d9c0688e4c859fd6cd964277240",
+          "bytes": 3212109,
+          "actualDatasetFileAndIndependentSha256": true
+        }
+      ],
+      "sourceInventoryDeferred": false,
+      "completedAt": "2026-11-15T05:25:10.048Z",
+      "passed": true,
+      "sourceInventory": [
+        {
+          "path": "lib/dataset.mjs",
+          "sha256": "4005025ec7718887b526b658a0dc15f714b11c9cf922a9be27afe4d2459bf2a6"
+        },
+        {
+          "path": "lib/parameter-support.mjs",
+          "sha256": "de10cf1c4de25532b870d5058c67e00896300b699c0407404e72a5b6d0473c44"
+        },
+        {
+          "path": "lib/research-scoring.mjs",
+          "sha256": "e990e124e786022e8b50466cafcee08e5987d2ac37730f0bc8f6bf32281dc6a1"
+        },
+        {
+          "path": "lib/research-coverage.mjs",
+          "sha256": "c54849158f37c0436f8be303dd1cf1db56e95c8c98094dfd9c8f4c82cbe961e3"
+        },
+        {
+          "path": "lib/parameter-diagnostics.mjs",
+          "sha256": "7e08b9b51e3b8b33b5642cf52eeef9adf95a9874bb57dede6aa915c7f17c3590"
+        },
+        {
+          "path": "lib/experiment-tables.mjs",
+          "sha256": "c551d2d7fdc3c59bef40b0d3034293d32c32d0ab0bb361f4ff2156cc46d76c3d"
+        },
+        {
+          "path": "lib/bass-asrun.mjs",
+          "sha256": "c1c0d4906551a559eb8cbad8dbbf791beb90490976c9d679f4cb704c881d6c7e"
+        },
+        {
+          "path": "lib/psi26-report-evidence.mjs",
+          "sha256": "5a4d0e18a2099b2aeb76151c9a9973c7f079e7cd38bf62762ff3708e4efbd9ce"
+        },
+        {
+          "path": "lib/reviewed-normalization-evidence.mjs",
+          "sha256": "22c27a7c13af2fa458f5e4584a2c18f8ea288e0810a504a9c001ffe36d8c723e"
+        },
+        {
+          "path": "lib/study-evidence.mjs",
+          "sha256": "46233fac1f4b1956aa8f223d536454c4cf6d7376c1877faf62506a3b0ca90157"
+        },
+        {
+          "path": "lib/source-content-index.mjs",
+          "sha256": "ea1b9f3c8f9f4b9381faca4824dba805a34d2f0378d398b619d4b0f71c72e539"
+        },
+        {
+          "path": "lib/source-content-baseline.mjs",
+          "sha256": "2ff9d1fa194569f40b62ca51cd2c0db04e84dfcde2ba5bd38c68cbe41c73e40c"
+        },
+        {
+          "path": "lib/research-source-context.mjs",
+          "sha256": "d20cea2ca16560016e5dff9f3ecff30f557b5297b9a9b4353c21da4911426cd6"
+        },
+        {
+          "path": "qa/release-0.4.1/previous-source/lib/dataset.mjs",
+          "sha256": "2a0479eda765b47b01c7f150074fcd274913e0b64abe236c6bfd5e8c9952d0c8"
+        },
+        {
+          "path": "qa/release-0.4.1/previous-source/lib/parameter-support.mjs",
+          "sha256": "307e1265deb479e9394071678289c8ef5b64f7e9447234915c0d5d858e5e65ea"
+        },
+        {
+          "path": "qa/release-0.4.1/normalization-integration/check-integration.mjs",
+          "sha256": "be1cb126fe2ee73a4f68713358c1499282bb2694473d56eb7c7f98517f0b0774"
+        }
+      ]
+    }
+  },
+  "reviewedNormalization": {
+    "sourceIds": [
+      "f34124",
+      "f24955",
+      "f36766",
+      "f51120",
+      "f51147"
+    ],
+    "reportRows": 11,
+    "singleFlowRows": 6,
+    "discreteFlowFragments": 11,
+    "multiSettingSequences": 5,
+    "sequenceProbeInput": 44.44,
+    "sequenceProbeReference": 44,
+    "combinedPsi26SourceRecords": 132,
+    "uniquePsi26PhysicalTrials": 121,
+    "synchronizationEstablished": false,
+    "stageTrialsInvented": false,
+    "earlierImplementationHandoff": {
+      "versionTarget": "0.4.1",
+      "createdAt": "2026-11-15T05:06:15.760387+00:00",
+      "liveApplied": true,
+      "ownedFiles": [
+        {
+          "path": "C:\\Users\\Ahmet Taha\\Documents\\ChatGPT\\Nasa Space Apps\\flame-dashboard\\lib\\experiment-tables.mjs",
+          "sha256": "c551d2d7fdc3c59bef40b0d3034293d32c32d0ab0bb361f4ff2156cc46d76c3d",
+          "bytes": 9800
+        },
+        {
+          "path": "C:\\Users\\Ahmet Taha\\Documents\\ChatGPT\\Nasa Space Apps\\flame-dashboard\\lib\\numeric-matching.mjs",
+          "sha256": "66d0da429c36c3bdde840f05df7d1a735a043f6abf417b3b17775847faf05246",
+          "bytes": 10253
+        },
+        {
+          "path": "C:\\Users\\Ahmet Taha\\Documents\\ChatGPT\\Nasa Space Apps\\flame-dashboard\\lib\\bass-asrun.mjs",
+          "sha256": "c1c0d4906551a559eb8cbad8dbbf791beb90490976c9d679f4cb704c881d6c7e",
+          "bytes": 2432
+        },
+        {
+          "path": "C:\\Users\\Ahmet Taha\\Documents\\ChatGPT\\Nasa Space Apps\\flame-dashboard\\lib\\study-evidence.mjs",
+          "sha256": "46233fac1f4b1956aa8f223d536454c4cf6d7376c1877faf62506a3b0ca90157",
+          "bytes": 1096
+        },
+        {
+          "path": "C:\\Users\\Ahmet Taha\\Documents\\ChatGPT\\Nasa Space Apps\\flame-dashboard\\lib\\reviewed-normalization-evidence.mjs",
+          "sha256": "22c27a7c13af2fa458f5e4584a2c18f8ea288e0810a504a9c001ffe36d8c723e",
+          "bytes": 2799
+        },
+        {
+          "path": "C:\\Users\\Ahmet Taha\\Documents\\ChatGPT\\Nasa Space Apps\\flame-dashboard\\lib\\psi26-report-evidence.mjs",
+          "sha256": "a0421f5add8ed18b109cf2a899f7dcc53623333b10f95258b8d217a587a23de9",
+          "bytes": 5077
+        },
+        {
+          "path": "C:\\Users\\Ahmet Taha\\Documents\\ChatGPT\\Nasa Space Apps\\flame-dashboard\\tests\\reviewed-normalization.test.mjs",
+          "sha256": "898ba5bf7721cf4eb99a75fc292929f10503149cb01f0b44d84264d3fa5a64d8",
+          "bytes": 7498
+        }
+      ],
+      "checks": {
+        "sourceAndAdverseTests": 9,
+        "focusedRegressionTestsTotal": 51,
+        "passed": 51,
+        "frozenSourceSeedReplay": "20/20 exact unchanged numerical points, percent and compared counts",
+        "numericSeeds": 16,
+        "contextOnlySeeds": 4,
+        "pureCottonPsi26Compared": 0,
+        "realProviderCalls": 0
+      },
+      "integration": {
+        "expectedHashExport": "NORMALIZATION_REVIEW_SOURCES in reviewed-normalization-evidence.mjs; PSI26_REPORT_SOURCES for linked report activation",
+        "rowsAPI": "psi26ReportRows(actualVerifiedFiles)",
+        "reportRows": 11,
+        "singleFlowRows": 6,
+        "sourceRowsAfterAppend": 132,
+        "uniquePsi26PhysicalTrials": 121,
+        "physicalTrialKey": "PSI-26:asrun:f24955:rowN",
+        "fieldProvenance": "row.evidence[key].provenance",
+        "jointFlag": "row.jointlyTested=false",
+        "temporalFlag": "row.stageTemporalBasis and row.observations.stageTemporalBasis",
+        "stageValues": "row.observations.stageValues; no additional trial rows",
+        "parentOwnedRemaining": "dataset loader source validation/append, parameter candidate per-field provenance, joint flag and physical counts, research scoring/coverage, requirements/changelog/assurance/release/browser checks"
+      },
+      "limitations": [
+        "PSI98 oxygen range and approximation preserved unscored: original CSV percent fraction basis not explicit.",
+        "PSI99 derived/time oxygen and PSI10 XO2 remain deferred.",
+        "No numericg,ambientT,O2orAIR conversion added toPSI26.",
+        "The seed replay is arithmetic/local evidence, not a new AI/provider run."
+      ]
+    }
+  },
+  "tests": {
+    "status": "completed_final_suite",
+    "count": 378,
+    "passed": 378,
+    "failed": 0,
+    "log": "qa/release-0.4.1/test-results.log",
+    "additionalTargetedReceipt": {
+      "count": 14,
+      "passed": 14,
+      "failed": 0,
+      "log": "qa/release-0.4.1/context-targeted-tests.log",
+      "scope": "Latest context/sequence changes; this is not added arithmetically to the full-suite count."
+    }
+  },
+  "releaseVerification": {
+    "portable": {
+      "passed": true,
+      "at": "2026-11-15T05:28:26.183Z",
+      "sha256": "5390f19fa4d92068255a2c7ae825fcd78f2556740c5c8e9a6fabffd4e7f2e68f",
+      "bytes": 103022080,
+      "checks": [
+        "release manifest hash matches tested EXE",
+        "relocated EXE with spaces and Turkish characters",
+        "PATH empty; no external Node runtime",
+        "missing folder shows setup UI without phantom embedded data",
+        "adjacent dataset loaded after restart",
+        "PSI and non-PSI source cards load",
+        "indexed numerical CSV opens with SHA verification",
+        "assets available",
+        "0 provider calls",
+        "DPAPI encrypted key",
+        "key survives full process restart",
+        "conversation and zero-valued environment survive full process restart",
+        "repeat launch reuses existing instance",
+        "explicit key removal",
+        "shutdown stops process",
+        "no credential file HTTP access"
+      ],
+      "limitations": [
+        "same Windows machine; clean second-machine test pending",
+        "OS SmartScreen/signing not verified"
+      ],
+      "providerCalls": 0
+    },
+    "exeContent": {
+      "passed": true,
+      "sha256": "5390f19fa4d92068255a2c7ae825fcd78f2556740c5c8e9a6fabffd4e7f2e68f",
+      "version": "0.4.1",
+      "realDatasetDetected": true,
+      "contentIndex": {
+        "state": "ready",
+        "selectedFiles": 1544,
+        "totalCatalogFiles": 51151,
+        "coverageComplete": false,
+        "shards": 1535,
+        "rawTextChunks": 918292,
+        "coverage": {
+          "fileStatuses": {
+            "extracted_unreviewed": 974,
+            "no_extractable_text": 561,
+            "excluded_error": 9
+          },
+          "rawTextChunks": 918292,
+          "pdfPages": 12110,
+          "pdfPagesWithNoExtractableText": 1744,
+          "nonemptySheetRows": 847902,
+          "textLines": 0
+        },
+        "catalogAssociationOnly": true,
+        "lexicalPolicy": "Unicode words and chemical/run alphanumerics; pure numbers and synthetic spreadsheet addresses are not lexical lookup terms. Literal rows remain unchanged."
+      },
+      "psi26PhysicalTrials": {
+        "sourceRecords": 132,
+        "uniquePhysicalTrialKeys": 121,
+        "meaning": "Linked report and as-run records are not independent experiments; report flow settings are not synchronized with whole-trial pressure."
+      },
+      "missingKeyLocalRecovery": {
+        "percent": 99.4772715676173,
+        "scenarioPoints": null,
+        "flowReference": 44,
+        "flowSource": "f34124",
+        "jointlyTested": false
+      },
+      "materialProfiles": 11,
+      "verifiedMaterialDependencies": 22,
+      "numericScoreAdjustment": false,
+      "providerCalls": 0,
+      "privateProfileLoaded": false
+    },
+    "browser": {
+      "version": "0.4.1",
+      "passed": true,
+      "realProviderCalls": 0,
+      "mockedCalls": 4,
+      "checks": [
+        "SIBAL flow44.44 and pressure99 show2/2 comparable inputs with99.5% parameter proximity",
+        "Flow44 reference uses original DOCX TableI XMLrow; pressure uses XLSXAB41",
+        "Fresh chat clears prior environment and recommendations",
+        "Text-only research works without form measurements",
+        "Concise action, rationale, limitation and source role are visible",
+        "Original PDF file/page anchor is visible and exact passage opens",
+        "Source button opens the corresponding report tab and local file library",
+        "Partial scenario rubric does not discard independently validated candidate replacement",
+        "Settings exposes974/1544 extracted files plus561 unread and9 excluded",
+        "Ctrl+Enter adds a line; Enter sends and clears composer",
+        "No horizontal overflow in main or recommendation panel"
+      ],
+      "layout": {
+        "mainScrollWidth": 602,
+        "mainWidth": 602,
+        "messages": 2,
+        "sidebarScrollWidth": 411,
+        "sidebarWidth": 411
+      },
+      "limitations": [
+        "Synthetic transport tests application flow and source retrieval, not real model output quality or scientific correctness.",
+        "Core content coverage and lexical retrieval remain partial."
+      ]
+    },
+    "normalization": {
+      "scope": "Actual fixed-dataset 0.4.1 integration compared with preserved0.4.0; local recorded-answer replay only",
+      "startedAt": "2026-11-15T05:25:08.466Z",
+      "realProviderCalls": 0,
+      "checks": [
+        {
+          "id": "twenty_frozen_cases_actual_old_and_new_loader",
+          "passed": true,
+          "cases": 20,
+          "numericCases": 16,
+          "contextOnlyCases": 4,
+          "targetDiscovery": 20,
+          "wrongMaterialControls": 20,
+          "pointsPercentAndComparedExactlyPreserved": true
+        },
+        {
+          "id": "psi26_loaded_source_records_and_physical_trials",
+          "passed": true,
+          "sourceRecords": 132,
+          "uniquePhysicalTrials": 121,
+          "reportRows": 11,
+          "singleFlowRows": 6,
+          "linkedTwoRecordTrials": 11
+        },
+        {
+          "id": "six_one_percent_flow_probes_source_references_and_temporal_basis",
+          "passed": true,
+          "probes": 6,
+          "allFlowProximityAtLeast99": true,
+          "docxFlowXlsxPressureReferences": true,
+          "noJointClaim": true
+        },
+        {
+          "id": "five_multistage_discrete_fragments_and_44cm_s_probe",
+          "passed": true,
+          "reportFragments": 11,
+          "multistageSequences": 5,
+          "input": 44.44,
+          "usedSetting": 44,
+          "proximity": 99.009900990099,
+          "unlisted40Proximity": 90.9090909090909,
+          "newTrialRowsCreated": 0,
+          "noContinuousRange": true,
+          "noJointClaim": true,
+          "matchingSettingSurvivesSixFragmentCut": true
+        },
+        {
+          "id": "037mm_quarantine_visible_and_has_no_numeric_thickness_credit",
+          "passed": true,
+          "quarantinedRows": 3,
+          "rawValuePreserved": true,
+          "visibleWarnings": true,
+          "noThicknessCredit": true
+        },
+        {
+          "id": "actual_core_index_ready_and_material_property_isolation",
+          "passed": true,
+          "indexState": "ready",
+          "shards": 1535,
+          "chunks": 918292,
+          "coverageComplete": false,
+          "profiles": 11,
+          "propertyPoints": 66,
+          "noMatPsiEvidence": true,
+          "noMatNumericCredit": true,
+          "actualSourceChunksVerified": 3
+        },
+        {
+          "id": "actual_loader_document_hash_gates_fail_closed_in_independent_fixture",
+          "passed": true,
+          "validSourceRecords": 132,
+          "corruptDocxSourceRecords": 121,
+          "corruptAsrunSourceRecords": 0,
+          "canonicalOriginalHashesUnchanged": true,
+          "copiedFixtureFiles": 29,
+          "independentFixtureRemovedAfterResolvedPathCheck": true
+        },
+        {
+          "id": "index_manifest_catalog_shard_and_original_source_gates_fail_closed",
+          "passed": true,
+          "badManifestRejected": true,
+          "badCatalogRejected": true,
+          "tamperedShardRejected": true,
+          "changedOriginalExcluded": true,
+          "fixtureVerifierHandlesClosed": 3,
+          "canonicalFilesMutated": false
+        }
+      ],
+      "originalsVerified": [
+        {
+          "fileId": "f896",
+          "path": "PSI/PSI-10/Data/Incelenecek/efee0c2029a1dce29b15__PSI-10_Experimental table_Flame Design_Normal Flame.csv",
+          "sha256": "4a663292bd3f65201943cc71bd661a70383639276a9176f64105b285bf0b6deb",
+          "bytes": 26933,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f15150",
+          "path": "PSI/PSI-20/Data/Incelenecek/ec14a2adff59880e3689__PSI-20_Experimental table_ACME BRE.csv",
+          "sha256": "4aa5d3f98708ceacced5c620d46858b9965f8d4d941b203229f46467d53e5ab7",
+          "bytes": 1113,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f17650",
+          "path": "PSI/PSI-21/Data/Incelenecek/eb280fb50dd137fd21d7__PSI-21_Experimental table_CLD Flame.csv",
+          "sha256": "9fafbc5b3dddaf715ce8025ed9154ce297803f7b69a935f077ec26c8249e44c0",
+          "bytes": 2454,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f20515",
+          "path": "PSI/PSI-22/Data/Incelenecek/d7b2a02bd79d476bbdb5__PSI-22_Experimental table_ACME E-FIELD Flames.csv",
+          "sha256": "69090c357b83ae38d161d29001d1d32b40fd77b13324ca6585ee990cdceef524",
+          "bytes": 2475,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f22719",
+          "path": "PSI/PSI-23/Data/Incelenecek/e83dd676eacb889337f2__PSI-23_Experimental table_ACME s-Flame.csv",
+          "sha256": "16cd10f50bd2e962887c8eb4077e5a9b3e790c78de8e0361c0b77e19300be7cf",
+          "bytes": 2456,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f24946",
+          "path": "PSI/PSI-25/Data/Incelenecek/d67804d816f7429c7fc3__PSI-25_Experimental table_BASS-II.csv",
+          "sha256": "71e792bf6b5fb5ea620c5dd70fbbac05515992e12aefcf5dff47312caa48c042",
+          "bytes": 16590,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f24951",
+          "path": "PSI/PSI-25/Raporlar/Rapor_ve_Makaleler/6924805f7f6aa6a83021067c__PSI-25_Reports_BASS-II Summary Report.pdf",
+          "sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+          "bytes": 48972416,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f24955",
+          "path": "PSI/PSI-26/Data/Girdi_Sonuc_Tablolari/0617e9852d10035a8948__PSI-26_Science Documents_As Run_Test Matrix.xlsx",
+          "sha256": "850910541fc9c802d00aa9de14758205103642184249b419c09868df2fbea6e8",
+          "bytes": 111886,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f34162",
+          "path": "PSI/PSI-39/Data/Girdi_Sonuc_Tablolari/19f75f17c3f8def65f77__PSI-39_Analyzed Data_FLEX-1393_Summary.pdf",
+          "sha256": "2620445e3885e766c211612638a80535767e644c28b83459979efdf9f3889154",
+          "bytes": 484921,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f36766",
+          "path": "PSI/PSI-68/Data/Girdi_Sonuc_Tablolari/b77f8ff963055799368e__PSI-68_Experimental table_Flex2.csv",
+          "sha256": "cc57ad1bd9977aa13e7ac6c3aa618303012686e232b36c052c6a9f1a74e5f528",
+          "bytes": 1029,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f50351",
+          "path": "PSI/PSI-69/Data/Sayisal_Sonuclar/785ee2ece0f33319e2a4__PSI-69_Experimental table_FLEX.csv",
+          "sha256": "37c88ce8ae9391b7544ff630a45ce87543d04d317cdbfbed104fe7d5c27e1b96",
+          "bytes": 24776,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f51120",
+          "path": "PSI/PSI-98/Data/Incelenecek/e55411e2e3e202af673a__PSI-98_Experimental table_SAFFIRE-1.csv",
+          "sha256": "c01f29c62455f0a3b512290ab85e5687ecded326733189f002f580368402308d",
+          "bytes": 469,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f51147",
+          "path": "PSI/PSI-99/Data/Incelenecek/fc299b8d9af1d673c3d5__PSI-99_Experimental table_SAFFIRE-2.csv",
+          "sha256": "3c24390b9ef86f3d1ebaab911a1a3cc95a8759aebf42062371370e6d4b31b8ac",
+          "bytes": 1973,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f3288",
+          "path": "PSI/PSI-100/Data/Incelenecek/836806daf359cc9a4b7c__PSI-100_Experimental table_SAFFIRE-3.csv",
+          "sha256": "4d3c717ec20dd0247db670b2784a9fd7d746788bc54a936f80693e48eb8cd117",
+          "bytes": 239,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f3433",
+          "path": "PSI/PSI-101/Data/Incelenecek/f06b2800681b8f9a3b1e__PSI-101_Experimental table_SAME-R.csv",
+          "sha256": "87164b7dc9168a4273c159f7a9f23699afbd06ad97b77974377e79b9bf8a3bef",
+          "bytes": 5674,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f3553",
+          "path": "PSI/PSI-102/Data/Incelenecek/d928d882b07b5b75fe89__PSI-102_Experimental table_SAME.csv",
+          "sha256": "268d1e121d2f211b124407dd32b9475617bd269ede2c2d1749441da3e949a2af",
+          "bytes": 331,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f4106",
+          "path": "PSI/PSI-106/Data/Incelenecek/d874ae8e56388b1484e0__PSI-106_Experimental table_Slice.csv",
+          "sha256": "89ef980810ca6d9aa8be817b42e36cd2adff23f5e9058361b5a33d18b4363f4d",
+          "bytes": 734,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11467",
+          "path": "PSI/PSI-107/Data/Incelenecek/563debb8270d83134a8c__PSI-107_Experimental table_Spice.csv",
+          "sha256": "fb0d7e60cf5367afb429089e9901d27288f78038efd26c8de1db4fbe04117136",
+          "bytes": 31205,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11554",
+          "path": "PSI/PSI-117/Data/Sayisal_Sonuclar/1cfed08a36d8388387ac__PSI-117_Analyzed Data_PROCI_2023_C12_Extinction_Diameter_vs_pressure.csv",
+          "sha256": "4ab6f8c19f40a3349096eab8bdceb0a62611020af15e63f816922b149cfa7001",
+          "bytes": 449,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11568",
+          "path": "PSI/PSI-142/Data/Sayisal_Sonuclar/ed225f27ab1343c7f2ef__PSI-142_Analyzed Data_PSI data summary Princeton with links.xlsx",
+          "sha256": "b6324538ff12cc07061bd0931dfc3e1cd458cd2eee4747c477c728791aca2ee0",
+          "bytes": 735232,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f12313",
+          "path": "PSI/PSI-159/Data/Incelenecek/87c436a97880a38c5de4__PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+          "sha256": "d95a621c3fbd27d204dd32ed29fa17d68f2b779d6a523cde8479ed7ebaa5251a",
+          "bytes": 22166,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f34124",
+          "path": "PSI/PSI-26/Raporlar/Rapor_ve_Makaleler/465ab53b4bd968da41d8__PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+          "sha256": "434e9b2cade638d63dcb738d3355533db702649eca356c63e9277b1ef8eecac7",
+          "bytes": 8837026,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f24958",
+          "path": "PSI/PSI-26/Data/Incelenecek/91eb522201593d3d2f65__PSI-26_Science Documents_SRD_BASS.pdf",
+          "sha256": "768a7c289af30d47a2d519db9ba67ef1d944b6053760da3b79efa99df9c04707",
+          "bytes": 884257,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f3299",
+          "path": "PSI/PSI-100/Raporlar/Rapor_ve_Makaleler/3a369a017162b07ed049__PSI-100_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+          "sha256": "6cff0b55b8f1416f5b5b768b7fd22ae31991791ef633865471b72ff19ff4159b",
+          "bytes": 186259,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11439",
+          "path": "PSI/PSI-106/Raporlar/Rapor_ve_Makaleler/7b43b26249393aeacd8e__SLICE IP-D crew training 2011.pdf",
+          "sha256": "11ad76194acf095886b0baf33ac3cb960f266d55dce0ab5b15c69de0db7afb62",
+          "bytes": 1339967,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f11433",
+          "path": "PSI/PSI-106/Raporlar/Rapor_ve_Makaleler/61269717db64ed01d008__SLICE IP-C crew training 2010.pdf",
+          "sha256": "1ec77f2a2a2a9835e7e94b5ba1f10f7e855c1a4339e4ad1458a8d1fc8effe192",
+          "bytes": 1348519,
+          "actualDatasetFileAndIndependentSha256": true
+        },
+        {
+          "fileId": "f34126",
+          "path": "PSI/PSI-26/Raporlar/Rapor_ve_Makaleler/e13b535b447d6189af07__PSI-26_Presentations_FlammabilityAspectsofCottonFiberglassFabric_ASGSR2012.pdf",
+          "sha256": "28a684280119f6814812a9c62fbec77013c80d9c0688e4c859fd6cd964277240",
+          "bytes": 3212109,
+          "actualDatasetFileAndIndependentSha256": true
+        }
+      ],
+      "sourceInventoryDeferred": false,
+      "completedAt": "2026-11-15T05:25:10.048Z",
+      "passed": true,
+      "sourceInventory": [
+        {
+          "path": "lib/dataset.mjs",
+          "sha256": "4005025ec7718887b526b658a0dc15f714b11c9cf922a9be27afe4d2459bf2a6"
+        },
+        {
+          "path": "lib/parameter-support.mjs",
+          "sha256": "de10cf1c4de25532b870d5058c67e00896300b699c0407404e72a5b6d0473c44"
+        },
+        {
+          "path": "lib/research-scoring.mjs",
+          "sha256": "e990e124e786022e8b50466cafcee08e5987d2ac37730f0bc8f6bf32281dc6a1"
+        },
+        {
+          "path": "lib/research-coverage.mjs",
+          "sha256": "c54849158f37c0436f8be303dd1cf1db56e95c8c98094dfd9c8f4c82cbe961e3"
+        },
+        {
+          "path": "lib/parameter-diagnostics.mjs",
+          "sha256": "7e08b9b51e3b8b33b5642cf52eeef9adf95a9874bb57dede6aa915c7f17c3590"
+        },
+        {
+          "path": "lib/experiment-tables.mjs",
+          "sha256": "c551d2d7fdc3c59bef40b0d3034293d32c32d0ab0bb361f4ff2156cc46d76c3d"
+        },
+        {
+          "path": "lib/bass-asrun.mjs",
+          "sha256": "c1c0d4906551a559eb8cbad8dbbf791beb90490976c9d679f4cb704c881d6c7e"
+        },
+        {
+          "path": "lib/psi26-report-evidence.mjs",
+          "sha256": "5a4d0e18a2099b2aeb76151c9a9973c7f079e7cd38bf62762ff3708e4efbd9ce"
+        },
+        {
+          "path": "lib/reviewed-normalization-evidence.mjs",
+          "sha256": "22c27a7c13af2fa458f5e4584a2c18f8ea288e0810a504a9c001ffe36d8c723e"
+        },
+        {
+          "path": "lib/study-evidence.mjs",
+          "sha256": "46233fac1f4b1956aa8f223d536454c4cf6d7376c1877faf62506a3b0ca90157"
+        },
+        {
+          "path": "lib/source-content-index.mjs",
+          "sha256": "ea1b9f3c8f9f4b9381faca4824dba805a34d2f0378d398b619d4b0f71c72e539"
+        },
+        {
+          "path": "lib/source-content-baseline.mjs",
+          "sha256": "2ff9d1fa194569f40b62ca51cd2c0db04e84dfcde2ba5bd38c68cbe41c73e40c"
+        },
+        {
+          "path": "lib/research-source-context.mjs",
+          "sha256": "d20cea2ca16560016e5dff9f3ecff30f557b5297b9a9b4353c21da4911426cd6"
+        },
+        {
+          "path": "qa/release-0.4.1/previous-source/lib/dataset.mjs",
+          "sha256": "2a0479eda765b47b01c7f150074fcd274913e0b64abe236c6bfd5e8c9952d0c8"
+        },
+        {
+          "path": "qa/release-0.4.1/previous-source/lib/parameter-support.mjs",
+          "sha256": "307e1265deb479e9394071678289c8ef5b64f7e9447234915c0d5d858e5e65ea"
+        },
+        {
+          "path": "qa/release-0.4.1/normalization-integration/check-integration.mjs",
+          "sha256": "be1cb126fe2ee73a4f68713358c1499282bb2694473d56eb7c7f98517f0b0774"
+        }
+      ]
+    },
+    "distribution": null
+  },
+  "verification": [
+    "tests/source-content-index.test.mjs",
+    "tests/source-content-loader.test.mjs",
+    "tests/source-content-manifest.test.mjs",
+    "tests/research-source-context.test.mjs",
+    "qa/release-0.4.1/content-benchmark/panel-freeze.json",
+    "qa/release-0.4.1/content-benchmark/cases.json",
+    "qa/release-0.4.1/content-benchmark/results.json",
+    "qa/release-0.4.1/content-benchmark/failure-review.json",
+    "qa/release-0.4.1/dataset-index-install/final-readback.json",
+    "tests/recommendation-clarity.test.mjs",
+    "tests/recommendation-recovery.test.mjs",
+    "tests/rubric-recovery.test.mjs",
+    "qa/future-0.4.1/recommendations/recorded-candidate-audit.json",
+    "tests/reviewed-normalization.test.mjs",
+    "tests/parameter-diagnostics.test.mjs",
+    "qa/release-0.4.1/context-targeted-tests.log",
+    "qa/future-0.4.1/normalization/implementation-handoff.json",
+    "qa/future-0.4.1/normalization/verification-receipt.json",
+    "qa/future-0.4.1/normalization/isolated-seed-recheck.json",
+    "qa/future-0.4.1/normalization/psi26-table-asrun-link-review.json",
+    "qa/release-0.4.1/normalization-integration/integration-receipt.json",
+    "qa/release-0.4.1/test-results.log",
+    "qa/release-0.4.1/portable-verification.json",
+    "qa/release-0.4.1/exe-content-verification.json",
+    "qa/release-0.4.1/browser-review.json"
+  ],
+  "pendingReleaseVerification": [
+    {
+      "stage": "final_archive_readback",
+      "expectedPath": "qa/release-0.4.1/distribution-verification.json",
+      "status": "pending_release_owner_receipt"
+    },
+    {
+      "stage": "detailed_release_pdf",
+      "expectedPath": "Developer Patch/Reports (inside 0.4.1 ZIP)",
+      "status": "release_owner_produces_and_visually_verifies"
+    },
+    {
+      "stage": "final_source_inventory_and_full_code_index",
+      "expectedPath": "Developer Patch/Code_Index (inside 0.4.1 ZIP)",
+      "status": "release_owner_freezes_and_indexes_after_record_handoff"
+    }
+  ],
+  "sourceIdentity": [
+    {
+      "file": "lib/source-content-index.mjs",
+      "sha256": "ea1b9f3c8f9f4b9381faca4824dba805a34d2f0378d398b619d4b0f71c72e539",
+      "bytes": 14971
+    },
+    {
+      "file": "lib/source-content-baseline.mjs",
+      "sha256": "2ff9d1fa194569f40b62ca51cd2c0db04e84dfcde2ba5bd38c68cbe41c73e40c",
+      "bytes": 298
+    },
+    {
+      "file": "lib/dataset.mjs",
+      "sha256": "4005025ec7718887b526b658a0dc15f714b11c9cf922a9be27afe4d2459bf2a6",
+      "bytes": 22499
+    },
+    {
+      "file": "lib/research-source-context.mjs",
+      "sha256": "d20cea2ca16560016e5dff9f3ecff30f557b5297b9a9b4353c21da4911426cd6",
+      "bytes": 2228
+    },
+    {
+      "file": "lib/research-evidence.mjs",
+      "sha256": "bd877b9d355730387fe193e7c468181898cd1ac16f373b65cf193ce91cd55e3f",
+      "bytes": 2402
+    },
+    {
+      "file": "lib/research-coverage.mjs",
+      "sha256": "c54849158f37c0436f8be303dd1cf1db56e95c8c98094dfd9c8f4c82cbe961e3",
+      "bytes": 9156
+    },
+    {
+      "file": "lib/research-candidates.mjs",
+      "sha256": "2a18542b7e24a96a98cf0a251f8e2e5ef3b227a01562e57be1d710832a09f983",
+      "bytes": 1737
+    },
+    {
+      "file": "lib/gemini.mjs",
+      "sha256": "743f3e097d0a85726813a8130010de858fdec0103f37fad6cc31a42be50c7b67",
+      "bytes": 18527
+    },
+    {
+      "file": "lib/corpus.mjs",
+      "sha256": "29ff6a3df1de6389db6982c350aa0a1ed5fe2c1dc42a69161824d53894dfb156",
+      "bytes": 13153
+    },
+    {
+      "file": "lib/research.mjs",
+      "sha256": "d128ac7790a64c69a85065ee8ddb017f5e02a0442af83019bde6773e843838f8",
+      "bytes": 20509
+    },
+    {
+      "file": "server.mjs",
+      "sha256": "c0801b007a40150b597dfc8c49ec8bf328ce2d094312889a38568bea7737a156",
+      "bytes": 15791
+    },
+    {
+      "file": "lib/recommendations.mjs",
+      "sha256": "979c412f159fe6f6c7c3fec6330965a0298d149c1c70f5307c6772f1e3a63444",
+      "bytes": 5452
+    },
+    {
+      "file": "public/recommendations-panel.mjs",
+      "sha256": "d36c78b091ef514f4a7452a682f915602ad200b187fabd0e13e817b31e0b6808",
+      "bytes": 3394
+    },
+    {
+      "file": "public/conversation-panel.mjs",
+      "sha256": "01fa292df565922d375ad062c0f9047e7b2b59c43c31ff4b99590227f6577450",
+      "bytes": 14284
+    },
+    {
+      "file": "lib/experiment-tables.mjs",
+      "sha256": "c551d2d7fdc3c59bef40b0d3034293d32c32d0ab0bb361f4ff2156cc46d76c3d",
+      "bytes": 9800
+    },
+    {
+      "file": "lib/material-identity.mjs",
+      "sha256": "cf692d0720ddc80f1b78ce968f413d2004af43615a5d145476806bc3e3426abe",
+      "bytes": 483
+    },
+    {
+      "file": "lib/reviewed-normalization-evidence.mjs",
+      "sha256": "22c27a7c13af2fa458f5e4584a2c18f8ea288e0810a504a9c001ffe36d8c723e",
+      "bytes": 2799
+    },
+    {
+      "file": "lib/psi26-report-evidence.mjs",
+      "sha256": "5a4d0e18a2099b2aeb76151c9a9973c7f079e7cd38bf62762ff3708e4efbd9ce",
+      "bytes": 6261
+    },
+    {
+      "file": "lib/bass-asrun.mjs",
+      "sha256": "c1c0d4906551a559eb8cbad8dbbf791beb90490976c9d679f4cb704c881d6c7e",
+      "bytes": 2432
+    },
+    {
+      "file": "lib/study-evidence.mjs",
+      "sha256": "46233fac1f4b1956aa8f223d536454c4cf6d7376c1877faf62506a3b0ca90157",
+      "bytes": 1096
+    },
+    {
+      "file": "lib/study-evidence-sorting.mjs",
+      "sha256": "cc46271bf70cca999dccde02506f61e835833476c1b4f2ff3aa6c2a2ad280895",
+      "bytes": 1375
+    },
+    {
+      "file": "lib/parameter-support.mjs",
+      "sha256": "de10cf1c4de25532b870d5058c67e00896300b699c0407404e72a5b6d0473c44",
+      "bytes": 3910
+    },
+    {
+      "file": "lib/parameter-diagnostics.mjs",
+      "sha256": "7e08b9b51e3b8b33b5642cf52eeef9adf95a9874bb57dede6aa915c7f17c3590",
+      "bytes": 6578
+    },
+    {
+      "file": "lib/numeric-matching.mjs",
+      "sha256": "538474dc03eb75b7e2c91a1c3b2c03385c1f4faefeb591db833f1a91f4d70cac",
+      "bytes": 10435
+    },
+    {
+      "file": "lib/research-scoring.mjs",
+      "sha256": "e990e124e786022e8b50466cafcee08e5987d2ac37730f0bc8f6bf32281dc6a1",
+      "bytes": 6654
+    },
+    {
+      "file": "public/parameter-comparison.mjs",
+      "sha256": "63fd0762e7e6427df9f29a3a657f2309a606af3864f77a6a13121736d5a60eb1",
+      "bytes": 4359
+    }
+  ],
+  "realProviderCalls": 0,
+  "newLiveProviderQualityEvaluation": false,
+  "newScientificValidation": false,
+  "thirdPartyNumericalOrCitationCredit": false,
+  "standardsStatus": "Selected NPR 7150.2D Class C evidence rows remain partial/open; no NASA certification, approved tailoring, independent assurance or complete scientific validation is claimed."
+}

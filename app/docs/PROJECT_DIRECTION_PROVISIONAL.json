@@ -1,0 +1,17 @@
+{
+  "status": "critical_provisional_direction",
+  "source": "Biz Ne Yapıyoruz_.pdf",
+  "sha256": "94d134dd7584d54ce7e971ba5a4bdde247b3c03be021cabfc355f0bddc888649",
+  "interpretation": "Important user direction, not final requirements or automatic implementation permission.",
+  "futureFlows": [
+    "Material-specific source outcomes",
+    "Validated partial-gravity inference where evidence supports it",
+    "Source-supported smoke detection and suppression guidance"
+  ],
+  "openDecisions": [
+    "Independent validity of 0g-to-1g interpolation",
+    "Applicability and uncertainty of safety guidance",
+    "Separation of measured source results from model predictions"
+  ],
+  "releaseTreatment": "No new speculative physics introduced in the English migration."
+}

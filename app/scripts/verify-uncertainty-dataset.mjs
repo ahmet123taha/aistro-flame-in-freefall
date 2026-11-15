@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {loadDataset} from '../lib/dataset.mjs';
+import {validateRequest} from '../lib/corpus.mjs';
+import {matchExperiments} from '../lib/numeric-matching.mjs';
+import {VERSION} from '../lib/version.mjs';
+const data=await loadDataset(process.argv[2]);
+const request=validateRequest({question:'Nomex girdi belirsizliğinin yakınlığa etkisini açıkla',ids:['PSI-25'],weights:{oxygen:80,co2Percent:20},conditions:{gravity:'other',material:'nomex',materialSpecification:'nomex-iii-natural',specimenKind:'sheet',oxygen:22.2,co2Percent:.46,numericUncertainty:{oxygen:.2,co2Percent:.01}}},data.corpus.records.map(r=>r.id));
+const result=matchExperiments(data.corpus,request).matches[0],bounds=result.experiment.inputUncertainty;
+assert.equal(result.experimentId,'F1');assert.equal(result.similarity,100);assert.equal(bounds.range.max,100);
+const expected=80*22/22.2+20*.45/.46;assert.ok(Math.abs(bounds.range.min-expected)<1e-10);
+assert.equal(bounds.sourceUncertainty,'not_quantified');
+const unknown=matchExperiments(data.corpus,{...request,conditions:{...request.conditions,numericUncertainty:{oxygen:.2}}}).matches[0];
+assert.equal(unknown.experiment.inputUncertainty.range,null);assert.deepEqual(unknown.experiment.inputUncertainty.missing,['co2Percent']);
+const ctx=await data.context(request),record=ctx.records[0];assert.match(record.content.fileText,/conditional_input_bounds/);assert.match(record.content.fileText,/not_quantified/);assert.match(record.content.fileText,/Only supplied input error bounds/);
+const evidence={version:VERSION,at:new Date().toISOString(),passed:true,providerCalls:0,source:result.experiment.provenance,physicalTrialKey:result.experiment.physicalTrialKey,totalNormalizedRows:data.corpus.experiments.rows.length,nominal:result.similarity,inputBounds:bounds.range,unknownErrorRange:unknown.experiment.inputUncertainty.range,checks:['hash-verified local sources','input interval propagated to each weighted contribution','source uncertainty explicitly unknown','missing input error not zero','bounds in source-only AI context','nominal ranking preserved'],limits:['input-only deterministic envelope, not confidence interval','no source error or cross-sensor correlation estimate','user weights not calibrated fire model']};
+await writeFile('qa/uncertainty-dataset-verification-'+VERSION+'.json',JSON.stringify(evidence,null,2));console.log(JSON.stringify(evidence));

@@ -1,0 +1,251 @@
+{
+  "version": "0.3.1",
+  "previousVersion": "0.3.0",
+  "requirement": "FIF-040",
+  "date": "2026-11-15",
+  "scope": "Conversation-to-scenario routing, source focus, response validation, in-flight state, history persistence, recommendations, provider/cache errors and portable delivery.",
+  "rootCause": {
+    "confirmed": "The reported language command was appended to the scientific scenario; source selection depended on nonempty scenario. Several validation branches shared an inaccurate message.",
+    "observedReceipt": {
+      "httpStatus": 200,
+      "requestedModel": "gemini-3.1-flash-lite",
+      "returnedModel": "gemini-3.1-flash-lite",
+      "receivedAt": "2026-11-14T21:54:03.775Z",
+      "promptTokens": 35405,
+      "outputTokens": 545
+    },
+    "uncertainty": "The old rejected raw JSON was not retained. The exact failed assessments branch cannot be reconstructed from the generic old message. No claim is made that the provider returned one specific malformed field."
+  },
+  "findings": [
+    {
+      "id": "D031-01",
+      "severity": "high",
+      "title": "Conversation controls polluted the scientific scenario",
+      "cause": "The browser appended every message, including the exact language command, to scenario. A nonempty string enabled all local source candidates.",
+      "fix": "Shared narrow routing separates language, formatting and greetings from research. Legacy control-only lines are filtered from the bounded scenario without deleting visible transcript. The server recomputes the route and keeps language preference per chat.",
+      "implementation": [
+        "public/dialogue-flow.mjs",
+        "public/environment-panel.mjs",
+        "server.mjs",
+        "lib/conversations.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-02",
+      "severity": "medium",
+      "title": "One validation error concealed several different failures",
+      "cause": "Scenario required before ranking was thrown for missing/non-array/overlong assessments, missing scenario, or clarify with assessments. HTTP 200 was mistaken for an application success expectation.",
+      "fix": "Routed JSON Schema plus separate local branch codes. Non-ranking omitted empty collections are normalized only when harmless. Scientific references, rubrics and ranking lists remain fail-closed. Safe diagnostics record shape, counts, field, route and response digest without raw answer text.",
+      "implementation": [
+        "lib/research-schema.mjs",
+        "lib/research.mjs",
+        "lib/research-evidence.mjs",
+        "lib/gemini.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-03",
+      "severity": "high",
+      "title": "Focused-source chat bypassed the environment/scenario workflow",
+      "cause": "Continue with AI selected the legacy chat handler instead of the research handler. Scenario, language and environment management consequently diverged.",
+      "fix": "Both focused and general research conversations use the same planner and endpoint. A valid focused source restricts candidates to that record. Current optional inputs still supersede conflicting history. Specialist comparison retains its separate explicit mode.",
+      "implementation": [
+        "public/environment-panel.mjs",
+        "public/app.js",
+        "server.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-04",
+      "severity": "high",
+      "title": "Meta replies could mark old recommendations current",
+      "cause": "A keep update cleared the stale flag even when the turn contained no scientific review. A greeting could also clear the active-incident flag.",
+      "fix": "The server marks whether a research review occurred. Conversation/clarification replies preserve prior stale state and incident notice; only a validated research review can replace, clear or reconfirm candidates. Changed scientific context invalidates previous recommendations before the request.",
+      "implementation": [
+        "lib/research.mjs",
+        "public/recommendations-panel.mjs",
+        "public/environment-panel.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-05",
+      "severity": "high",
+      "title": "Response application did not cover source-focus transitions",
+      "cause": "Environment revision and app/source revision were separate. A delayed answer could outlive a source change, including changing away and back.",
+      "fix": "Response acceptance checks environment revision, app revision and source identity. A stale response is retained in the transcript with its own notice but cannot update current rankings or recommendations. A newly typed draft remains untouched.",
+      "implementation": [
+        "public/dialogue-flow.mjs",
+        "public/environment-panel.mjs",
+        "public/app.js",
+        "public/conversation-panel.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-06",
+      "severity": "medium",
+      "title": "Conversation capacity could fail after sending the final user message",
+      "cause": "At 499 stored messages the user turn occupied the last slot, leaving no room for a provider answer or error notice. An exception outside cleanup could leave UI controls locked.",
+      "fix": "A turn preflight reserves two slots before sending. Stale-answer warnings are stored inside the response rather than consuming a third message. Both chat paths unlock in finally and isolate status-refresh errors.",
+      "implementation": [
+        "public/dialogue-flow.mjs",
+        "public/conversation-panel.mjs",
+        "public/environment-panel.mjs",
+        "public/app.js"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-07",
+      "severity": "medium",
+      "title": "Receipt/cache filesystem failure could masquerade as model rejection",
+      "cause": "Writing optional logs or cache inside the success path could throw after a valid provider answer. Subsequent logging could hide the original error again.",
+      "fix": "Nonessential telemetry/cache failures are contained and counted. A valid answer remains visible with a local-storage warning; history persistence has a separate visible status. There is no silent claim that storage succeeded.",
+      "implementation": [
+        "lib/gemini.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-08",
+      "severity": "medium",
+      "title": "Protocol errors were misleading or too generic",
+      "cause": "All provider HTTP 400/401/403 responses suggested key/access trouble. Invalid JSON request bodies or non-JSON local responses could produce unrelated exceptions.",
+      "fix": "HTTP 400 reports request-format rejection, 401/403 authentication/access. Incomplete output and invalid JSON have distinct codes; malformed local request shapes receive 400. Local transport failures have application-specific messages. No automatic retry or model fallback.",
+      "implementation": [
+        "lib/gemini.mjs",
+        "server.mjs",
+        "public/app.js"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-09",
+      "severity": "low",
+      "title": "Generated submission text and unrelated laboratory fields entered dialogue context",
+      "cause": "The generated Environment submitted label entered model history; default burner-specific condition keys/units also accompanied environmental research.",
+      "fix": "Generated submit labels are excluded from model history. Research payloads include only material and the six supported optional environmental measurements with their units. Specialist mode remains available and unchanged.",
+      "implementation": [
+        "public/conversation-panel.mjs",
+        "lib/gemini.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-10",
+      "severity": "medium",
+      "title": "Control turns discarded visible research results",
+      "cause": "Sending any chat message cleared research results before the reply. This made language or formatting changes look like loss of scientific work.",
+      "fix": "Non-research controls preserve current matching results and recommendation state. Source-focused conversation retains general matching results unless the environment itself changes.",
+      "implementation": [
+        "public/environment-panel.mjs",
+        "public/dialogue-flow.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    }
+  ],
+  "verification": [
+    "tests/dialogue-flow.test.mjs",
+    "qa/release-0.3.1/test-results.log",
+    "qa/release-0.3.1/browser-review.json",
+    "qa/release-0.3.1/browser-events.json",
+    "qa/release-0.3.1/portable-verification.json"
+  ],
+  "officialReferences": [
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/structured-output",
+      "use": "JSON Schema constrains structure; semantic values still require application validation."
+    },
+    {
+      "url": "https://ai.google.dev/api/generate-content",
+      "use": "GenerateContent generation configuration and JSON output contract."
+    },
+    {
+      "url": "https://github.com/googleapis/js-genai/blob/main/src/types.ts",
+      "use": "Official SDK responseJsonSchema field reference."
+    }
+  ],
+  "limitations": [
+    "Live Gemini acceptance of the updated schema and qualitative answer quality have not been tested in this release. All provider responses in verification are mocked; no user quota was spent.",
+    "The deterministic control recognizer is intentionally narrow. Mixed scientific messages and unknown phrasing remain research; readiness still depends on the model returning clarify or rank.",
+    "Schema, exact quotation and rubric validation establish format/reference traceability, not scientific truth or suitability for an active fire.",
+    "Research discovery still uses bounded indexed local metadata/supporting text, not every PDF/table. Numeric coverage gaps remain visible; no score-weight or physical-equation changes.",
+    "History bounds remain 50 chats, 500 messages/chat and 4 MB; long-term export/archival, formal fault injection across the entire OS and a clean second-machine test remain open.",
+    "The original private profile and fixed dataset are not modified by QA or included in the ZIP. NPR 7150.2D Class C remains an incomplete engineering target, not a certification."
+  ]
+}

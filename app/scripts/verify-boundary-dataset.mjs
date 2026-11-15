@@ -1,0 +1,17 @@
+import {writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {loadDataset} from '../lib/dataset.mjs';
+import {matchExperiments} from '../lib/numeric-matching.mjs';
+import {validateRequest} from '../lib/corpus.mjs';
+import {VERSION} from '../lib/version.mjs';
+const dataset=await loadDataset(process.argv[2]);
+const conditions={gravity:'other',material:'pmma',materialVariant:'cast-pmma',specimenKind:'rod',tipShape:'hemispherical',flowDirection:'concurrent',gravityRegime:'microgravity',flameState:'established',oxidizerDiluent:'nitrogen',oxygenBasis:'boundary_state',rodDiameterMm:6.36,airflow:2.2048,oxygen:13.61,oxygenUncertaintyPp:.05,airflowUncertaintyCmS:.05,diameterUncertaintyMm:.01};
+const request=validateRequest({method:'pmma-rod-boundary',conditions,ids:['PSI-25'],question:'Deneysel sınırın belirsizliğini açıkla.'},dataset.corpus.records.map(r=>r.id));
+const result=matchExperiments(dataset.corpus,request),b=result.matches[0].experiment.boundary;
+assert.equal(b.uncertainty.relation,'overlaps_fit');assert.equal(result.matches[0].similarity,null);assert.equal(b.uncertainty.modelErrorIncluded,false);assert.ok(b.minimumOxygen>13.6&&b.minimumOxygen<13.61);
+const context=await dataset.context(request),record=context.records[0];
+assert.ok(record.fileSources.some(s=>s.id==='f24951'&&s.derivedModel));
+for(const pattern of [/empirical source fit/,/oxygenMarginPp/,/overlaps_fit/,/modelErrorIncluded":false/,/6.1/])assert.match(record.content.fileText,pattern);
+assert.ok(!record.content.fileText.includes('"curve":'));
+const evidence={version:VERSION,at:new Date().toISOString(),passed:true,providerCalls:0,source:b.source,normalizedStretch:b.normalizedStretch,boundaryOxygen:b.boundaryOxygen,oxygenMarginPp:b.oxygenMarginPp,minimumOxygen:b.minimumOxygen,uncertainty:b.uncertainty,checks:['hash-verified BASS report','empirical formula result and radius normalization','overlap without risk score','derived model and source hash in local AI context','plot samples excluded from context payload'],limitations:['input bounds only, unknown model error','source-fit location is not independent experimental validation','not ignition probability or operational safety classification']};
+await writeFile('qa/boundary-dataset-verification-'+VERSION+'.json',JSON.stringify(evidence,null,2));console.log(JSON.stringify(evidence));

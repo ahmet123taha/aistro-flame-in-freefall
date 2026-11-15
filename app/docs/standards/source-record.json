@@ -1,0 +1,14 @@
+{
+  "document": "NPR 7150.2D",
+  "effective": "2022-03-08",
+  "expires": "2027-03-08",
+  "captured_at": "2026-11-14T11:57:10.932284+00:00",
+  "pdf_path": "C:\\Users\\Ahmet Taha\\Desktop\\Spaceapps\\Documents\\NASA NPR 7.pdf",
+  "pdf_sha256": "1a5b7f9b0b0141e88374adf7a21a4d6ced0b29c221ca89a0a514f495d6532802",
+  "html_sha256": "7851059bef3c6da3c5369716dde86cc20b92b541325b6340f3714bd93ee14ddc",
+  "html_encoding": "utf-8",
+  "total_matrix_rows": 100,
+  "class_c_invoked": 92,
+  "completed_compliance_requirements": 0,
+  "note": "Source-preserving initial applicability register, not a compliance certificate; chapters and conditional requirements still require review."
+}

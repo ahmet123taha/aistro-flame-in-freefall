@@ -1,0 +1,48 @@
+{
+  "fromVersion": "0.1.8",
+  "toVersion": "0.1.9",
+  "issues": [
+    {
+      "id": "D019-01",
+      "severity": "high",
+      "status": "fixed_in_defined_scope",
+      "before": "Nomex CSV input rows had no detailed ignition observations; summary wording could imply zero ignition.",
+      "fix": "Add3 source-pinned AppendixA.2 observations; retain F1/F3 brief ignition and summary discrepancy. Not a nonflammability conclusion."
+    },
+    {
+      "id": "D019-02",
+      "severity": "high",
+      "status": "prevented",
+      "before": "F3 printed calibrated final oxygen0.9 conflicts with no-postburn-readings note and CSV none.",
+      "fix": "Keep printed value as discrepancy, usable final oxygen null; never score or use as extinction limit."
+    },
+    {
+      "id": "D019-03",
+      "severity": "high",
+      "status": "fixed_score_semantics_applicability_open",
+      "before": "Calibration file hash treated as applicability evidence;24 BASS AIR readings scored as local specimen flow.",
+      "fix": "Keep centerline estimate separately with source and raw instrument values; remove from specimen velocity scoring until geometry verified."
+    },
+    {
+      "id": "D019-04",
+      "severity": "high",
+      "status": "partially_addressed",
+      "before": "CSV and report records could count one Nomex run twice or hide its detailed observation.",
+      "fix": "Link3 pairs using pinned hashes, run/sample/product and shared values; display3 physical candidates, PDF primary, CSV separate; other trial identity remains open."
+    },
+    {
+      "id": "D019-05",
+      "severity": "low",
+      "status": "implemented",
+      "before": "Nomex product identity and instrument provenance not selectable/readable.",
+      "fix": "Conditional product selector, separate source observation and instrument/link disclosures."
+    },
+    {
+      "id": "D019-06",
+      "severity": "high",
+      "status": "open",
+      "before": "Unknown material geometry/igniter exposure and no independent validation prevent critical safety classifications.",
+      "fix": "Explicit source limitations and no critical/safe label. Requires further material-specific evidence and independent validation."
+    }
+  ]
+}

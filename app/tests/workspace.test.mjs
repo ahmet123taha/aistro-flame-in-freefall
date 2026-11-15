@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {PINNED_TAB,addTab,closeTab,usablePolicy,partitionMatches} from '../public/workspace-state.mjs';
+const hash='a'.repeat(64),policy={scoreKind:'condition_similarity',thresholds:{medium:40,critical:75},validationStatus:'validated',validationReference:'fixture-validation-only',datasetHash:hash};
+const row=(id,similarity,extra={})=>({id,similarity,evidenceType:'numeric',sourceRows:['fixture:1'],...extra});
+test('permanent first tab cannot close',()=>assert.deepEqual(closeTab([PINNED_TAB],'results','results'),{tabs:[PINNED_TAB],active:'results'}));
+test('same source/type does not duplicate tabs',()=>{const t=addTab([PINNED_TAB],{key:'PSI-107:report'});assert.equal(addTab(t,{key:'PSI-107:report'}).length,2);});
+test('active close falls back and background close keeps active',()=>{const t=[PINNED_TAB,{key:'a'},{key:'b'}];assert.equal(closeTab(t,'a','a').active,'b');assert.equal(closeTab(t,'b','a').active,'b');});
+test('uncalibrated or stale dataset policy blocked',()=>{assert.equal(usablePolicy(policy),false);assert.equal(usablePolicy(policy,{datasetHash:hash}),true);assert.equal(usablePolicy({...policy,validationStatus:'draft'},{datasetHash:hash}),false);assert.equal(usablePolicy({...policy,thresholds:{medium:80,critical:50}},{datasetHash:hash}),false);});
+test('synthetic scores accepted ONLY in explicit preview mode',()=>{const p={...policy,synthetic:true};assert.equal(usablePolicy(p),false);assert.equal(usablePolicy(p,{preview:true}),true);});
+test('boundary equality, ordering, hidden low count',()=>{const r=partitionMatches({policy,matches:[row('low',39.9),row('middle',40),row('critical',75),row('high',100)]},{datasetHash:hash});assert.deepEqual(r.visible.map(x=>[x.id,x.level]),[['high','critical'],['critical','critical'],['middle','medium']]);assert.equal(r.low.length,1);});
+test('invalid numeric evidence never becomes a percentage',()=>{const r=partitionMatches({policy,matches:[row('null',null),row('big',101),row('bad',NaN),row('metadata',90,{evidenceType:'summary'}),row('empty',90,{sourceRows:[]})]},{datasetHash:hash});assert.equal(r.visible.length,0);assert.equal(r.unknown.length,5);assert.ok(r.unknown.every(x=>x.similarity===null));});
+test('no valid policy means all scores unavailable',()=>{const r=partitionMatches({matches:[row('a',99)]});assert.equal(r.visible.length,0);assert.equal(r.unknown[0].similarity,null);});

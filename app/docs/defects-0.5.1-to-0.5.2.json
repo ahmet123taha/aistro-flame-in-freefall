@@ -1,0 +1,25 @@
+{
+  "version": "0.5.2",
+  "previousVersion": "0.5.1",
+  "changes": [
+    {
+      "id": "D-052-01",
+      "severity": "medium",
+      "classification": "User-requested feature retirement; low visual preference, functional provider/microphone boundary change",
+      "problem": "The separate Incident Support experience is not acceptable to the user. The entry must open the existing Safety workspace instead.",
+      "mitigation": "Remove active UI/service construction and production voice assets; return410 at retired routes before provider work. Preserve normal research chat and Safety content.",
+      "status": "implementation_verified_acceptance_limits_recorded",
+      "release": "0.5.2",
+      "evidence": [
+        "tests/safety-panel-controls.test.mjs",
+        "tests/incident-service.test.mjs",
+        "tests/openai-integration.test.mjs",
+        "qa/release-0.5.2/aws/test-summary.json",
+        "qa/release-0.5.2/browser/readback.json"
+      ],
+      "verification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    }
+  ],
+  "historicalVoiceStatus": "Retired, not claimed repaired or operationally accepted. Earlier source/tests retained as historical modules; active wiring removed.",
+  "verification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+}

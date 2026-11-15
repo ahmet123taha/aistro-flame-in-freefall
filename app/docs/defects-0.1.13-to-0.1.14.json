@@ -1,0 +1,45 @@
+{
+  "fromVersion": "0.1.13",
+  "toVersion": "0.1.14",
+  "issues": [
+    {
+      "id": "D0114-01",
+      "severity": "high",
+      "status": "implemented_scoped_model",
+      "before": "Gas mode lacked source-derived physical structure and condition-dependent parameter effects.",
+      "fix": "Add pinned NASA Eq1.1, mass-fraction conversion and analytic local elasticities."
+    },
+    {
+      "id": "D0114-02",
+      "severity": "high",
+      "status": "guarded",
+      "before": "Unknown diluent could silently imply a nitrogen binary mixture.",
+      "fix": "Require explicit nitrogen; other/unknown yields no physical score."
+    },
+    {
+      "id": "D0114-03",
+      "severity": "medium",
+      "status": "separated",
+      "before": "Printed source Zst and recomputed Zst differ slightly.",
+      "fix": "Retain both; compare consistent recomputed values and report difference, not measurement uncertainty."
+    },
+    {
+      "id": "D0114-04",
+      "severity": "high",
+      "status": "open",
+      "before": "Equal Zst does not prove equal ignition, extinction or fire risk.",
+      "fix": "Keep source outcomes, compositions and scope limits; independent physical validation remains open."
+    },
+    {
+      "id": "D0114-05",
+      "severity": "low",
+      "status": "fixed_in_verifier",
+      "before": "Exact100 assertion rejected floating-point99.99999999999999.",
+      "fix": "Use1e-10 arithmetic tolerance in verification; no fabricated runtime percentage."
+    }
+  ],
+  "qaFindings": [
+    "Bundled pdftotext executable absent; source text extracted with bundled pypdf and relevant pages rendered/reviewed.",
+    "331 source rows valid for model; two zero-fuel rows excluded rather than forced into formula."
+  ]
+}

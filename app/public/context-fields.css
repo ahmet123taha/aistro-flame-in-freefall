@@ -1,0 +1,5 @@
+.context-heading h3{margin:.25rem 0}.context-heading>small{font-size:.7rem;letter-spacing:.1em;color:var(--accent,#7bd3c2)}
+.context-heading p,.context-field small,.saved-context p{font-size:.82rem;line-height:1.5}.context-field{margin:1rem 0;padding-bottom:1rem;border-bottom:1px solid var(--border,#344354)}
+.context-field label{display:block;margin-bottom:.4rem;font-weight:600}.context-field label span{float:right;font-weight:400}.context-field input{width:100%;box-sizing:border-box}
+.context-field small{display:block;margin-top:.35rem}.context-error{color:#ffb691}.context-error:empty{display:none}.context-unknown{font-size:.75rem;margin-top:.4rem;padding:.3rem .5rem}.context-unknown[aria-pressed=true]{color:var(--accent,#7bd3c2);border-color:currentColor}
+#context-details{margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid var(--border,#344354)}.saved-context{margin-top:1rem}.saved-context button{font-size:.75rem;padding:.25rem .4rem}

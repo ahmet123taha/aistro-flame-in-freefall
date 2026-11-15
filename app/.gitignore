@@ -1,0 +1,7 @@
+.runtime/
+.env
+.env.*
+node_modules/
+build/
+*.dpapi
+*.dpapi.tmp

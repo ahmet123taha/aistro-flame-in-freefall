@@ -1,0 +1,24 @@
+{
+  "name": "flame-in-freefall-demo",
+  "version": "0.5.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs --key-stdin",
+    "preview": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build:portable": "node scripts/build-portable.mjs",
+    "start:hosted": "node hosted.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "acorn": "^8.19.0",
+    "acorn-walk": "^8.3.5",
+    "esbuild": "^0.28.2"
+  },
+  "dependencies": {
+    "pdfjs-dist": "6.5.438"
+  }
+}

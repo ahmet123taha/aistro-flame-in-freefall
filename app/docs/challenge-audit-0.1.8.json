@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-14",
+  "officialUrl": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/",
+  "directFetch": "502",
+  "searchIndexOverviewAvailable": true,
+  "evidenceType": "search-index overview, not full live page",
+  "supportedOverview": [
+    "Interactive SI-powered dashboard",
+    "Summarize, rank and interpret microgravity combustion findings",
+    "Fire safety insights for human space exploration"
+  ],
+  "unverified": [
+    "full detailed current requirements",
+    "complete current resources tab",
+    "submission and judging requirements"
+  ],
+  "implementationRelation": "The existing dashboard and evidence interpretation align with the indexed overview; full challenge compliance cannot be concluded.",
+  "archivePreservation": "Existing local source package was not replaced; no new online text supplied as experimental data."
+}

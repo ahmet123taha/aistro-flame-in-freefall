@@ -1,0 +1,261 @@
+{
+  "version": "0.3.0",
+  "scope": "metadata demo and portable packaging",
+  "requirements": [
+    {
+      "id": "FIF-001",
+      "requirement": "Load only the four allowlisted metadata records; preserve the source SHA-256 identity.",
+      "implementation": [
+        "lib/corpus.mjs",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "Only the four authorized metadata files are loaded, with provenance"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-002",
+      "requirement": "Provide ten prioritized collapsible outputs, source comparison and condition entry.",
+      "implementation": [
+        "public/index.html",
+        "public/app.js",
+        "public/styles.css"
+      ],
+      "verification": [
+        "qa/verification.json",
+        "qa/portable-api-settings.jpg"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-055",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-003",
+      "requirement": "Keep unknown conditions null; validate units and bounds; do not present topic ranking as physical matching.",
+      "implementation": [
+        "lib/corpus.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "Question and numerical bounds reject ambiguous input; blanks remain unknown",
+        "Ranking chooses relevant cool-flame metadata without probability scores"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-184",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-004",
+      "requirement": "Send only selected source text to the model; reject fabricated quotations/IDs/fields and show inference limitations.",
+      "implementation": [
+        "lib/gemini.mjs",
+        "lib/corpus.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "Provider context contains only selected local source text; no web tools",
+        "Invented quotes, unselected sources, invalid fields and unsupported tested solutions are rejected"
+      ],
+      "npr": [
+        "SWE-052",
+        "SWE-061",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Semantic scientific correctness requires expert evaluation; exact quote matching alone is insufficient."
+    },
+    {
+      "id": "FIF-005",
+      "requirement": "Use the approved Gemini 3.1 Flash-Lite model; no automatic calls/retries/fallback; enforce one concurrent request, timeout and same-question caching.",
+      "implementation": [
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "User-approved economical model is explicit",
+        "Same input is cached and secret is sent only in provider header",
+        "No automatic retry, expensive fallback, or secret reflection after provider failure",
+        "Concurrent API calls do not consume a second request"
+      ],
+      "npr": [
+        "SWE-034",
+        "SWE-065",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-006",
+      "requirement": "Maintain the local boundary with a 127.0.0.1 server, allowed paths, same-origin POST and nonce.",
+      "implementation": [
+        "server.mjs",
+        "portable.mjs"
+      ],
+      "verification": [
+        "Local HTTP routes deny arbitrary files and cross-origin paid requests; source browsing makes zero provider calls"
+      ],
+      "npr": [
+        "SWE-154",
+        "SWE-157",
+        "SWE-159",
+        "SWE-207"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-007",
+      "requirement": "Let the user enter the key through the panel; store it encrypted and persistently under the Windows account; never return it in responses/logs/browser storage.",
+      "implementation": [
+        "lib/credentials.mjs",
+        "server.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "Windows user-bound key survives a fresh store and is encrypted on disk; clear removes it",
+        "Settings enforce session/origin, never reflect a key and do not call Gemini",
+        "qa/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-053",
+        "SWE-154",
+        "SWE-159"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-008",
+      "requirement": "Open the browser using one Windows x64 EXE with embedded assets and runtime; require no second launcher.",
+      "implementation": [
+        "portable.mjs",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "scripts/verify-portable.mjs",
+        "qa/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-057",
+        "SWE-063",
+        "SWE-073",
+        "SWE-077"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Verified on current Windows machine with relocated EXE and empty PATH; clean second machine pending."
+    },
+    {
+      "id": "FIF-009",
+      "requirement": "A second launch reuses the existing application; panel shutdown terminates the process; the key remains available on the next launch.",
+      "implementation": [
+        "portable.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "scripts/verify-portable.mjs"
+      ],
+      "npr": [
+        "SWE-066",
+        "SWE-073",
+        "SWE-075"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-010",
+      "requirement": "Exclude keys, user cache and machine-specific profiles from the shared package; record package-content hashes.",
+      "implementation": [
+        "scripts/build-portable.mjs",
+        ".gitignore"
+      ],
+      "verification": [
+        "qa/portable-build.json",
+        "scripts/verify-portable.mjs"
+      ],
+      "npr": [
+        "SWE-081",
+        "SWE-084",
+        "SWE-085"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-011",
+      "requirement": "Include source provenance and the user scenario in JSON output; do not present model content as an actual measurement.",
+      "implementation": [
+        "public/app.js"
+      ],
+      "verification": [
+        "qa/verification.json"
+      ],
+      "npr": [
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-012",
+      "requirement": "Maintain change, requirement, test, version and open-evidence records for the NPR 7150.2D Class C target; do not claim unverified compliance.",
+      "implementation": [
+        "AGENTS.md",
+        "CHANGELOG.md",
+        "docs/ENGINEERING_BASELINE.md",
+        "docs/standards/class-c-matrix.json"
+      ],
+      "verification": [
+        "docs/standards/source-record.json",
+        "qa/source-baseline.json"
+      ],
+      "npr": [
+        "SWE-013",
+        "SWE-024",
+        "SWE-125",
+        "SWE-176",
+        "SWE-201"
+      ],
+      "status": "PROCESS_BASELINE_OPEN",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-013",
+      "requirement": "Numeric-only input sidebar; collapsible AI and recommendation panels; searchable research list and persistent in-session source tabs with comparison. Never equate similarity with ignition probability.",
+      "implementation": [
+        "public/index.html",
+        "public/styles.css",
+        "public/app.js",
+        "lib/corpus.mjs"
+      ],
+      "verification": [
+        "tests/numeric-inputs.test.mjs",
+        "qa/redesign-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "limitation": "No per-run numeric data; percentage and severity classifications intentionally unavailable."
+    }
+  ]
+}

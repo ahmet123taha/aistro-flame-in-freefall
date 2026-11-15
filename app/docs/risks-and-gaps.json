@@ -1,0 +1,3264 @@
+{
+  "version": "0.4.10",
+  "severityDefinitions": {
+    "high": "Could invalidate safety/scientific or compliance claims; prevents operational acceptance.",
+    "medium": "Material engineering or verification gap; explicit scope limits required.",
+    "low": "Presentation/design preference, maintainability or intended architecture gap without changed scientific calculations."
+  },
+  "items": [
+    {
+      "id": "G-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "The scientific correctness of LLM interpretation has not been independently validated. A sample cache showed a weak inference from smoke-mixture findings to cool-flame behavior.",
+      "mitigation": "Source/hypothesis/inference boundaries are visible; no safety score or intervention order. No operational use before an expert comparison set and claim-evidence audit are developed.",
+      "related": [
+        "FIF-004",
+        "SWE-055",
+        "SWE-070"
+      ]
+    },
+    {
+      "id": "G-02",
+      "severity": "high",
+      "status": "open",
+      "problem": "A Class C target is not formal classification, software assurance, independent review or NASA approval.",
+      "mitigation": "The 92 applicable marked rows remain open/partial; no approval or tailoring is claimed. Intended use/safety-criticality must be reviewed against NASA-STD-8739.8.",
+      "related": [
+        "SWE-020",
+        "SWE-022",
+        "SWE-125",
+        "SWE-176",
+        "SWE-205"
+      ]
+    },
+    {
+      "id": "G-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Deep static analysis, code-coverage measurements, independent peer review and accreditation of development tools are not yet available.",
+      "mitigation": "Local automated and EXE smoke tests exist; they do not substitute for the missing activities.",
+      "related": [
+        "SWE-135",
+        "SWE-136",
+        "SWE-185",
+        "SWE-189",
+        "SWE-190",
+        "SWE-087"
+      ]
+    },
+    {
+      "id": "G-04",
+      "severity": "medium",
+      "status": "open",
+      "problem": "No clean second-Windows-device test or digital signature. Operating-system dependencies include Windows PowerShell/DPAPI and a browser.",
+      "mitigation": "Relocated-EXE and empty-PATH testing on the same machine; no separate installation/launcher; second-device acceptance is planned.",
+      "related": [
+        "FIF-008",
+        "SWE-073"
+      ]
+    },
+    {
+      "id": "G-05",
+      "severity": "medium",
+      "status": "open",
+      "problem": "The dataset package supports file access; AI interprets only the selected 24 metadata/11 supporting web records. Full PDF/Excel text and numerical conditions have not all been normalized.",
+      "mitigation": "Scope is explicit in the UI/documentation; files can be opened manually, and unsupported table findings are not generated. The 67 missing/excluded sources and 2269 role reviews are retained.",
+      "related": [
+        "FIF-001",
+        "FIF-003"
+      ]
+    },
+    {
+      "id": "G-06",
+      "severity": "medium",
+      "status": "open",
+      "problem": "NPR cost/schedule/training/organizational delivery and acceptance records have not yet been provided.",
+      "mitigation": "Preserve the user's product-plan preference without people/durations; do not remove those NPR evidence requirements and count them as satisfied. Complete them through a separate management process.",
+      "related": [
+        "SWE-015",
+        "SWE-151",
+        "SWE-174",
+        "SWE-017",
+        "SWE-077",
+        "SWE-194"
+      ]
+    },
+    {
+      "id": "G-07",
+      "severity": "medium",
+      "status": "open",
+      "problem": "A malicious process under the same Windows user can bypass the benefit of DPAPI protection; model-service and Windows-runtime changes are external dependencies.",
+      "mitigation": "Do not share the user profile; bind the local server to loopback; redact logs; change the model only by explicit decision. Do not guarantee operating-system security.",
+      "related": [
+        "FIF-007",
+        "SWE-027",
+        "SWE-154"
+      ]
+    },
+    {
+      "id": "G-08",
+      "severity": "low",
+      "status": "open",
+      "problem": "The Rust target is not implemented yet; the current demo uses Node SEA.",
+      "mitigation": "State the actual language/architecture clearly in README; handle Rust migration as a separately tested release.",
+      "related": [
+        "SWE-033",
+        "SWE-057"
+      ]
+    },
+    {
+      "id": "G-10",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Not every file in a package folder is read at startup; if extraction is incomplete, an error appears when the affected file is accessed.",
+      "mitigation": "Verify every distribution ZIP member by CRC/SHA readback; verify index SHA at startup and file SHA/size on access. Incomplete extraction cannot be repaired automatically.",
+      "related": [
+        "FIF-014",
+        "FIF-015"
+      ]
+    },
+    {
+      "id": "G-11",
+      "severity": "medium",
+      "status": "mitigated_local_test",
+      "problem": "Windows Node 25.9 synchronous gunzip intermittently returned incorrect data check on the large catalog; the asynchronous path succeeded with identical bytes/hash.",
+      "mitigation": "Asynchronous gunzip with a copied buffer and a 64 MiB decompression limit; 15 full-catalog loads and final-EXE loading passed. A platform-wide root cause has not been established.",
+      "related": [
+        "FIF-014"
+      ]
+    },
+    {
+      "id": "G-12",
+      "severity": "critical",
+      "status": "open",
+      "problem": "Validated numerical conditions, weights and thresholds remain unavailable. Topic coverage is not physical similarity or fire risk.",
+      "mitigation": "0.1.2 replaces keyword percentage on /api/match with per-run numerical closeness and source provenance. 1538 rows from 10 sources normalized partially. Default draft weights total50; no overall score without total100, material compatibility and complete weighted measurements. Academic weighting and critical thresholds remain OPEN.",
+      "related": [
+        "FIF-017"
+      ]
+    },
+    {
+      "id": "G-13",
+      "severity": "high",
+      "status": "open",
+      "problem": "LLM source-only instruction cannot prove every free-form summary grounded. PDF/Excel not automatically extracted; selected small text excerpts are bounded.",
+      "mitigation": "No web/search/tools in provider payload; one fixed Gemini API destination. Exact citations checked; unsupported/conversation replies separate. Context hashes and truncation recorded."
+    },
+    {
+      "id": "G-14",
+      "severity": "high",
+      "status": "mitigated_local_test",
+      "problem": "Local 20-200 character key alphabet rejected dotted/long opaque keys before Google saw them. User-specific key was not inspected.",
+      "mitigation": "Allow printable opaque header values up to4096; remove surrounding pasted whitespace/quotes; reject internal whitespace/control characters. DPAPI persist/restart tested with fake long dotted key. Provider validity not tested by saving."
+    },
+    {
+      "id": "G-15",
+      "severity": "high",
+      "status": "open",
+      "problem": "Numerical closeness is not physical response equivalence. Material family is not grade, coating, blend or flammability equivalence. Ratio distance has no experimental risk calibration.",
+      "mitigation": "Expose formula, per-parameter evidence, missing weight, approximation tags and source row. No critical label or automatic operational action. Keep unparsed ranges and absent gravity/ambient temperature unknown.",
+      "related": [
+        "FIF-020"
+      ]
+    },
+    {
+      "id": "G-16",
+      "severity": "high",
+      "status": "open_with_guards",
+      "problem": "Trial-average/initial conditions can be confused with stage-synchronized measurements; CSV and PDF can describe the same trial.",
+      "mitigation": "Never average variable flow into a matching scalar; initial O2 labelled whole trial; no stage O2 interpolation; keep source rows distinct without cross-source column merging; report-row count is not unique trials. Hash-pin both calibration and report; material family and specimen kind required for complete percentage.",
+      "related": [
+        "FIF-020",
+        "FIF-021"
+      ]
+    },
+    {
+      "id": "G-17",
+      "severity": "high",
+      "status": "open_with_domain_guards",
+      "problem": "High stretch similarity or local mathematical sensitivity can be mistaken for equivalent burning, ignition probability or validated physical risk weights.",
+      "mitigation": "Separate named methods; require cast PMMA, rod, hemispherical tip, concurrent flow, microgravity declaration and source diameter range. Measured flame radius required for total mode. State oxygen/thermal state absent, curvature omitted for forced mode, diameter mismatch, and three representative author estimates only.",
+      "related": [
+        "FIF-022"
+      ]
+    },
+    {
+      "id": "G-18",
+      "severity": "high",
+      "status": "open_with_explicit_model_limits",
+      "problem": "Required heat flux can be mistaken for heat actually available from a flame; approximate70% loss discussion can be mistaken for universal extinction threshold.",
+      "mitigation": "No class labels or fire risk weights; keep required-flux, assumed material constants, source illustration range and measured-regression semantics explicit. Independent validation remains needed.",
+      "related": [
+        "FIF-023"
+      ]
+    },
+    {
+      "id": "G-19",
+      "severity": "high",
+      "status": "open_with_explicit_source_fit_limits",
+      "problem": "Empirical extinction-fit distance or input uncertainty overlap may be mistaken for validated critical ignition/fire risk. Source-fit error and transfer to other conditions are unknown.",
+      "mitigation": "Signed O2 margin instead of headline probability. Source material/state/time gates, unvalidated plot window, unknown model error explicitly excluded, no safety classification. Preserve the printed coefficients despite approximate prose minimum.",
+      "related": [
+        "FIF-024"
+      ]
+    },
+    {
+      "id": "G-20",
+      "severity": "high",
+      "status": "open_with_source_semantics",
+      "problem": "Nominal versus time-varying O2, no-ignition versus brief ignition, reused specimen state and ambiguous physical trial identities can distort matching and validation.",
+      "mitigation": "Flag two O2 values, omit consumed construction values for reused samples, preserve source wording/discrepancies and all31 source rows; composition/history gates and separate alternative trials. No universal PMMA transfer or safety class.",
+      "related": [
+        "FIF-025"
+      ]
+    },
+    {
+      "id": "G-21",
+      "severity": "high",
+      "status": "open_with_observation_only_limits",
+      "problem": "Observed terminal conditions, no-blowoff tests, Pareto ranking or input-box overlap could be mistaken for a calibrated extinction boundary or critical fire classification.",
+      "mitigation": "No interpolated boundary; preserve separate mechanisms and widths, source nominal structure gate, unknown source errors, no-blowoff records excluded from event ranking,12mm boundary unresolved label.",
+      "related": [
+        "FIF-026"
+      ]
+    },
+    {
+      "id": "G-22",
+      "severity": "high",
+      "status": "open_with_source_limits",
+      "problem": "No-sustained-flame can be misread as nonflammability; duplicate documents as independent trials; verified instrument calibration as verified specimen velocity.",
+      "mitigation": "Nomex exact product name, brief ignition details and disputed F3 finalO2;3 hash-pinned identity links;24 centerline estimates separated from numeric matching. Ignition exposure, geometry, source equivalence and local calibration validity remain unknown.",
+      "related": [
+        "FIF-027"
+      ]
+    },
+    {
+      "id": "G-23",
+      "severity": "high",
+      "status": "open_with_explicit_scope",
+      "problem": "A nominal proximity score can imply false precision; input-only bounds can be confused with full uncertainty or critical risk.",
+      "mitigation": "Absolute input bounds, analytic extrema, unknown errors never zero, fixed source nominal values explicit, no confidence/risk semantics; source measurement error, covariance and independent model validation still unknown.",
+      "related": [
+        "FIF-028"
+      ]
+    },
+    {
+      "id": "G-24",
+      "severity": "high",
+      "status": "open_with_explicit_scope",
+      "problem": "Comparing experiment summaries can conflate physical runs, mixed inputs and observations with controlled causal evidence or fire probabilities.",
+      "mitigation": "Explicit2-6 run selection; source identity and physical keys where verified; deep saved snapshots; source observations kept separate from numeric closeness. Unknown outcomes are not negative observations; changing flow is not averaged. Controlled-pair identification and independent risk validation remain open.",
+      "related": [
+        "FIF-029"
+      ]
+    },
+    {
+      "id": "G-25",
+      "severity": "high",
+      "status": "open_with_explicit_scope",
+      "problem": "Normalized source-model sensitivities can be misrepresented as universal fire-risk weights; first-order derivatives can falsely imply zero effect at a stationary point.",
+      "mitigation": "Exact one-at-a-time interval extrema, explicit analyst probe, stationary-point handling, separate joint bound and no partial renormalization. Shares are conditional on material/model/base point/step and are not applied to generic similarity. Independent experimental/model-error validation still open.",
+      "related": [
+        "FIF-030"
+      ]
+    },
+    {
+      "id": "G-26",
+      "severity": "high",
+      "status": "partially_mitigated",
+      "problem": "Fuel-family and pressure equality can hide different gas composition, supply arrangement and ignition outcomes.",
+      "mitigation": "Pinned CFI-G stream semantics, positive-weight composition gate, explicit normal/inverse filter and preserved hot/cool/termination observations. Diluent purity, flow, ignition protocol and general fire-risk weights remain unresolved.",
+      "related": [
+        "FIF-031"
+      ]
+    },
+    {
+      "id": "G-27",
+      "severity": "high",
+      "status": "partially_mitigated",
+      "problem": "Equal stoichiometric mixture fraction can arise from different compositions; local derivatives can be mistaken for universal risk weights.",
+      "mitigation": "Explicit nitrogen gate, source formula/hash verification, retained raw compositions and reported Zst, derivative meaning and limitations. Binary model omits vitiation and ignition/flow effects. No fire-risk percentage.",
+      "related": [
+        "FIF-032"
+      ]
+    },
+    {
+      "id": "G-EN-01",
+      "severity": "high",
+      "status": "mitigated_not_independently_reviewed",
+      "problem": "Language migration could alter interpretation of source outcomes or mathematical scope.",
+      "mitigation": "AST structural check, 148 current tests, 12 real-data checks, executable checks and English UI review; independent domain review remains open.",
+      "related": [
+        "FIF-033"
+      ]
+    },
+    {
+      "id": "G-025-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "60/40 ranking is a user-selected retrieval preference; equal numeric shares and AI scenario rubric are not calibrated fire risk or validated physical equivalence.",
+      "mitigation": "0.2.8 supersedes the null-total presentation: evidence-backed partial totals, coverage and missing-evidence budget; same-material single-trial comparisons. Numerical weights and scenario relevance remain uncalibrated retrieval preferences. See G028-01.",
+      "previousMitigation": "Separate components; null combined score when required source measurements or material are missing; cite single-trial evidence. Independent validation remains required."
+    },
+    {
+      "id": "G-025-02",
+      "severity": "high",
+      "status": "open",
+      "problem": "Research assistant is not an emergency-response system. Local experiment suppression results may not transfer to a user incident.",
+      "mitigation": "System prompt prioritizes applicable crew/site emergency procedures, no sensor delay, no improvised agent/dose/atmosphere interventions; no emergency efficacy claim."
+    },
+    {
+      "id": "G-025-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Material autocomplete and discovery context cover normalized rows and bounded indexed metadata, not every PDF or spreadsheet. Live Gemini dialogue/relevance quality is unverified in this release.",
+      "mitigation": "Source provenance, arbitrary text permitted, no absent material invented, source-file follow-up remains available; mocked provider and real portable verification distinguished."
+    },
+    {
+      "id": "D026-01",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "An optional untraceable condition suggestion discarded the complete scenario response, including a valid clarification question.",
+      "mitigation": "Optional suggestions are independently filtered with rejection reasons; form entries, zero values and scientific citation gates remain protected. Screenshot conditions reproduced through the actual analyzer with a mocked provider.",
+      "verification": [
+        "tests/suggestion-recovery.test.mjs",
+        "qa/release-0.2.6/tests.log"
+      ],
+      "limitations": "The exact live provider response behind the screenshot was not captured; response variants are deterministic fixtures, not new live Gemini evidence."
+    },
+    {
+      "id": "D027-01",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Conversation overwrites last message and has no persistent history.",
+      "mitigation": "Bounded local transcripts, explicit role labels, atomic file writes/backup and optimistic revision; recovery of unsaved old messages is unavailable.",
+      "verification": [
+        "tests/conversation.test.mjs",
+        "qa/release-0.2.7/tests.log"
+      ]
+    },
+    {
+      "id": "D027-02",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Application validation errors can be mistaken for model-authored replies.",
+      "mitigation": "Separate application notices and per-turn provider receipt; cache versus actual request explicit.",
+      "verification": [
+        "tests/conversation.test.mjs",
+        "qa/release-0.2.7/tests.log"
+      ]
+    },
+    {
+      "id": "D027-03",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Retyped model quotations can fail exact matching and suppress research dialogue.",
+      "mitigation": "Model selects server-generated evidence references; source text inserted locally; unknown IDs rejected. No claim of independent semantic validation.",
+      "verification": [
+        "tests/conversation.test.mjs",
+        "qa/release-0.2.7/tests.log"
+      ]
+    },
+    {
+      "id": "G-027-01",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Earlier unsaved history is not recoverable; bounded prompt context is shorter than visible saved history. Live semantic relevance of provider responses is not verified.",
+      "mitigation": "History location and limits documented. Current source claims still require evidence. New history is saved outside distribution; no raw failed model output or API key is logged."
+    },
+    {
+      "id": "D028-01",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "All-or-nothing numeric evidence hid useful partial scores and confused omitted user inputs with missing source measurements.",
+      "mitigation": "Only provided finite inputs share 60 points equally. Missing source measurements retain null comparisons and earn no evidence points; totals show coverage and missing evidence budget. Scenario-only uses 40 points. No new physical data inferred.",
+      "verification": [
+        "tests/research-workspace.test.mjs",
+        "qa/release-0.2.8/browser-review.json",
+        "qa/release-0.2.8/test-results.log",
+        "qa/release-0.2.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D028-02",
+      "severity": "medium",
+      "status": "locally_verified_prompt_quality_open",
+      "problem": "Composer retained sent messages; repeated form summaries and serial geometry questions slowed dialogue.",
+      "mitigation": "Immediate clear after storing user turn, no deletion of new drafts. Prompt asks direct response and grouped geometry/storage details. Live model adherence remains unverified.",
+      "verification": [
+        "tests/research-workspace.test.mjs",
+        "qa/release-0.2.8/browser-review.json",
+        "qa/release-0.2.8/test-results.log",
+        "qa/release-0.2.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D028-03",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Report excerpts were empty and table/graph references were not directly viewable.",
+      "mitigation": "Local hash-verified PDF pages and text via vendored PDF.js; CSV/TSV cells and common image figures shown inline. Unsupported formats retain original-download links.",
+      "verification": [
+        "tests/research-workspace.test.mjs",
+        "qa/release-0.2.8/browser-review.json",
+        "qa/release-0.2.8/test-results.log",
+        "qa/release-0.2.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D028-04",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Research replies reset recommendations rather than maintaining context across turns.",
+      "mitigation": "Validated source-reference keep/replace/clear updates persist per conversation. Invalid candidates are omitted and do not erase existing evidence. Changed input marks previous candidates for review.",
+      "verification": [
+        "tests/research-workspace.test.mjs",
+        "qa/release-0.2.8/browser-review.json",
+        "qa/release-0.2.8/test-results.log",
+        "qa/release-0.2.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G028-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "Equal numerical weights and eight subjective scenario weights are retrieval preferences, not calibrated combustion physics; sources with missing measurements have limited scoring evidence.",
+      "mitigation": "Explicit coverage, missing evidence budget, single-trial provenance and scenario-only denominator. No critical/safe classification or fire probability. Independent scientific validation pending."
+    },
+    {
+      "id": "D029-01",
+      "severity": "medium",
+      "status": "locally_verified_prompt_quality_open",
+      "problem": "New chat was hard to find; editing/submitting environment retained the old scenario. Source focus and other workspace state could remain across conversations.",
+      "mitigation": "Always-visible New chat and Chat history; an explicit environment-only new-chat option resets scenario/history/recommendations/source tabs. Current conditions supersede conflicting prior dialogue in the server prompt. Stored history and local credentials retained. Mocked provider boundary checked; real Gemini adherence unverified.",
+      "verification": [
+        "tests/chat-isolation.test.mjs",
+        "qa/release-0.2.9/test-results.log",
+        "qa/release-0.2.9/browser-review.json",
+        "qa/release-0.2.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G029-01",
+      "severity": "medium",
+      "status": "open",
+      "problem": "BASS-II Figure 6.10 raw point reconstruction is not complete. Test matrices contain repeated runs and multiple event settings; fitted curve coordinates do not establish experimental precision.",
+      "mitigation": "Read-only source review records Equation 6.1, axes, actual Excel/CSV and calibration provenance. No invented measured points. Event-to-reading/calibration mapping and complementary drop-tower source data still required.",
+      "verification": [
+        "docs/FIGURE_610_REPLOT_REVIEW.md",
+        "qa/release-0.2.9/figure-sources.json"
+      ]
+    },
+    {
+      "id": "D030-01",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Graphs were visible only inside full PDF pages; users could not directly inspect published equation values or isolate graph images.",
+      "mitigation": "Reviewed hash-bound figure registry; equation plot, numeric reader and CSV; original graph-only crop with separate caption, zoom and PNG export. Three initial reviewed BASS-II figures.",
+      "verification": [
+        "tests/figure-reader.test.mjs",
+        "qa/release-0.3.0/test-results.log",
+        "qa/release-0.3.0/figure-source-verification.json",
+        "qa/release-0.3.0/browser-review.json",
+        "qa/release-0.3.0/browser-artifact-verification.json",
+        "qa/release-0.3.0/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D030-02",
+      "severity": "medium",
+      "status": "resolved_before_release",
+      "problem": "An initial approximate Figure 6.10 crop clipped an axis label and included source caption text.",
+      "mitigation": "Replaced approximate crop with actual PDF embedded-image object bounds plus one-point padding. All three final browser PNGs checked visually and against source geometry.",
+      "verification": [
+        "qa/release-0.3.0/figure-source-verification.json",
+        "qa/release-0.3.0/browser-artifact-verification.json",
+        "qa/release-0.3.0/browser-review.json"
+      ]
+    },
+    {
+      "id": "G030-01",
+      "severity": "high",
+      "status": "open_scientific_limitation",
+      "problem": "Calculated empirical fits can be mistaken for original measurements or a general safe-fire boundary. Original measured series and uncertainties are not fully mapped.",
+      "mitigation": "Explicit calculated-not-measured labels, reviewed 1\u2013150 inverse-seconds window, source SHA and equation/caption provenance; no invented scatter/error bars or pressure-temperature/fire-probability inference. G029-01 remains open. Existing boundary equation is factored into a shared pure function with fixed expected-value regression tests; coefficients are unchanged.",
+      "verification": [
+        "tests/figure-reader.test.mjs",
+        "qa/release-0.3.0/test-results.log",
+        "qa/release-0.3.0/figure-source-verification.json",
+        "qa/release-0.3.0/browser-review.json",
+        "qa/release-0.3.0/browser-artifact-verification.json",
+        "qa/release-0.3.0/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-01",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "Conversation controls polluted the scientific scenario: The browser appended every message, including the exact language command, to scenario. A nonempty string enabled all local source candidates.",
+      "mitigation": "Shared narrow routing separates language, formatting and greetings from research. Legacy control-only lines are filtered from the bounded scenario without deleting visible transcript. The server recomputes the route and keeps language preference per chat.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-02",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "One validation error concealed several different failures: Scenario required before ranking was thrown for missing/non-array/overlong assessments, missing scenario, or clarify with assessments. HTTP 200 was mistaken for an application success expectation.",
+      "mitigation": "Routed JSON Schema plus separate local branch codes. Non-ranking omitted empty collections are normalized only when harmless. Scientific references, rubrics and ranking lists remain fail-closed. Safe diagnostics record shape, counts, field, route and response digest without raw answer text.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-03",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "Focused-source chat bypassed the environment/scenario workflow: Continue with AI selected the legacy chat handler instead of the research handler. Scenario, language and environment management consequently diverged.",
+      "mitigation": "Both focused and general research conversations use the same planner and endpoint. A valid focused source restricts candidates to that record. Current optional inputs still supersede conflicting history. Specialist comparison retains its separate explicit mode.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-04",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "Meta replies could mark old recommendations current: A keep update cleared the stale flag even when the turn contained no scientific review. A greeting could also clear the active-incident flag.",
+      "mitigation": "The server marks whether a research review occurred. Conversation/clarification replies preserve prior stale state and incident notice; only a validated research review can replace, clear or reconfirm candidates. Changed scientific context invalidates previous recommendations before the request.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-05",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "Response application did not cover source-focus transitions: Environment revision and app/source revision were separate. A delayed answer could outlive a source change, including changing away and back.",
+      "mitigation": "Response acceptance checks environment revision, app revision and source identity. A stale response is retained in the transcript with its own notice but cannot update current rankings or recommendations. A newly typed draft remains untouched.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-06",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Conversation capacity could fail after sending the final user message: At 499 stored messages the user turn occupied the last slot, leaving no room for a provider answer or error notice. An exception outside cleanup could leave UI controls locked.",
+      "mitigation": "A turn preflight reserves two slots before sending. Stale-answer warnings are stored inside the response rather than consuming a third message. Both chat paths unlock in finally and isolate status-refresh errors.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-07",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Receipt/cache filesystem failure could masquerade as model rejection: Writing optional logs or cache inside the success path could throw after a valid provider answer. Subsequent logging could hide the original error again.",
+      "mitigation": "Nonessential telemetry/cache failures are contained and counted. A valid answer remains visible with a local-storage warning; history persistence has a separate visible status. There is no silent claim that storage succeeded.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-08",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Protocol errors were misleading or too generic: All provider HTTP 400/401/403 responses suggested key/access trouble. Invalid JSON request bodies or non-JSON local responses could produce unrelated exceptions.",
+      "mitigation": "HTTP 400 reports request-format rejection, 401/403 authentication/access. Incomplete output and invalid JSON have distinct codes; malformed local request shapes receive 400. Local transport failures have application-specific messages. No automatic retry or model fallback.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-09",
+      "severity": "low",
+      "status": "resolved_in_local_regression",
+      "problem": "Generated submission text and unrelated laboratory fields entered dialogue context: The generated Environment submitted label entered model history; default burner-specific condition keys/units also accompanied environmental research.",
+      "mitigation": "Generated submit labels are excluded from model history. Research payloads include only material and the six supported optional environmental measurements with their units. Specialist mode remains available and unchanged.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D031-10",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Control turns discarded visible research results: Sending any chat message cleared research results before the reply. This made language or formatting changes look like loss of scientific work.",
+      "mitigation": "Non-research controls preserve current matching results and recommendation state. Source-focused conversation retains general matching results unless the environment itself changes.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G031-01",
+      "severity": "high",
+      "status": "open_semantic_and_provider_validation",
+      "problem": "Controlled local tests cannot establish every natural-language intent, scientific conclusion or live provider schema acceptance.",
+      "mitigation": "Live Gemini acceptance of the updated schema and qualitative answer quality have not been tested in this release. All provider responses in verification are mocked; no user quota was spent. The deterministic control recognizer is intentionally narrow. Mixed scientific messages and unknown phrasing remain research; readiness still depends on the model returning clarify or rank. Schema, exact quotation and rubric validation establish format/reference traceability, not scientific truth or suitability for an active fire. Research discovery still uses bounded indexed local metadata/supporting text, not every PDF/table. Numeric coverage gaps remain visible; no score-weight or physical-equation changes.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G031-02",
+      "severity": "medium",
+      "status": "open_history_capacity",
+      "problem": "The existing total history size and chat count limits require a future archive/export workflow. Full storage preserves the previous file but newer visible session content may remain unsaved.",
+      "mitigation": "Visible persistence notices, atomic store and revision checks remain; per-turn message capacity is now checked before provider work.",
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D032-01",
+      "severity": "high",
+      "status": "compatibility_confirmed_for_one_live_conversation_original_cause_unspecified",
+      "problem": "The actual local provider receipt records HTTP 400 with only Request contains an invalid argument. The 0.3.1 release introduced a nested responseJsonSchema with array/numeric bounds and unions; Google documents that schema complexity can cause 400 INVALID_ARGUMENT. This is a plausible regression source, not a proven rejection field.",
+      "mitigation": "Restore JSON MIME mode without a provider-compiled schema. Preserve authoritative routing, the explicit output contract, local shape/rubric/citation validation, no tools, same model and no automatic retries. Invalidate prior prompt cache with a new contract version.",
+      "verification": [
+        "tests/provider-compatibility.test.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.2/test-results.log",
+        "qa/release-0.3.2/browser-review.json",
+        "qa/release-0.3.2/browser-events.json",
+        "qa/release-0.3.2/portable-verification.json",
+        "qa/release-0.3.2/live-verification.json"
+      ]
+    },
+    {
+      "id": "D032-02",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "The recognizer accepted cevap verebilir misin but not cevap verir misin. The failed receipt confirms research intent with 35 candidate sources. The defect is confirmed independently of the provider rejection.",
+      "mitigation": "Recognize bounded polite language-only forms, including the exact reported sentence. Preserve mixed scientific questions as research. Both browser and server use the shared route; contaminated control-only scenario lines are filtered while transcript and actual scenario remain.",
+      "verification": [
+        "tests/provider-compatibility.test.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.2/test-results.log",
+        "qa/release-0.3.2/browser-review.json",
+        "qa/release-0.3.2/browser-events.json",
+        "qa/release-0.3.2/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D032-03",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "The recorded message was generic and lacked provider status/field paths or a digest of the sent contract. The precise rejected argument could not be established from that record.",
+      "mitigation": "Record JSON contract, MIME, schema-presence flags, byte count and SHA-256 without storing request content. Preserve allowlisted provider status and sanitized BadRequest field paths if supplied. Never infer a field when none is supplied; do not retain arbitrary provider detail bodies.",
+      "verification": [
+        "tests/provider-compatibility.test.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.2/test-results.log",
+        "qa/release-0.3.2/browser-review.json",
+        "qa/release-0.3.2/browser-events.json",
+        "qa/release-0.3.2/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G032-01",
+      "severity": "high",
+      "status": "open_broader_live_research_validation",
+      "problem": "One authorized language-only request passed live HTTP 200 and local validation. Research/ranking and multi-turn semantic performance remain untested live; the original 400 field is unspecified.",
+      "mitigation": "Retain strict scientific validators and no retries. Keep the successful single-call receipt with its exact EXE hash; do not extend this proof to all source-bearing requests.",
+      "verification": [
+        "tests/provider-compatibility.test.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.2/test-results.log",
+        "qa/release-0.3.2/browser-review.json",
+        "qa/release-0.3.2/browser-events.json",
+        "qa/release-0.3.2/portable-verification.json",
+        "qa/release-0.3.2/live-verification.json"
+      ]
+    },
+    {
+      "id": "D033-01",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "The prompt required reasons only for intermediate scores and used an ambiguous rubricReasons placeholder; the validator required nonempty explanations for every dimension, including zero and anchor scores.",
+      "mitigation": "List all eight explanation keys explicitly and require 1-600 characters for every dimension. Keep the existing numeric rubric values and 60/40 scoring policy.",
+      "verification": [
+        "tests/rubric-recovery.test.mjs",
+        "qa/release-0.3.3/test-results.log",
+        "qa/release-0.3.3/browser-review.json",
+        "qa/release-0.3.3/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D033-02",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "RESEARCH_RUBRIC_REASON threw from inside the per-source loop, losing the conversation and otherwise valid peers after a successful provider response.",
+      "mitigation": "After mandatory source and numeric validation, quarantine only assessments with unexplained positive scores into an unscored list. Preserve source links, verified quotes, dialogue and valid peer scores. Zero-point missing reasons receive an administrative note without changing a number or inventing a scientific rationale.",
+      "verification": [
+        "tests/rubric-recovery.test.mjs",
+        "qa/release-0.3.3/test-results.log",
+        "qa/release-0.3.3/browser-review.json",
+        "qa/release-0.3.3/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D033-03",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "The previous pipeline exposed only all-passed or all-rejected and logged the collection field, without the affected source or dimension. Revalidating sanitized partial responses from cache could lose the scoring warning.",
+      "mitigation": "Return partial validation receipts and per-source/per-dimension bounded diagnostics. Display the scoring limitation in chat and source cards. Preserve stale recommendation state during partial reviews. Do not cache recovered assessments; normal complete replies keep caching. Persist partial responses in chat history.",
+      "verification": [
+        "tests/rubric-recovery.test.mjs",
+        "qa/release-0.3.3/test-results.log",
+        "qa/release-0.3.3/browser-review.json",
+        "qa/release-0.3.3/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G033-01",
+      "severity": "high",
+      "status": "open_live_research_and_semantic_evaluation",
+      "problem": "Provider success on a language request does not validate source-bearing research. Local fixtures establish recovery behavior, not live scientific answer quality.",
+      "mitigation": "The original rejected raw answer was not retained. The precise missing/empty/invalid/overlong dimension cannot be reconstructed; code inspection proves the prompt/validator mismatch and whole-response failure behavior. No live provider call is authorized for this patch yet. The previous 0.3.2 live test covered only a language request; it is not evidence for this scientific scenario. A valid quote and explanation establish traceability, not scientific correctness. Unscored sources receive no numerical total and are not inserted into the sorted scored list. Partial scoring keeps previous recommendations unchanged/stale pending a complete review. Other invalid source references, quotes, rubric values, duplicate sources or envelope fields still reject the response; this is a bounded correction, not universal recovery. No dataset, formula, weights, private API key or private transcript was changed. Node SEA remains the runtime; NPR 7150.2D Class C remains an incomplete engineering target, not certification.",
+      "verification": [
+        "tests/rubric-recovery.test.mjs",
+        "qa/release-0.3.3/test-results.log",
+        "qa/release-0.3.3/browser-review.json",
+        "qa/release-0.3.3/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D034-01",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "The saved HTTP 200 receipt records stage=rank, two assessments and keep with two recommendation items. The old validator threw ANALYSIS_INVALID for this contradictory optional update, losing the whole reply. The prompt did not explicitly spell out the empty-list requirement for keep and clear.",
+      "mitigation": "Use one shared explicit keep/clear/replace contract in both prompt modes. Contain malformed or conflicting recommendation updates as a non-applied partial update. Preserve valid conversation, source assessments and numerical scores without inferring the intended operation.",
+      "verification": [
+        "tests/recommendation-recovery.test.mjs",
+        "qa/release-0.3.4/observed-failure.json",
+        "qa/release-0.3.4/test-results.log",
+        "qa/release-0.3.4/browser-review.json",
+        "qa/release-0.3.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D034-02",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "Simply dropping invalid items or coercing keep/clear into replace could discard earlier candidates or apply unsupported content. The research validator previously marked every ranking reply as recommendationsReviewed even if no optional update was supplied. A normalized absent section could become a false completed review on cache revalidation.",
+      "mitigation": "Keep replacements atomic: if any item fails its source/quote/content checks, apply none of that update. Keep earlier recommendation and emergency state, with the UI retaining stale status after changed context. Compute review flags on the server; preserve omission as omission across cache validation. Non-ranking turns cannot refresh recommendations.",
+      "verification": [
+        "tests/recommendation-recovery.test.mjs",
+        "qa/release-0.3.4/observed-failure.json",
+        "qa/release-0.3.4/test-results.log",
+        "qa/release-0.3.4/browser-review.json",
+        "qa/release-0.3.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D034-03",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "The prior pipeline exposed the failure as a rejected answer and had no isolated recommendation warning. Caching a sanitized recovery could later turn its keep operation into an apparently complete review.",
+      "mitigation": "Show a Recommendation update not applied notice, mark the receipt partial, retain bounded action/count/issue diagnostics in the receipt and history, and exclude recovered replies from the answer cache. Normal complete answers retain caching; no automatic retry is added.",
+      "verification": [
+        "tests/recommendation-recovery.test.mjs",
+        "qa/release-0.3.4/observed-failure.json",
+        "qa/release-0.3.4/test-results.log",
+        "qa/release-0.3.4/browser-review.json",
+        "qa/release-0.3.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G034-01",
+      "severity": "high",
+      "status": "open_live_research_and_semantic_evaluation",
+      "problem": "The new containment has not been tested with a fresh live source-bearing Gemini response. Structural validation is not semantic scientific validation.",
+      "mitigation": "The rejected raw response was not retained. The saved response shape proves keep plus two items, but the items and their scientific support cannot be reconstructed. Controlled fixtures reproduce this operation conflict, not the unseen exact response. No live Gemini request was made for this release. The prior 0.3.2 language-only trial is not evidence for this research correction. Fresh live research validation and independent semantic review remain open. Mandatory research envelope, source, citation, duplicate-source and numeric-rubric checks still reject invalid research. Partial recovery does not invent scores, repair scientific claims or convert keep/clear to replace. Source-supported candidates remain research/design aids, not validated emergency instructions. A verified quotation is not proof of a recommendation's semantic correctness. No dataset, physical equation, score weight, model or private credential was changed. Node SEA remains the runtime; NASA NPR 7150.2D Class C remains an incomplete engineering target, not certification.",
+      "verification": [
+        "tests/recommendation-recovery.test.mjs",
+        "qa/release-0.3.4/observed-failure.json",
+        "qa/release-0.3.4/test-results.log",
+        "qa/release-0.3.4/browser-review.json",
+        "qa/release-0.3.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D035-01",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "Research scoring required a nonempty exact material name before comparing any condition. A fiberglass form or empty material therefore discarded all available oxygen/pressure/flow rows, including relevant contextual experiments.",
+      "mitigation": "Compare environmental measurements independently, identify source material explicitly, and require same material family for specimen thickness. Keep the existing six-input budget, arithmetic proximity formula and single-row integrity. Cross-material proximity is contextual, not equivalent burning.",
+      "verification": [
+        "tests/condition-coverage.test.mjs",
+        "qa/release-0.3.5/condition-audit.json",
+        "qa/release-0.3.5/test-results.log",
+        "qa/release-0.3.5/browser-review.json",
+        "qa/release-0.3.5/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D035-02",
+      "severity": "high",
+      "status": "resolved_in_local_regression",
+      "problem": "Unavailable normalized source measurements displayed 0/60. Discovery supplied only bounded metadata and no reviewed series/figure index; users could not distinguish a missing point comparison from a useful material study.",
+      "mitigation": "Distinguish not_requested/unavailable/partial/complete conditions. Preserve all assessed sources and display source usefulness independently of point proximity. Add material-separated measured spans with row provenance and reviewed graphs, plus coverage evidence in the model context. Do not infer joint coverage, outcomes or interpolation from marginal ranges.",
+      "verification": [
+        "tests/condition-coverage.test.mjs",
+        "qa/release-0.3.5/condition-audit.json",
+        "qa/release-0.3.5/test-results.log",
+        "qa/release-0.3.5/browser-review.json",
+        "qa/release-0.3.5/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D035-03",
+      "severity": "high",
+      "status": "interpretation_boundary_locally_verified_physical_calibration_open",
+      "problem": "Equal parameter weights and min/max ratios are retrieval arithmetic; they do not establish output-specific tolerances, material equivalence or invariance of burning across environment changes.",
+      "mitigation": "Expose independent source usefulness, numeric proximity and reviewed physical-model applicability. Include verified PMMA stretch and energy-balance source definitions/properties without transferring them to other materials. Retrieve by material/mechanism first, then assess transport/regime transfer. Unknown tolerance never excludes a source or becomes an invented 99% score.",
+      "verification": [
+        "tests/condition-coverage.test.mjs",
+        "qa/release-0.3.5/condition-audit.json",
+        "qa/release-0.3.5/test-results.log",
+        "qa/release-0.3.5/browser-review.json",
+        "qa/release-0.3.5/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G035-01",
+      "severity": "high",
+      "status": "open_live_research_and_semantic_evaluation",
+      "problem": "The new discovery/coverage instructions have not been tested with a fresh live source-bearing Gemini response. Software verification is not semantic scientific validation.",
+      "mitigation": "Read-only audit: 1592 normalized source rows from 10 of 35 catalog records. No normalized numerical gravity or ambient-temperature column is currently available. This is a normalization scope limit, not proof that these values do not exist somewhere in the full documents. The 60/40 budget and raw proximity formula are editorial retrieval calculations, not physical laws or calibrated combustion similarity. Usefulness is a separate evidence category. A missing temperature model is not converted to either zero physical similarity or an invented 99%. A marginal span does not prove joint experimental coverage or an interpolatable surface. No generic flame/ignition interpolation or extrapolation is introduced. Same material family does not certify grade, moisture, geometry or storage equivalence. Reviewed quantitative physics is currently limited to the existing hash-pinned cast-PMMA rod sources. Required heat flux and stretch proximity are not ignition/extinction predictions. Paper/cellulose-specific physical tolerance calibration remains open. Third-party candidates were researched after explicit user authorization. They are recorded separately with provenance/license status; no external experimental payload was imported into the fixed dataset or production AI context. No new live Gemini request was made. Local and browser fixtures verify software behavior, not live scientific answer quality. No private key or transcript was read or packaged. Node SEA remains the runtime. NPR 7150.2D Class C remains an incomplete engineering target.",
+      "verification": [
+        "tests/condition-coverage.test.mjs",
+        "qa/release-0.3.5/condition-audit.json",
+        "qa/release-0.3.5/test-results.log",
+        "qa/release-0.3.5/browser-review.json",
+        "qa/release-0.3.5/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D036-01",
+      "severity": "medium",
+      "status": "resolved_in_local_browser_regression",
+      "problem": "Removing a long table/PDF preview for a short status or native-format message changed document height and allowed the browser to clamp the outer scroll. File lookup and preview also shared one invalidation counter.",
+      "mitigation": "Keep stable independent list and preview panes, a non-collapsing status line and persistent controls. Replace only preview content, preserve pane position where possible, and separate list/preview generations. Ignore stale PDF errors.",
+      "verification": [
+        "tests/plotted-library.test.mjs",
+        "qa/release-0.3.6/test-results.log",
+        "qa/release-0.3.6/browser-observations.json",
+        "qa/release-0.3.6/browser-review.json",
+        "qa/release-0.3.6/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D036-02",
+      "severity": "low",
+      "status": "resolved_in_local_regression",
+      "problem": "The file-kind filter had only tables, PDFs and images; reviewed regeneratable figures were hidden inside a report and not selectable as separate entries.",
+      "mitigation": "Add Plotted graphics with one entry per reviewed reproducible figure, keyed by exact source hash. Exclude original-only images and unreviewed spreadsheets. Reuse the loaded PDF when switching its reviewed figures.",
+      "verification": [
+        "tests/plotted-library.test.mjs",
+        "qa/release-0.3.6/test-results.log",
+        "qa/release-0.3.6/browser-observations.json",
+        "qa/release-0.3.6/browser-review.json",
+        "qa/release-0.3.6/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D036-03",
+      "severity": "medium",
+      "status": "resolved_in_local_regression",
+      "problem": "Pointer movement updated the equation table/readout, but the chart did not identify the nearest visible curve at the pointer with a local tooltip.",
+      "mitigation": "Evaluate the reviewed equation at pointer x, hit-test only visible in-window curves, and show series, x, y and calculation provenance. Keep original-only graphs nonnumerical; four decimals are calculation digits, not measurement accuracy.",
+      "verification": [
+        "tests/plotted-library.test.mjs",
+        "qa/release-0.3.6/test-results.log",
+        "qa/release-0.3.6/browser-observations.json",
+        "qa/release-0.3.6/browser-review.json",
+        "qa/release-0.3.6/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G036-01",
+      "severity": "medium",
+      "status": "open_plot_coverage_and_independent_review",
+      "problem": "Only a small exact-source-reviewed graph set is regenerated; other images and workbook charts are not automatically interpretable.",
+      "mitigation": "No XLSX parser was added; workbook files retain the native-application explanation. CSV/TSV and supported source documents remain inline. Only the two previously reviewed BASS equation figures are currently plotted entries; the original-only graph is excluded and no arbitrary plot is digitized. Source curves use published rounded coefficients; hover decimals do not imply measurement precision or a fire-risk prediction. Preview-internal scrolling can only be retained up to the new content extent. The outer document and file controls remain stable. Browser uses the actual application/catalog and two TEST ONLY provider fixtures, not a live Gemini call. Clean second-machine and signing/SmartScreen verification remain open. The independent Astra/High third-party collection has its own manifest and is not automatically used as validated production model evidence. NASA core is preserved; NPR Class C remains an incomplete engineering target.",
+      "verification": [
+        "tests/plotted-library.test.mjs",
+        "qa/release-0.3.6/test-results.log",
+        "qa/release-0.3.6/browser-observations.json",
+        "qa/release-0.3.6/browser-review.json",
+        "qa/release-0.3.6/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D037-01",
+      "severity": "high",
+      "status": "resolved_for_reviewed_pressure_columns",
+      "problem": "The CSV adapter treated a sample/run inventory as an unsupported numerical table. It contains 122 inventory entries but no gravity, temperature, pressure or oxygen columns. The separate as-run workbook was not consumed.",
+      "mitigation": "Add 121 row-specific pressure entries from the exact hash-pinned as run matrix sheet. Preserve file/sheet/cell/run/test/sample provenance and convert atm to kPa. Recompute all 67 pressure formula caches. Mark the CSV as an inventory rather than rejected measurements.",
+      "verification": [
+        "tests/bass-asrun.test.mjs",
+        "qa/release-0.3.7/test-results.log",
+        "qa/release-0.3.7/dataset-verification.json",
+        "qa/release-0.3.7/browser-observations.json",
+        "qa/release-0.3.7/browser-review.json",
+        "qa/release-0.3.7/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D037-02",
+      "severity": "medium",
+      "status": "resolved_in_regression",
+      "problem": "A scenario-only subtotal such as 33.3 was displayed out of 100 even when all 60 condition points were unassessed. The detailed contribution list also displayed missing values as zero earned points.",
+      "mitigation": "Show earned evidence points over the assessed budget, explicitly mark the overall comparison incomplete, exclude unassessed points from the displayed denominator and label missing contributions unassessed. Do not renormalize these points into a full percentage or change ranking weights.",
+      "verification": [
+        "tests/bass-asrun.test.mjs",
+        "qa/release-0.3.7/test-results.log",
+        "qa/release-0.3.7/dataset-verification.json",
+        "qa/release-0.3.7/browser-observations.json",
+        "qa/release-0.3.7/browser-review.json",
+        "qa/release-0.3.7/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D037-03",
+      "severity": "low",
+      "status": "resolved_before_distribution",
+      "problem": "A text rewrite during this patch preserved CRLF bytes and added a second CR. The browser still parsed the module, but AST line numbers disagreed with the code-index line count. Package verification rejected the first candidate before distribution.",
+      "mitigation": "Normalize the affected module to LF, rerun all 272 tests, rebuild and reverify the exact EXE, then regenerate and validate the source/block index. No scientific coefficients or UI behavior changed.",
+      "verification": [
+        "tests/bass-asrun.test.mjs",
+        "qa/release-0.3.7/test-results.log",
+        "qa/release-0.3.7/dataset-verification.json",
+        "qa/release-0.3.7/browser-observations.json",
+        "qa/release-0.3.7/browser-review.json",
+        "qa/release-0.3.7/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G037-01",
+      "severity": "high",
+      "status": "open_source_semantics_and_coverage",
+      "problem": "The as-run worksheet oxygen header says percent by volume, while values such as 0.221 use a plain 0.000 display format. No numerical gravity or ambient temperature column exists there; AIR is an instrument display, often staged.",
+      "mitigation": "Retain raw oxygen and AIR values without scoring or automatic scaling. Expose these limits in the source details and research context. Never manufacture numeric zero-g or 0.16 m/s2 from the ISS setting. Resolve units or acquire independent source evidence before enabling more fields.",
+      "verification": [
+        "tests/bass-asrun.test.mjs",
+        "qa/release-0.3.7/test-results.log",
+        "qa/release-0.3.7/dataset-verification.json",
+        "qa/release-0.3.7/browser-observations.json",
+        "qa/release-0.3.7/browser-review.json",
+        "qa/release-0.3.7/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D038-01",
+      "severity": "high",
+      "status": "resolved_for_reviewed_20_source_benchmark",
+      "problem": "Only11 PSI investigations had partially normalized numerical rows. Several other studies had usable CSV settings, measured curve pressures or a graph header, but these were not available to the research scorer.",
+      "mitigation": "Add81 reviewed fragments from9 exact-hash-pinned local source files:5 investigations add supported environmental fields and4 add material/fuel-stream/curve context. Separate scalar values, discrete sets, marginal spans, experimental curves, instrument capacities and outcomes. Do not pretend every source fragment is an individual trial.",
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D038-02",
+      "severity": "high",
+      "status": "resolved_in_material_and_negative_controls",
+      "problem": "Environmental values could be credited across materials and material identity only affected a tie-break or warning. This was inconsistent with the requested material-specific source lookup.",
+      "mitigation": "Require the supplied canonical material family for numerical discovery. Preserve other-material literature as context without requested-material numerical credit. Do not equate SIBAL with fiberglass, n-octane with isooctane, mixtures with pure fuels, or a family match with equal grade.",
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D038-03",
+      "severity": "high",
+      "status": "resolved_for_parameter_discovery_not_physical_transfer",
+      "problem": "The research score used one closest normalized row even when another section, graph header or parameter sweep supplied relevant same-material evidence.",
+      "mitigation": "Resolve each parameter against same-material reported values, discrete settings or explicitly reviewed marginal spans. Keep each contribution source/cell/scope. Retain a separate nearest individual row. Expose jointlyTested=false whenever separate fragments support the result; create no combined trial, outcome interpolation or fire probability.",
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D038-04",
+      "severity": "high",
+      "status": "resolved_in_live_and_context_tests",
+      "problem": "The analyzer called researchContext directly, bypassing the configured dataset context provider. Existing file availability did not mean its contents reached Gemini.",
+      "mitigation": "Run the configured context provider for research too, preserve reviewed local fragments while adding the source coverage index, and protect same-material candidates from generic keyword competition. Preserve exact evidence IDs, source hashes and scope. Unindexed files are still not automatically read.",
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D038-05",
+      "severity": "high",
+      "status": "resolved_by_source_fact_replay_raw_result_preserved",
+      "problem": "In live PSI-B20, the model assigned material0.75 while its own explanation said ethane was a primary source fuel. The raw scenario subtotal was22/40, below the predeclared24-point test criterion.",
+      "mitigation": "Compute the material-family relevance criterion from source-index presence when original-file identity is available. Keep its fixed8-point weight, raw model value, source references and an explicit not-grade/not-burning-equivalence limitation. Replaying the same validated response gives24/40. No new model request or change to the raw reply was made.",
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D038-06",
+      "severity": "medium",
+      "status": "resolved_in_recorded_503_UI_replay_and_stale_guard",
+      "problem": "Live PSI-B12 returned provider HTTP503. The application showed the service error but had no source results even though local PMMA/flow evidence was available.",
+      "mitigation": "For explicit provider unavailability, retain the error/provider receipt and attach independently verified local material/parameter discovery. Assign no AI scenario score, generated interpretation or safety recommendations. Do not retry or switch models. Reject stale local results after input/source-focus changes.",
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G038-01",
+      "severity": "high",
+      "status": "open_physical_transfer_and_independent_review",
+      "problem": "Source discovery/proximity is not validated material-specific combustion equivalence or fire probability.",
+      "mitigation": "These20 constructed, known-source cases are a diagnostic retrieval benchmark, not an independently sampled accuracy estimate or combustion validation. The real batch made exactly20 Gemini requests:19 successful validated replies and1 upstream503. All19 successful replies returned the intended source;18 ranked it first and1 second. Do not call this20 successful live Gemini replies. The final replay reuses original validated model analyses. Material-fact scoring changed after the real batch and was verified by deterministic replay, not another20 live calls. The live-tested source snapshot is preserved. The recorded503 was replayed through the final UI with2 mocked503 responses and zero Google calls. The source was found locally; AI scenario assessment remains unavailable in that path. Sixteen cases have supported environmental/specimen numeric fields; four concern fuel-stream/source-defined curve parameters that cannot be silently mapped to ambient oxygen or temperature. They deliberately receive no fabricated environmental percentage. Point proximity remains arithmetic min/max; reviewed span membership measures discovery coverage. Neither is calibrated physical/thermodynamic burning equivalence. Same material does not guarantee the same ignition, spread, extinction or smoke behavior. No universal5C/50C equivalence, gravity tolerance or high-altitude invariance is established. No numerical PSI gravity was fabricated. The0.2g to1.6g unit control is an8-fold difference and remains a low12.5% raw scalar proximity in its synthetic arithmetic test. The third-party collection remains separate and is not automatically used to train or calibrate these scores. Grade/composition, oxidizer/diluent, geometry and transport qualifications still matter. The largest observed successful provider latency was58.4seconds and successful replies reported930487 input/25014 output tokens. Large context and provider latency remain an open performance concern; a causal latency model was not established.503 token use was not supplied and is not assumed zero. Unindexed reports, workbook sections and graph coordinates are not automatically interpreted. This patch adds a reviewed bounded discovery index, not complete parsing of the entire fixed dataset. No source data or encrypted user key was modified. NPR Class C remains an incomplete engineering target.",
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G038-02",
+      "severity": "medium",
+      "status": "open_provider_latency_and_context_budget",
+      "problem": "One successful API request took58.4seconds; context remains large. One upstream503 occurred in20 calls.",
+      "mitigation": "No automatic retries or model fallback; local source discovery stays available on explicit service unavailability. Measure and review context reduction separately.",
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D038-07",
+      "severity": "high",
+      "status": "resolved_with_unit_and_UI_evidence",
+      "problem": "The gravity field accepted only a bare m/s\u00b2 number. Users reading source values expressed in g could not enter that unit, risking a factor-of-9.80665 misunderstanding.",
+      "mitigation": "Strict g/G versus bare-SI parsing, visible canonical value, malformed/range rejection and raw plus canonical saved context. The source-scoring formula, material rules and weights are unchanged.",
+      "implementation": [
+        "public/gravity-input.mjs",
+        "public/environment-panel.mjs",
+        "public/app.js",
+        "public/conversation-panel.mjs",
+        "lib/conversations.mjs",
+        "server.mjs",
+        "scripts/build-portable.mjs",
+        "scripts/verify-portable.mjs"
+      ],
+      "verification": [
+        "tests/gravity-input.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/gravity-browser-review.json",
+        "qa/release-0.3.8/gravity-browser-events.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D039-03",
+      "severity": "low",
+      "status": "resolved_with_browser_layout_evidence",
+      "problem": "Long original-source hashes and paths could force the flex source card wider than the visible panel.",
+      "mitigation": "Allow source-card text to shrink and wrap provenance strings; bound material-property table columns. Keep applicability in a sibling disclosure outside the original PSI series. No scoring change.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D039-01",
+      "severity": "high",
+      "status": "prevented_by_separate_namespace_and_tests",
+      "problem": "Mixing third-party property data into PSI records could falsely attribute measurements, inflate proximity or permit unsupported citations.",
+      "mitigation": "Use an optional, validated MAT sidecar. Keep all third-party context outside sources/evidence, tables, trial rows and material suggestions. Provide a separate applicability object and UI subsection. No numerical scoring change.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D039-02",
+      "severity": "high",
+      "status": "quarantined_pending_original_identity_resolution",
+      "problem": "A PP source metadata file names polypropylene but its short description names PVC. Exact material identity is contradictory.",
+      "mitigation": "Exclude the candidate from active profiles; retain six original points in quarantined-profiles.json and leave polypropylene coverage pending. Do not silently choose a polymer.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G039-01",
+      "severity": "high",
+      "status": "open_scientific_and_transfer_review",
+      "problem": "Conductivity curves, family labels and specimen temperatures do not establish environmental combustion tolerances or equal burning.",
+      "mitigation": "Keep all adjustments disabled. Expose grade/geometry/conditioning and uncertainty gaps. PMMA thickness, cotton construction and nylon-grade inconsistencies remain explicit. No source-family data are substituted for SIBAL, paper, fiberglass or other uncovered materials.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G039-02",
+      "severity": "medium",
+      "status": "open_additional_adapters_and_coverage",
+      "problem": "The active cohort covers 11 conductivity profiles /66 points/7 families.22 of29 material coverage rows remain pending; volumetric heat-capacity units do not satisfy the mass-specific v1 schema.",
+      "mitigation": "Retain originals in Third_Party. Add independently reviewed property/axis adapters with explicit units/phase and source checks; do not force unknown values through the existing adapter. No new model training or external web retrieval.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D040-01",
+      "severity": "high",
+      "status": "resolved_in_diagnostic_presentation_with_offline_evidence",
+      "problem": "An unassessed numerical input lacked a clear input-by-input explanation and nearest usable reference, making missing evidence liable to be read as a mismatch or an arbitrary very low similarity.",
+      "mitigation": "Use the same candidate helper as scoring. Display exact credited reference, delta, source cell/page/row and material; expose absent gravity/ambient temperature, unresolved oxygen scale, AIR-instrument semantics and wrong-material context separately. No percentage is invented for missing evidence.",
+      "implementation": [
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/proximity.mjs",
+        "lib/research-scoring.mjs",
+        "lib/local-discovery.mjs",
+        "public/parameter-comparison.mjs",
+        "public/environment-panel.mjs",
+        "public/styles.css"
+      ],
+      "verification": [
+        "tests/parameter-diagnostics.test.mjs",
+        "tests/parameter-support.test.mjs",
+        "qa/release-0.4.0/benchmark-cases.json",
+        "qa/release-0.4.0/benchmark-recheck.json",
+        "qa/release-0.4.0/reported-psi26-case.json",
+        "qa/release-0.4.0/stress-checks.json",
+        "qa/release-0.4.0/browser-review.json",
+        "qa/release-0.4.0/browser-20-observations.json",
+        "qa/release-0.4.0/browser-events.json",
+        "qa/release-0.4.0/test-results.log",
+        "qa/release-0.4.0/portable-verification.json",
+        "qa/release-0.4.0/exe-sidecar-verification.json"
+      ]
+    },
+    {
+      "id": "D040-02",
+      "severity": "low",
+      "status": "resolved_with_controlled_browser_layout_evidence",
+      "problem": "The five-column comparison could become dense in the narrow research column and create nested/horizontal scrolling.",
+      "mitigation": "Use a responsive stacked input/reference/result/source layout and outer page scrolling. Final controlled browser geometry reports equal main content/client widths and equal table content/client heights.",
+      "implementation": [
+        "public/parameter-comparison.mjs",
+        "public/styles.css"
+      ],
+      "verification": [
+        "qa/release-0.4.0/browser-review.json",
+        "qa/release-0.4.0/comparison-supported.png",
+        "qa/release-0.4.0/comparison-unassessed.png",
+        "qa/release-0.4.0/browser-events.json"
+      ]
+    },
+    {
+      "id": "D040-03",
+      "severity": "high",
+      "status": "prevented_by_shared_candidate_validation_and_regression",
+      "problem": "A malformed negative/nonfinite point or reversed marginal range could otherwise be selected as a comparable diagnostic reference and undermine scientific interpretation.",
+      "mitigation": "The shared candidate/proximity path rejects nonfinite or negative values and reversed ranges; the diagnostic and credited scoring reference cannot drift onto different validity rules. Existing valid numerical scores are preserved.",
+      "implementation": [
+        "lib/parameter-support.mjs",
+        "lib/proximity.mjs",
+        "lib/parameter-diagnostics.mjs"
+      ],
+      "verification": [
+        "tests/parameter-diagnostics.test.mjs",
+        "tests/parameter-support.test.mjs",
+        "qa/release-0.4.0/benchmark-recheck.json"
+      ]
+    },
+    {
+      "id": "G040-01",
+      "severity": "high",
+      "status": "open_source_reading_and_physical_transfer_review",
+      "problem": "Per-input explanations describe the reviewed index, not exhaustive reading of all source reports, sections, tables or graphs. Relevant material/condition findings may remain outside the supplied context; parameter proximity does not establish combustion equivalence or a safe intervention.",
+      "mitigation": "Say not indexed rather than absent from the entire report. Preserve original file/source references and unassessed fields. Continue targeted source-reading/context and recommendation work in the separate 0.4.1 cycle; do not claim those gaps are resolved in 0.4.0. Require source-specific physical/semantic review before transfer or operational use.",
+      "verification": [
+        "qa/release-0.4.0/benchmark-recheck.json",
+        "qa/release-0.4.0/reported-psi26-case.json",
+        "docs/PARAMETER_COMPARISON_040.md"
+      ],
+      "related": [
+        "FIF-050",
+        "G-01",
+        "G-05",
+        "G037-01",
+        "G039-01"
+      ]
+    },
+    {
+      "id": "G040-02",
+      "severity": "medium",
+      "status": "open_package_index_receipts_and_independent_validation",
+      "problem": "Offline replay and mocked-browser acceptance do not establish new live-provider quality, scientific validity, independent NPR assurance or a verified final delivered package.",
+      "mitigation": "Keep the original 0.3.8 provider identity and 503 recovery explicit. The exact rebuilt EXE is verified: SHA256 b87a34b5aca083a38250af4eab267ca1015871db8b37bafbaae0c7758011e54d, 102982144 bytes. The actual-dataset sidecar check also passed (11 profiles, 22 verified dependencies, no external research IDs or score adjustment); both receipts report zero provider calls. The release owner must append final source-index/ZIP receipts after completion. Independent review, physical validation and second-device acceptance remain open.",
+      "verification": [
+        "qa/release-0.4.0/benchmark-recheck.json",
+        "qa/release-0.4.0/browser-review.json",
+        "qa/release-0.4.0/previous-release-receipt.json",
+        "qa/release-0.4.0/portable-verification.json",
+        "qa/release-0.4.0/exe-sidecar-verification.json"
+      ],
+      "pendingReleaseVerification": [
+        {
+          "path": "qa/release-0.4.0/source-inventory.json",
+          "purpose": "Final frozen source identity",
+          "status": "pending_release_owner_receipt"
+        },
+        {
+          "path": "qa/release-0.4.0/code-index/",
+          "purpose": "Full final file/block index",
+          "status": "pending_release_owner_receipt"
+        },
+        {
+          "path": "qa/release-0.4.0/distribution-verification.json",
+          "purpose": "Final ZIP readback/member/hash verification",
+          "status": "pending_release_owner_receipt"
+        }
+      ]
+    },
+    {
+      "id": "D041-01",
+      "severity": "high",
+      "status": "mitigated_by_literal_preselection_and_explicit_recall_limits",
+      "problem": "Metadata-only preselection and first-fragment truncation could hide a relevant finding inside a report/table before the model received it.",
+      "mitigation": "Search all allowed sources before the candidate cut; preserve exact anchored fragments through coverage serialization. The frozen default benchmark retains 20/20 lexical candidate sources and 18/20 final exact anchors; it does not prove complete retrieval.",
+      "implementation": [
+        "lib/source-content-index.mjs",
+        "lib/source-content-baseline.mjs",
+        "lib/dataset.mjs",
+        "lib/research-source-context.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-coverage.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs",
+        "lib/corpus.mjs",
+        "lib/research.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/source-content-index.test.mjs",
+        "tests/source-content-loader.test.mjs",
+        "tests/source-content-manifest.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "qa/release-0.4.1/content-benchmark/panel-freeze.json",
+        "qa/release-0.4.1/content-benchmark/cases.json",
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "qa/release-0.4.1/content-benchmark/failure-review.json",
+        "qa/release-0.4.1/dataset-index-install/final-readback.json"
+      ]
+    },
+    {
+      "id": "D041-02",
+      "severity": "high",
+      "status": "prevented_by_server_derived_source_and_field_provenance",
+      "problem": "Shared document associations, model-supplied provenance or a mixed-source normalized row could falsely attribute a finding/measurement or make separate sources look like a synchronized joint trial.",
+      "mitigation": "Label catalog associations as contextual, resolve literal anchors from actual supplied chunks, strip model provenance, retain pressure XLSX and flow/width DOCX field locations, and preserve jointlyTested=false for nonsynchronized report/as-run links.",
+      "implementation": [
+        "lib/source-content-index.mjs",
+        "lib/source-content-baseline.mjs",
+        "lib/dataset.mjs",
+        "lib/research-source-context.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-coverage.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs",
+        "lib/corpus.mjs",
+        "lib/research.mjs",
+        "server.mjs",
+        "lib/experiment-tables.mjs",
+        "lib/material-identity.mjs",
+        "lib/reviewed-normalization-evidence.mjs",
+        "lib/psi26-report-evidence.mjs",
+        "lib/bass-asrun.mjs",
+        "lib/study-evidence.mjs",
+        "lib/study-evidence-sorting.mjs",
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/research-scoring.mjs",
+        "public/parameter-comparison.mjs"
+      ],
+      "verification": [
+        "tests/research-source-context.test.mjs",
+        "tests/reviewed-normalization.test.mjs",
+        "tests/parameter-diagnostics.test.mjs",
+        "qa/release-0.4.1/context-targeted-tests.log",
+        "qa/future-0.4.1/normalization/implementation-handoff.json",
+        "qa/future-0.4.1/normalization/verification-receipt.json",
+        "qa/future-0.4.1/normalization/isolated-seed-recheck.json",
+        "qa/future-0.4.1/normalization/psi26-table-asrun-link-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ]
+    },
+    {
+      "id": "D041-03",
+      "severity": "high",
+      "status": "resolved_by_atomic_independent_review_gates_with_semantic_limits_open",
+      "problem": "An unrelated incomplete scoring explanation could block a valid candidate replacement, while an unchanged candidate could look reviewed without its original source in current evidence.",
+      "mitigation": "Allow only an independently validated complete replacement; keep incomplete keep/clear pending and reject revalidation when prior source evidence was not supplied. Require the positive server flag in the reducer and preserve emergency notices. This is structural/provenance validation, not scientific approval.",
+      "implementation": [
+        "lib/recommendations.mjs",
+        "lib/research.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-source-context.mjs",
+        "lib/gemini.mjs",
+        "public/recommendations-panel.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "verification": [
+        "tests/recommendation-clarity.test.mjs",
+        "tests/recommendation-recovery.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/rubric-recovery.test.mjs",
+        "qa/future-0.4.1/recommendations/recorded-candidate-audit.json"
+      ]
+    },
+    {
+      "id": "D041-04",
+      "severity": "low",
+      "status": "implemented_with_recorded_browser_evidence",
+      "problem": "Recommendation cards could repeat a study name without a concrete next action and hide the relevance, material/condition limit or original source inside a closed disclosure.",
+      "mitigation": "Request short action/why/limit wording, keep limits/source action visible, label source basis and provide server-derived original-file anchors. Existing 25 recorded candidates were already short (115\u2013232 characters), so no claim is made that all previous prose was long.",
+      "implementation": [
+        "public/recommendations-panel.mjs",
+        "public/conversation-panel.mjs",
+        "lib/recommendations.mjs"
+      ],
+      "verification": [
+        "tests/recommendation-clarity.test.mjs",
+        "tests/recommendation-recovery.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/rubric-recovery.test.mjs",
+        "qa/future-0.4.1/recommendations/recorded-candidate-audit.json",
+        "qa/release-0.4.1/browser-review.json"
+      ]
+    },
+    {
+      "id": "D041-05",
+      "severity": "high",
+      "status": "quarantined_or_corrected_by_reviewed_source_specific_adapters",
+      "problem": "Ambiguous 037 mm thickness, unsupported oxygen basis, unnamed mixtures or repeated stage/source records could acquire false measurement credit or inflated independent-trial counts.",
+      "mitigation": "Quarantine the ambiguous raw thickness, retain unresolved oxygen as unscored, accept only the named SIBAL composite alias, keep pure Cotton distinct, preserve stage sequences and collapse exact linked physical-trial identities. Additional report settings are reviewed source values rather than AIR conversions.",
+      "implementation": [
+        "lib/experiment-tables.mjs",
+        "lib/material-identity.mjs",
+        "lib/reviewed-normalization-evidence.mjs",
+        "lib/psi26-report-evidence.mjs",
+        "lib/bass-asrun.mjs",
+        "lib/study-evidence.mjs",
+        "lib/study-evidence-sorting.mjs",
+        "lib/dataset.mjs",
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/research-scoring.mjs",
+        "public/parameter-comparison.mjs"
+      ],
+      "verification": [
+        "tests/reviewed-normalization.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/parameter-diagnostics.test.mjs",
+        "qa/release-0.4.1/context-targeted-tests.log",
+        "qa/future-0.4.1/normalization/implementation-handoff.json",
+        "qa/future-0.4.1/normalization/verification-receipt.json",
+        "qa/future-0.4.1/normalization/isolated-seed-recheck.json",
+        "qa/future-0.4.1/normalization/psi26-table-asrun-link-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ]
+    },
+    {
+      "id": "G041-01",
+      "severity": "high",
+      "status": "open_incomplete_retrieval_and_semantic_coverage",
+      "problem": "The tested core index covers 1544 PDF/XLSX files from the larger catalog, not every source/report/table/graph. Default top-24-shard/top-ten-chunk selection misses two frozen expected anchors; lexical matches do not establish scientific relevance or adequate header/unit context.",
+      "mitigation": "Keep coverageComplete=false and explicit exclusions. Preserve two generic-query misses: f11451/page9 ranks 34 and remains absent from final chunks at cap 48; f51141/page1 ranks 25 and recovers at cap 48. Do not tune frozen queries, force an anchor, claim 20/20 final exact recall, infer absence from non-retrieval, or silently promote the unfinished broader logs index.",
+      "verification": [
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "qa/release-0.4.1/content-benchmark/failure-review.json",
+        "qa/release-0.4.1/content-benchmark/REVIEW.md"
+      ]
+    },
+    {
+      "id": "G041-02",
+      "severity": "high",
+      "status": "open_independent_scientific_and_transfer_validation",
+      "problem": "Quote membership, source hashes, prospective source labels and passing numerical arithmetic do not prove an inference follows from a passage, a recommendation is effective, or two materials/environments burn equivalently.",
+      "mitigation": "Retain hypothesis/objective/impact boundaries, material/condition limits, unreviewed source context, source-specific joint/temporal flags and no active-incident intervention instructions. The 60/40 evidence/retrieval budget is editorial and is not a calibrated physical tolerance, risk score or probability. Third-party Material_Sensitivity remains applicability-only.",
+      "verification": [
+        "tests/recommendation-clarity.test.mjs",
+        "tests/recommendation-recovery.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/rubric-recovery.test.mjs",
+        "qa/future-0.4.1/recommendations/recorded-candidate-audit.json",
+        "tests/reviewed-normalization.test.mjs",
+        "tests/parameter-diagnostics.test.mjs",
+        "qa/release-0.4.1/context-targeted-tests.log",
+        "qa/future-0.4.1/normalization/implementation-handoff.json",
+        "qa/future-0.4.1/normalization/verification-receipt.json",
+        "qa/future-0.4.1/normalization/isolated-seed-recheck.json",
+        "qa/future-0.4.1/normalization/psi26-table-asrun-link-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ],
+      "related": [
+        "G-01",
+        "G-02",
+        "G039-01",
+        "FIF-049",
+        "FIF-051",
+        "FIF-052",
+        "FIF-053"
+      ]
+    },
+    {
+      "id": "G041-03",
+      "severity": "medium",
+      "status": "open_performance_coverage_and_release_acceptance",
+      "problem": "Known-passage runtime QA and same-machine checks do not establish broad freeform/semantic recall, all workload memory bounds, new live-provider quality, independent assurance, clean second-device operation or completed final release artifacts.",
+      "mitigation": "Retain runtime byte hashes and frozen panel identity. Measured QA process high-water was about 565 MiB including catalog/index/diagnostics; no unmeasured optimization gain is claimed. Record actual final-suite, browser, PDF, exact EXE, index and ZIP receipts only after completion. No new API call occurred.",
+      "verification": [
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "qa/release-0.4.1/content-benchmark/summary.json",
+        "qa/release-0.4.1/test-results.log",
+        "qa/release-0.4.1/portable-verification.json",
+        "qa/release-0.4.1/exe-content-verification.json",
+        "qa/release-0.4.1/browser-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ],
+      "pendingReleaseVerification": [
+        {
+          "stage": "final_archive_readback",
+          "expectedPath": "qa/release-0.4.1/distribution-verification.json",
+          "status": "pending_release_owner_receipt"
+        },
+        {
+          "stage": "detailed_release_pdf",
+          "expectedPath": "Developer Patch/Reports (inside 0.4.1 ZIP)",
+          "status": "release_owner_produces_and_visually_verifies"
+        },
+        {
+          "stage": "final_source_inventory_and_full_code_index",
+          "expectedPath": "Developer Patch/Code_Index (inside 0.4.1 ZIP)",
+          "status": "release_owner_freezes_and_indexes_after_record_handoff"
+        }
+      ]
+    },
+    {
+      "id": "G041-04",
+      "severity": "high",
+      "status": "open_extraction_fidelity_and_per_file_warning_attribution",
+      "problem": "An extracted_unreviewed status means text was produced; it does not establish complete or faithful transcription. The initial pinned PDF extraction did not attribute font/recovered-text parser warnings to each individual source. Glyphs, subscripts, equations and labels may therefore be incomplete or altered even when source bytes are authenticated.",
+      "mitigation": "Keep literal extraction separate from reviewed numerical evidence and compare material claims or numerical fields with the original source before scientific use. Do not equate a SHA-verified original with validated extraction fidelity. Preserve no-OCR/no-graph-coordinate limits; add per-file parser-warning attribution and source-versus-text review in a separately versioned future extraction before claiming fidelity.",
+      "verification": [
+        "qa/future-0.4.1/content-reading/core-docs-index/manifest-receipt.json",
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "docs/SOURCE_CONTENT_041.md"
+      ],
+      "related": [
+        "FIF-051",
+        "G041-01",
+        "G041-02"
+      ]
+    },
+    {
+      "id": "D042-01",
+      "severity": "high",
+      "status": "mitigated_with_final_production_frozen_panel_and_explicit_coverage_limits",
+      "problem": "Generic phrase queries and large files split into many parts could be dominated by isolated terms or repeated parts, hiding a relevant literal passage before final selection.",
+      "mitigation": "Use phrase features, file-first part planning and bounded file/source diversity. The final pinned mixed runtime retains 20/20 primary + 3/3 extra exact anchors. With recorded material/conditions it retains 19/20 strict frozen anchors; an independent same-original repeated-fact review supports 20/20 requested facts without changing the 19 strict metric. No isolated ranking-only causal or general semantic claim is made.",
+      "implementation": [
+        "qa/future-0.4.2/content-reading/publish-bound-repair.mjs",
+        "qa/future-0.4.2/content-reading/repair-legacy-bounds.py",
+        "qa/release-0.4.2/source-reading-audit/install-pinned-index.py",
+        "qa/future-0.4.2/openxml-reading/build-openxml.mjs",
+        "qa/future-0.4.2/openxml-reading/openxml-worker.py",
+        "qa/future-0.4.2/openxml-reading/build-reviewed-docx.mjs",
+        "qa/future-0.4.2/openxml-reading/reviewed-docx-worker.py",
+        "qa/future-0.4.2/content-reading/assemble-mixed-index.mjs",
+        "lib/source-content-index.mjs",
+        "lib/source-content-ranking.mjs",
+        "lib/source-content-candidates.mjs",
+        "lib/source-content-terms.mjs",
+        "lib/source-content-baseline.mjs",
+        "lib/dataset.mjs",
+        "lib/research-source-context.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-coverage.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "qa/release-0.4.2/content-benchmark/documents-live-runtime.json",
+        "qa/release-0.4.2/content-benchmark/final.json",
+        "qa/release-0.4.2/content-benchmark/final-with-conditions.json",
+        "qa/release-0.4.2/source-reading-audit/alternative-anchor-review.json",
+        "tests/source-content-material-priority.test.mjs",
+        "tests/source-content-candidates.test.mjs",
+        "tests/source-content-phrase-ranking.test.mjs",
+        "tests/source-content-paper.test.mjs",
+        "tests/source-content-v042-boundaries.test.mjs",
+        "tests/source-content-index.test.mjs",
+        "tests/source-content-loader.test.mjs",
+        "tests/source-content-manifest.test.mjs",
+        "tests/research-source-context.test.mjs"
+      ]
+    },
+    {
+      "id": "D042-02",
+      "severity": "high",
+      "status": "corrected_and_tested_for_direct_cached_and_unscored_validation",
+      "problem": "Unscored assessment mapping could drop valid source locations, while cached/direct validation could retain a model-forged original-file property.",
+      "mitigation": "Derive both scored and unscored provenance from exact supplied literal fragments; discard metadata/unanchored properties. Shared source rendering accepts only local f-number routes and explicit valid locations; no untrusted remote href or page is used.",
+      "implementation": [
+        "lib/research.mjs",
+        "public/source-reference.mjs",
+        "public/environment-panel.mjs",
+        "public/recommendations-panel.mjs"
+      ],
+      "verification": [
+        "tests/source-reference.test.mjs",
+        "qa/release-0.4.2/browser-ui-core/review.json"
+      ]
+    },
+    {
+      "id": "D042-03",
+      "severity": "low",
+      "status": "resolved_with_ui_core_delayed_and_failed_catalog_checks",
+      "problem": "Startup briefly exposed legacy specialist inputs while the conversational environment panel was loading; a failure only showed a transient toast.",
+      "mitigation": "Initial external-CSS class hides the form, successful environment installation removes it, and failed initialization retains a persistent English alert with the form hidden. Source references remain inside evidence disclosures; long hashes are not displayed by default.",
+      "implementation": [
+        "public/source-reference.mjs",
+        "public/environment-panel.mjs",
+        "public/recommendations-panel.mjs",
+        "public/source-content-status.mjs",
+        "public/app.js",
+        "public/index.html",
+        "public/styles.css",
+        "lib/research.mjs",
+        "server.mjs",
+        "scripts/build-portable.mjs",
+        "scripts/verify-portable.mjs"
+      ],
+      "verification": [
+        "qa/release-0.4.2/browser-ui-core/review.json",
+        "tests/source-reference.test.mjs"
+      ]
+    },
+    {
+      "id": "D042-04",
+      "severity": "high",
+      "status": "final_metadata_and_sampled_runtime_boundaries_verified_installation_separately_gated",
+      "problem": "Oversized decoded stream parts, Windows cross-drive paths or incomplete duplicate-SHA alias handling could exceed intended read bounds or falsely transfer one alias verification to another source.",
+      "mitigation": "Enforce stream part declared/decoded 512 KiB checks, reject paths outside the index including different Windows drives, union aliases in final assembly and independently rehash aliases actually used. Retain the earlier producer 8 MiB unit check as post-allocation, not a strict heap guarantee.",
+      "implementation": [
+        "qa/future-0.4.2/content-reading/publish-bound-repair.mjs",
+        "qa/future-0.4.2/content-reading/repair-legacy-bounds.py",
+        "qa/release-0.4.2/source-reading-audit/install-pinned-index.py",
+        "qa/future-0.4.2/openxml-reading/build-openxml.mjs",
+        "qa/future-0.4.2/openxml-reading/openxml-worker.py",
+        "qa/future-0.4.2/openxml-reading/build-reviewed-docx.mjs",
+        "qa/future-0.4.2/openxml-reading/reviewed-docx-worker.py",
+        "qa/future-0.4.2/content-reading/assemble-mixed-index.mjs",
+        "lib/source-content-index.mjs",
+        "lib/source-content-ranking.mjs",
+        "lib/source-content-candidates.mjs",
+        "lib/source-content-terms.mjs",
+        "lib/source-content-baseline.mjs",
+        "lib/dataset.mjs",
+        "lib/research-source-context.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-coverage.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "qa/release-0.4.2/source-reading-audit/audit-summary.json",
+        "tests/source-content-v042-boundaries.test.mjs"
+      ]
+    },
+    {
+      "id": "G042-01",
+      "severity": "high",
+      "status": "open_whole_corpus_fidelity_scientific_and_remote_quality",
+      "problem": "Final pinned mixed counts/runtime and stratified exact checks do not establish whole-corpus transcription fidelity, reading order, source headers/units, graph coordinates, scans/OCR, remote source quality or scientific correctness.",
+      "mitigation": "Keep pre-install 261 checks / 11 adverse controls, OpenXML 344 checks, reviewed large-DOCX 13,137 checks, final frozen runtime panels and UI-core 7 checks separate. Installation/browser/EXE/archive receipts remain separately required; none proves all quotes across 19 million chunks. Preserve explicit partial/excluded states and source-versus-text review; do not turn recovered text into measured conditions.",
+      "verification": [
+        "qa/release-0.4.2/browser-ui-core/review.json",
+        "qa/release-0.4.2/source-reading-audit/audit-summary.json",
+        "qa/release-0.4.2/content-benchmark/documents-live-runtime.json",
+        "qa/release-0.4.2/test-results.log",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/manifest-receipt.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/metadata-verification.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/exclusion-summary.json",
+        "qa/release-0.4.2/content-benchmark/final.json",
+        "qa/release-0.4.2/content-benchmark/final-with-conditions.json",
+        "qa/release-0.4.2/source-reading-audit/installation-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-final-output-association.json",
+        "qa/release-0.4.2/source-reading-audit/large-docx-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/reviewed-prefix-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/alternative-anchor-review.json",
+        "qa/release-0.4.2/material-retrieval/policy-change.json",
+        "qa/release-0.4.2/content-benchmark/query-set-optimization.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-bound-install-stop.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-decoded-crc-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-final-association.json",
+        "qa/release-0.4.2/source-reading-audit/installer-original-reuse.json",
+        "qa/release-0.4.2/source-reading-audit/installer-helper-tests.json",
+        "qa/release-0.4.2/source-reading-audit/prefix-live-diagnosis.json",
+        "qa/release-0.4.2/numerical-replay/final/results.json",
+        "qa/release-0.4.2/source-reading-audit/audit-summary.json",
+        "qa/release-0.4.2/browser-final/review.json",
+        "qa/release-0.4.2/portable-verification.json",
+        "qa/release-0.4.2/exe-content-verification.json"
+      ],
+      "pendingReleaseVerification": [
+        {
+          "stage": "prefix_source_end_to_end_conversation",
+          "status": "open_bounded_planner_recall_gap_two_extra_ui_assertions_unpassed",
+          "expectedPath": "qa/release-0.4.2/source-reading-audit/prefix-live-diagnosis.json"
+        },
+        {
+          "stage": "final_archive",
+          "status": "pending_final_receipt",
+          "expectedPath": "qa/release-0.4.2/distribution-verification.json"
+        },
+        {
+          "stage": "detailed_pdf_and_final_source_index",
+          "status": "release_owner_prepares_verifies_and_archives",
+          "expectedPath": "Developer Patch inside matching version ZIP"
+        }
+      ]
+    },
+    {
+      "id": "G042-02",
+      "severity": "high",
+      "status": "open_partial_corrupt_source_scope_and_remote_quality",
+      "problem": "The 125,544,945-byte CSV f19099 contains five NUL runs and 1,591,400 NUL bytes. The auditor identified 3,094 complete valid prefix records but did not recover/modify it or verify remote quality in that pre-install phase.",
+      "mitigation": "The final derivative admits bytes [0, 1,093,336), 3,094 complete records; unread [1,093,336, 125,544,945), firstNulByteOffset 1,093,487. Independent comparison verifies every admitted record/anchor, explicit partialSource/sourceReadScope and original pre/post hash. The 151 bytes before the first NUL remain excluded. No suffix repair, whole-file completeness or scientific outcome inference. Installation remains separately gated.",
+      "verification": [
+        "qa/release-0.4.2/source-reading-audit/audit-summary.json"
+      ],
+      "related": [
+        "FIF-054",
+        "FIF-055",
+        "G041-04"
+      ]
+    },
+    {
+      "id": "G042-03",
+      "severity": "medium",
+      "status": "open_general_workload_memory_and_release_assurance",
+      "problem": "A 512 KiB decoded stream-part bound is not a 512 KiB process heap bound. The v1 producer 8 MiB unit check occurs after line/row materialization, and bounded sampled runtime tests do not establish every workload, new provider quality, second-machine operation or complete NPR assurance.",
+      "mitigation": "Retain process/timing receipts within their exact index/runtime identity and do not claim an unmeasured optimization gain or strict producer heap bound. Keep scientific/physical transfer and third-party isolation unchanged. Finish final release checks and archive the actual receipts; selected NPR rows remain partial/open.",
+      "verification": [
+        "qa/release-0.4.2/browser-ui-core/review.json",
+        "qa/release-0.4.2/source-reading-audit/audit-summary.json",
+        "qa/release-0.4.2/content-benchmark/documents-live-runtime.json",
+        "qa/release-0.4.2/test-results.log",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/manifest-receipt.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/metadata-verification.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/exclusion-summary.json",
+        "qa/release-0.4.2/content-benchmark/final.json",
+        "qa/release-0.4.2/content-benchmark/final-with-conditions.json",
+        "qa/release-0.4.2/source-reading-audit/installation-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-final-output-association.json",
+        "qa/release-0.4.2/source-reading-audit/large-docx-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/reviewed-prefix-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/alternative-anchor-review.json",
+        "qa/release-0.4.2/material-retrieval/policy-change.json",
+        "qa/release-0.4.2/content-benchmark/query-set-optimization.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-bound-install-stop.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-decoded-crc-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-final-association.json",
+        "qa/release-0.4.2/source-reading-audit/installer-original-reuse.json",
+        "qa/release-0.4.2/source-reading-audit/installer-helper-tests.json",
+        "qa/release-0.4.2/source-reading-audit/prefix-live-diagnosis.json",
+        "qa/release-0.4.2/numerical-replay/final/results.json",
+        "qa/release-0.4.2/source-reading-audit/audit-summary.json",
+        "qa/release-0.4.2/browser-final/review.json",
+        "qa/release-0.4.2/portable-verification.json",
+        "qa/release-0.4.2/exe-content-verification.json"
+      ],
+      "pendingReleaseVerification": [
+        {
+          "stage": "prefix_source_end_to_end_conversation",
+          "status": "open_bounded_planner_recall_gap_two_extra_ui_assertions_unpassed",
+          "expectedPath": "qa/release-0.4.2/source-reading-audit/prefix-live-diagnosis.json"
+        },
+        {
+          "stage": "final_archive",
+          "status": "pending_final_receipt",
+          "expectedPath": "qa/release-0.4.2/distribution-verification.json"
+        },
+        {
+          "stage": "detailed_pdf_and_final_source_index",
+          "status": "release_owner_prepares_verifies_and_archives",
+          "expectedPath": "Developer Patch inside matching version ZIP"
+        }
+      ]
+    },
+    {
+      "id": "D042-05",
+      "severity": "high",
+      "status": "question_first_policy_fixed_and_regression_tested",
+      "problem": "Unconditional same-material priority displaced directly relevant question/mechanism passages: actual f12 entrainment retrieval failed with SIBAL and PMMA even though the requested finding existed.",
+      "importance": "High: losing a relevant reported finding can produce misleading safety research recommendations.",
+      "mitigation": "Rank question/phrase matches before material tie-breaks; preserve one explicit material passage/file when existing budgets allow. Actual unchanged entrainment query improves from 1/3 to 3/3 material probes. Four new regressions include a Nomex ignition passage surviving 20 generic sections; two earlier fixtures separately assert question-first, paper disambiguation and material retention. No physics weights, normalized material eligibility or numerical scores changed.",
+      "verification": [
+        "qa/release-0.4.2/material-retrieval/policy-change.json",
+        "tests/source-content-material-priority.test.mjs",
+        "tests/source-content-paper.test.mjs",
+        "qa/release-0.4.2/source-reading-audit/alternative-anchor-review.json"
+      ]
+    },
+    {
+      "id": "D042-06",
+      "severity": "high",
+      "status": "qualified_openxml_and_reviewed_exact_hash_recovery_verified",
+      "problem": "DOCX/PPTX source reports and three moderately sized DOCX XML entries were absent under the first 8 MiB-only extraction pass.",
+      "importance": "High: omitting report text/tables can hide relevant findings; raising a global cap would expand unreviewed resource exposure.",
+      "mitigation": "Qualified 237 OpenXML originals with explicit XML paragraph/table/slide anchors; 146 with text, 91 without supported text, zero final errors. Keep default 8 MiB / 64 MiB; only three original SHA allowlisted entries receive reviewed 32 MiB / 64 MiB exception after measured 11.9 / 13.9 / 20.3 MB review. Independent 344 base + 13,137 recovery chunk comparisons; no invented pages/images/notes/charts/measurements. Original preview remains sealed.",
+      "verification": [
+        "qa/release-0.4.2/source-reading-audit/openxml-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-final-output-association.json",
+        "qa/release-0.4.2/source-reading-audit/large-docx-independent-receipt.json",
+        "qa/future-0.4.2/openxml-reading/index-ready/verification-receipt.json",
+        "qa/future-0.4.2/openxml-reading/large-docx-recovery/verification-receipt.json"
+      ]
+    },
+    {
+      "id": "D042-07",
+      "severity": "low",
+      "status": "corrected_final_manifest_counters_preserved_prior_checkpoint",
+      "problem": "First mixed checkpoint 17f141... double-counted PDF pages in textAndCsvUnits; status counts could confuse source-reading scope.",
+      "importance": "Low: label/accounting defect; source quotations and scientific scores were unchanged.",
+      "mitigation": "Final assembler keeps PDF pages 12,138; nonempty sheet rows 1,873,894; text/CSV units 38,733,252; DOCX units 26,031; PPTX units 2,993 separate. Earlier checkpoint remains preserved and was not installed as the final release; final metadata check verifies corrected counters.",
+      "verification": [
+        "qa/future-0.4.2/content-reading/bound-fixed-index/manifest-receipt.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/metadata-verification.json"
+      ]
+    },
+    {
+      "id": "D042-08",
+      "severity": "high",
+      "status": "partial_scope_and_first_nul_metadata_corrected_and_verified",
+      "problem": "Earlier checkpoint metadata omitted firstNulByteOffset, risking an incomplete source prefix being treated as a whole-file reading.",
+      "importance": "High: an unread suffix must not silently become assessed source evidence.",
+      "mitigation": "Final metadata and UI distinguish partial source prefix, admitted/unread intervals, firstNulByteOffset and partial records. Hash-bound prefix is independently compared; no source bytes changed.",
+      "verification": [
+        "qa/future-0.4.2/content-reading/bound-fixed-index/metadata-verification.json",
+        "qa/release-0.4.2/source-reading-audit/reviewed-prefix-independent-receipt.json",
+        "tests/source-reference.test.mjs",
+        "tests/source-content-status.test.mjs"
+      ]
+    },
+    {
+      "id": "D042-09",
+      "severity": "high",
+      "status": "two_legacy_containers_repacked_independently_verified_final_installation_separately_gated",
+      "problem": "A5 assembly reused two legacy XLSX JSON packets whose decoded sizes of 176,209,081 and 189,855,977 bytes exceeded the existing 128 MiB runtime limit. Checking only compressed size left this unreadable derivative undetected before installation.",
+      "importance": "High: a required source representation could fail to load despite apparently valid hashes/counts; release acceptance would be misleading.",
+      "mitigation": "Installer stopped before canonical publication. A full 6,401-packet SHA/size/CRC streaming scan identified exactly two oversized packets. Split only these into 714 parts of at most 512 KiB, preserving all 421,617 chunk objects/CIDs/locations/quotes in order and 4,962 exact whole same-sheet context occurrences; file-level term unions unchanged. Retain 128 MiB legacy / 512 KiB stream bounds. The final B pin / rebuilt binary replace A5; freshly verify all 61,647 payloads. Reuse the completed 31,881-original SHA ledger only with explicit pinned arguments, identical dependency sets / current sizes / six protected hashes; not a second raw-byte hash scan. Runtime original checks remain fresh.",
+      "verification": [
+        "qa/release-0.4.2/source-reading-audit/legacy-bound-install-stop.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-decoded-crc-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-final-association.json",
+        "qa/release-0.4.2/source-reading-audit/installer-original-reuse.json",
+        "qa/release-0.4.2/source-reading-audit/installer-helper-tests.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/manifest-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/installation-receipt.json"
+      ]
+    },
+    {
+      "id": "D042-10",
+      "severity": "low",
+      "status": "neutral_source_label_corrected_without_score_change",
+      "problem": "Coverage wording implied same-material evidence when the user had not specified a material.",
+      "importance": "Low: wording inaccurately narrowed the stated source scope; numerical eligibility and weights were unchanged.",
+      "mitigation": "Use the neutral phrase inputs assessed from indexed source values for unspecified material; preserve existing material eligibility and arithmetic. The current413-test suite and rebuilt exact EXE receipts refer to this final wording.",
+      "verification": [
+        "qa/release-0.4.2/test-results.log",
+        "qa/release-0.4.2/portable-verification.json",
+        "qa/release-0.4.2/exe-content-verification.json"
+      ],
+      "implementation": [
+        "public/environment-panel.mjs"
+      ]
+    },
+    {
+      "id": "G042-04",
+      "severity": "medium",
+      "status": "open_verbose_prefix_query_bounded_planner_recall",
+      "problem": "Two extra installed-prefix conversation harness assertions did not select f19099. Read-only diagnosis confirms correct PSI-21 catalog metadata but ranks the file 466th / 108th for the verbose prompts, outside the 48-part bounded plan; zero prefix fragments were retrieved/admitted. The app applied no unverified scientific result.",
+      "importance": "Medium: extraction and source-link unit checks do not by themselves demonstrate the partial prefix through the complete conversation flow.",
+      "mitigation": "Retain the two unsuccessful UI attempts as an open recall gap. A narrow exact test-ID query 17324RAD2 ranks the file second and retrieves/adopts three authentic partialSource fragments with all admitted/unread bounds; this is a read-only control/workaround, not a successful rerun of those two UI checks. Nine core browser checks pass with three successful synthetic responses in five transport attempts. No source rewrite, bound change or numerical/scientific promotion.",
+      "verification": [
+        "qa/release-0.4.2/browser-final/review.json",
+        "qa/release-0.4.2/source-reading-audit/prefix-live-diagnosis.json",
+        "qa/release-0.4.2/source-reading-audit/reviewed-prefix-independent-receipt.json"
+      ],
+      "related": [
+        "FIF-054",
+        "FIF-055",
+        "G042-02"
+      ]
+    },
+    {
+      "id": "D-HALF-01",
+      "severity": "medium",
+      "status": "resolved_in_prototype_offline_verified",
+      "problem": "Environment-first form and specialist menu made literature discovery appear to require a complete experiment.",
+      "mitigation": "Scenario-first conversation and optional rail, with source discovery before measurements.",
+      "verification": [
+        "tests/scenario-first.test.mjs",
+        "qa/release-0.4.2-prototype.1/browser/review.json"
+      ],
+      "closedAt": "2026-11-15T09:02:10.674646+00:00",
+      "closureScope": "Implementation and offline/browser transport checks only. Live model behavior and user acceptance remain open."
+    },
+    {
+      "id": "D-HALF-02",
+      "severity": "medium",
+      "status": "resolved_in_prototype_offline_verified",
+      "problem": "A model-directed panel could reopen repeatedly, demand unknown facts, overwrite values or leak state between chats.",
+      "mitigation": "Allowlisted requests, known/unavailable filtering, seen-key collapse policy, explicit apply and separate per-chat state.",
+      "verification": [
+        "tests/scenario-first.test.mjs",
+        "qa/release-0.4.2-prototype.1/browser/review.json"
+      ],
+      "closedAt": "2026-11-15T09:02:10.674646+00:00",
+      "closureScope": "Implementation and offline/browser transport checks only. Live model behavior and user acceptance remain open."
+    },
+    {
+      "id": "D-HALF-03",
+      "severity": "low",
+      "status": "resolved_in_prototype_offline_verified",
+      "problem": "Primary form occupied space before the user explained their purpose.",
+      "mitigation": "Narrow rail, in-layout expansion, mobile stacking, keyboard controls and reduced-motion override.",
+      "verification": [
+        "qa/release-0.4.2-prototype.1/browser/review.json"
+      ],
+      "closedAt": "2026-11-15T09:02:10.674646+00:00",
+      "closureScope": "Implementation and offline/browser transport checks only. Live model behavior and user acceptance remain open."
+    },
+    {
+      "id": "G-HALF-01",
+      "severity": "medium",
+      "status": "open",
+      "problem": "New prompt has no fresh live-model audience evaluation. Synthetic protocol responses cannot establish question quality, relevance or audience adaptation.",
+      "mitigation": "Detailed server guidance and offline boundaries; require a separately authorized live evaluation and user comparison before production adoption."
+    },
+    {
+      "id": "G-HALF-02",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Second-machine run, independent human usability assessment and formal NASA assurance remain incomplete.",
+      "mitigation": "Preserve baseline; label prototype, ship exact hashes and same-machine checks, retain all preexisting scientific risks."
+    },
+    {
+      "id": "D-043-01",
+      "severity": "medium",
+      "status": "implemented_in_unapplied_draft_offline_verified",
+      "problem": "Flat advice and a review-only prompt made prevention and response preparation hard to follow.",
+      "mitigation": "Three ordered phases with explicit action, applicability, unknown branch and completion check.",
+      "integratedRelease": "0.4.3; current evidence in qa/release-0.4.3-integrated/"
+    },
+    {
+      "id": "D-043-02",
+      "severity": "high",
+      "status": "mitigated_not_closed",
+      "problem": "A user might mistake a suppression experiment or a generated checklist for an approved local procedure.",
+      "mitigation": "Active-incident display hides all model-generated steps. Preparation labels and fixed procedure handoff are explicit. No procedure catalog is configured.",
+      "integratedRelease": "0.4.3; current evidence in qa/release-0.4.3-integrated/"
+    },
+    {
+      "id": "D-043-03",
+      "severity": "medium",
+      "status": "implemented_in_unapplied_draft_offline_verified",
+      "problem": "A larger phased set could be truncated by the old six-item history/context limit.",
+      "mitigation": "Twelve structured steps maximum; four per phase; legacy flat items still limited to six. Nine-step transport and twelve-step persistence tests pass.",
+      "integratedRelease": "0.4.3; current evidence in qa/release-0.4.3-integrated/"
+    },
+    {
+      "id": "D-043-04",
+      "severity": "low",
+      "status": "implemented_in_unapplied_draft_offline_verified",
+      "problem": "An undifferentiated card list did not expose the preparation sequence.",
+      "mitigation": "Phase headings, numbered lists and visible applicability/unknown/check fields; evidence quote stays expandable.",
+      "integratedRelease": "0.4.3; current evidence in qa/release-0.4.3-integrated/"
+    },
+    {
+      "id": "G-043-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "Exact quotation validation proves traceability, not that the advice follows scientifically or is operationally safe.",
+      "mitigation": "Source scope labels, limitations, no certification claim; independent fire-safety and procedure review required.",
+      "integratedRelease": "0.4.3; current evidence in qa/release-0.4.3-integrated/"
+    },
+    {
+      "id": "G-043-02",
+      "severity": "high",
+      "status": "open",
+      "problem": "Active-incident detection still depends on the existing dialogue/model flag; these changes do not prove reliable incident detection or enforce all chat prose.",
+      "mitigation": "Conservative existing flag reduction retained. Review language ambiguity, false negatives, recovery transitions and the full conversation separately before operational use.",
+      "integratedRelease": "0.4.3; current evidence in qa/release-0.4.3-integrated/"
+    },
+    {
+      "id": "G-043-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "No fresh live-model evaluation confirms usefulness, brevity, language adaptation, correct phase assignment or reliable ordering.",
+      "mitigation": "Offline fixtures exercise the interface and data path. A separately authorized, bounded live evaluation and team review remain pending.",
+      "integratedRelease": "0.4.3; current evidence in qa/release-0.4.3-integrated/"
+    },
+    {
+      "id": "G-043-04",
+      "severity": "medium",
+      "status": "open",
+      "problem": "No approved site/vehicle procedure registry, human assurance review or second-machine acceptance exists for this draft.",
+      "mitigation": "Keep the patch unapplied; select the base, review procedure authority and run release acceptance before adoption.",
+      "integratedRelease": "0.4.3; current evidence in qa/release-0.4.3-integrated/"
+    },
+    {
+      "id": "D-043-05",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "Only eight fixed fields were available; domain-specific questions could not shape the panel.",
+      "mitigation": "Validated contextual schema, UI and retrieval integration; tests/context-fields.test.mjs and browser/review.json.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-043-06",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "Topic-specific form values could be lost or silently reused when the objective changes.",
+      "mitigation": "Stable answered definitions; archived values excluded from current model/search; persisted chat and stale-reply tests.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-043-07",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "Initial integrated build served the new stylesheet with a JavaScript MIME type.",
+      "mitigation": "Corrected route MIME; exact portable asset verification passed after rebuilding.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-043-08",
+      "severity": "low",
+      "status": "resolved_offline",
+      "problem": "An invalid optional custom number initially blocked ordinary chat.",
+      "mitigation": "Chat proceeds with invalid_not_used status; explicit form submission asks for correction or blank; controlled browser check.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-043-05",
+      "severity": "medium",
+      "status": "open",
+      "problem": "A model may propose irrelevant, redundant or poorly worded fields, including semantically duplicated meanings under different ids.",
+      "mitigation": "Six-field bound, user editable options, unknown handling, no required questions, audience prompt. Semantic deduplication and live quality are not established.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-043-06",
+      "severity": "high",
+      "status": "open",
+      "problem": "Descriptive research refinements and exact quoted passages may be mistaken for measured equivalence or an approved operational recommendation.",
+      "mitigation": "Separate numerical contract, explicit active versus saved context and source limits; no invented numerical points. Expert claim-evidence review still required.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-043-07",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Twenty-four saved contextual definitions may limit long multi-topic conversations.",
+      "mitigation": "Refuse additions at capacity without deleting answers; saved details can be removed or a new chat started. No automatic unlimited storage.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-043-08",
+      "severity": "low",
+      "status": "open",
+      "problem": "Prototype and production histories are intentionally separate. Selecting the prototype code base does not migrate its conversations.",
+      "mitigation": "Both profiles and existing key vault are preserved; current START_HERE and report document paths. No silent history merge.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-043-09",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "A flat adaptive list could not specialize follow-up fields or fuel suggestions after a category choice.",
+      "mitigation": "Declarative acyclic dependency trees, conditional material hints, keyed DOM reconciliation, dormant-answer isolation, nested-branch tests and browser verification.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-043-09",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Model-proposed material hints may have incorrect category membership or absent source coverage.",
+      "mitigation": "Hints are explicitly search vocabulary and editable, not verified material facts; no automatic value assignment or scoring credit. Live expert review remains open.",
+      "evidence": [
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-044-01",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "Ranked papers did not provide a dedicated source-specific takeaway before document inspection.",
+      "mitigation": "Added bounded sourceBriefs with finding/application/limit and exact original provenance; invalid optional peers do not discard valid results.",
+      "evidence": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-044-02",
+      "severity": "low",
+      "status": "resolved_offline",
+      "problem": "Long safety cards were difficult to scan and repeated sidebar rendering could lose review position.",
+      "mitigation": "Collapsible phase groups, short action view, expanded evidence, stable scroll and persisted reading markers.",
+      "evidence": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-044-03",
+      "severity": "high",
+      "status": "mitigated_open",
+      "problem": "Incident guidance depended on a model reply and manual incident state could not remain explicitly latched.",
+      "mitigation": "Immediate fixed procedure handoff, persisted manual latch and server enforcement. No approved procedure catalog or validated incident-recognition system exists.",
+      "evidence": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-044-04",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "Several Turkish aliases contained corrupted characters and could miss English source terminology.",
+      "mitigation": "Restored UTF-8 forms and supported ASCII variants. Exact alias tests and unchanged twenty-case numerical replay; not full morphology.",
+      "evidence": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-044-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "A quoted original passage may not semantically support the generated finding, applicability claim or caution.",
+      "mitigation": "Show basis, exact quote, location, interpretation and limitation. Do not claim semantic validation; independent expert review and live model acceptance remain required.",
+      "evidence": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-044-02",
+      "severity": "high",
+      "status": "open",
+      "problem": "The local corpus is not an approved site/vehicle emergency procedure catalog.",
+      "mitigation": "Incident view hides generated action cards and scenario applications. Experimental background is separately labeled. Do not infer extinguisher selection or operational settings.",
+      "evidence": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-044-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Offline fixtures cannot demonstrate live Gemini communication quality or reliable production of useful summaries.",
+      "mitigation": "Single-call prompt and failure isolation implemented; no new live trial authorized. Manual quality rubric documented in the release report.",
+      "evidence": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-044-04",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Bounded retrieval and extraction may omit a relevant passage or experiment.",
+      "mitigation": "Keep original files accessible; do not claim complete document understanding or exhaustive prevention advice.",
+      "evidence": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-044-05",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "The first source-brief stylesheet used an undefined panel variable, producing pale text on a light card in dark mode.",
+      "mitigation": "Explicit light/dark surfaces and readable text colors; corrected after screenshot review before packaging.",
+      "evidence": [
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/browser/briefing-dark.jpg",
+        "qa/release-0.4.4/browser/briefing-light.jpg"
+      ]
+    },
+    {
+      "id": "D-045-01",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "Answers repeated the entered scenario and optional skills were not a versioned runtime contract.",
+      "mitigation": "Add focused versioned skill instructions, request diagnostics and cache identity. Prompt transport is testable; live concision is not yet demonstrated.",
+      "evidence": [
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ]
+    },
+    {
+      "id": "D-045-02",
+      "severity": "medium",
+      "status": "resolved_offline",
+      "problem": "Continue with AI only filled the composer and did not initiate a source-specific discussion.",
+      "mitigation": "Immediate source-focus request, server allowlist, same-source retrieval and explicit exit. Preserve the draft and guard duplicate pending requests.",
+      "evidence": [
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ]
+    },
+    {
+      "id": "D-045-03",
+      "severity": "low",
+      "status": "resolved_offline",
+      "problem": "Long safety cards, an inconspicuous summary label and redundant unknown controls made the UI hard to scan.",
+      "mitigation": "Numbered action list; supporting fields under Steps with sources; first-position AI label and clear optional gas entry.",
+      "evidence": [
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ]
+    },
+    {
+      "id": "D-045-04",
+      "severity": "high",
+      "status": "resolved_offline",
+      "problem": "Missing material aliases and a missing reviewed figure condition could obscure valid numerical evidence.",
+      "mitigation": "Normalize equivalent identities and add source-backed nominal figure settings. Preserve pure-cotton versus SIBAL differences and original provenance.",
+      "evidence": [
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ]
+    },
+    {
+      "id": "G-045-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "The reviewed textile numerical corpus does not provide interchangeable evidence for every cotton or fabric request.",
+      "mitigation": "Show closest composite context and unassessed reasons; never infer a pure-material result from a composite or claim exhaustive literature absence.",
+      "evidence": [
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ]
+    },
+    {
+      "id": "G-045-02",
+      "severity": "high",
+      "status": "open",
+      "problem": "A nominal 0-g or 1-g figure label is not a measured residual acceleration and separate fragments may not represent a joint trial.",
+      "mitigation": "Label nominal evidence and its source location; keep joint-trial status and avoid silently turning qualitative microgravity into zero.",
+      "evidence": [
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ]
+    },
+    {
+      "id": "G-045-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "A skill in the system instruction does not guarantee useful, concise or scientifically correct model output.",
+      "mitigation": "Hash and test actual injection; retain scientific validators and declare that live model quality is untested.",
+      "evidence": [
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ]
+    },
+    {
+      "id": "G-045-04",
+      "severity": "high",
+      "status": "open",
+      "problem": "A short checklist can lose applicability qualifications or be mistaken for an approved intervention procedure.",
+      "mitigation": "Keep when/unknown/check/limits and quotations accessible by step; preserve incident restrictions and defer voice support.",
+      "evidence": [
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ]
+    },
+    {
+      "id": "D-046-01",
+      "severity": "high",
+      "status": "resolved_implementation_verified",
+      "problem": "Desktop shared session/history, local-only Host handling and operator routes were unsuitable for anonymous public deployment.",
+      "mitigation": "Hosted visitor isolation, exact public origin, private environment credential and absent public key/shutdown endpoints verified by hosted regression tests and deployed visitor/origin/admin-boundary checks.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md",
+        "tests/hosted.test.mjs",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "D-046-02",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "Original-file delivery lacked HEAD/range semantics needed for public PDF seeking and bounded resumed transfer.",
+      "mitigation": "Single byte ranges, If-Range, strong ETag, 64 KiB streaming and descriptor cleanup retain source hash verification. Focused file/dataset 11/11 passed, followed by full regressions and deployed PDF-range and split-volume CSV checks. Complete dataset transfer is tracked separately in G-046-04.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md",
+        "tests/file-response.test.mjs",
+        "tests/dataset.test.mjs",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "D-046-03",
+      "severity": "low",
+      "status": "resolved_implementation_verified",
+      "problem": "Desktop key controls and Saved on this device wording misrepresented shared hosted operation.",
+      "mitigation": "Hide operator key/shutdown controls and describe browser-linked history on this server.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md",
+        "tests/hosted.test.mjs",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "G-046-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "An anonymous public service can consume the shared Gemini quota and finite compute without login or per-user admission limits.",
+      "mitigation": "Keep key server-side; monitor provider failures, traffic and resource use; report actual availability rather than unlimited capacity. No rate/admission gate was added without the requested access policy changing.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md"
+      ],
+      "releaseEvidenceStatus": "pending_final_0.4.6_receipts"
+    },
+    {
+      "id": "G-046-02",
+      "severity": "high",
+      "status": "open",
+      "problem": "The target has approximately498MBRAM and4GBswap; concurrent context retrieval or repeated source hashing may exhaust memory or cause long delays.",
+      "mitigation": "Share immutable dataset, release response maps, reclaim idle contexts, stream originals and monitor swap/latency. No load capacity or concurrency SLA established.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md"
+      ],
+      "releaseEvidenceStatus": "pending_final_0.4.6_receipts"
+    },
+    {
+      "id": "G-046-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Anonymous cookie identity has no account recovery; history/cache files have no automatic retention policy. Cookie loss can strand history and growth can consume disk.",
+      "mitigation": "Use HTTPS HttpOnly cookie and private0700state root/0600secret; explain server retention, monitor storage, and preserve signing secret during ordinary restart.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md"
+      ],
+      "releaseEvidenceStatus": "pending_final_0.4.6_receipts"
+    },
+    {
+      "id": "G-046-04",
+      "severity": "high",
+      "status": "open",
+      "problem": "Metadata readiness alone cannot establish complete remote dataset transfer or byte identity.",
+      "mitigation": "Retain per-file transfer/hash readback and pinned index verification separately; expose missing source failures instead of claiming all originals available.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md"
+      ],
+      "releaseEvidenceStatus": "full_dataset_remote_hash_readback_pending"
+    },
+    {
+      "id": "G-046-05",
+      "severity": "high",
+      "status": "open",
+      "problem": "IP certificate issuance/renewal failure or HTTP publication would break confidentiality for anonymous visitor credentials and conversations.",
+      "mitigation": "Require public HTTPS, verify certificate identity/expiry and automated renewal/reload; retain actual deployment receipt. Explicit HTTP development support is not production acceptance.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md"
+      ],
+      "releaseEvidenceStatus": "pending_final_0.4.6_receipts"
+    },
+    {
+      "id": "G-046-06",
+      "severity": "medium",
+      "status": "open",
+      "problem": "One successful basic-conversation live response does not establish continuing provider quota, scientific usefulness, public-server capacity or post-optimization latency.",
+      "mitigation": "Record exactly one authorized real Gemini trial separately from zero-real-call offline/browser tests: HTTP 200, local validation passed, gemini-3.1-flash-lite, 48.12 seconds, no private history and no automatic retry. This trial preceded D-046-06; no post-fix live call was made. Retain scientific-usefulness, load/capacity and future availability as open.",
+      "evidence": [
+        "docs/HOSTED_DEPLOYMENT_046.md",
+        "qa/release-0.4.6/live-trial.json",
+        "qa/release-0.4.6/linux-tests.json"
+      ],
+      "releaseEvidenceStatus": "pending_final_0.4.6_receipts"
+    },
+    {
+      "id": "D-046-04",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "After Continue with AI, the focus banner was inserted as a second direct grid child of #ai-panel. Collapsing the 0fr row could hide only the banner while leaving the conversation visible.",
+      "mitigation": "Place the focus banner inside .ai-panel-inner so the animated panel keeps one grid child. Hosted regression and reviewed controlled browser checks verify collapse, reopening and saved focused history. Final full-suite and portable checks passed; complete dataset readback and package sealing are separate.",
+      "evidence": [
+        "tests/hosted.test.mjs",
+        "qa/release-0.4.6/browser/review.json",
+        "qa/release-0.4.6/browser-headless/review.json",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "D-046-05",
+      "severity": "low",
+      "status": "resolved_implementation_verified",
+      "problem": "The legacy four-record test fixture was loaded from a hardcoded Windows Desktop path, preventing an otherwise equivalent Linux offline suite.",
+      "mitigation": "Allow PSI_METADATA_DIR in the test, retaining the previous Windows fallback. The isolated initial Linux run passed 495 of 496 tests with zero failures and one Windows-only DPAPI skip; original source/fixture hashes and logs are preserved as linux-initial-*. Fresh post-D-046-06 Linux evidence is recorded separately in linux-tests.json/log. No production matching behavior changes.",
+      "evidence": [
+        "tests/app.test.mjs",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-initial-tests.json",
+        "qa/release-0.4.6/linux-initial-tests.log",
+        "qa/release-0.4.6/linux-initial-source-fixture-manifest.json",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "D-046-06",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "Research-mode greeting, language-only and clarification turns with no permitted source IDs still invoked dataset context retrieval. The single pre-fix live trial took 48.12 seconds, including approximately 28 seconds before provider dispatch; a complete causal latency attribution was not established.",
+      "mitigation": "Skip contextProvider only when research mode has an empty permitted-source list. A 34-test focused offline run verified zero lookups for non-ranking turns and retained legitimate two-source research retrieval. The historical pre-panel snapshot passed Windows 497/497 and Linux 496 with one platform skip out of 497, preserved as windows-pre-panel-tests.log and linux-pre-panel-*. The final UI-source regression passed Windows 499/499 and Linux 498 with zero failures and one Windows-only DPAPI skip out of 499, bound to linux-source-fixture-manifest.json. No numerical/scientific semantics change, measured latency improvement or post-fix live-model acceptance is claimed.",
+      "evidence": [
+        "lib/gemini.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.4.6/context-retrieval-tests.log",
+        "qa/release-0.4.6/live-trial.json",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/browser-headless/review.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "D-046-07",
+      "severity": "low",
+      "status": "resolved_implementation_verified",
+      "problem": "The user preferred the standalone demo Safety panel visual hierarchy and the Conditions sliders-horizontal icon, while retaining the application design everywhere else.",
+      "mitigation": "Scoped Safety-only CSS and real title/checklist/evidence presentation, plus static Lucide shield-check/sliders-horizontal SVGs and full notices. Conditions fields/behavior and other layouts remain unchanged. No renderer text, synthetic recommendation or scientific behavior imported. Before/after desktop/mobile screenshots were visually reviewed; 13 controlled browser checks and the 17-test focused run passed.",
+      "evidence": [
+        "public/index.html",
+        "public/safety-steps.css",
+        "public/recommendations-panel.mjs",
+        "public/app.js",
+        "public/THIRD_PARTY_NOTICES.txt",
+        "tests/safety-panel-controls.test.mjs",
+        "qa/release-0.4.6/safety-design/focused-tests.log",
+        "qa/release-0.4.6/safety-design/before-review.json",
+        "qa/release-0.4.6/safety-design/after-review.json",
+        "qa/release-0.4.6/safety-design/icon-sources.json",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "D-046-08",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "The demo collapse control stayed on the right instead of moving with the Safety panel left edge; carrying that behavior over would separate the control from its panel and impair access. A collapsed panel must remain a slim reopenable rail.",
+      "mitigation": "setRecommendationsExpanded is the single manual/incident transition. It synchronizes aria-expanded, hidden/inert state and focus return, while preserving the control icons, reading marks and expanded evidence. The duplicate old click handler was removed. At 1440 px the same control travels 392 px with the panel left edge and remains inset by 13 px. Unit tests cover visibility and focus retention; controlled browser checks cover Enter activation, source links, reading-state persistence and 390 px mobile access. Escape handling is implemented but not separately claimed visually exercised.",
+      "evidence": [
+        "public/index.html",
+        "public/safety-steps.css",
+        "public/recommendations-panel.mjs",
+        "public/app.js",
+        "public/THIRD_PARTY_NOTICES.txt",
+        "tests/safety-panel-controls.test.mjs",
+        "qa/release-0.4.6/safety-design/focused-tests.log",
+        "qa/release-0.4.6/safety-design/before-review.json",
+        "qa/release-0.4.6/safety-design/after-review.json",
+        "qa/release-0.4.6/safety-design/icon-sources.json",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "D-047-01",
+      "severity": "low",
+      "status": "resolved_implementation_verified",
+      "problem": "Research and incident entry priority was unequal; Conditions labels and unit/helper placement confused first-time users.",
+      "mitigation": "Equal entry cards and explicit optional-field explanations; no scientific score change.",
+      "related": [
+        "FIF-080",
+        "FIF-081",
+        "FIF-082",
+        "FIF-083",
+        "FIF-084"
+      ],
+      "evidence": [
+        "docs/INCIDENT_AND_READING_047.md",
+        "qa/release-0.4.7/test-results.log",
+        "qa/release-0.4.7/portable-verification.json",
+        "qa/release-0.4.7/public-browser/review.json"
+      ]
+    },
+    {
+      "id": "D-047-02",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "A short nested document box and per-page navigation interrupted long report reading.",
+      "mitigation": "Continuous original PDF pages, bounded rendering, stable scroll and direct optional page access.",
+      "related": [
+        "FIF-080",
+        "FIF-081",
+        "FIF-082",
+        "FIF-083",
+        "FIF-084"
+      ],
+      "evidence": [
+        "docs/INCIDENT_AND_READING_047.md",
+        "qa/release-0.4.7/test-results.log",
+        "qa/release-0.4.7/portable-verification.json",
+        "qa/release-0.4.7/public-browser/review.json"
+      ]
+    },
+    {
+      "id": "D-047-03",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "General knowledge requests could trigger unnecessary input forms and repeated questions.",
+      "mitigation": "Explicit assistance intent and server form-request gate; source validation retained and prompt cache version changed.",
+      "related": [
+        "FIF-080",
+        "FIF-081",
+        "FIF-082",
+        "FIF-083",
+        "FIF-084"
+      ],
+      "evidence": [
+        "docs/INCIDENT_AND_READING_047.md",
+        "qa/release-0.4.7/test-results.log",
+        "qa/release-0.4.7/portable-verification.json",
+        "qa/release-0.4.7/public-browser/review.json"
+      ]
+    },
+    {
+      "id": "G-047-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "Generative incident advice is not independently validated for emergency operations, spacecraft procedures or all failure modes.",
+      "mitigation": "General protective prompt boundaries, no equipment/atmosphere/airlock/agent prescriptions, actual emergency-authority handoff. Human domain review remains open.",
+      "related": [
+        "FIF-080",
+        "FIF-081",
+        "FIF-082",
+        "FIF-083",
+        "FIF-084"
+      ],
+      "evidence": [
+        "docs/INCIDENT_AND_READING_047.md",
+        "qa/release-0.4.7/test-results.log"
+      ]
+    },
+    {
+      "id": "G-047-02",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Real voice provider availability, permissions, audio behavior and latency are not established by offline mocks.",
+      "mitigation": "Explicit user action, bounded connection/response timeouts, no auto retries, text fallback and immediate offline protective notice. Fresh authorized live trial remains separate.",
+      "related": [
+        "FIF-080",
+        "FIF-081",
+        "FIF-082",
+        "FIF-083",
+        "FIF-084"
+      ],
+      "evidence": [
+        "docs/INCIDENT_AND_READING_047.md",
+        "qa/release-0.4.7/test-results.log"
+      ]
+    },
+    {
+      "id": "G-047-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "A public voice entry can consume provider audio quota and lose connectivity; the application is not an emergency communications service.",
+      "mitigation": "Short-lived tokens, bounded local queues, stop controls, no duplicate automatic requests and explicit actual-authority guidance. No availability or capacity guarantee.",
+      "related": [
+        "FIF-080",
+        "FIF-081",
+        "FIF-082",
+        "FIF-083",
+        "FIF-084"
+      ],
+      "evidence": [
+        "docs/INCIDENT_AND_READING_047.md",
+        "qa/release-0.4.7/test-results.log"
+      ]
+    },
+    {
+      "id": "G-047-04",
+      "severity": "medium",
+      "status": "open",
+      "problem": "PDF lazy rendering may encounter corrupt/encrypted pages or browser memory constraints.",
+      "mitigation": "Page-local errors, original-file access, bounded concurrent render/canvas retention and stale-render cancellation.",
+      "related": [
+        "FIF-080",
+        "FIF-081",
+        "FIF-082",
+        "FIF-083",
+        "FIF-084"
+      ],
+      "evidence": [
+        "docs/INCIDENT_AND_READING_047.md",
+        "qa/release-0.4.7/test-results.log"
+      ]
+    },
+    {
+      "id": "D-047-04",
+      "severity": "high",
+      "status": "resolved_implementation_verified",
+      "problem": "Voice restart or transition from text lost visible current incident context.",
+      "mitigation": "Locked initial history handshake preserves up to eight whole finalized turns and 6000 characters. No research history is included.",
+      "evidence": [
+        "tests/incident-voice.test.mjs",
+        "qa/release-0.4.7/incident-ui/review.json",
+        "qa/release-0.4.7/test-results.log"
+      ],
+      "release": "0.4.7"
+    },
+    {
+      "id": "D-047-05",
+      "severity": "high",
+      "status": "resolved_implementation_verified",
+      "problem": "Eight-second PCM queue rejected normal rapidly delivered answers.",
+      "mitigation": "Bounded60-second queue; tested30-second burst, boundary, overflow, interruption and end.",
+      "evidence": [
+        "tests/incident-voice.test.mjs",
+        "qa/release-0.4.7/test-results.log"
+      ],
+      "release": "0.4.7"
+    },
+    {
+      "id": "D-047-06",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "Rejected oversized provider body could retain active transport until timeout cleanup.",
+      "mitigation": "Cancel oversized body and abort rejected provider work before releasing busy state; private errors redacted.",
+      "evidence": [
+        "tests/incident-service.test.mjs",
+        "qa/release-0.4.7/test-results.log"
+      ],
+      "release": "0.4.7"
+    },
+    {
+      "id": "D-047-07",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "Voice assistant turn above2000 characters could break text fallback despite total bounded history.",
+      "mitigation": "Preserve whole history under6000 total including new message; new messages stay<=2000. Reject over-total without truncating qualifiers.",
+      "evidence": [
+        "tests/incident-service.test.mjs",
+        "qa/release-0.4.7/test-results.log"
+      ],
+      "release": "0.4.7"
+    },
+    {
+      "id": "D-047-08",
+      "severity": "low",
+      "status": "resolved_implementation_verified",
+      "problem": "Workspace-entry stylesheet missing from static allowlist caused404 in actual app.",
+      "mitigation": "Register stylesheet in static serving, portable build and exact byte/MIME checks.",
+      "evidence": [
+        "qa/release-0.4.7/information-flow/review.json",
+        "scripts/verify-portable.mjs",
+        "qa/release-0.4.7/test-results.log"
+      ],
+      "release": "0.4.7"
+    },
+    {
+      "id": "D-048-01",
+      "severity": "high",
+      "status": "resolved_implementation_verified",
+      "problem": "Provider-neutral vault could send a legacy Gemini key to OpenAI.",
+      "mitigation": "Separate credentials.openai.dpapi; no old-key fallback or overwrite.",
+      "release": "0.4.8",
+      "evidence": [
+        "docs/OPENAI_MIGRATION_048.md",
+        "qa/release-0.4.8/test-results.log",
+        "qa/release-0.4.8/browser/review.json",
+        "qa/release-0.4.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-048-02",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "Gemini protocol envelopes and errors cannot be parsed as OpenAI Responses.",
+      "mitigation": "Native typed-output extraction, status/refusal/incomplete/error handling and safe diagnostic mapping.",
+      "release": "0.4.8",
+      "evidence": [
+        "docs/OPENAI_MIGRATION_048.md",
+        "qa/release-0.4.8/test-results.log",
+        "qa/release-0.4.8/browser/review.json",
+        "qa/release-0.4.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-048-03",
+      "severity": "medium",
+      "status": "resolved_implementation_verified",
+      "problem": "Historical Gemini messages could be relabelled as OpenAI.",
+      "mitigation": "Detect provider from original receipt; preserve old conversation records.",
+      "release": "0.4.8",
+      "evidence": [
+        "docs/OPENAI_MIGRATION_048.md",
+        "qa/release-0.4.8/test-results.log",
+        "qa/release-0.4.8/browser/review.json",
+        "qa/release-0.4.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D-048-04",
+      "severity": "high",
+      "status": "resolved_implementation_verified",
+      "problem": "Legacy voice connection is incompatible with OpenAI and could leak credential/session state.",
+      "mitigation": "Server SDP negotiation with no bearer token in browser, explicit cancellation and isolated incident history.",
+      "release": "0.4.8",
+      "evidence": [
+        "docs/OPENAI_MIGRATION_048.md",
+        "qa/release-0.4.8/test-results.log",
+        "qa/release-0.4.8/browser/review.json",
+        "qa/release-0.4.8/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G-048-01",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Only text account/model access was live-verified; full scientific workflow latency and native Realtime Mini audio access/quality are not established.",
+      "mitigation": "Require separately authorized real provider test; document actual evidence without retrying automatically.",
+      "release": "0.4.8",
+      "evidence": [
+        "docs/OPENAI_MIGRATION_048.md",
+        "qa/release-0.4.8/live-trial-status.json"
+      ]
+    },
+    {
+      "id": "G-048-02",
+      "severity": "high",
+      "status": "open",
+      "problem": "Generated emergency advice is not independently operationally validated.",
+      "mitigation": "Preserve protective bounds and procedure handoff; no certification or emergency-dispatch claim.",
+      "release": "0.4.8",
+      "evidence": [
+        "docs/OPENAI_MIGRATION_048.md"
+      ]
+    },
+    {
+      "id": "G-048-03",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Reasoning can consume the previous output budget before valid structured output is complete.",
+      "mitigation": "Fail closed with explicit incomplete status; measure authorized trial before changing budgets.",
+      "release": "0.4.8",
+      "evidence": [
+        "docs/OPENAI_MIGRATION_048.md"
+      ]
+    },
+    {
+      "id": "D-049-01",
+      "severity": "high",
+      "status": "implemented_verification_pending",
+      "problem": "Production JSON-object requests can be rejected although a plain-OK connectivity canary succeeds. Input lacked an explicit server-controlled JSON instruction.",
+      "mitigation": "Add the input instruction, preflight the actual envelope and exercise source-free/source-bearing production payloads. No retry/model change.",
+      "release": "0.4.9",
+      "evidence": [
+        "docs/OPENAI_INPUT_049.md",
+        "tests/openai-provider.test.mjs"
+      ]
+    },
+    {
+      "id": "D-049-02",
+      "severity": "medium",
+      "status": "implemented_verification_pending",
+      "problem": "Prior diagnostics discarded the provider error code, preventing a fully confirmed explanation of the observed input HTTP400.",
+      "mitigation": "Retain only allowlisted provider codes/categories and privacy-safe input shape flags. Never retain raw provider messages, private context or credentials.",
+      "release": "0.4.9",
+      "evidence": [
+        "docs/OPENAI_INPUT_049.md",
+        "tests/openai-provider.test.mjs"
+      ]
+    },
+    {
+      "id": "G-049-01",
+      "severity": "medium",
+      "status": "open",
+      "problem": "The original HTTP400 cause is probable, not fully confirmed, and no production-shaped live-provider trial is included in this hotfix work.",
+      "mitigation": "Keep offline/portable/browser/deployment evidence separate from real-provider acceptance. A future live trial needs explicit authorization; no automatic paid retry.",
+      "release": "0.4.9",
+      "evidence": [
+        "docs/OPENAI_INPUT_049.md"
+      ]
+    },
+    {
+      "id": "D-0410-01",
+      "severity": "low",
+      "status": "implemented_verification_pending",
+      "problem": "The prior header lacked the requested AISTRO/ASTROBEE identity and kept the theme switch in the header.",
+      "mitigation": "Copy supplied JPEGs byte-identical, use a responsive header and move the existing theme control into Settings / Appearance.",
+      "release": "0.4.10",
+      "evidence": [
+        "docs/AISTRO_WORKFLOW_0410.md",
+        "qa/release-0.4.10/branding-assets.json",
+        "qa/release-0.4.10/branding-layout.json"
+      ]
+    },
+    {
+      "id": "D-0410-02",
+      "severity": "medium",
+      "status": "implemented_verification_pending",
+      "problem": "Explicit dialogue measurements could leave the form and same-turn analysis conditions out of sync.",
+      "mitigation": "Parse bounded explicit current-turn values before retrieval/scoring; guard UI updates on success, provider failure and in-flight manual edits.",
+      "release": "0.4.10",
+      "evidence": [
+        "docs/AISTRO_WORKFLOW_0410.md",
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.4.10/browser-conditions/review.json"
+      ]
+    },
+    {
+      "id": "G-0410-01",
+      "severity": "high",
+      "status": "open",
+      "problem": "Unsupported or ambiguous natural-language values may be misread; parsed conditions are user context, not verified sensor measurements.",
+      "mitigation": "Use conservative current-turn grammar, skip quoted/source/hypothetical/conflicting input and preserve exact quote/unit/conversion receipts. Model-only suggestions retain manual review.",
+      "release": "0.4.10",
+      "evidence": [
+        "docs/AISTRO_WORKFLOW_0410.md",
+        "tests/dialogue-conditions.test.mjs"
+      ]
+    },
+    {
+      "id": "G-0410-02",
+      "severity": "medium",
+      "status": "open",
+      "problem": "Prepared graph coverage is bounded/additive and requires separate distribution/readback; it does not recover every PDF/binary graph or independently validate science.",
+      "mitigation": "Keep generated source-table, documented image and prior equation origins distinct; enforce source/data SHA and reader bounds, and report missing add-on explicitly.",
+      "release": "0.4.10",
+      "evidence": [
+        "docs/AISTRO_WORKFLOW_0410.md",
+        "tests/prepared-graphs.test.mjs",
+        "tests/prepared-graph-reader.test.mjs"
+      ]
+    },
+    {
+      "id": "D-051-01",
+      "severity": "high",
+      "problem": "Recoverable voice response/transcription failures can incorrectly end the conversation instead of returning to a usable listening/text state.",
+      "requirements": [
+        "FIF-091"
+      ],
+      "rootCause": "Code-level lifecycle paths are addressed; no proof that this caused the user-reported approximately three-second session.",
+      "mitigation": "Distinguish response-level interruption from terminal transport/session failure; label partial output and preserve context.",
+      "release": "0.5.1",
+      "status": "implementation_verified_acceptance_open",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope.",
+      "verification": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "D-051-02",
+      "severity": "high",
+      "problem": "Concurrent responses, transient RTC disconnects and blocked autoplay can interrupt useful voice guidance.",
+      "requirements": [
+        "FIF-092"
+      ],
+      "rootCause": "Engineering failure modes, not a confirmed reconstruction of the reported user session.",
+      "mitigation": "Serialize responses; bounded RTC grace; explicit Enable audio recovery; retain model/token/time controls.",
+      "release": "0.5.1",
+      "status": "implementation_verified_acceptance_open",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope.",
+      "verification": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "D-051-03",
+      "severity": "high",
+      "problem": "Generic reassurance and unsupported operational advice can miss the next protective decision or imply user competence.",
+      "requirements": [
+        "FIF-093"
+      ],
+      "rootCause": "Prompt policy did not sufficiently prioritize fact-dependent concise decisions and continuity.",
+      "mitigation": "Next supported protective action, at most one useful question, no default stay-put/reassurance loop or invented equipment procedure.",
+      "release": "0.5.1",
+      "status": "implementation_verified_acceptance_open",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope.",
+      "verification": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "D-051-04",
+      "severity": "medium",
+      "problem": "Safety purpose, explicit ignition research intent and evolving checklist relevance need clearer separation.",
+      "requirements": [
+        "FIF-094",
+        "FIF-095"
+      ],
+      "rootCause": "Product/prompt guidance can overgeneralize safety or retain weak generic checklist actions.",
+      "mitigation": "Preserve educational intent, strengthen new source findings and conditional single-action steps; remove invalidated guidance.",
+      "release": "0.5.1",
+      "status": "implementation_verified_acceptance_open",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope.",
+      "verification": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "D-051-05",
+      "severity": "medium",
+      "problem": "Safety may be overlooked or attention may repeat unnecessarily after saved-state restore.",
+      "requirements": [
+        "FIF-096"
+      ],
+      "rootCause": "Presentation/notification lifecycle needs explicit fresh validated-result boundaries.",
+      "mitigation": "Concise primary empty state; finite accessible attention on accepted new findings only; no restore pulse.",
+      "release": "0.5.1",
+      "status": "implementation_verified_acceptance_open",
+      "evidence": [
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope.",
+      "verification": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open."
+    },
+    {
+      "id": "G-051-01",
+      "severity": "high",
+      "problem": "The cause of the user-reported approximately three-second voice session is unconfirmed.",
+      "mitigation": "Keep report separate from code-level failure modes. Capture privacy-preserving lifecycle/error receipts only in a separately authorized live trial; do not infer the cause from mocked success.",
+      "status": "open",
+      "release": "0.5.1",
+      "evidence": [
+        "docs/SAFETY_VOICE_051.md",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ]
+    },
+    {
+      "id": "G-051-02",
+      "severity": "high",
+      "problem": "Prompt contracts and mocked transport tests do not establish safe, useful live voice/model behavior or an approved emergency procedure.",
+      "mitigation": "Maintain non-dispatch limits, source boundaries and approved-authority handoff. Independent safety review and separately authorized live acceptance remain open.",
+      "status": "open",
+      "release": "0.5.1",
+      "evidence": [
+        "docs/SAFETY_VOICE_051.md",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ]
+    },
+    {
+      "id": "G-051-03",
+      "severity": "medium",
+      "problem": "Finite visual attention and audio resume may vary by browser, assistive technology and reduced-motion settings.",
+      "mitigation": "Controlled browser readback must cover reduced motion, finite attention, focus, audio resume and restore deduplication; broader device/assistive-technology acceptance remains separate.",
+      "status": "open",
+      "release": "0.5.1",
+      "evidence": [
+        "docs/SAFETY_VOICE_051.md",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ]
+    },
+    {
+      "id": "G-051-04",
+      "severity": "medium",
+      "problem": "Fresh AWS mocked-suite, browser and package receipts are pending; local EXE execution is not authorized in this task.",
+      "mitigation": "AWS Linux: 609 passed, 0 failed, 1 Windows-only test skipped (610 total); isolated network, mocked provider. Public UI toggle/empty Safety readback; no real voice/microphone/provider or local EXE trial. Full emergency/clinical/scientific acceptance and Class C assurance remain open.",
+      "status": "open_acceptance_limits",
+      "release": "0.5.1",
+      "evidence": [
+        "docs/SAFETY_VOICE_051.md",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ]
+    },
+    {
+      "id": "D-052-01",
+      "severity": "medium",
+      "classification": "User-requested feature retirement; low visual preference, functional provider/microphone boundary change",
+      "problem": "The separate Incident Support experience is not acceptable to the user. The entry must open the existing Safety workspace instead.",
+      "mitigation": "Remove active UI/service construction and production voice assets; return410 at retired routes before provider work. Preserve normal research chat and Safety content.",
+      "status": "implementation_verified_acceptance_limits_recorded",
+      "release": "0.5.2",
+      "evidence": [
+        "tests/safety-panel-controls.test.mjs",
+        "tests/incident-service.test.mjs",
+        "tests/openai-integration.test.mjs",
+        "qa/release-0.5.2/aws/test-summary.json",
+        "qa/release-0.5.2/browser/readback.json"
+      ],
+      "verification": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    }
+  ]
+}

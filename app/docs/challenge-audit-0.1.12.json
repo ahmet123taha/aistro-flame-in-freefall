@@ -1,0 +1,16 @@
+{
+  "version": "0.1.12",
+  "checkedDate": "2026-11-14",
+  "challenge": {
+    "url": "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/",
+    "response": "502 Bad Gateway",
+    "fullRequirementsVerified": false
+  },
+  "source": {
+    "url": "https://ntrs.nasa.gov/citations/20210011385",
+    "status": "live metadata available",
+    "documentId": "20210011385",
+    "localEquationEvidence": "qa/bass-boundary-083.png, pinned report PDF83 Equation6.1"
+  },
+  "newResourcesVerified": false
+}

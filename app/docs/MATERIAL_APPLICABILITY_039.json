@@ -1,0 +1,113 @@
+{
+  "version": "0.3.9",
+  "previousVersion": "0.3.8",
+  "requirement": "FIF-049",
+  "findings": [
+    {
+      "id": "D039-03",
+      "severity": "low",
+      "status": "resolved_with_browser_layout_evidence",
+      "problem": "Long original-source hashes and paths could force the flex source card wider than the visible panel.",
+      "mitigation": "Allow source-card text to shrink and wrap provenance strings; bound material-property table columns. Keep applicability in a sibling disclosure outside the original PSI series. No scoring change.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D039-01",
+      "severity": "high",
+      "status": "prevented_by_separate_namespace_and_tests",
+      "problem": "Mixing third-party property data into PSI records could falsely attribute measurements, inflate proximity or permit unsupported citations.",
+      "mitigation": "Use an optional, validated MAT sidecar. Keep all third-party context outside sources/evidence, tables, trial rows and material suggestions. Provide a separate applicability object and UI subsection. No numerical scoring change.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D039-02",
+      "severity": "high",
+      "status": "quarantined_pending_original_identity_resolution",
+      "problem": "A PP source metadata file names polypropylene but its short description names PVC. Exact material identity is contradictory.",
+      "mitigation": "Exclude the candidate from active profiles; retain six original points in quarantined-profiles.json and leave polypropylene coverage pending. Do not silently choose a polymer.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G039-01",
+      "severity": "high",
+      "status": "open_scientific_and_transfer_review",
+      "problem": "Conductivity curves, family labels and specimen temperatures do not establish environmental combustion tolerances or equal burning.",
+      "mitigation": "Keep all adjustments disabled. Expose grade/geometry/conditioning and uncertainty gaps. PMMA thickness, cotton construction and nylon-grade inconsistencies remain explicit. No source-family data are substituted for SIBAL, paper, fiberglass or other uncovered materials.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    },
+    {
+      "id": "G039-02",
+      "severity": "medium",
+      "status": "open_additional_adapters_and_coverage",
+      "problem": "The active cohort covers 11 conductivity profiles /66 points/7 families.22 of29 material coverage rows remain pending; volumetric heat-capacity units do not satisfy the mass-specific v1 schema.",
+      "mitigation": "Retain originals in Third_Party. Add independently reviewed property/axis adapters with explicit units/phase and source checks; do not force unknown values through the existing adapter. No new model training or external web retrieval.",
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ]
+    }
+  ],
+  "implementation": [
+    "lib/material-identity.mjs",
+    "lib/material-support-store.mjs",
+    "lib/material-applicability.mjs",
+    "lib/dataset.mjs",
+    "lib/gemini.mjs",
+    "lib/research.mjs",
+    "lib/research-coverage.mjs",
+    "public/material-support-card.mjs",
+    "public/environment-panel.mjs",
+    "public/app.js",
+    "public/index.html",
+    "server.mjs"
+  ],
+  "verification": [
+    "tests/material-support.test.mjs",
+    "qa/release-0.3.9/test-results.log",
+    "qa/release-0.3.9/material-sensitivity/verification.json",
+    "qa/release-0.3.9/dataset-integration.json",
+    "qa/release-0.3.9/browser-review.json",
+    "qa/release-0.3.9/browser-events.json",
+    "qa/release-0.3.9/portable-verification.json"
+  ],
+  "numericalScoreAdjustment": false,
+  "realProviderCalls": 0,
+  "standardsStatus": "NPR7150.2D Class C remains an incomplete engineering target, not certification."
+}

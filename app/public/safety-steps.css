@@ -1,0 +1,135 @@
+.safety-phase{margin:0 0 1.1rem;padding:1rem 0;border-bottom:1px solid var(--border,#41505e)}
+.safety-phase>h3{font-size:1rem;margin:0 0 .7rem;display:flex;justify-content:space-between;gap:.5rem}
+.safety-phase>h3 small{font-weight:400;color:var(--muted,#a4b6c4)}
+.safety-step-list{padding-left:1.5rem;margin:.5rem 0}
+.safety-step{padding:.25rem 0 1rem .25rem;margin:0 0 .7rem;border-bottom:1px solid var(--border,#41505e)}
+.safety-step:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.safety-step::marker{font-weight:700;color:var(--accent,#80cfc4)}
+.safety-step h4{font-size:1rem;margin:.3rem 0 .6rem;line-height:1.45}
+.safety-step p{margin:.45rem 0;line-height:1.5;overflow-wrap:anywhere}
+.safety-step .step-action{font-weight:600}
+.safety-step small,.safety-scope{font-size:.78rem;line-height:1.45;color:var(--muted,#a4b6c4)}
+.safety-step details{margin-top:.65rem}
+.safety-step blockquote{margin:.6rem 0;padding:.7rem;border-left:2px solid var(--accent,#80cfc4);overflow-wrap:anywhere}
+.safety-avoid>h3{color:#e9986b}
+.safety-incident,.safety-stale{padding:.9rem;border-left:3px solid #e9986b;background:rgba(192,116,49,.09);line-height:1.6}
+.safety-incident h3{font-size:1rem}.safety-incident ol{padding-left:1.35rem}.safety-incident li{margin:.8rem 0}
+.safety-legacy{margin:1rem 0}.safety-legacy>ol{padding-left:1.5rem}
+@media(prefers-reduced-motion:reduce){.safety-phase,.safety-step{animation:none;transition:none}}
+
+/* 0.4.4: compact action view; supporting evidence expands in place. */
+#incident-access{border-color:#aa703d;color:#d99b65}#incident-access[aria-pressed=true]{background:#542e19;color:#ffe4cf}
+.safety-overview{padding:.8rem 0 1rem;border-bottom:1px solid var(--line);font-size:.9rem}.safety-overview p{line-height:1.5}.safety-overview small{display:block;margin:.5rem 0}
+.safety-phase>summary{display:flex;align-items:center;gap:.6rem;cursor:pointer;list-style:none}.safety-phase>summary::before{content:'▸';color:var(--teal)}.safety-phase[open]>summary::before{content:'▾'}
+.safety-phase>summary h3{margin:0;flex:1;font-size:1rem}.safety-phase>summary small{border:1px solid var(--line);border-radius:1rem;padding:.15rem .55rem}
+.safety-avoid>summary h3{color:#d99261}.step-heading{display:flex;justify-content:space-between;gap:.5rem;font-size:.75rem;color:var(--muted,#91a6b7)}
+.safety-step .step-action{font-size:.95rem}.safety-step .step-when{font-size:.85rem}.safety-step details{padding:.4rem 0}.safety-step details summary{cursor:pointer;color:var(--teal)}
+.safety-review-label{display:flex;gap:.5rem;align-items:center;margin:.7rem 0 0!important;font-size:.8rem;font-weight:400}.safety-review-label input{width:16px;height:16px;margin:0;accent-color:var(--teal)}
+.safety-step.is-reviewed{border-left:2px solid var(--teal);padding-left:.6rem}.safety-incident small{font-size:.7rem;letter-spacing:.04em}.safety-incident li strong{display:block}
+.source-briefing{margin:1rem 0 1.5rem;max-width:100%}.source-briefing>h3{font-size:1.1rem}.source-brief{border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:8px;padding:1rem;margin:.8rem 0;background:var(--panel,#f7f9fa);overflow-wrap:anywhere}
+.source-brief h4{font-size:1rem;line-height:1.45;margin:.6rem 0}.source-brief p{margin:.6rem 0;line-height:1.55}.brief-label{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem;color:var(--teal);font-size:.8rem}.brief-label small{color:var(--muted,#8795a0)}
+.brief-finding{font-weight:600}.brief-limit,.brief-scope{font-size:.85rem;color:var(--muted,#8795a0)}.brief-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}.brief-actions button{font-size:.8rem;padding:.4rem .6rem}.source-brief details summary{cursor:pointer;font-size:.85rem}
+.source-brief blockquote{margin:.8rem 0;padding:.5rem .8rem;border-left:2px solid var(--teal);font-size:.85rem}.brief-review{padding:.6rem;border-left:2px solid #aa703d;font-size:.85rem}.paper-takeaways{margin:1rem 0}
+.conversation-message>p{white-space:pre-wrap}.recommendations{scrollbar-gutter:stable}
+@media(max-width:700px){#incident-access{font-size:.8rem;padding:.4rem .55rem}.source-brief{padding:.8rem}.brief-label{flex-direction:column}}
+.source-brief{background:#f6f8fa;color:#213440}.brief-limit,.brief-scope,.brief-label small{color:#526570}
+[data-theme=dark] .source-brief{background:#19232f;color:#e4eaf1}
+[data-theme=dark] .brief-limit,[data-theme=dark] .brief-scope,[data-theme=dark] .brief-label small{color:#b4c3ce}
+[data-theme=dark] .source-brief blockquote{color:#b4c3ce}
+
+/* 0.4.5: actions first; full, numbered evidence remains accessible below. */
+.safety-overview{padding:.65rem 0}.safety-overview p{font-size:.8rem;margin:.4rem 0;line-height:1.45}
+.safety-phase{padding:.75rem 0;margin:0 0 .5rem}
+.safety-step-list{padding-left:1.5rem;margin:.65rem 0 0}
+.safety-step{padding:.35rem 0 .45rem .2rem;margin:0;border-bottom:0}
+.safety-checkline{display:flex;align-items:flex-start;gap:.65rem}
+.safety-checkline .step-action{flex:1;margin:0;font-size:.9rem;font-weight:500;line-height:1.5}
+.safety-checkline .safety-review-label{flex:none;display:flex;justify-content:center;align-items:center;width:28px;min-height:28px;margin:0!important;cursor:pointer}
+.step-source-link{white-space:nowrap;color:var(--teal);font-size:.78rem;text-underline-offset:3px}
+.safety-sources{border-top:1px solid var(--line);padding-top:.8rem;margin-top:.8rem}
+.safety-sources>h3{font-size:1rem;margin:0 0 .65rem}
+.safety-step-source{padding:.65rem 0;border-bottom:1px solid var(--line);font-size:.85rem;scroll-margin-top:1rem;overflow-wrap:anywhere}
+.safety-step-source:target{outline:2px solid var(--teal);outline-offset:3px;border-radius:3px}
+.safety-step-source>summary{cursor:pointer;line-height:1.5;color:var(--teal)}
+.safety-step-source>summary span{color:var(--text);font-size:.8rem;font-weight:400}
+.safety-step-source p{line-height:1.5;margin:.6rem 0}
+.safety-step-source details{margin:.7rem 0}
+.safety-step-source blockquote{margin:.6rem 0;padding:.65rem;border-left:2px solid var(--teal);line-height:1.5}
+.step-source-actions{display:flex;gap:.45rem;flex-wrap:wrap;margin:.6rem 0 0}
+.step-source-actions button{font-size:.8rem;padding:.4rem .6rem}
+.safety-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.brief-label{justify-content:flex-start;align-items:center;gap:.4rem .65rem}
+.brief-ai-label{display:inline-block;flex:none;border:1px solid currentColor;border-radius:4px;padding:.18rem .4rem;font-size:.8rem;line-height:1.2}
+@media(max-width:700px){.brief-label{align-items:flex-start}.safety-checkline{gap:.35rem}}
+
+/* 0.4.6 selected handoff: Safety only; other workspace surfaces are unchanged. */
+.layout.scenario-first{--safety-rail-width:88px}
+.layout.scenario-first.narrow-right{grid-template-columns:var(--conditions-width) minmax(0,1fr) var(--safety-rail-width)}
+.scenario-first .recommendations,.scenario-first.narrow-right .recommendations{--safety-muted:#60727e;padding:0;min-width:0;overflow-x:hidden;scrollbar-gutter:auto}
+[data-theme=dark] .scenario-first .recommendations{--safety-muted:#a4b5c3}
+.recommendations .safety-panel-heading{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;padding:14px 12px;background:inherit;border-bottom:1px solid var(--line)}
+.recommendations #recommend-toggle{display:flex;align-items:center;justify-content:center;flex:none;min-width:36px;min-height:36px;padding:7px;margin:0;background:transparent}
+.recommendations .safety-panel-arrow{display:block;transition:transform 260ms ease}
+.recommendations #recommend-toggle[aria-expanded=true] .safety-panel-arrow{transform:rotate(180deg)}
+.recommendations .safety-toggle-symbol,.recommendations .safety-toggle-label{display:none}
+.recommendations #safety-panel-title{display:flex;align-items:center;gap:8px;font-size:14px;line-height:1.4;min-width:0}
+.recommendations #safety-panel-title>svg{width:20px;height:20px;flex:none;color:var(--teal)}
+.recommendations #recommend-count{margin:0;min-width:22px;height:22px;font-size:11px}
+.recommendations #recommend-body{display:block!important;padding:0 18px 20px}
+.recommendations #recommend-body[hidden]{display:none!important}
+.recommendations .safety-panel-subtitle{font-size:11px;color:var(--safety-muted);margin:14px 0 0}
+.narrow-right .recommendations .safety-panel-heading{padding:14px 12px;justify-content:flex-start;border-bottom:0}
+.narrow-right .recommendations #safety-panel-title{display:none}
+.narrow-right .recommendations #recommend-toggle{width:100%;flex-direction:column;gap:8px;padding:7px 0;font-size:10px;border-color:transparent}
+.narrow-right .recommendations .safety-panel-arrow{display:none}
+.narrow-right .recommendations .safety-toggle-symbol,.narrow-right .recommendations .safety-toggle-label{display:block}
+.narrow-right .recommendations .safety-toggle-symbol svg{display:block;width:20px;height:20px;color:var(--teal)}
+.recommendations .safety-overview{padding:12px 0 14px}
+.recommendations .safety-overview>strong{font-size:13px;font-weight:600}
+.recommendations .safety-overview p{font-size:11px;line-height:1.6;color:var(--safety-muted)}
+.recommendations .safety-overview button{font-size:11px;padding:6px 9px}
+.recommendations .safety-phase{padding:14px 0;margin:0;border-bottom:1px solid var(--line)}
+.recommendations .safety-phase>summary h3{font-size:12px;line-height:1.5;font-weight:600}
+.recommendations .safety-phase>summary small{font-size:10px;border:0;background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal);padding:2px 6px}
+.recommendations .safety-phase>.muted,.recommendations .safety-scope{font-size:11px;line-height:1.6}
+.recommendations .safety-step-list{list-style:none;padding:0;margin:14px 0 0}
+.recommendations .safety-step{padding:0;margin:0 0 16px;border:0}
+.recommendations .safety-checkline{gap:8px}
+.recommendations .safety-checkline .safety-review-label{order:-1;width:20px;min-height:22px;align-items:flex-start;padding-top:2px}
+.recommendations .safety-checkline .step-action{font-size:12px;line-height:1.65}
+.recommendations .safety-step.is-reviewed .step-action{color:var(--safety-muted)}
+.recommendations .step-source-link{display:inline-flex;align-items:center;justify-content:center;min-width:20px;min-height:20px;margin-left:3px;padding:0 4px;border-radius:4px;background:color-mix(in srgb,var(--teal) 12%,transparent);font-size:10px;text-decoration:none;vertical-align:super}
+.recommendations .safety-sources{border-top:0;padding-top:6px;margin-top:16px}
+.recommendations .safety-sources>h3{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--safety-muted);margin-bottom:10px}
+.recommendations .safety-step-source{border-top:1px solid var(--line);border-bottom:0;padding:11px 0;margin:0}
+.recommendations .safety-step-source>summary{font-size:12px;line-height:1.6}
+.recommendations .safety-step-source>summary strong{color:var(--teal);font-size:10px}
+.recommendations .safety-step-source>summary span{font-size:11px}
+.recommendations .safety-step-source p,.recommendations .safety-step-source blockquote{font-size:11px;line-height:1.65}
+.recommendations .step-source-actions button{font-size:11px}
+.recommendations .boundary{font-size:10px;line-height:1.6}
+#conditions-toggle .conditions-symbol{display:block;width:20px;height:20px;flex:none}
+.conditions-collapsed #conditions-toggle .conditions-symbol{width:100%}
+.conditions-collapsed #conditions-toggle [data-condition-arrow]{display:none}
+@media(max-width:1100px) and (min-width:801px){.layout.scenario-first{--safety-rail-width:78px}}
+@media(max-width:800px){
+ .scenario-first .recommendations,.scenario-first.narrow-right .recommendations{min-height:0;max-height:none;overflow:visible}
+ .recommendations .safety-panel-heading{position:static;padding:10px 12px}
+ .narrow-right .recommendations .safety-panel-heading{padding:8px 12px}
+ .narrow-right .recommendations #recommend-toggle{width:auto;flex-direction:row;gap:10px;font-size:12px;padding:5px 9px}
+ .recommendations #recommend-body{padding:0 16px 20px}
+ .conditions-collapsed #conditions-toggle .conditions-symbol{width:20px}
+}
+@media(prefers-reduced-motion:reduce){.recommendations .safety-panel-arrow{transition:none}}
+
+/* Finite update cue belongs to the lifecycle, never to rendering or reading marks. */
+.recommendations .safety-empty{padding:22px 0;line-height:1.65;font-size:12px}
+.recommendations .safety-empty>small{font-size:10px;letter-spacing:.06em;color:var(--safety-muted)}
+.recommendations .safety-empty h3{font-size:17px;margin:10px 0}
+.recommendations .safety-empty ul{padding-left:18px;margin:14px 0}
+.recommendations .step-priority{display:block;font-size:10px;color:var(--safety-muted);text-transform:capitalize;line-height:1.4;margin-bottom:3px}
+.recommendations .safety-updated{color:var(--safety-muted);font-size:10px;line-height:1.6}
+.safety-needs-attention .safety-panel-heading{animation:safety-review-update 1.3s ease-in-out 3;box-shadow:inset 3px 0 #bd884d}
+.safety-needs-attention .safety-toggle-label::after{content:' · New';color:var(--teal)}
+@keyframes safety-review-update{0%,100%{background:var(--panel)}50%{background:color-mix(in srgb,var(--teal) 17%,var(--panel))}}
+@media(prefers-reduced-motion:reduce){.safety-needs-attention .safety-panel-heading{animation:none}}

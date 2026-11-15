@@ -1,0 +1,53 @@
+{
+  "fromVersion": "0.1.12",
+  "toVersion": "0.1.13",
+  "issues": [
+    {
+      "id": "D0113-01",
+      "severity": "high",
+      "status": "fixed_within_CFIG_scope",
+      "before": "Normal and inverse gas arrangements could compare on pressure alone.",
+      "fix": "Separate supply arrangement and two reactant compositions; explicit eligibility gate."
+    },
+    {
+      "id": "D0113-02",
+      "severity": "high",
+      "status": "fixed_within_reviewed_sources",
+      "before": "Butane140 source rows had no recognized fuel family.",
+      "fix": "Add butane family without inventing isomer or purity."
+    },
+    {
+      "id": "D0113-03",
+      "severity": "high",
+      "status": "fixed_with_source_limits",
+      "before": "Hot/cool outcomes and termination columns were omitted.",
+      "fix": "Preserve explicit observations, raw codes and comments. Missing is not negative."
+    },
+    {
+      "id": "D0113-04",
+      "severity": "medium",
+      "status": "fixed_during_QA",
+      "before": "Integration duplicated fuelPercent unit key; later generic value masked stream meaning.",
+      "fix": "Remove duplicate, rebuild and rerun portable; no delivered build warning."
+    },
+    {
+      "id": "D0113-05",
+      "severity": "low",
+      "status": "fixed_during_QA",
+      "before": "Static HTML title retained previous version.",
+      "fix": "Title/header corrected before final UI and package."
+    },
+    {
+      "id": "D0113-06",
+      "severity": "high",
+      "status": "open",
+      "before": "Mixture similarity is not experimentally calibrated ignition/extinction probability.",
+      "fix": "Show source outcomes; retain source restrictions and no risk percentage."
+    }
+  ],
+  "qaFindings": [
+    "Initial real-data check incorrectly expected explicit coolYes with hotNo; two actual rows have blank cool flag plus direct-cool comment. Verifier corrected to actual source semantics; no source data overwritten.",
+    "First full-catalog check used stale default-profile port; rerun against explicit final QA profile passed.",
+    "Server asset integration mapping corrected before tests/build."
+  ]
+}

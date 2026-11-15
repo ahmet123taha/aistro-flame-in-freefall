@@ -1,0 +1,18 @@
+import {writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {loadDataset} from '../lib/dataset.mjs';
+import {matchExperiments} from '../lib/numeric-matching.mjs';
+import {validateRequest} from '../lib/corpus.mjs';
+import {VERSION} from '../lib/version.mjs';
+const dataset=await loadDataset(process.argv[2]);
+const conditions={gravity:'other',material:'pmma',materialVariant:'cast-pmma',specimenKind:'rod',tipShape:'hemispherical',flowDirection:'concurrent',gravityRegime:'microgravity',airflow:.5,rodDiameterMm:6.36,thermalAnalysis:true,quasiSteady:true,temperatureK:300,regressionRateMmS:.01,solidLengthMm:59};
+const request=validateRequest({method:'pmma-rod-forced',conditions,ids:['PSI-25'],question:'Isıl enerji dengesinin kaynak sınırlarını açıkla.'},dataset.corpus.records.map(r=>r.id));
+const result=matchExperiments(dataset.corpus,request),thermal=result.matches[0].experiment.physics.thermal;
+assert.equal(thermal.status,'calculated');assert.ok(Math.abs(thermal.peclet-4.916666666666667)<1e-10);assert.equal(thermal.sourceThreshold.classificationEnabled,false);
+const missing=matchExperiments(dataset.corpus,{...request,conditions:{...conditions,temperatureK:null}});assert.equal(missing.matches[0].experiment.physics.thermal.status,'unavailable');
+assert.equal(result.matches[0].similarity,missing.matches[0].similarity);
+const context=await dataset.context(request),text=context.records[0].content.fileText;
+assert.match(text,/netRequired/);assert.match(text,/required heat flux/);assert.match(text,/classificationEnabled":false/);assert.match(text,/regressionRateMmS/);
+assert.ok(context.records[0].fileSources.some(f=>f.id==='f45'));
+const record={version:VERSION,passed:true,at:new Date().toISOString(),providerCalls:0,source:dataset.corpus.experiments.summary.documentAudit.find(f=>f.fileId==='f45'),thermal,similarity:result.matches[0].similarity,checks:['source SHA verified','source-based thermal computation','missing temperature unavailable without changing affinity','local AI context contains formulas and limits'],limitations:['no measured available flame flux','not independently validated combustion classifier']};
+await writeFile('qa/thermal-dataset-verification-'+VERSION+'.json',JSON.stringify(record,null,2));console.log(JSON.stringify(record));

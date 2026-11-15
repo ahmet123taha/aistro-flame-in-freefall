@@ -1,0 +1,79 @@
+{
+  "faultyArchiveVersion": "0.0.5",
+  "originalEmbeddedVersion": "0.0.9",
+  "fixedVersion": "0.1.0",
+  "issues": [
+    {
+      "id": "BUG-01",
+      "severity": "high",
+      "before": "The matching button returned HTTP 501 on every request.",
+      "cause": "The UI patch contained a stub endpoint awaiting numerical calibration.",
+      "fix": "Added an endpoint that retrieves source candidates using local text/topic relevance. It generates no numerical percentage.",
+      "verification": "tests/matching.test.mjs; actual EXE returned 8 sources for oxygen 21; no 501.",
+      "status": "workflow_fixed; numeric_calibration_open"
+    },
+    {
+      "id": "BUG-02",
+      "severity": "medium",
+      "before": "Enter inserted a newline.",
+      "cause": "Default textarea behavior.",
+      "fix": "Enter submits the form; Ctrl+Enter inserts a newline at the caret; IME composition is preserved.",
+      "verification": "Actual EXE: a + CtrlEnter produced a\n; Enter sent it to the user bubble.",
+      "status": "fixed"
+    },
+    {
+      "id": "BUG-03",
+      "severity": "medium",
+      "before": "The eight-character minimum blocked short conversations.",
+      "cause": "HTML minlength and server-side validation.",
+      "fix": "Removed both minimum checks; reject only empty messages and retain the 1400-character maximum.",
+      "verification": "tests/chat.test.mjs single-character test; browser minlength=null.",
+      "status": "fixed"
+    },
+    {
+      "id": "BUG-04",
+      "severity": "high",
+      "before": "Chat was unavailable without selected sources.",
+      "cause": "The UI required selected sources; a fixed findings schema was used.",
+      "fix": "/api/chat automatically selects local sources; conversation/no-evidence response types; context includes the last 8 messages.",
+      "verification": "HTTP mocks and no-preselection test; no live model call.",
+      "status": "fixed_with_live_model_validation_pending"
+    },
+    {
+      "id": "BUG-05",
+      "severity": "low",
+      "before": "The square icon and plus button in the tab strip were unwanted.",
+      "cause": "Previous visual preference.",
+      "fix": "Removed the square and plus; comparison moved into Settings; compact tab strip.",
+      "verification": "Actual EXE screen.",
+      "status": "fixed"
+    },
+    {
+      "id": "BUG-06",
+      "severity": "medium",
+      "before": "The early inline theme-loading script could be blocked by CSP.",
+      "cause": "Conflict between script-src self and an inline initializer.",
+      "fix": "Moved theme initialization into external app.js.",
+      "verification": "Inline script removed; header/theme present in the actual EXE.",
+      "status": "fixed"
+    },
+    {
+      "id": "GAP-01",
+      "severity": "critical",
+      "before": "No calibration for numerical physical similarity.",
+      "cause": "Individual trial conditions and a validation set have not yet been normalized.",
+      "fix": "No percentage or critical-risk calculation was invented. The Relevant source label and limitation are explicit.",
+      "verification": "Null-similarity test; synthetic scores are not accepted in production.",
+      "status": "open"
+    },
+    {
+      "id": "GAP-02",
+      "severity": "high",
+      "before": "Not all document content was included in AI context.",
+      "cause": "No PDF/Excel parsing pipeline.",
+      "fix": "Added hash-verified small CSV/TSV/TXT/MD excerpts; limits: 2 files per source, 12 KB and 6 sources. PDF/Excel content is still not read automatically.",
+      "verification": "Real CSV context test and corrupt-hash exclusion test.",
+      "status": "partial"
+    }
+  ]
+}

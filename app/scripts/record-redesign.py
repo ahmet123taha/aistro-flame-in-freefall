@@ -1,0 +1,15 @@
+from pathlib import Path
+import json
+r=Path(__file__).resolve().parents[1]
+for name in ['server.mjs','portable.mjs','package.json','scripts/build-portable.mjs','scripts/record-baseline.mjs']:
+ p=r/name;p.write_text(p.read_text(encoding='utf-8').replace('0.2.0','0.3.0'),encoding='utf-8')
+p=r/'docs/requirements.json';d=json.loads(p.read_text(encoding='utf-8'));d['version']='0.3.0';d['requirements'].append({'id':'FIF-013','requirement':'Numeric-only input sidebar; collapsible AI and recommendation panels; searchable research list and persistent in-session source tabs with comparison. Never equate similarity with ignition probability.','implementation':['public/index.html','public/styles.css','public/app.js','lib/corpus.mjs'],'verification':['tests/numeric-inputs.test.mjs','qa/redesign-verification.json'],'npr':['SWE-050','SWE-052','SWE-055','SWE-073'],'status':'IMPLEMENTED_DEMO_VALIDATION','limitation':'No per-run numeric data; percentage and severity classifications intentionally unavailable.'});p.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
+p=r/'docs/standards/class-c-matrix.json';d=json.loads(p.read_text(encoding='utf-8'))
+for row in d:
+ if row['id'] in ['SWE-050','SWE-052','SWE-055','SWE-073']:row['remaining_action']+=' v0.3 UI revision tracked as FIF-013; quantitative similarity and scientific validation remain open.'
+p.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
+import csv
+with (r/'docs/standards/class-c-matrix.csv').open('w',encoding='utf-8-sig',newline='') as f:
+ w=csv.DictWriter(f,fieldnames=d[0].keys());w.writeheader();w.writerows(d)
+p=r/'CHANGELOG.md';p.write_text(p.read_text(encoding='utf-8')+'\n## 0.3.0 — 2026-11-14\n\nFIF-013: Kullanıcının çizimine göre üç sütunlu sade çalışma alanı. Sol panel yalnız sayısal girdiler; üst AI paneli kaydırmada kapanır, düğmeyle açılır; sağ öneri paneli daralır. Rapor/veri sekmeleri, metin araması, çoklu seçim ve karşılaştırma, araştırmaya özel AI bağlamı eklendi. Girdi değişince eski AI sonucu geçersiz olur. Altı benzerlik filtresi vardır; mevcut dört metadata kaydı tekil deney girdisi içermediği için yüzde ve yangın risk seviyesi üretilmez. Fiziksel ağırlık kalibrasyonu açık kalemdir. Yeni canlı Gemini çağrısı yapılmadı.\n',encoding='utf-8')
+p=r/'README.md';p.write_text(p.read_text(encoding='utf-8')+'\n## Güncel arayüz: 0.3.0\n\nÖnceki on bölümlü gösterimin yerine kullanıcı çizimine dayanan veri çalışma alanı getirildi. Sol sayısal girdi paneli, üst AI, orta araştırmalar ve açılan dosya sekmeleri, sağ daraltılabilir öneriler. Yerçekimi m/s², sıcaklık K, oksijen %, basınç kPa, akış cm/s, kalınlık mm. Malzeme kimliği AI sorusunda belirtilir; sayısal özellikler malzeme kimliğinin yerine geçmez. Sekmeler oturum içinde korunur; diske çalışma alanı kaydı yoktur. SI önerisi filtresi yalnız alınmış AI yanıtında yer alan kaynakları gösterir. Yüksek/orta/düşük eşikler yalnız gelecekteki benzerlik görünümüdür; mevcut kayıtlarda hesaplanmış skor yoktur. Büyük veri seti ve nicel ağırlıklar henüz entegre edilmedi.\n',encoding='utf-8')

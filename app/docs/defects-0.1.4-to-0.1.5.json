@@ -1,0 +1,34 @@
+{
+  "from": "0.1.4",
+  "to": "0.1.5",
+  "issues": [
+    {
+      "id": "D015-01",
+      "severity": "high",
+      "status": "partially_addressed",
+      "before": "Stretch matching did not account for thermal loss mechanisms.",
+      "fix": "Add optional source-based PMMA rod energy balance; preserve separate affinity score. General flammability prediction remains open."
+    },
+    {
+      "id": "D015-02",
+      "severity": "high",
+      "status": "prevented",
+      "before": "Regression speed could be confused with flame spread and net required heat with measured flame heat.",
+      "fix": "Separate measured input labels, source assumptions, unavailable states and non-classifying threshold discussion."
+    },
+    {
+      "id": "D015-03",
+      "severity": "medium",
+      "status": "fixed",
+      "before": "Direct evaluation of Pe/(1-exp(-Pe)) is undefined at0 and loses accuracy near0.",
+      "fix": "Use expm1 and exact zero limit; analytic elasticity with small-Pe expansion. Tests cover near-zero and SI unit conversions."
+    },
+    {
+      "id": "D015-04",
+      "severity": "high",
+      "status": "open",
+      "before": "Full material flammability library, calibrated critical similarity and independent combustion validation are incomplete.",
+      "fix": "No universal threshold or risk probabilities introduced; next-stage evidence and validation required."
+    }
+  ]
+}

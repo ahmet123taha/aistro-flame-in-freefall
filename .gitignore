@@ -1,0 +1,26 @@
+# Application state and credentials are never distributed.
+.env
+.env.*
+!.env.example
+*.dpapi
+*.dpapi.tmp
+.hosted-state/
+.runtime/
+node_modules/
+__pycache__/
+*.pyc
+
+# Download the separately versioned data and portable from Releases.
+Veri_Seti/
+*.exe
+*.zip
+*.tar.gz
+*.part
+.dataset-downloads/
+app/build/
+app/qa/
+
+# Local editor / operating-system files
+.DS_Store
+Thumbs.db
+.vscode/

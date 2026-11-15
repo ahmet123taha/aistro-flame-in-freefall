@@ -1,0 +1,2699 @@
+{
+  "version": "0.4.10",
+  "scope": "Portable application and anonymous public hosting of the same fixed, read-only dataset; historical prototypes retained",
+  "requirements": [
+    {
+      "id": "FIF-001",
+      "requirement": "Detect the versioned Veri_Seti package beside the EXE; load 24 PSI collections and official supporting sources with hash provenance.",
+      "implementation": [
+        "lib/dataset.mjs",
+        "lib/corpus.mjs",
+        "portable.mjs",
+        "scripts/prepare-dataset.py"
+      ],
+      "verification": [
+        "tests/dataset.test.mjs",
+        "qa/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Numerical file browsing is not normalization or scientific validation. 67 unavailable/skipped source records remain."
+    },
+    {
+      "id": "FIF-002",
+      "requirement": "Provide ten prioritized collapsible outputs, source comparison and condition entry.",
+      "implementation": [
+        "public/index.html",
+        "public/app.js",
+        "public/styles.css"
+      ],
+      "verification": [
+        "qa/verification.json",
+        "qa/portable-api-settings.jpg"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-055",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-003",
+      "requirement": "Keep unknown conditions null; validate units and bounds; do not present topic ranking as physical matching.",
+      "implementation": [
+        "lib/corpus.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "Question and numerical bounds reject ambiguous input; blanks remain unknown",
+        "Ranking chooses relevant cool-flame metadata without probability scores"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-184",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-004",
+      "requirement": "Send only selected source text to the model; reject fabricated quotations/IDs/fields and show inference limitations.",
+      "implementation": [
+        "lib/gemini.mjs",
+        "lib/corpus.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "Provider context contains only selected local source text; no web tools",
+        "Invented quotes, unselected sources, invalid fields and unsupported tested solutions are rejected"
+      ],
+      "npr": [
+        "SWE-052",
+        "SWE-061",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Semantic scientific correctness requires expert evaluation; exact quote matching alone is insufficient."
+    },
+    {
+      "id": "FIF-005",
+      "requirement": "Use the approved Gemini 3.1 Flash-Lite model; no automatic calls/retries/fallback; enforce one concurrent request, timeout and same-question caching.",
+      "implementation": [
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "User-approved economical model is explicit",
+        "Same input is cached and secret is sent only in provider header",
+        "No automatic retry, expensive fallback, or secret reflection after provider failure",
+        "Concurrent API calls do not consume a second request"
+      ],
+      "npr": [
+        "SWE-034",
+        "SWE-065",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-006",
+      "requirement": "Maintain the local boundary with a 127.0.0.1 server, allowed paths, same-origin POST and nonce.",
+      "implementation": [
+        "server.mjs",
+        "portable.mjs"
+      ],
+      "verification": [
+        "Local HTTP routes deny arbitrary files and cross-origin paid requests; source browsing makes zero provider calls"
+      ],
+      "npr": [
+        "SWE-154",
+        "SWE-157",
+        "SWE-159",
+        "SWE-207"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-007",
+      "requirement": "Let the user enter the key through the panel; store it encrypted and persistently under the Windows account; never return it in responses/logs/browser storage.",
+      "implementation": [
+        "lib/credentials.mjs",
+        "server.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "Windows user-bound key survives a fresh store and is encrypted on disk; clear removes it",
+        "Settings enforce session/origin, never reflect a key and do not call Gemini",
+        "qa/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-053",
+        "SWE-154",
+        "SWE-159"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-008",
+      "requirement": "Open the browser using one Windows x64 EXE with embedded assets and runtime; require no second launcher.",
+      "implementation": [
+        "portable.mjs",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "scripts/verify-portable.mjs",
+        "qa/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-057",
+        "SWE-063",
+        "SWE-073",
+        "SWE-077"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Verified on current Windows machine with relocated EXE and empty PATH; clean second machine pending."
+    },
+    {
+      "id": "FIF-009",
+      "requirement": "A second launch reuses the existing application; panel shutdown terminates the process; the key remains available on the next launch.",
+      "implementation": [
+        "portable.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "scripts/verify-portable.mjs"
+      ],
+      "npr": [
+        "SWE-066",
+        "SWE-073",
+        "SWE-075"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-010",
+      "requirement": "Exclude keys, user cache and machine-specific profiles from the shared package; record package-content hashes.",
+      "implementation": [
+        "scripts/build-portable.mjs",
+        ".gitignore"
+      ],
+      "verification": [
+        "qa/portable-build.json",
+        "scripts/verify-portable.mjs"
+      ],
+      "npr": [
+        "SWE-081",
+        "SWE-084",
+        "SWE-085"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-011",
+      "requirement": "Include source provenance and the user scenario in JSON output; do not present model content as an actual measurement.",
+      "implementation": [
+        "public/app.js"
+      ],
+      "verification": [
+        "qa/verification.json"
+      ],
+      "npr": [
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-012",
+      "requirement": "Maintain change, requirement, test, version and open-evidence records for the NPR 7150.2D Class C target; do not claim unverified compliance.",
+      "implementation": [
+        "AGENTS.md",
+        "CHANGELOG.md",
+        "docs/ENGINEERING_BASELINE.md",
+        "docs/standards/class-c-matrix.json"
+      ],
+      "verification": [
+        "docs/standards/source-record.json",
+        "qa/source-baseline.json"
+      ],
+      "npr": [
+        "SWE-013",
+        "SWE-024",
+        "SWE-125",
+        "SWE-176",
+        "SWE-201"
+      ],
+      "status": "PROCESS_BASELINE_OPEN",
+      "acceptanceLimitations": "Evidence applies only to the recorded demo scope and version."
+    },
+    {
+      "id": "FIF-013",
+      "requirement": "Numeric-only input sidebar; collapsible AI and recommendation panels; searchable research list and persistent in-session source tabs with comparison. Never equate similarity with ignition probability.",
+      "implementation": [
+        "public/index.html",
+        "public/styles.css",
+        "public/app.js",
+        "lib/corpus.mjs"
+      ],
+      "verification": [
+        "tests/numeric-inputs.test.mjs",
+        "qa/redesign-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_DEMO_VALIDATION",
+      "limitation": "No per-run numeric data; percentage and severity classifications intentionally unavailable."
+    },
+    {
+      "id": "FIF-014",
+      "requirement": "Separate fixed-data ZIP and key-free single-EXE application ZIP; launch only the EXE after relocating the folder.",
+      "implementation": [
+        "lib/dataset.mjs",
+        "portable.mjs",
+        "scripts/package-dataset.py",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "tests/dataset.test.mjs",
+        "scripts/verify-portable.mjs",
+        "qa/distribution-verification.json"
+      ],
+      "npr": [
+        "SWE-052",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_LOCAL_VERIFICATION",
+      "acceptanceLimitations": "Second independent Windows machine and semantic expert review pending. Distribution receipt is authoritative for ZIP completion."
+    },
+    {
+      "id": "FIF-015",
+      "requirement": "Provide paginated indexed-file search, source filtering, PDF opening and bounded text previews; verify size/SHA and real-directory confinement on access.",
+      "implementation": [
+        "lib/dataset.mjs",
+        "server.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/dataset.test.mjs",
+        "qa/dataset-ui-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-061",
+        "SWE-066",
+        "SWE-154"
+      ],
+      "status": "IMPLEMENTED_LOCAL_VERIFICATION",
+      "acceptanceLimitations": "Second independent Windows machine and semantic expert review pending. Distribution receipt is authoritative for ZIP completion."
+    },
+    {
+      "id": "FIF-016",
+      "requirement": "Show official non-PSI supporting web text with citations; do not imply attached PDFs/tables are automatically model context; at most six sources per AI request.",
+      "implementation": [
+        "scripts/prepare-dataset.py",
+        "lib/gemini.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/dataset.test.mjs",
+        "qa/dataset-ui-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_LOCAL_VERIFICATION",
+      "acceptanceLimitations": "Second independent Windows machine and semantic expert review pending. Distribution receipt is authoritative for ZIP completion."
+    },
+    {
+      "id": "FIF-017",
+      "requirement": "Dark theme, named persistent workspace tabs and minimal Gemini panel; no synthetic matches in production. Superseded packaging: version ZIP has SpaceApps1 and sibling Developer Patch directories; no nested patch ZIP.",
+      "implementation": [
+        "public/app.js",
+        "public/styles.css",
+        "public/workspace-state.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/workspace.test.mjs",
+        "tests/matching.test.mjs",
+        "qa/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented; release verification required"
+    },
+    {
+      "id": "FIF-018",
+      "requirement": "Enter sends; Ctrl+Enter inserts newline; nonempty short chat without source preselection; local-only retrieval and verified text context; uncluttered tab strip.",
+      "implementation": [
+        "public/app.js",
+        "lib/retrieval.mjs",
+        "lib/dataset.mjs",
+        "lib/gemini.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/chat.test.mjs",
+        "tests/matching.test.mjs",
+        "qa/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented; packaged verification tracked"
+    },
+    {
+      "id": "FIF-019",
+      "requirement": "0.1.1: left topic coverage percentage, concise reason tags and right checkbox below source badge; opaque API keys persisted locally; two sibling folders in version ZIP. Physical similarity and critical fire risk must not be inferred from topic coverage.",
+      "implementation": [
+        "lib/retrieval.mjs",
+        "lib/credentials.mjs",
+        "server.mjs",
+        "public/result-card.mjs",
+        "public/app.js",
+        "public/styles.css"
+      ],
+      "verification": [
+        "tests/release-011.test.mjs",
+        "qa/portable-verification.json",
+        "qa/ui-verification-0.1.1.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "superseded_matching_percentage_by_FIF-020; key handling and layout retained"
+    },
+    {
+      "id": "FIF-020",
+      "requirement": "Compare actual per-run numerical inputs in common units; weighted closeness, material/geometry gates, missing-data exclusion, traceable contribution table. Add material and specimen inputs. No keyword percentage or fire-risk claim.",
+      "implementation": [
+        "lib/experiment-tables.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/dataset.mjs",
+        "lib/corpus.mjs",
+        "lib/gemini.mjs",
+        "public/numeric-card.mjs",
+        "public/app.js",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/numeric-matching.test.mjs",
+        "tests/matching.test.mjs",
+        "qa/numeric-dataset-verification-0.1.2.json",
+        "qa/ui-verification-0.1.2.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented_numerical_baseline; scientific weighting and critical thresholds OPEN"
+    },
+    {
+      "id": "FIF-021",
+      "requirement": "Hash-pinned BASS AIR calibration and PMMA sheet report observations; preserve trial/time semantics, source provenance, missing measurements and geometry compatibility.",
+      "implementation": [
+        "lib/bass-evidence.mjs",
+        "lib/experiment-tables.mjs",
+        "lib/dataset.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/corpus.mjs",
+        "public/numeric-card.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/bass-evidence.test.mjs",
+        "qa/numeric-dataset-verification-0.1.3.json",
+        "qa/ui-verification-0.1.3.json",
+        "qa/numeric-dataset-verification-0.1.9.json",
+        "docs/NOMEX_SOURCE_REVIEW.md"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "0.1.9 correction: centerline estimate retained outside specimen-flow scoring; geometry applicability OPEN; PMMA observations preserved"
+    },
+    {
+      "id": "FIF-022",
+      "requirement": "Source-equation PMMA rod forced/total stretch comparison, domain gates, measured flame radius requirement and analytically derived local elasticities separated from fire risk.",
+      "implementation": [
+        "lib/pmma-rod-model.mjs",
+        "lib/proximity.mjs",
+        "lib/dataset.mjs",
+        "lib/corpus.mjs",
+        "lib/numeric-matching.mjs",
+        "public/physical-card.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/pmma-rod-model.test.mjs",
+        "qa/physical-dataset-verification-0.1.4.json",
+        "qa/ui-verification-0.1.4.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented_bounded_feature_model; independent combustion/risk validation OPEN"
+    },
+    {
+      "id": "FIF-023",
+      "requirement": "Source-assumption PMMA rod heat balance using measured regression rate, thermal boundary length, ambient temperature and explicit quasi-steady condition; distinguish required heat, energy fractions, source threshold discussion and validated decisions.",
+      "implementation": [
+        "lib/pmma-thermal.mjs",
+        "lib/pmma-rod-model.mjs",
+        "lib/corpus.mjs",
+        "lib/dataset.mjs",
+        "public/thermal-card.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/pmma-thermal.test.mjs",
+        "qa/thermal-dataset-verification-0.1.5.json",
+        "qa/ui-verification-0.1.5.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented_source_assumption_heat_balance; independent experimental combustion validation OPEN"
+    },
+    {
+      "id": "FIF-024",
+      "requirement": "Compare source-defined PMMA established-flame extinction boundary using normalized stretch, signed oxygen margin, local derivatives and explicit input-error bounds including interior extrema; no ignition/safety classification.",
+      "implementation": [
+        "lib/pmma-boundary.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/corpus.mjs",
+        "lib/dataset.mjs",
+        "public/boundary-card.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/pmma-boundary.test.mjs",
+        "qa/boundary-dataset-verification-0.1.6.json",
+        "qa/ui-verification-0.1.6.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented source-fit position and input interval review; independent experimental validation OPEN"
+    },
+    {
+      "id": "FIF-025",
+      "requirement": "Normalize all31 SIBAL Table7.1 source rows with material composition, original construction, source-quality and reuse semantics; expose contrasting trials separately and retain source-bound AI alternatives. No invented stage velocity or flammability class.",
+      "implementation": [
+        "lib/sibal-evidence.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/corpus.mjs",
+        "lib/dataset.mjs",
+        "public/numeric-card.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/sibal-evidence.test.mjs",
+        "qa/sibal-dataset-verification-0.1.7.json",
+        "qa/ui-verification-0.1.7.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented and release-tested source rows/qualifiers/alternatives; independent physics predictor and critical classification OPEN"
+    },
+    {
+      "id": "FIF-026",
+      "requirement": "Review SIBAL observed extinction/blowoff endpoints with separate signed oxygen/flow distances, mechanism-specific Pareto layers and input-error point overlap, preserving unobserved mechanisms and unresolved boundaries rather than inventing critical risk.",
+      "implementation": [
+        "lib/sibal-transitions.mjs",
+        "public/transition-card.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/corpus.mjs",
+        "lib/dataset.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/sibal-transitions.test.mjs",
+        "qa/transitions-dataset-verification-0.1.8.json",
+        "qa/ui-verification-0.1.8.json",
+        "scripts/verify-portable.mjs"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented; 93 tests, source, portable and browser verification passed; independent critical classification OPEN"
+    },
+    {
+      "id": "FIF-027",
+      "requirement": "Preserve detailed Nomex ignition observations and source discrepancies; require product identity; link verified same-trial CSV/PDF records without pooling measurements; do not equate centerline calibration with local specimen velocity.",
+      "implementation": [
+        "lib/nomex-evidence.mjs",
+        "lib/experiment-tables.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/dataset.mjs",
+        "lib/corpus.mjs",
+        "public/numeric-card.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/nomex-evidence.test.mjs",
+        "tests/bass-evidence.test.mjs",
+        "qa/nomex-dataset-verification-0.1.9.json",
+        "qa/numeric-dataset-verification-0.1.9.json",
+        "qa/ui-verification-0.1.9.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented; 101 tests, actual source, portable and UI verified; independent flammability validation OPEN"
+    },
+    {
+      "id": "FIF-028",
+      "requirement": "Show deterministic input-error bounds for weighted numeric closeness, distinct from missing-data ranges, unknown source uncertainty and fire risk; preserve nominal ordering and material/data gates.",
+      "implementation": [
+        "lib/numeric-uncertainty.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/corpus.mjs",
+        "public/app.js",
+        "public/numeric-card.mjs",
+        "lib/dataset.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "tests/numeric-uncertainty.test.mjs",
+        "qa/uncertainty-dataset-verification-0.1.10.json",
+        "qa/ui-verification-0.1.10.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented; 111 tests, real source, portable and UI verified; source uncertainty and independent risk calibration OPEN"
+    },
+    {
+      "id": "FIF-029",
+      "requirement": "Compare2-6 distinct source-backed experiment runs with numeric contributions, source observations and provenance; preserve a saved input snapshot independently of later edits and export it.",
+      "implementation": [
+        "public/experiment-comparison.mjs",
+        "public/numeric-card.mjs",
+        "public/app.js",
+        "public/index.html",
+        "public/styles.css",
+        "server.mjs",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "tests/experiment-comparison.test.mjs",
+        "qa/comparison-dataset-verification-0.1.11.json",
+        "qa/ui-verification-0.1.11.json",
+        "qa/comparison-export-verification-0.1.11.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented;121 tests, actual sources, portable and UI verified; observational comparison only; causal and risk validation OPEN"
+    },
+    {
+      "id": "FIF-030",
+      "requirement": "Derive condition-specific parameter effect shares from pinned PMMA source equation using explicit equal relative probes; compare exact and linear effects, include stationary points and joint bounds, preserve scope and uncertainty distinctions.",
+      "implementation": [
+        "lib/pmma-boundary.mjs",
+        "lib/corpus.mjs",
+        "lib/gemini.mjs",
+        "public/boundary-card.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/boundary-sensitivity.test.mjs",
+        "qa/sensitivity-dataset-verification-0.1.12.json",
+        "qa/ui-verification-0.1.12.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented;131 tests,10 actual-dataset verifiers, portable and UI passed; derived source-fit effects only, not calibrated risk or matching weights"
+    },
+    {
+      "id": "FIF-031",
+      "requirement": "Separate source-reviewed gas feed arrangement, ambient/burner composition and hot/cool observations; require comparable CFI-G reactant composition before general numeric score.",
+      "implementation": [
+        "lib/gas-trials.mjs",
+        "lib/experiment-tables.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/numeric-uncertainty.mjs",
+        "lib/corpus.mjs",
+        "lib/dataset.mjs",
+        "lib/gemini.mjs",
+        "public/gas-observations.mjs",
+        "public/app.js",
+        "public/experiment-comparison.mjs"
+      ],
+      "verification": [
+        "tests/gas-trials.test.mjs",
+        "qa/gas-dataset-verification-0.1.13.json",
+        "qa/ui-verification-0.1.13.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented for333 pinned CFI-G rows; independent combustion/risk validation remains open"
+    },
+    {
+      "id": "FIF-032",
+      "requirement": "Compute source-derived stoichiometric mixture fraction from gas compositions and expose local physical sensitivities without labeling them universal fire-risk weights.",
+      "implementation": [
+        "lib/gas-stoichiometry.mjs",
+        "lib/gas-trials.mjs",
+        "lib/dataset.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/corpus.mjs",
+        "lib/gemini.mjs",
+        "public/gas-physics-card.mjs",
+        "public/numeric-card.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/gas-stoichiometry.test.mjs",
+        "qa/stoichiometry-dataset-verification-0.1.14.json",
+        "qa/ui-verification-0.1.14.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-066"
+      ],
+      "status": "implemented within explicit binary N2 gas model; independent scientific validation open"
+    },
+    {
+      "id": "FIF-033",
+      "requirement": "Distribute English application versions, engineering reports and versioned code indexes; preserve scientific calculations, source identifiers and private credentials.",
+      "implementation": [
+        "scripts/apply-english.mjs",
+        "scripts/translate-history.mjs",
+        "scripts/build-portable.mjs",
+        "scripts/code-index.mjs",
+        "scripts/supplement-index.py"
+      ],
+      "verification": [
+        "qa/english-migration/structural-verification.json",
+        "qa/english-migration/test-final.log",
+        "qa/portable-verification.json",
+        "qa/full-dataset-verification.json"
+      ],
+      "status": "implemented; release archive readback pending"
+    },
+    {
+      "id": "FIF-034",
+      "requirement": "Optional environment-only form and dialogue-first local research; allow text-only scenarios, ask contextual questions, keep estimates explicit and compute transparent 60/40 research relevance only where evidence permits.",
+      "implementation": [
+        "lib/research.mjs",
+        "lib/gemini.mjs",
+        "lib/corpus.mjs",
+        "server.mjs",
+        "public/environment-panel.mjs"
+      ],
+      "verification": [
+        "tests/research.test.mjs",
+        "qa/release-0.2.5/tests.log",
+        "qa/release-0.2.5/browser-review.json",
+        "qa/release-0.2.5/portable-verification.json"
+      ],
+      "status": "implemented; local verification; live-model relevance review remains open"
+    },
+    {
+      "id": "FIF-035",
+      "requirement": "Invalid optional model-extracted input suggestions must not suppress an otherwise valid conversation; entered form values cannot be overwritten or reinterpreted as dialogue quotes. Scientific source validation remains strict.",
+      "implementation": [
+        "lib/research.mjs",
+        "lib/gemini.mjs",
+        "public/environment-panel.mjs"
+      ],
+      "verification": [
+        "tests/suggestion-recovery.test.mjs",
+        "qa/release-0.2.6/tests.log",
+        "qa/release-0.2.6/browser-review.json",
+        "qa/release-0.2.6/portable-verification.json"
+      ],
+      "status": "implemented; deterministic provider-boundary and UI verification; no live provider trial"
+    },
+    {
+      "id": "FIF-036",
+      "requirement": "Retain and reopen local conversation history, distinguish model responses from application errors and cached results, and expose bounded provider receipts. Resolve research citations from server-provided evidence references without accepting invented sources.",
+      "implementation": [
+        "lib/conversations.mjs",
+        "lib/research-evidence.mjs",
+        "lib/gemini.mjs",
+        "server.mjs",
+        "portable.mjs",
+        "public/conversation-panel.mjs",
+        "public/environment-panel.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/conversation.test.mjs",
+        "qa/release-0.2.7/tests.log",
+        "qa/release-0.2.7/browser-review.json",
+        "qa/release-0.2.7/portable-verification.json"
+      ],
+      "status": "implemented; 175 regression tests, browser fixture and exact portable restart verification passed; live provider quality unverified"
+    },
+    {
+      "id": "FIF-037",
+      "requirement": "Exclude omitted user measurements from the conditions budget; show evidence-backed total and source coverage, continuous scenario rubric, immediate composer clearing, grouped evidence gaps, real local report figures/table previews, and persistent source-supported recommendations.",
+      "implementation": [
+        "lib/research-scoring.mjs",
+        "lib/research.mjs",
+        "lib/recommendations.mjs",
+        "lib/file-library.mjs",
+        "lib/gemini.mjs",
+        "lib/conversations.mjs",
+        "server.mjs",
+        "public/environment-panel.mjs",
+        "public/recommendations-panel.mjs",
+        "public/source-library.mjs",
+        "public/table-preview.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/research-workspace.test.mjs",
+        "tests/research.test.mjs",
+        "qa/release-0.2.8/test-results.log",
+        "qa/release-0.2.8/browser-review.json",
+        "qa/release-0.2.8/portable-verification.json"
+      ],
+      "status": "implemented; 182 regression tests, actual local PDF/table browser review and exact portable executable verification passed; live model relevance and scientific calibration remain open"
+    },
+    {
+      "id": "FIF-038",
+      "requirement": "Provide visible searchable local chat history and isolated new conversations; allow empty-start or transfer only current environment values. Clear prior scenario, source focus, tabs, results and recommendations. Current supplied conditions take precedence over older dialogue.",
+      "implementation": [
+        "public/conversation-panel.mjs",
+        "public/environment-panel.mjs",
+        "public/app.js",
+        "public/styles.css",
+        "lib/research.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "tests/chat-isolation.test.mjs",
+        "qa/release-0.2.9/test-results.log",
+        "qa/release-0.2.9/browser-review.json",
+        "qa/release-0.2.9/portable-verification.json"
+      ],
+      "status": "implemented; local automated, controlled-browser and exact portable verification; live model adherence remains open"
+    },
+    {
+      "id": "FIF-039",
+      "requirement": "Provide a source-faithful graph generator and reader. Enable numerical reading only for verified source equations or point mappings; otherwise show an original graph crop and separate caption. Retain units, source provenance and explicit reconstruction limits.",
+      "implementation": [
+        "public/figure-models.mjs",
+        "public/figure-reader.mjs",
+        "public/source-library.mjs",
+        "public/styles.css",
+        "lib/pmma-boundary.mjs",
+        "server.mjs",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "tests/figure-reader.test.mjs",
+        "qa/release-0.3.0/test-results.log",
+        "qa/release-0.3.0/figure-source-verification.json",
+        "qa/release-0.3.0/browser-review.json",
+        "qa/release-0.3.0/browser-artifact-verification.json",
+        "qa/release-0.3.0/portable-verification.json"
+      ],
+      "status": "implemented for three reviewed BASS-II figures; all-corpus graph discovery and complete measured-point reconstruction are not claimed"
+    },
+    {
+      "id": "FIF-040",
+      "requirement": "Route ordinary conversation and presentation controls separately from scientific scenario construction; preserve current chat/environment and source focus; request and validate structured replies with specific diagnostics; reject stale scientific updates without losing transcript; recover input controls and retain recommendation review state after errors.",
+      "implementation": [
+        "public/dialogue-flow.mjs",
+        "public/environment-panel.mjs",
+        "server.mjs",
+        "lib/conversations.mjs",
+        "lib/research-schema.mjs",
+        "lib/research.mjs",
+        "lib/research-evidence.mjs",
+        "lib/gemini.mjs",
+        "public/app.js",
+        "public/recommendations-panel.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "verification": [
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.1/test-results.log",
+        "qa/release-0.3.1/browser-review.json",
+        "qa/release-0.3.1/browser-events.json",
+        "qa/release-0.3.1/portable-verification.json"
+      ],
+      "status": "implemented and verified in controlled local regression; live provider and wider semantic evaluation remain open"
+    },
+    {
+      "id": "FIF-041",
+      "requirement": "Keep language-only conversation separate from source research; use the JSON transport compatibility contract and independently validate scientific output; retain redacted, bounded provider diagnostics without claiming an unspecified rejection cause.",
+      "implementation": [
+        "lib/gemini.mjs",
+        "lib/research-schema.mjs",
+        "public/dialogue-flow.mjs",
+        "lib/provider-diagnostics.mjs"
+      ],
+      "verification": [
+        "tests/provider-compatibility.test.mjs",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.3.2/test-results.log",
+        "qa/release-0.3.2/browser-review.json",
+        "qa/release-0.3.2/browser-events.json",
+        "qa/release-0.3.2/portable-verification.json",
+        "qa/release-0.3.2/live-verification.json"
+      ],
+      "status": "local regression and one live language-only request verified; research/ranking live evaluation remains open"
+    },
+    {
+      "id": "FIF-042",
+      "requirement": "Use an explicit eight-dimension scoring explanation contract. Contain missing reasons without inventing scores or losing the conversation: preserve cited sources as unscored, retain valid peers and mark partial validation. Independently source-validated complete recommendation replacements may apply despite incomplete source scoring; partial keep/clear cannot revalidate or erase prior candidates. Quote/source validation remains mandatory and does not establish scientific effectiveness.",
+      "implementation": [
+        "lib/research.mjs",
+        "lib/rubric-review.mjs",
+        "lib/research-scoring.mjs",
+        "public/environment-panel.mjs",
+        "lib/gemini.mjs",
+        "public/conversation-panel.mjs",
+        "lib/recommendations.mjs",
+        "public/recommendations-panel.mjs"
+      ],
+      "verification": [
+        "tests/rubric-recovery.test.mjs",
+        "qa/release-0.3.3/test-results.log",
+        "qa/release-0.3.3/browser-review.json",
+        "qa/release-0.3.3/portable-verification.json",
+        "tests/recommendation-clarity.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "qa/release-0.4.1/test-results-integration.log",
+        "qa/release-0.4.1/test-results.log"
+      ],
+      "status": "0.4.1 scoring/recommendation separation locally verified; original historical receipts retained; live scientific validation remains open",
+      "revisionHistory": [
+        {
+          "effectiveThroughVersion": "0.4.0",
+          "requirement": "Use an explicit eight-dimension scoring explanation contract. Contain missing reasons without inventing scores or losing the conversation: preserve cited sources as unscored, retain valid peers, mark partial validation and withhold recommendation refresh until scoring review is complete.",
+          "revisionReason": "0.4.1 separates a complete source-validated recommendation replacement from retrieval-score explanation completeness. Historical 0.3.3 receipts retain their identity."
+        }
+      ]
+    },
+    {
+      "id": "FIF-043",
+      "requirement": "Use explicit keep/clear/replace recommendation operations. Isolate a conflicting, malformed or unverified optional recommendation update without losing valid conversation or research; do not infer the operation, apply partial replacements or falsely mark old recommendations reviewed. Persist bounded partial diagnostics and exclude recovered answers from cache.",
+      "implementation": [
+        "lib/recommendations.mjs",
+        "lib/research.mjs",
+        "lib/gemini.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "verification": [
+        "tests/recommendation-recovery.test.mjs",
+        "qa/release-0.3.4/observed-failure.json",
+        "qa/release-0.3.4/test-results.log",
+        "qa/release-0.3.4/browser-review.json",
+        "qa/release-0.3.4/portable-verification.json"
+      ],
+      "status": "implemented and locally verified; live research validation pending"
+    },
+    {
+      "id": "FIF-044",
+      "requirement": "Separate material/mechanism-based source usefulness, numerical point proximity and physical outcome transfer. Compare nonidentical measured conditions without exact-material gating of environmental values; mark missing comparisons explicitly. Retain relevant experimental series and verified graphs. Tolerances must be source/model/output-specific; never infer a universal tolerance or physical percentage from raw parameter differences",
+      "implementation": [
+        "lib/research-scoring.mjs",
+        "lib/research-coverage.mjs",
+        "lib/gemini.mjs",
+        "public/environment-panel.mjs",
+        "lib/research.mjs"
+      ],
+      "verification": [
+        "tests/condition-coverage.test.mjs",
+        "qa/release-0.3.5/condition-audit.json",
+        "qa/release-0.3.5/test-results.log",
+        "qa/release-0.3.5/browser-review.json",
+        "qa/release-0.3.5/portable-verification.json"
+      ],
+      "status": "retrieval/coverage implemented and locally verified; general physical tolerance calibration and live research evaluation open"
+    },
+    {
+      "id": "FIF-045",
+      "requirement": "Changing a local file must update only its preview without collapsing outer document scroll or losing file controls. Provide a separate exact-source-reviewed Plotted graphics filter and equation-based visible-curve hover values with honest provenance; do not digitize unreviewed images.",
+      "implementation": [
+        "public/source-library.mjs",
+        "public/styles.css",
+        "lib/file-library.mjs",
+        "public/figure-reader.mjs",
+        "public/figure-models.mjs"
+      ],
+      "verification": [
+        "tests/plotted-library.test.mjs",
+        "qa/release-0.3.6/test-results.log",
+        "qa/release-0.3.6/browser-observations.json",
+        "qa/release-0.3.6/browser-review.json",
+        "qa/release-0.3.6/portable-verification.json"
+      ],
+      "status": "implemented and locally verified; clean second-machine review open"
+    },
+    {
+      "id": "FIF-046",
+      "requirement": "Index reviewed PSI-26 as-run pressure measurements with exact source hash, units and cell provenance. Keep unresolved source fields unassessed; show assessed evidence budgets without presenting missing measurements as a low full physical similarity. Do not infer numeric gravity from a microgravity setting.",
+      "implementation": [
+        "lib/bass-asrun.mjs",
+        "lib/bass-asrun-data.mjs",
+        "scripts/extract-bass-asrun.py",
+        "lib/dataset.mjs",
+        "lib/experiment-tables.mjs",
+        "lib/research-scoring.mjs",
+        "public/environment-panel.mjs",
+        "lib/research-coverage.mjs"
+      ],
+      "verification": [
+        "tests/bass-asrun.test.mjs",
+        "qa/release-0.3.7/test-results.log",
+        "qa/release-0.3.7/dataset-verification.json",
+        "qa/release-0.3.7/browser-observations.json",
+        "qa/release-0.3.7/browser-review.json",
+        "qa/release-0.3.7/portable-verification.json"
+      ],
+      "status": "implemented and locally verified for pressure; oxygen/gravity source gaps and independent review open"
+    },
+    {
+      "id": "FIF-047",
+      "requirement": "Discover source-specific material evidence across reviewed local rows, graph headers and study summaries; compare only supported same-material parameters with explicit coverage and provenance. Never merge fragments into a joint trial or claim physical equivalence. Preserve source matches during provider unavailability without fabricated AI scores. Validate20 distinct source-derived perturbation cases and negative/sweep controls; preserve real and replayed evidence separately.",
+      "implementation": [
+        "lib/study-evidence.mjs",
+        "lib/study-evidence-data.mjs",
+        "scripts/prepare-study-evidence.py",
+        "lib/dataset.mjs",
+        "lib/parameter-support.mjs",
+        "lib/research-scoring.mjs",
+        "lib/research-coverage.mjs",
+        "public/environment-panel.mjs",
+        "lib/gemini.mjs",
+        "lib/research-candidates.mjs",
+        "lib/local-discovery.mjs",
+        "server.mjs",
+        "public/app.js"
+      ],
+      "verification": [
+        "tests/parameter-support.test.mjs",
+        "tests/local-discovery.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/benchmark-cases.json",
+        "qa/release-0.3.8/benchmark-offline.json",
+        "qa/release-0.3.8/benchmark-final-replay.json",
+        "qa/release-0.3.8/stress-checks.json",
+        "qa/release-0.3.8/browser-live-observations.json",
+        "qa/release-0.3.8/browser-recovery-observations.json",
+        "qa/release-0.3.8/browser-recovery-stale.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ],
+      "status": "implemented and locally verified; physical tolerance calibration, broader corpus coverage and independent review remain open"
+    },
+    {
+      "id": "FIF-048",
+      "requirement": "Accept bare gravitational acceleration in m/s\u00b2 or an explicit case-insensitive g/G suffix as multiples of standard gravity (9.80665 m/s\u00b2 exactly). Normalize once before all request paths. Display canonical acceleration, reject malformed/out-of-range input without submission, and preserve the original entry across saved/new-with-inputs conversations. Retain version 0.3.8 at the user request.",
+      "implementation": [
+        "public/gravity-input.mjs",
+        "public/environment-panel.mjs",
+        "public/app.js",
+        "public/conversation-panel.mjs",
+        "lib/conversations.mjs",
+        "server.mjs",
+        "scripts/build-portable.mjs",
+        "scripts/verify-portable.mjs"
+      ],
+      "verification": [
+        "tests/gravity-input.test.mjs",
+        "qa/release-0.3.8/test-results.log",
+        "qa/release-0.3.8/gravity-browser-review.json",
+        "qa/release-0.3.8/gravity-browser-events.json",
+        "qa/release-0.3.8/portable-verification.json"
+      ],
+      "status": "implemented; local test and exact executable evidence accompany the amended same-version release"
+    },
+    {
+      "id": "FIF-049",
+      "requirement": "Keep third-party material-property derivatives in a separate optional Material_Sensitivity sidecar and MAT namespace. Validate index role, schema, units, specimen identity and original-file hashes before use. Use only for applicability context and evidence gaps, never add PSI records, citations, numerical proximity points, tolerances or fire recommendations. Preserve missing/invalid-sidecar operation, cache identity and source provenance; quarantine cross-family identity conflicts.",
+      "implementation": [
+        "lib/material-identity.mjs",
+        "lib/material-support-store.mjs",
+        "lib/material-applicability.mjs",
+        "lib/dataset.mjs",
+        "lib/gemini.mjs",
+        "lib/research.mjs",
+        "lib/research-coverage.mjs",
+        "public/material-support-card.mjs",
+        "public/environment-panel.mjs",
+        "public/app.js",
+        "public/index.html",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/material-support.test.mjs",
+        "qa/release-0.3.9/test-results.log",
+        "qa/release-0.3.9/material-sensitivity/verification.json",
+        "qa/release-0.3.9/dataset-integration.json",
+        "qa/release-0.3.9/browser-review.json",
+        "qa/release-0.3.9/browser-events.json",
+        "qa/release-0.3.9/portable-verification.json"
+      ],
+      "status": "implemented and locally verified for 11 conductivity profiles; broader material/property coverage and independent scientific/tolerance validation remain open"
+    },
+    {
+      "id": "FIF-050",
+      "requirement": "For every entered numerical research condition, display the input, exact reference used by the existing scoring rule, source location, arithmetic proximity/points when comparable, or the specific reason it remains unassessed. Distinguish a reported marginal span from the nearest discrete point, other-material context, unresolved raw scales and instrument settings. Exclude blank fields; retain zero as a real input. Preserve valid matching scores, same-material eligibility, source provenance and independent provider-unavailable discovery. Present narrow comparisons as readable stacked cards without an internal or horizontal scroll region. Missing indexed evidence is not zero similarity or proof that a full source report lacks the information.",
+      "implementation": [
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/proximity.mjs",
+        "lib/research-scoring.mjs",
+        "lib/local-discovery.mjs",
+        "public/parameter-comparison.mjs",
+        "public/environment-panel.mjs",
+        "public/styles.css"
+      ],
+      "verification": [
+        "tests/parameter-diagnostics.test.mjs",
+        "tests/parameter-support.test.mjs",
+        "qa/release-0.4.0/benchmark-cases.json",
+        "qa/release-0.4.0/benchmark-recheck.json",
+        "qa/release-0.4.0/reported-psi26-case.json",
+        "qa/release-0.4.0/stress-checks.json",
+        "qa/release-0.4.0/browser-review.json",
+        "qa/release-0.4.0/browser-20-observations.json",
+        "qa/release-0.4.0/browser-events.json",
+        "qa/release-0.4.0/test-results.log",
+        "qa/release-0.4.0/portable-verification.json",
+        "qa/release-0.4.0/exe-sidecar-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented; offline benchmark and controlled browser evidence retained; release packaging and independent scientific/source-coverage review remain open",
+      "pendingReleaseVerification": [
+        {
+          "path": "qa/release-0.4.0/source-inventory.json",
+          "purpose": "Final frozen source identity",
+          "status": "pending_release_owner_receipt"
+        },
+        {
+          "path": "qa/release-0.4.0/code-index/",
+          "purpose": "Full final file/block index",
+          "status": "pending_release_owner_receipt"
+        },
+        {
+          "path": "qa/release-0.4.0/distribution-verification.json",
+          "purpose": "Final ZIP readback/member/hash verification",
+          "status": "pending_release_owner_receipt"
+        }
+      ]
+    },
+    {
+      "id": "FIF-051",
+      "requirement": "Authenticate the optional PDF/XLSX Research_Content derivative against an application-pinned manifest and canonical catalog, authenticate each loaded shard, and reverify selected original bytes through dataset.file. Search literal interior document passages against all allowed PSI/REF sources before the research-candidate cut. Preserve exact fragments and server-derived file/hash/page/sheet/row/offset evidence through coverage augmentation. Expose bounded retrieval/coverage/exclusion state and separately anchored raw table context. Shared catalog association is context, not experimental measurement attribution; literal text never becomes reviewed numerical evidence automatically. Missing/invalid content index must preserve existing reviewed-source research. Keep third-party applicability data outside this scientific evidence channel.",
+      "implementation": [
+        "lib/source-content-index.mjs",
+        "lib/source-content-baseline.mjs",
+        "lib/dataset.mjs",
+        "lib/research-source-context.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-coverage.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs",
+        "lib/corpus.mjs",
+        "lib/research.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/source-content-index.test.mjs",
+        "tests/source-content-loader.test.mjs",
+        "tests/source-content-manifest.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "qa/release-0.4.1/content-benchmark/panel-freeze.json",
+        "qa/release-0.4.1/content-benchmark/cases.json",
+        "qa/release-0.4.1/content-benchmark/results.json",
+        "qa/release-0.4.1/content-benchmark/failure-review.json",
+        "qa/release-0.4.1/dataset-index-install/final-readback.json",
+        "qa/release-0.4.1/test-results.log",
+        "qa/release-0.4.1/portable-verification.json",
+        "qa/release-0.4.1/exe-content-verification.json",
+        "qa/release-0.4.1/browser-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented with source-pinned offline/runtime integration tests and explicit 18/20 default exact-anchor benchmark; incomplete coverage/semantic review and release-owner verification remain open"
+    },
+    {
+      "id": "FIF-052",
+      "requirement": "Present source-supported research/design candidates with a concrete action, concise explanation, optional backwards-compatible relevance/why text, visible material/condition limitation and source-basis label. Derive original document anchors from supplied server evidence, never model-provided provenance. Keep atomic keep/replace/clear updates and require the server review flag before changing or revalidating saved candidates. An independent validated complete replacement may apply despite unrelated incomplete scoring; incomplete keep/clear remains unreviewed, and keep cannot revalidate a prior source missing from current evidence. Review priority is not fire severity. Preserve prospective-versus-observed boundaries and active-incident safeguards; no unvalidated suppressant/dose/atmosphere instruction or scientific-effectiveness approval.",
+      "implementation": [
+        "lib/recommendations.mjs",
+        "lib/research.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-source-context.mjs",
+        "lib/gemini.mjs",
+        "public/recommendations-panel.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "verification": [
+        "tests/recommendation-clarity.test.mjs",
+        "tests/recommendation-recovery.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/rubric-recovery.test.mjs",
+        "qa/future-0.4.1/recommendations/recorded-candidate-audit.json",
+        "qa/release-0.4.1/test-results.log",
+        "qa/release-0.4.1/browser-review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented and locally tested; source traceability is not semantic/scientific validation or live-provider quality acceptance"
+    },
+    {
+      "id": "FIF-053",
+      "requirement": "Admit only explicitly reviewed, exact-hash source normalizations. Keep PSI-26 DOCX Table I flow/width/material fields separate from linked XLSX pressure provenance, retain nonsynchronized whole-trial scope, count eleven linked physical trials without manufacturing stage trials, and retain multi-flow sequences without averages/intermediate values. Preserve eleven discrete-setting fragments, including five multi-setting sequences, as source settings rather than continuous ranges or per-stage outcomes. Prioritize reviewed fragments by supplied material, entered parameter coverage/proximity and question overlap before the six-fragment context limit. Quarantine ambiguous PSI-99 037 mm thickness; recognize only the explicit named SIBAL composite alias without equating pure Cotton or unnamed mixtures. Retain the PSI-68 1.5\u20135 mm initial-diameter range as marginal source context and unresolved PSI-98 oxygen range/approximation as unscored context. Do not invent gravity, ambient temperature, oxygen scale/basis, AIR-to-local-velocity conversion, synchronized joint tuples or third-party numerical credit.",
+      "implementation": [
+        "lib/experiment-tables.mjs",
+        "lib/material-identity.mjs",
+        "lib/reviewed-normalization-evidence.mjs",
+        "lib/psi26-report-evidence.mjs",
+        "lib/bass-asrun.mjs",
+        "lib/study-evidence.mjs",
+        "lib/study-evidence-sorting.mjs",
+        "lib/dataset.mjs",
+        "lib/parameter-support.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/numeric-matching.mjs",
+        "lib/research-scoring.mjs",
+        "public/parameter-comparison.mjs"
+      ],
+      "verification": [
+        "tests/reviewed-normalization.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "tests/parameter-diagnostics.test.mjs",
+        "qa/release-0.4.1/context-targeted-tests.log",
+        "qa/future-0.4.1/normalization/implementation-handoff.json",
+        "qa/future-0.4.1/normalization/verification-receipt.json",
+        "qa/future-0.4.1/normalization/isolated-seed-recheck.json",
+        "qa/future-0.4.1/normalization/psi26-table-asrun-link-review.json",
+        "qa/release-0.4.1/normalization-integration/integration-receipt.json",
+        "qa/release-0.4.1/test-results.log"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "source-reviewed adapters and isolated 20-case numerical noninterference verified; actual-dataset final integration/release receipts are separately tracked",
+      "pendingReleaseVerification": [
+        {
+          "stage": "final_archive_readback",
+          "expectedPath": "qa/release-0.4.1/distribution-verification.json",
+          "status": "pending_release_owner_receipt"
+        },
+        {
+          "stage": "detailed_release_pdf",
+          "expectedPath": "Developer Patch/Reports (inside 0.4.1 ZIP)",
+          "status": "release_owner_produces_and_visually_verifies"
+        },
+        {
+          "stage": "final_source_inventory_and_full_code_index",
+          "expectedPath": "Developer Patch/Code_Index (inside 0.4.1 ZIP)",
+          "status": "release_owner_freezes_and_indexes_after_record_handoff"
+        }
+      ]
+    },
+    {
+      "id": "FIF-054",
+      "requirement": "Support authenticated mixed source-text discovery from PDF/log shards and bounded CSV/TXT/XLSX/DOCX/PPTX literal parts, preserving exact literal text, explicit logical row/physical line/sheet locations, per-source identity, partial-prefix scope and error/exclusion state. Rank files before parts and prioritize question/phrase relevance before material tie-breaking; retain an explicit material passage/file when existing budgets permit. Retain bounded source diversity and use phrase/proximity features only for retrieval; literal quotations and scientific values remain unchanged. Reverify each source alias actually used for a PSI association; confine paths including Windows cross-drive cases; enforce declared/decoded stream-part limits. Keep DOCX paragraph/table/XML part and PPTX slide anchors explicit without inferred PDF pages; preserve reviewed exact-hash recovery limits. Keep header context separately anchored, pure-numeric lookup limitations explicit, raw text outside normalized measurements, and third-party applicability separate. Final mixed counts/pin/install must be verified before release acceptance.",
+      "implementation": [
+        "qa/future-0.4.2/content-reading/publish-bound-repair.mjs",
+        "qa/future-0.4.2/content-reading/repair-legacy-bounds.py",
+        "qa/release-0.4.2/source-reading-audit/install-pinned-index.py",
+        "qa/future-0.4.2/openxml-reading/build-openxml.mjs",
+        "qa/future-0.4.2/openxml-reading/openxml-worker.py",
+        "qa/future-0.4.2/openxml-reading/build-reviewed-docx.mjs",
+        "qa/future-0.4.2/openxml-reading/reviewed-docx-worker.py",
+        "qa/future-0.4.2/content-reading/assemble-mixed-index.mjs",
+        "lib/source-content-index.mjs",
+        "lib/source-content-ranking.mjs",
+        "lib/source-content-candidates.mjs",
+        "lib/source-content-terms.mjs",
+        "lib/source-content-baseline.mjs",
+        "lib/dataset.mjs",
+        "lib/research-source-context.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research-coverage.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "tests/source-content-material-priority.test.mjs",
+        "tests/source-content-candidates.test.mjs",
+        "tests/source-content-phrase-ranking.test.mjs",
+        "tests/source-content-paper.test.mjs",
+        "tests/source-content-v042-boundaries.test.mjs",
+        "tests/source-content-index.test.mjs",
+        "tests/source-content-loader.test.mjs",
+        "tests/source-content-manifest.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "qa/release-0.4.2/browser-ui-core/review.json",
+        "qa/release-0.4.2/source-reading-audit/audit-summary.json",
+        "qa/release-0.4.2/content-benchmark/documents-live-runtime.json",
+        "qa/release-0.4.2/test-results.log",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/manifest-receipt.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/metadata-verification.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/exclusion-summary.json",
+        "qa/release-0.4.2/content-benchmark/final.json",
+        "qa/release-0.4.2/content-benchmark/final-with-conditions.json",
+        "qa/release-0.4.2/source-reading-audit/installation-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-final-output-association.json",
+        "qa/release-0.4.2/source-reading-audit/large-docx-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/reviewed-prefix-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/alternative-anchor-review.json",
+        "qa/release-0.4.2/material-retrieval/policy-change.json",
+        "qa/release-0.4.2/content-benchmark/query-set-optimization.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-bound-install-stop.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-decoded-crc-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-final-association.json",
+        "qa/release-0.4.2/source-reading-audit/installer-original-reuse.json",
+        "qa/release-0.4.2/source-reading-audit/installer-helper-tests.json",
+        "qa/release-0.4.2/source-reading-audit/prefix-live-diagnosis.json",
+        "qa/release-0.4.2/numerical-replay/final/results.json",
+        "qa/release-0.4.2/browser-final/review.json",
+        "qa/release-0.4.2/portable-verification.json",
+        "qa/release-0.4.2/exe-content-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "mixed-index acceptance receipts retained; broader semantic/scientific coverage remains open"
+    },
+    {
+      "id": "FIF-055",
+      "requirement": "Render shared original-source references for scored/unscored research and candidate passages using only local f-number routes and positive integer PDF pages. Preserve explicit sheet/cell/DOCX paragraph/table/XML part and PPTX slide and bounded streamed row/line ranges; distinguish CSV logical records from physical lines and mark partial records/sources without inventing byte offsets. Derive assessment provenance from actual supplied literal fragments for both fresh and cached/direct validation, discarding forged metadata/unanchored provenance. Hide legacy inputs from initial paint until environment installation succeeds and keep them hidden with a persistent understandable alert on startup failure. Describe extraction/partial/unread/excluded statuses without implying scientific review or complete coverage.",
+      "implementation": [
+        "public/source-reference.mjs",
+        "public/environment-panel.mjs",
+        "public/recommendations-panel.mjs",
+        "public/source-content-status.mjs",
+        "public/app.js",
+        "public/index.html",
+        "public/styles.css",
+        "lib/research.mjs",
+        "server.mjs",
+        "scripts/build-portable.mjs",
+        "scripts/verify-portable.mjs"
+      ],
+      "verification": [
+        "tests/source-reference.test.mjs",
+        "tests/source-content-status.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "qa/release-0.4.2/browser-ui-core/review.json",
+        "qa/release-0.4.2/source-reading-audit/audit-summary.json",
+        "qa/release-0.4.2/content-benchmark/documents-live-runtime.json",
+        "qa/release-0.4.2/test-results.log",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/manifest-receipt.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/metadata-verification.json",
+        "qa/future-0.4.2/content-reading/bound-fixed-index/exclusion-summary.json",
+        "qa/release-0.4.2/content-benchmark/final.json",
+        "qa/release-0.4.2/content-benchmark/final-with-conditions.json",
+        "qa/release-0.4.2/source-reading-audit/installation-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/openxml-final-output-association.json",
+        "qa/release-0.4.2/source-reading-audit/large-docx-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/reviewed-prefix-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/alternative-anchor-review.json",
+        "qa/release-0.4.2/material-retrieval/policy-change.json",
+        "qa/release-0.4.2/content-benchmark/query-set-optimization.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-bound-install-stop.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-decoded-crc-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-independent-receipt.json",
+        "qa/release-0.4.2/source-reading-audit/legacy-repack-final-association.json",
+        "qa/release-0.4.2/source-reading-audit/installer-original-reuse.json",
+        "qa/release-0.4.2/source-reading-audit/installer-helper-tests.json",
+        "qa/release-0.4.2/source-reading-audit/prefix-live-diagnosis.json",
+        "qa/release-0.4.2/numerical-replay/final/results.json",
+        "qa/release-0.4.2/browser-final/review.json",
+        "qa/release-0.4.2/portable-verification.json",
+        "qa/release-0.4.2/exe-content-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "source-reference/startup and nine final installed-index core UI checks retained; two extra prefix-source harness assertions remain separately unverified"
+    },
+    {
+      "id": "FIF-056",
+      "requirement": "Begin with a conversation and a collapsed optional conditions rail; permit literature discovery with no numerical values.",
+      "design": "docs/SCENARIO_FIRST_PROTOTYPE.md",
+      "implementation": [
+        "public/environment-panel.mjs",
+        "public/scenario-panel.mjs",
+        "public/index.html",
+        "public/styles.css"
+      ],
+      "verification": [
+        "tests/scenario-first.test.mjs",
+        "qa/release-0.4.2-prototype.1/test-results.log",
+        "qa/release-0.4.2-prototype.1/browser/review.json",
+        "qa/release-0.4.2-prototype.1/numerical-replay/final/results.json",
+        "qa/release-0.4.2-prototype.1/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented_offline_verified_prototype",
+      "acceptanceLimitations": "Offline/synthetic-provider checks do not validate live Gemini behavior or audience usability. Production replacement requires later user review.",
+      "verifiedAt": "2026-11-15T09:02:10.674646+00:00"
+    },
+    {
+      "id": "FIF-057",
+      "requirement": "Validate optional AI field requests; suppress known/unavailable requests, preserve manual collapse and per-chat isolation, and never auto-fill values.",
+      "design": "docs/SCENARIO_FIRST_PROTOTYPE.md",
+      "implementation": [
+        "public/condition-requests.mjs",
+        "public/scenario-panel.mjs",
+        "public/environment-panel.mjs",
+        "lib/research.mjs",
+        "server.mjs",
+        "lib/conversations.mjs"
+      ],
+      "verification": [
+        "tests/scenario-first.test.mjs",
+        "qa/release-0.4.2-prototype.1/test-results.log",
+        "qa/release-0.4.2-prototype.1/browser/review.json",
+        "qa/release-0.4.2-prototype.1/numerical-replay/final/results.json",
+        "qa/release-0.4.2-prototype.1/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented_offline_verified_prototype",
+      "acceptanceLimitations": "Offline/synthetic-provider checks do not validate live Gemini behavior or audience usability. Production replacement requires later user review.",
+      "verifiedAt": "2026-11-15T09:02:10.674646+00:00"
+    },
+    {
+      "id": "FIF-058",
+      "requirement": "Guide a broad audience to local evidence with adaptable language, bounded useful questions and no forced laboratory setup or scientific certainty inflation.",
+      "design": "docs/SCENARIO_FIRST_PROTOTYPE.md",
+      "implementation": [
+        "lib/scenario-first-prompt.mjs",
+        "lib/research.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "tests/scenario-first.test.mjs",
+        "qa/release-0.4.2-prototype.1/test-results.log",
+        "qa/release-0.4.2-prototype.1/browser/review.json",
+        "qa/release-0.4.2-prototype.1/numerical-replay/final/results.json",
+        "qa/release-0.4.2-prototype.1/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented_offline_verified_prototype",
+      "acceptanceLimitations": "Offline/synthetic-provider checks do not validate live Gemini behavior or audience usability. Production replacement requires later user review.",
+      "verifiedAt": "2026-11-15T09:02:10.674646+00:00"
+    },
+    {
+      "id": "FIF-059",
+      "requirement": "Deliver a separately identified intermediate prototype with isolated conversation/cache/instance state, the existing credential vault and unchanged dataset/scoring.",
+      "design": "docs/SCENARIO_FIRST_PROTOTYPE.md",
+      "implementation": [
+        "lib/runtime-profile.mjs",
+        "portable.mjs",
+        "lib/version.mjs",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "tests/scenario-first.test.mjs",
+        "qa/release-0.4.2-prototype.1/test-results.log",
+        "qa/release-0.4.2-prototype.1/browser/review.json",
+        "qa/release-0.4.2-prototype.1/numerical-replay/final/results.json",
+        "qa/release-0.4.2-prototype.1/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "implemented_offline_verified_prototype",
+      "acceptanceLimitations": "Offline/synthetic-provider checks do not validate live Gemini behavior or audience usability. Production replacement requires later user review.",
+      "verifiedAt": "2026-11-15T09:02:10.674646+00:00"
+    },
+    {
+      "id": "FIF-060",
+      "requirement": "Group source-supported recommendations into prevention, hypothetical response planning and critical non-actions, ordered as numbered steps.",
+      "design": "docs/ADAPTIVE_RESEARCH_043.md; docs/SAFETY_STEPS_043_DRAFT.md",
+      "implementation": [
+        "lib/safety-steps.mjs",
+        "public/safety-steps-panel.mjs",
+        "public/safety-steps.css"
+      ],
+      "verification": [
+        "tests/safety-steps.test.mjs",
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Applied to the user-selected scenario-first base. Live-model quality, semantic entailment, incident recognition, human acceptance and procedural authorization remain unverified.",
+      "verifiedAt": "2026-11-15T10:49:36.166487+00:00"
+    },
+    {
+      "id": "FIF-061",
+      "requirement": "Each structured step contains an action, applicability, unknown-information branch, completion check, source, reason and limitation. Preserve exact local citation validation and atomic replacement.",
+      "design": "docs/ADAPTIVE_RESEARCH_043.md; docs/SAFETY_STEPS_043_DRAFT.md",
+      "implementation": [
+        "lib/recommendations.mjs",
+        "lib/gemini.mjs",
+        "lib/research.mjs",
+        "lib/conversations.mjs"
+      ],
+      "verification": [
+        "tests/safety-steps.test.mjs",
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Applied to the user-selected scenario-first base. Live-model quality, semantic entailment, incident recognition, human acceptance and procedural authorization remain unverified.",
+      "verifiedAt": "2026-11-15T10:49:36.166487+00:00"
+    },
+    {
+      "id": "FIF-062",
+      "requirement": "When the active-incident flag is set, hide all generated research steps and show a fixed applicable-procedure handoff. Do not present model text as an approved emergency procedure.",
+      "design": "docs/ADAPTIVE_RESEARCH_043.md; docs/SAFETY_STEPS_043_DRAFT.md",
+      "implementation": [
+        "public/safety-steps-panel.mjs",
+        "public/recommendations-panel.mjs"
+      ],
+      "verification": [
+        "tests/safety-steps.test.mjs",
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Applied to the user-selected scenario-first base. Live-model quality, semantic entailment, incident recognition, human acceptance and procedural authorization remain unverified.",
+      "verifiedAt": "2026-11-15T10:49:36.166487+00:00"
+    },
+    {
+      "id": "FIF-063",
+      "requirement": "Keep this patch unapplied and base-specific until the user selects production 0.4.2 or scenario-first 0.4.2-prototype.1. Do not alter deployed files, credentials or the dataset.",
+      "design": "docs/SAFETY_STEPS_043_DRAFT.md",
+      "implementation": [
+        "patch-manifest.json"
+      ],
+      "verification": [
+        "tests/safety-steps.test.mjs",
+        "Developer Patch/Verification/test-scenario-first-final.log",
+        "Developer Patch/Verification/browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "HISTORICAL_CONSTRAINT_SATISFIED_USER_SELECTED_BASE",
+      "acceptanceLimitations": "User selected the scenario-first prototype and authorized application in 0.4.3. The separately delivered draft remains historical evidence, not an unapplied current-release requirement.",
+      "verifiedAt": "2026-11-15T09:45:48.998253+00:00"
+    },
+    {
+      "id": "FIF-064",
+      "requirement": "Generate bounded optional contextual fields and editable options according to the research objective; retain common environmental inputs separately.",
+      "design": "docs/ADAPTIVE_RESEARCH_043.md",
+      "implementation": [
+        "public/context-fields.mjs",
+        "public/context-fields-panel.mjs",
+        "public/environment-panel.mjs",
+        "lib/context-fields-prompt.mjs"
+      ],
+      "verification": [
+        "tests/context-fields.test.mjs",
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Model-selected labels, field relevance and semantic source support need live/human evaluation. No formal Class C closure.",
+      "verifiedAt": "2026-11-15T10:49:36.166487+00:00"
+    },
+    {
+      "id": "FIF-065",
+      "requirement": "Use only active, valid user refinements in source retrieval and model context; do not promote them into numerical conditions or scientific evidence.",
+      "design": "docs/ADAPTIVE_RESEARCH_043.md",
+      "implementation": [
+        "lib/source-content-terms.mjs",
+        "lib/research-candidates.mjs",
+        "lib/gemini.mjs",
+        "lib/research.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/context-fields.test.mjs",
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Model-selected labels, field relevance and semantic source support need live/human evaluation. No formal Class C closure.",
+      "verifiedAt": "2026-11-15T10:49:36.166487+00:00"
+    },
+    {
+      "id": "FIF-066",
+      "requirement": "Preserve answered definitions, unknowns, per-chat values and archived topic details; isolate new chats and reject stale-response form application.",
+      "design": "docs/ADAPTIVE_RESEARCH_043.md",
+      "implementation": [
+        "public/context-fields.mjs",
+        "public/context-fields-panel.mjs",
+        "lib/conversations.mjs",
+        "public/environment-panel.mjs"
+      ],
+      "verification": [
+        "tests/context-fields.test.mjs",
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Model-selected labels, field relevance and semantic source support need live/human evaluation. No formal Class C closure.",
+      "verifiedAt": "2026-11-15T10:49:36.166487+00:00"
+    },
+    {
+      "id": "FIF-067",
+      "requirement": "Reject malformed, unsafe or oversized form proposals without losing an otherwise valid response; never make optional fields a prerequisite for conversation.",
+      "design": "docs/ADAPTIVE_RESEARCH_043.md",
+      "implementation": [
+        "public/context-fields.mjs",
+        "public/context-fields-panel.mjs",
+        "lib/research.mjs",
+        "public/environment-panel.mjs"
+      ],
+      "verification": [
+        "tests/context-fields.test.mjs",
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Model-selected labels, field relevance and semantic source support need live/human evaluation. No formal Class C closure.",
+      "verifiedAt": "2026-11-15T10:49:36.166487+00:00"
+    },
+    {
+      "id": "FIF-068",
+      "requirement": "Allow AI-authored conditional field trees and fuel-specific material labels/suggestions; evaluate selections locally, retain inactive answers without searching them, and reject cyclic or oversized branches.",
+      "design": "docs/ADAPTIVE_RESEARCH_043.md",
+      "implementation": [
+        "public/context-fields.mjs",
+        "public/context-fields-panel.mjs",
+        "public/environment-panel.mjs",
+        "lib/context-fields-prompt.mjs"
+      ],
+      "verification": [
+        "tests/context-fields.test.mjs",
+        "qa/release-0.4.3-integrated/test-results.log",
+        "qa/release-0.4.3-integrated/browser/review.json",
+        "qa/release-0.4.3-integrated/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Model-selected labels, field relevance and semantic source support need live/human evaluation. No formal Class C closure.",
+      "verifiedAt": "2026-11-15T10:49:36.166487+00:00"
+    },
+    {
+      "id": "FIF-069",
+      "requirement": "Explain relevant source findings before ranked papers, with scenario application, concrete limits and original passage/file provenance; isolate invalid optional briefs.",
+      "design": "docs/SOURCE_BRIEFING_SAFETY_044.md",
+      "implementation": [
+        "lib/source-briefing.mjs",
+        "lib/research-evidence.mjs",
+        "lib/research.mjs",
+        "lib/gemini.mjs",
+        "public/source-briefing.mjs",
+        "public/conversation-panel.mjs",
+        "public/environment-panel.mjs"
+      ],
+      "verification": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "verifiedAt": "2026-11-15T11:54:07.267337+00:00",
+      "acceptanceLimitations": "Offline source/flow checks; semantic correctness, live model acceptance and approved emergency procedures remain unverified."
+    },
+    {
+      "id": "FIF-070",
+      "requirement": "Provide readable prevention, response-preparation and critical-caution groups with review markers, copyable evidence, persistent per-chat state and stable sidebar scroll.",
+      "design": "docs/SOURCE_BRIEFING_SAFETY_044.md",
+      "implementation": [
+        "public/safety-workspace.mjs",
+        "public/recommendations-panel.mjs",
+        "public/safety-steps-panel.mjs",
+        "lib/conversations.mjs"
+      ],
+      "verification": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "verifiedAt": "2026-11-15T11:54:07.267337+00:00",
+      "acceptanceLimitations": "Offline source/flow checks; semantic correctness, live model acceptance and approved emergency procedures remain unverified."
+    },
+    {
+      "id": "FIF-071",
+      "requirement": "Expose incident support without model availability; preserve a manual incident latch across pending answers/reload and separate experimental background from generated interventions.",
+      "design": "docs/SOURCE_BRIEFING_SAFETY_044.md",
+      "implementation": [
+        "server.mjs",
+        "lib/research.mjs",
+        "public/index.html",
+        "public/recommendations-panel.mjs",
+        "public/safety-steps-panel.mjs"
+      ],
+      "verification": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "verifiedAt": "2026-11-15T11:54:07.267337+00:00",
+      "acceptanceLimitations": "Offline source/flow checks; semantic correctness, live model acceptance and approved emergency procedures remain unverified."
+    },
+    {
+      "id": "FIF-072",
+      "requirement": "Retrieve relevant English fire-research vocabulary from supported Turkish query aliases without changing literal sources or numerical scores.",
+      "design": "docs/SOURCE_BRIEFING_SAFETY_044.md",
+      "implementation": [
+        "lib/source-content-terms.mjs"
+      ],
+      "verification": [
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.4/test-results.log",
+        "qa/release-0.4.4/browser/review.json",
+        "qa/release-0.4.4/portable-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "verifiedAt": "2026-11-15T11:54:07.267337+00:00",
+      "acceptanceLimitations": "Offline source/flow checks; semantic correctness, live model acceptance and approved emergency procedures remain unverified."
+    },
+    {
+      "id": "FIF-073",
+      "requirement": "Load versioned, hash-identifiable application-agent skills into appropriate provider requests; ask for concise new information without scenario/input recaps and retain existing evidence/safety rules.",
+      "design": "docs/AGENT_SKILLS_EVIDENCE_045.md",
+      "implementation": [
+        "lib/agent-skills.mjs",
+        "lib/agent-skill-manifest.mjs",
+        "lib/agent-skills",
+        "scripts/compile-agent-skills.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "tests/agent-skills.test.mjs",
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Offline evidence only. Live model instruction-following, complete source extraction, semantic correctness and approved emergency procedures remain unverified.",
+      "verifiedAt": "2026-11-15T12:35:41.440520+00:00"
+    },
+    {
+      "id": "FIF-074",
+      "requirement": "Continue with AI immediately discusses the selected study using an authoritative source focus, bounded same-source evidence and visible focus state; retain the unsent draft and allow returning to all research.",
+      "design": "docs/AGENT_SKILLS_EVIDENCE_045.md",
+      "implementation": [
+        "server.mjs",
+        "lib/gemini.mjs",
+        "public/app.js",
+        "public/environment-panel.mjs"
+      ],
+      "verification": [
+        "tests/agent-skills.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Offline evidence only. Live model instruction-following, complete source extraction, semantic correctness and approved emergency procedures remain unverified.",
+      "verifiedAt": "2026-11-15T12:35:41.440520+00:00"
+    },
+    {
+      "id": "FIF-075",
+      "requirement": "Present short numbered checklist actions with matched details under Steps with sources, a first-position AI Summary label and clear optional gas/material fields; blank remains unknown.",
+      "design": "docs/AGENT_SKILLS_EVIDENCE_045.md",
+      "implementation": [
+        "public/safety-steps-panel.mjs",
+        "public/safety-steps.css",
+        "public/source-briefing.mjs",
+        "public/context-fields-panel.mjs",
+        "public/environment-panel.mjs"
+      ],
+      "verification": [
+        "tests/compact-checklist-ui.test.mjs",
+        "tests/recommendation-clarity.test.mjs",
+        "tests/source-briefing.test.mjs",
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Offline evidence only. Live model instruction-following, complete source extraction, semantic correctness and approved emergency procedures remain unverified.",
+      "verifiedAt": "2026-11-15T12:35:41.440520+00:00"
+    },
+    {
+      "id": "FIF-076",
+      "requirement": "Expose source-traced nearest numerical candidates and material/coverage reasons; normalize only equivalent material identities and preserve nominal versus measured gravity and composite versus pure-material distinctions.",
+      "design": "docs/AGENT_SKILLS_EVIDENCE_045.md",
+      "implementation": [
+        "lib/material-identity.mjs",
+        "lib/material-evidence-review.mjs",
+        "lib/psi26-report-evidence.mjs",
+        "lib/parameter-diagnostics.mjs",
+        "lib/research-coverage.mjs",
+        "lib/source-content-terms.mjs"
+      ],
+      "verification": [
+        "tests/textile-material-evidence.test.mjs",
+        "tests/research-source-context.test.mjs",
+        "qa/release-0.4.5/test-results.log",
+        "qa/release-0.4.5/browser/review.json",
+        "qa/release-0.4.5/portable-verification.json",
+        "qa/release-0.4.5/numeric-audit.json",
+        "qa/release-0.4.5/numerical-replay/final/results.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_VALIDATED",
+      "acceptanceLimitations": "Offline evidence only. Live model instruction-following, complete source extraction, semantic correctness and approved emergency procedures remain unverified.",
+      "verifiedAt": "2026-11-15T12:35:41.440520+00:00"
+    },
+    {
+      "id": "FIF-077",
+      "requirement": "Provide public research use without account/login/invitation while isolating each anonymous visitor history, mutation token, cache and counters; require the configured origin and keep operator credentials/admin actions private.",
+      "design": "docs/HOSTED_DEPLOYMENT_046.md",
+      "implementation": [
+        "hosted.mjs",
+        "lib/hosted-sessions.mjs",
+        "server.mjs",
+        "public/app.js",
+        "public/index.html",
+        "public/conversation-panel.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "tests/hosted.test.mjs",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/release-facts.json",
+        "tests/dialogue-flow.test.mjs",
+        "qa/release-0.4.6/context-retrieval-tests.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/live-trial.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/dataset-sha256.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/dataset-remote-verification.json",
+        "qa/release-0.4.6/browser-headless/review.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081",
+        "SWE-156",
+        "SWE-157",
+        "SWE-159"
+      ],
+      "status": "IMPLEMENTED_VERIFIED",
+      "acceptanceLimitations": "Public application implementation, visitor isolation and deployed operator/origin boundaries are verified. Full dataset byte readback and ZIP sealing remain pending separately. One authorized basic-conversation live trial passed before D-046-06; no post-fix live trial, measured latency gain, load/capacity guarantee, account recovery, scientific validation or NASA certification. Linux results retain the Windows-only DPAPI skip.",
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "FIF-078",
+      "requirement": "Serve only indexed, path-confined, size- and SHA-verified dataset originals through bounded streaming GET/HEAD with single-byte ranges and correct validators; close file descriptors on disconnect without changing dataset bytes.",
+      "design": "docs/HOSTED_DEPLOYMENT_046.md",
+      "implementation": [
+        "lib/file-response.mjs",
+        "server.mjs",
+        "lib/dataset.mjs"
+      ],
+      "verification": [
+        "tests/file-response.test.mjs",
+        "tests/dataset.test.mjs",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/release-facts.json",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/dataset-sha256.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/dataset-remote-verification.json",
+        "qa/release-0.4.6/browser-headless/review.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_VERIFIED",
+      "acceptanceLimitations": "Final Windows regression passed 499/499; Linux passed 498 with one Windows-only DPAPI skip out of 499. Deployed PDF-range and CSV checks passed. Complete dataset readback and package closure still require their own final receipts. Hash verification reads each entire source before range delivery. Automated tests do not establish scientific accuracy or public-load capacity.",
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "FIF-079",
+      "requirement": "Apply only the user-approved Safety Recommendations panel presentation and Conditions sliders-horizontal icon. Preserve real recommendation data, source links, reviewed state and all other panels. Collapse Safety to a slim rail; keep its accessible control attached to the moving upper-left edge and preserve the approved open width.",
+      "design": "docs/HOSTED_DEPLOYMENT_046.md#approved-safety-panel-presentation-handoff",
+      "implementation": [
+        "public/index.html",
+        "public/safety-steps.css",
+        "public/recommendations-panel.mjs",
+        "public/app.js",
+        "public/THIRD_PARTY_NOTICES.txt"
+      ],
+      "verification": [
+        "tests/safety-panel-controls.test.mjs",
+        "qa/release-0.4.6/safety-design/focused-tests.log",
+        "qa/release-0.4.6/safety-design/before-review.json",
+        "qa/release-0.4.6/safety-design/after-review.json",
+        "qa/release-0.4.6/safety-design/icon-sources.json",
+        "qa/release-0.4.6/test-results.log",
+        "qa/release-0.4.6/linux-tests.json",
+        "qa/release-0.4.6/linux-source-fixture-manifest.json",
+        "qa/release-0.4.6/portable-verification.json",
+        "qa/release-0.4.6/exe-content-verification.json",
+        "qa/release-0.4.6/runtime-manifest.json",
+        "qa/release-0.4.6/runtime-source-verification.json",
+        "qa/release-0.4.6/public-browser/review.json",
+        "qa/release-0.4.6/public-verification.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_VERIFIED",
+      "sourceHandoff": {
+        "path": "../handoff/2026-11-15-space-apps-panel-tasarim-devri.md",
+        "sha256": "14e900348121e11622b83fa27edf1932c9b32a6ebd28612be954a47959f7932a"
+      },
+      "acceptanceLimitations": "Focused 17-test run and 13 controlled browser checks passed, with before/after screenshots visually reviewed and source hashes recorded. Desktop 1440x1000 widths: 88 px collapsed, 480 px expanded; toggle remains 13 px inside the moving left edge. Mobile 390 px control and rail remain accessible. No renderer text, demo recommendation, scientific scoring, provider prompt or Conditions field behavior changed. Final full-suite, rebuilt portable, all runtime-file hashes and deployed browser/API checks passed. Complete dataset readback and ZIP sealing remain separate pending stages.",
+      "releaseEvidenceStatus": "implementation_verified_full_dataset_readback_and_package_pending",
+      "verificationSummary": "Final UI-source implementation verification: Windows 499/499 passed; Oracle Linux 498 passed, zero failed and one Windows-only DPAPI skip out of 499; rebuilt portable and real-content checks passed; all 309 deployed runtime files hash-verified; 9 reviewed public-browser checks and 17 public API checks passed. Full dataset byte readback and ZIP sealing remain separate pending stages."
+    },
+    {
+      "id": "FIF-080",
+      "requirement": "Offer research/learning and incident support at equal visual priority; opening incident support must preserve the research workspace.",
+      "design": "docs/INCIDENT_AND_READING_047.md",
+      "implementation": [
+        "public/workspace-entry.mjs",
+        "public/workspace-entry.css",
+        "public/app.js",
+        "public/recommendations-panel.mjs"
+      ],
+      "verification": [
+        "qa/release-0.4.7/incident-ui/review.json",
+        "qa/release-0.4.7/test-results.log",
+        "qa/release-0.4.7/portable-verification.json",
+        "qa/release-0.4.7/linux-tests.json",
+        "qa/release-0.4.7/exe-content-verification.json",
+        "qa/release-0.4.7/public-browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTATION_VERIFIED",
+      "acceptanceLimitations": "Offline, synthetic browser, exact portable, Linux and public application evidence are distinct. No new live Gemini trial; operational safety and independent review remain open."
+    },
+    {
+      "id": "FIF-081",
+      "requirement": "Explain that all known-condition fields are optional; use understandable material, ventilation and gravity labels and helper placement without inventing measurements or changing scoring.",
+      "design": "docs/INCIDENT_AND_READING_047.md",
+      "implementation": [
+        "public/environment-panel.mjs",
+        "public/condition-guidance.css",
+        "public/condition-requests.mjs"
+      ],
+      "verification": [
+        "qa/release-0.4.7/conditions-clarity/review.json",
+        "tests/gravity-input.test.mjs",
+        "tests/scenario-first.test.mjs",
+        "qa/release-0.4.7/test-results.log",
+        "qa/release-0.4.7/portable-verification.json",
+        "qa/release-0.4.7/linux-tests.json",
+        "qa/release-0.4.7/exe-content-verification.json",
+        "qa/release-0.4.7/public-browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTATION_VERIFIED",
+      "acceptanceLimitations": "Offline, synthetic browser, exact portable, Linux and public application evidence are distinct. No new live Gemini trial; operational safety and independent review remain open."
+    },
+    {
+      "id": "FIF-082",
+      "requirement": "Provide explicit-action native voice incident support with immediate protective guidance, short language-adaptive answers, text fallback, server-locked ephemeral credentials and complete resource teardown. Do not claim emergency dispatch or operational validation.",
+      "design": "docs/INCIDENT_AND_READING_047.md",
+      "implementation": [
+        "lib/incident-service.mjs",
+        "lib/incident-prompt.mjs",
+        "public/incident-voice.mjs",
+        "public/incident-audio.mjs",
+        "public/incident-capture-worklet.mjs",
+        "server.mjs",
+        "hosted.mjs",
+        "portable.mjs"
+      ],
+      "verification": [
+        "tests/incident-service.test.mjs",
+        "tests/incident-voice.test.mjs",
+        "qa/release-0.4.7/incident-ui/review.json",
+        "qa/release-0.4.7/test-results.log",
+        "qa/release-0.4.7/portable-verification.json",
+        "qa/release-0.4.7/linux-tests.json",
+        "qa/release-0.4.7/exe-content-verification.json",
+        "qa/release-0.4.7/public-browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTATION_VERIFIED",
+      "acceptanceLimitations": "Offline, synthetic browser, exact portable, Linux and public application evidence are distinct. No new live Gemini trial; operational safety and independent review remain open."
+    },
+    {
+      "id": "FIF-083",
+      "requirement": "Read original PDF pages continuously in normal page flow, with bounded lazy rendering, zoom/page access and stable surrounding viewport; preserve original source provenance and non-PDF views.",
+      "design": "docs/INCIDENT_AND_READING_047.md",
+      "implementation": [
+        "public/pdf-flow-reader.mjs",
+        "public/document-reader.css",
+        "public/source-library.mjs"
+      ],
+      "verification": [
+        "qa/release-0.4.7/document-reader/review.json",
+        "qa/release-0.4.7/test-results.log",
+        "qa/release-0.4.7/portable-verification.json",
+        "qa/release-0.4.7/linux-tests.json",
+        "qa/release-0.4.7/exe-content-verification.json",
+        "qa/release-0.4.7/public-browser/review.json",
+        "tests/pdf-flow-reader.test.mjs",
+        "qa/release-0.4.7/document-reader/integration.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTATION_VERIFIED",
+      "acceptanceLimitations": "Offline, synthetic browser, exact portable, Linux and public application evidence are distinct. No new live Gemini trial; operational safety and independent review remain open."
+    },
+    {
+      "id": "FIF-084",
+      "requirement": "Distinguish general information from source discovery and condition comparison; general questions must retain grounded answers without automatically requesting condition fields or inferring defaults for places such as ISS.",
+      "design": "docs/INCIDENT_AND_READING_047.md",
+      "implementation": [
+        "lib/assistance-intent.mjs",
+        "lib/scenario-first-prompt.mjs",
+        "lib/research.mjs",
+        "lib/context-fields-prompt.mjs",
+        "lib/gemini.mjs"
+      ],
+      "verification": [
+        "tests/assistance-intent.test.mjs",
+        "qa/release-0.4.7/information-flow/review.json",
+        "qa/release-0.4.7/test-results.log",
+        "qa/release-0.4.7/portable-verification.json",
+        "qa/release-0.4.7/linux-tests.json",
+        "qa/release-0.4.7/exe-content-verification.json",
+        "qa/release-0.4.7/public-browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTATION_VERIFIED",
+      "acceptanceLimitations": "Offline, synthetic browser, exact portable, Linux and public application evidence are distinct. No new live Gemini trial; operational safety and independent review remain open."
+    },
+    {
+      "id": "FIF-085",
+      "requirement": "Replace Gemini research transport with OpenAI Responses using approved Sol/Medium; retain source/evidence validation, optional conditions and scientific scoring.",
+      "design": "docs/OPENAI_INPUT_049.md",
+      "implementation": [
+        "lib/openai.mjs",
+        "lib/openai-response.mjs",
+        "lib/provider-diagnostics.mjs",
+        "lib/local-discovery.mjs"
+      ],
+      "verification": [
+        "tests/openai-provider.test.mjs",
+        "tests/provider-compatibility.test.mjs",
+        "tests/research.test.mjs",
+        "qa/release-0.4.8/test-results.log",
+        "qa/release-0.4.8/portable-verification.json",
+        "qa/release-0.4.8/linux-tests.json",
+        "qa/release-0.4.8/browser/review.json",
+        "qa/release-0.4.8/exe-content-verification.json",
+        "qa/release-0.4.8/live-trial-status.json",
+        "qa/release-0.4.9/test-results.log",
+        "qa/release-0.4.9/portable-verification.json",
+        "qa/release-0.4.9/browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Historical 0.4.8 receipts retain their version. Fresh 0.4.9 release receipts are pending independently. No newly authorized live-provider trial; original 400 cause probable, not fully confirmed. Scientific/operational validation and independent assurance remain open.",
+      "revisions049": {
+        "release": "0.4.9",
+        "behavior": "Explicit server-controlled JSON instruction in production input; preflight without fetch; privacy-safe provider codes/input-shape diagnostics.",
+        "previousDesign": "docs/OPENAI_MIGRATION_048.md",
+        "observedFailure": "2026-11-15T15:32:35Z HTTP400 invalid_request_error param input; exact provider reason not retained.",
+        "tests": "tests/openai-provider.test.mjs: production input JSON instruction, original shape preflight failure and sanitized diagnostics"
+      }
+    },
+    {
+      "id": "FIF-086",
+      "requirement": "Keep OpenAI credentials separate from previous-provider keys and preserve correctly labelled historical/current provider receipts without exposing secrets.",
+      "design": "docs/OPENAI_MIGRATION_048.md",
+      "implementation": [
+        "lib/credentials.mjs",
+        "hosted.mjs",
+        "portable.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "verification": [
+        "tests/openai-integration.test.mjs",
+        "tests/conversation.test.mjs",
+        "qa/release-0.4.8/test-results.log",
+        "qa/release-0.4.8/portable-verification.json",
+        "qa/release-0.4.8/linux-tests.json",
+        "qa/release-0.4.8/browser/review.json",
+        "qa/release-0.4.8/exe-content-verification.json",
+        "qa/release-0.4.8/live-trial-status.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTATION_VERIFIED",
+      "acceptanceLimitations": "562 Windows tests; Linux 561 pass plus 1 Windows-only skip. Exact portable and mocked browser verified. One tiny text connectivity trial passed; native voice and full real-model scientific workflow remain untested. Independent safety/assurance review remains open."
+    },
+    {
+      "id": "FIF-087",
+      "requirement": "Replace incident voice/text provider with OpenAI; explicit microphone access, cancellation, memory-only isolated incident history and no automatic billed fallback.",
+      "design": "docs/OPENAI_MIGRATION_048.md",
+      "implementation": [
+        "lib/incident-service.mjs",
+        "public/incident-voice.mjs",
+        "server.mjs"
+      ],
+      "verification": [
+        "tests/incident-service.test.mjs",
+        "tests/incident-voice.test.mjs",
+        "qa/release-0.4.8/test-results.log",
+        "qa/release-0.4.8/portable-verification.json",
+        "qa/release-0.4.8/linux-tests.json",
+        "qa/release-0.4.8/browser/review.json",
+        "qa/release-0.4.8/exe-content-verification.json",
+        "qa/release-0.4.8/live-trial-status.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTATION_VERIFIED",
+      "acceptanceLimitations": "562 Windows tests; Linux 561 pass plus 1 Windows-only skip. Exact portable and mocked browser verified. One tiny text connectivity trial passed; native voice and full real-model scientific workflow remain untested. Independent safety/assurance review remains open."
+    },
+    {
+      "id": "FIF-088",
+      "requirement": "Present AISTRO with supplied byte-identical bee/ASTROBEE assets, theme control in Settings and responsive primary controls.",
+      "design": "docs/AISTRO_WORKFLOW_0410.md",
+      "implementation": [
+        "public/index.html",
+        "public/branding.css",
+        "public/branding/aistro-bee.jpeg",
+        "public/branding/astrobee-wordmark.jpeg"
+      ],
+      "verification": [
+        "qa/release-0.4.10/branding-assets.json",
+        "qa/release-0.4.10/branding-layout.json",
+        "qa/release-0.4.10/test-results.log",
+        "qa/release-0.4.10/portable-verification.json",
+        "qa/release-0.4.10/browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Fresh final release receipts remain separate from focused/static checks. No new real-provider trial, model training, scientific/operational validation or complete Class C assurance is claimed. Prepared-graph add-on requires separate packaging/hash readback; coverage and conservative condition grammar remain bounded."
+    },
+    {
+      "id": "FIF-089",
+      "requirement": "Prepare reviewed source-table plots offline; distinguish generated plots from documented original images and prior equation plots, preserving exact points/units/cells/source SHA and a hash-checked additive dataset index.",
+      "design": "docs/AISTRO_WORKFLOW_0410.md",
+      "implementation": [
+        "lib/prepared-graph-baseline.mjs",
+        "lib/prepared-graphs.mjs",
+        "lib/dataset.mjs",
+        "lib/file-library.mjs",
+        "server.mjs",
+        "public/source-library.mjs",
+        "public/figure-reader.mjs",
+        "public/prepared-graph-reader.mjs",
+        "public/prepared-graphs.css",
+        "scripts/prepare-graphs.py",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "tests/prepared-graphs.test.mjs",
+        "tests/prepared-graph-reader.test.mjs",
+        "qa/release-0.4.10/test-results.log",
+        "qa/release-0.4.10/portable-verification.json",
+        "qa/release-0.4.10/browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Fresh final release receipts remain separate from focused/static checks. No new real-provider trial, model training, scientific/operational validation or complete Class C assurance is claimed. Prepared-graph add-on requires separate packaging/hash readback; coverage and conservative condition grammar remain bounded."
+    },
+    {
+      "id": "FIF-090",
+      "requirement": "Apply supported explicit latest-turn dialogue measurements before retrieval/analyzer/scoring with quote/unit/conversion receipts and guarded same-request UI synchronization; preserve uncertainty.",
+      "design": "docs/AISTRO_WORKFLOW_0410.md",
+      "implementation": [
+        "lib/dialogue-conditions.mjs",
+        "server.mjs",
+        "lib/research.mjs",
+        "lib/openai.mjs",
+        "public/environment-panel.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "verification": [
+        "tests/dialogue-conditions.test.mjs",
+        "qa/release-0.4.10/browser-conditions/review.json",
+        "qa/release-0.4.10/test-results.log",
+        "qa/release-0.4.10/portable-verification.json",
+        "qa/release-0.4.10/browser/review.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073",
+        "SWE-081"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Fresh final release receipts remain separate from focused/static checks. No new real-provider trial, model training, scientific/operational validation or complete Class C assurance is claimed. Prepared-graph add-on requires separate packaging/hash readback; coverage and conservative condition grammar remain bounded."
+    },
+    {
+      "id": "FIF-091",
+      "release": "0.5.1",
+      "requirement": "Recover from incomplete/cancelled responses and recoverable provider/transcription errors without closing incident voice; retain partial-response labels and useful completed conversation context.",
+      "design": "docs/SAFETY_VOICE_051.md",
+      "implementation": [
+        "public/incident-voice.mjs"
+      ],
+      "verification": [
+        "tests/incident-voice.test.mjs",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope.",
+      "currentScopeNote": "Separate incident voice/text feature retired in 0.5.2 by explicit user request. Historical implementation evidence retained; FIF-097 governs current navigation."
+    },
+    {
+      "id": "FIF-092",
+      "release": "0.5.1",
+      "requirement": "Serialize incident response requests; bound transient RTC disconnection recovery and allow explicit blocked-audio resume without automatic reconnect, billed retry or a second concurrent response. Preserve gpt-realtime-2.1-mini, max_output_tokens=512, 120-second session and 30-second idle budgets.",
+      "design": "docs/SAFETY_VOICE_051.md",
+      "implementation": [
+        "public/incident-voice.mjs",
+        "lib/incident-service.mjs"
+      ],
+      "verification": [
+        "tests/incident-voice.test.mjs",
+        "tests/incident-service.test.mjs",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope.",
+      "currentScopeNote": "Separate incident voice/text feature retired in 0.5.2 by explicit user request. Historical implementation evidence retained; FIF-097 governs current navigation."
+    },
+    {
+      "id": "FIF-093",
+      "release": "0.5.1",
+      "requirement": "Provide concise professional fact-dependent incident guidance: next protective action and at most one useful safe-location question; adapt to corrections/completed actions, assume no qualifications and prohibit invented operational procedures or arbitrary extinguisher/power/hatch/vent commands.",
+      "design": "docs/SAFETY_VOICE_051.md",
+      "implementation": [
+        "lib/incident-prompt.mjs"
+      ],
+      "verification": [
+        "tests/prompt-safety-v051.test.mjs",
+        "tests/incident-service.test.mjs",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope.",
+      "currentScopeNote": "Separate incident voice/text feature retired in 0.5.2 by explicit user request. Historical implementation evidence retained; FIF-097 governs current navigation."
+    },
+    {
+      "id": "FIF-094",
+      "release": "0.5.1",
+      "requirement": "Make prevention, risk understanding and response planning the primary purpose while preserving explicit educational combustion/rocket-ignition intent; distinguish general information, deliberate experiments and reported uncontrolled real incidents. Preserve numerical matching weights.",
+      "design": "docs/SAFETY_VOICE_051.md",
+      "implementation": [
+        "lib/scenario-first-prompt.mjs",
+        "lib/agent-skills/concise-dialogue/SKILL.md",
+        "lib/agent-skill-manifest.mjs"
+      ],
+      "verification": [
+        "tests/prompt-safety-v051.test.mjs",
+        "tests/assistance-intent.test.mjs",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope."
+    },
+    {
+      "id": "FIF-095",
+      "release": "0.5.1",
+      "requirement": "Keep Safety concise and useful without default personalized steps before an objective; generate one source-supported action per step and replace/clear outdated guidance when scenario or material evidence changes. Preserve evidence, limitations and active-incident handoff.",
+      "design": "docs/SAFETY_VOICE_051.md",
+      "implementation": [
+        "lib/safety-steps.mjs",
+        "lib/agent-skills/safety-checklist/SKILL.md",
+        "public/safety-steps-panel.mjs",
+        "public/recommendations-panel.mjs"
+      ],
+      "verification": [
+        "tests/prompt-safety-v051.test.mjs",
+        "tests/safety-steps.test.mjs",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope."
+    },
+    {
+      "id": "FIF-096",
+      "release": "0.5.1",
+      "requirement": "Give Safety primary concise empty-state presentation and finite accessible attention only for newly accepted validated relevant findings. Preserve reduced-motion behavior, usable focus/contrast and a persistent non-animation cue; do not re-pulse restored, unchanged, rejected or stale content.",
+      "design": "docs/SAFETY_VOICE_051.md",
+      "implementation": [
+        "public/safety-workspace.mjs",
+        "public/recommendations-panel.mjs",
+        "public/safety-steps.css",
+        "public/index.html"
+      ],
+      "verification": [
+        "tests/safety-panel-controls.test.mjs",
+        "qa/release-0.5.1/aws/test-results.log",
+        "qa/release-0.5.1/aws/test-summary.json",
+        "qa/release-0.5.1/aws/syntax.json",
+        "qa/release-0.5.1/browser/readback.json",
+        "qa/release-0.5.1/package-audit.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-055",
+        "SWE-066",
+        "SWE-073"
+      ],
+      "status": "IMPLEMENTED_VERIFICATION_PENDING",
+      "acceptanceLimitations": "Verification pending: expected paths are not passing receipts. AWS mocked tests and controlled browser/package readback cannot establish live-provider behavior, scientific correctness, emergency suitability or Class C compliance. No local tests, paid/live trials or local EXE execution test authorized in this scope."
+    },
+    {
+      "id": "FIF-097",
+      "requirement": "Incident support entry points open the existing Safety panel only. They must not launch a separate incident dialog, request microphone access, create a Realtime session or make a separate incident AI request. Retired API routes cannot invoke a provider.",
+      "design": "docs/INCIDENT_RETIREMENT_052.md",
+      "implementation": [
+        "public/app.js",
+        "public/recommendations-panel.mjs",
+        "public/workspace-entry.mjs",
+        "public/index.html",
+        "server.mjs",
+        "lib/hosted-sessions.mjs",
+        "portable.mjs",
+        "scripts/build-portable.mjs"
+      ],
+      "verification": [
+        "tests/safety-panel-controls.test.mjs",
+        "tests/incident-service.test.mjs",
+        "tests/openai-integration.test.mjs",
+        "qa/release-0.5.2/aws/test-summary.json",
+        "qa/release-0.5.2/browser/readback.json"
+      ],
+      "npr": [
+        "SWE-050",
+        "SWE-052",
+        "SWE-055",
+        "SWE-066",
+        "SWE-081",
+        "SWE-113"
+      ],
+      "status": "IMPLEMENTED_OFFLINE_AND_HOSTED_NAVIGATION_VERIFIED",
+      "acceptanceLimitations": "AWS isolated mocked checks: 609 passed, 0 failed, 1 Windows-only skipped (610 total). Live hosted UI header and card both open Safety with no separate dialog. No live provider call, microphone or local executable trial. Formal operational/scientific and NPR assurance remain unestablished."
+    }
+  ]
+}

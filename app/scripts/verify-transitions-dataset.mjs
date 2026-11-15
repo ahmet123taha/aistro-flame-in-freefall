@@ -1,0 +1,14 @@
+import {VERSION} from '../lib/version.mjs';
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {loadDataset} from '../lib/dataset.mjs';
+import {matchExperiments} from '../lib/numeric-matching.mjs';
+import {SIBAL_TRANSITION_METHOD} from '../lib/sibal-transitions.mjs';
+const data=await loadDataset(process.argv[2]);
+const q={method:SIBAL_TRANSITION_METHOD,ids:['PSI-25'],question:'Kaynak geçiş gözlemlerini karşılaştır',conditions:{gravity:'other',material:'sibal',fabricConstruction:'sibal-75-25',specimenKind:'sheet',flowDirection:'concurrent',gravityRegime:'microgravity',flameState:'established',widthMm:22,pressure:101.325,thicknessMm:.32,arealDensityMgCm2:18.2,exposedLengthMm:100,oxygen:17.5,airflow:2.2,transitionKind:'all',oxygenUncertaintyPp:.05,airflowUncertaintyCmS:.1}};
+const m=matchExperiments(data.corpus,q),t=m.matches[0].experiment.transitions;
+assert.equal(t.events.length,4);assert.equal(t.notObserved.length,2);assert.equal(t.overlapCount,1);assert.equal(t.events[0].runId,'GMT100-T13');assert.equal(m.matches[0].similarity,null);
+const narrow=matchExperiments(data.corpus,{...q,conditions:{...q.conditions,widthMm:12}}).matches[0].experiment.transitions;assert.equal(narrow.events.length,3);assert.match(narrow.limitations[0],/extinction boundary was unresolved/);
+const ctx=await data.context(q);assert.match(ctx.records[0].content.fileText,/SIBAL transitions are terminal experimental observations/);assert.match(ctx.records[0].content.fileText,/GMT100-T13/);assert.match(ctx.records[0].content.fileText,/sourceUncertaintyKnown/);assert.ok(ctx.records[0].fileSources.some(x=>x.derivedModel&&!x.normalizedInputRow));
+const result={version:VERSION,at:new Date().toISOString(),passed:true,source:t.source,wide:{events:t.events.length,notObserved:t.notObserved.length,overlap:t.overlapCount,nearest:t.events[0]},narrow:{events:narrow.events.length,limitation:narrow.limitations[0]},checks:['real report hash verified','mechanisms and specimen widths separated','source event exact point in user uncertainty box','no-blowoff rows not thresholds','derived event review reaches source-only context','no scalar risk percentage'],providerCalls:0,limits:['source event errors unknown','nominal oxygen/time semantics unresolved','not independent safety classification']};
+await writeFile('qa/transitions-dataset-verification-'+VERSION+'.json',JSON.stringify(result,null,2));console.log(JSON.stringify({passed:true,wide:result.wide.events,narrow:result.narrow.events,overlap:t.overlapCount,providerCalls:0}));

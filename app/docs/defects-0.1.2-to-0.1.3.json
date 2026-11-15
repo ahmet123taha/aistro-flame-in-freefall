@@ -1,0 +1,51 @@
+{
+  "from": "0.1.2",
+  "to": "0.1.3",
+  "issues": [
+    {
+      "id": "D013-01",
+      "severity": "high",
+      "status": "fixed_in_bounded_source_scope",
+      "before": "BASS AIR readings could not contribute to numerical flow matching because calibration was not applied.",
+      "cause": "Calibration workbook had not been connected to the table adapter.",
+      "fix": "Only one positive AIR reading uses source cell A33 formula U=1.0066 AIR after exact workbook hash verification; Fan and changing readings excluded.",
+      "verification": "B1 real data 5→5.033 cm/s; missing/changed calibration gate and variable-reading tests; context dependency SHA checked."
+    },
+    {
+      "id": "D013-02",
+      "severity": "high",
+      "status": "fixed_for_table_5_1",
+      "before": "PMMA sheet measurements in the report were available as a PDF but not structured numerical results.",
+      "cause": "CSV-only adapters did not extract report tables.",
+      "fix": "20 source rows from Table5.1, with geometry and measured spread separated from matching score; no zero substitution for untracked results.",
+      "verification": "All20 rows visually checked; M1 .071 mm/s, two untracked cases, multi-stage isolation and live dataset checks."
+    },
+    {
+      "id": "D013-03",
+      "severity": "high",
+      "status": "fixed_for_overall_score",
+      "before": "A complete percentage could be produced without selected specimen kind.",
+      "cause": "Only material and weighted parameter coverage were mandatory.",
+      "fix": "Require same selected specimen kind too; one/two burning sides is an exact optional filter.",
+      "verification": "Unknown geometry gives no overall percentage; wrong specimen/side excluded; same values retain arithmetic score."
+    },
+    {
+      "id": "D013-04",
+      "severity": "low",
+      "status": "fixed",
+      "before": "100% could be read as all-condition equivalence even when based on one selected criterion.",
+      "cause": "Headline omitted the count of weighted criteria.",
+      "fix": "Show selected criterion count and source-specific expandable measurement/provenance detail.",
+      "verification": "Final portable browser screenshot and DOM checks."
+    },
+    {
+      "id": "D013-05",
+      "severity": "high",
+      "status": "open",
+      "before": "Universal physical weights and critical risk thresholds are not validated.",
+      "cause": "Effects differ by material, geometry, flow regime, and the defined outcome.",
+      "fix": "No fabricated scientific weights; user draft preserved, empirical observations shown separately. Engineering roadmap records per-domain models and independent validation.",
+      "verification": "No critical-risk label, no automatic operational commands, no live provider call."
+    }
+  ]
+}

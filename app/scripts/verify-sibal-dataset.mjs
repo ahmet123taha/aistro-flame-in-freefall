@@ -1,0 +1,17 @@
+import {VERSION} from '../lib/version.mjs';
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {loadDataset} from '../lib/dataset.mjs';
+import {matchExperiments} from '../lib/numeric-matching.mjs';
+import {SIBAL_SOURCE} from '../lib/sibal-evidence.mjs';
+const data=await loadDataset(process.argv[2]);
+const rows=data.corpus.experiments.rows.filter(r=>r.observations?.type==='reported_sibal_trial');
+assert.equal(rows.length,31);assert.equal(rows.filter(r=>r.specimenHistory==='reused').length,8);
+const q={ids:['PSI-25'],question:'SIBAL kumaş deney sonuçlarını karşılaştır',conditions:{gravity:'other',material:'sibal',fabricConstruction:'sibal-75-25',specimenKind:'sheet',flowDirection:'concurrent',oxygen:16.4,widthMm:22,airflow:10,pressure:101.325,arealDensityMgCm2:18.2,exposedLengthMm:100},weights:{oxygen:40,widthMm:10,airflow:30,pressure:10,arealDensityMgCm2:5,exposedLengthMm:5}};
+const match=matchExperiments(data.corpus,q).matches[0];assert.equal(match.experimentId,'GMT175-T9');assert.equal(match.similarity,100);assert.equal(match.experiment.observations.outcome,'no_ignition');
+assert.ok(match.relatedExperiments.some(r=>r.runId==='GMT190-T21'&&r.observations.outcome==='blowoff'));
+const near=matchExperiments(data.corpus,{...q,conditions:{...q.conditions,airflow:9}}).matches[0];assert.equal(near.experimentId,'GMT175-T9');assert.equal(near.similarity,97);
+const context=await data.context(q),r=context.records[0];assert.match(r.content.fileText,/OTHER SIBAL SOURCE ROWS/);assert.match(r.content.fileText,/GMT190-T21/);assert.match(r.content.fileText,/flagged_inaccurate/);assert.match(r.content.fileText,/No-ignition label does not rule out brief ignition/);
+assert.ok(r.fileSources.some(f=>f.id===SIBAL_SOURCE.fileId&&f.sha256===SIBAL_SOURCE.sha256&&f.normalizedAlternativeRows));
+const result={version:VERSION,at:new Date().toISOString(),passed:true,source:SIBAL_SOURCE,rows:31,totalNormalizedRows:data.corpus.experiments.rows.length,series:{BASS_II:27,BASS:4},reused:8,flaggedOxygen:2,example:{runId:match.experimentId,similarity:match.similarity,nearbyAirflowSimilarity:near.similarity,weights:q.weights,observed:match.experiment.observations.outcome,relatedRows:match.relatedExperiments.length},checks:['source hash matches actual report','31 Table7.1 rows loaded','10 to9 cm/s changes score100 to97 with explicit30% test weight','alternatives include contrasting quenching/blowoff/no-ignition outcomes','source-verified alternatives reach local model context','no provider calls'],limits:['similarity in selected measures only, no critical fire classifier','source oxygen and ignition terminology discrepancies retained','unmarked reuse is not verified fresh','CSV/PDF duplicate physical trials remain distinct'],providerCalls:0};
+await writeFile('qa/sibal-dataset-verification-'+VERSION+'.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));

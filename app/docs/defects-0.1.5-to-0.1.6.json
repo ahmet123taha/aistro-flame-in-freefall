@@ -1,0 +1,41 @@
+{
+  "from": "0.1.5",
+  "to": "0.1.6",
+  "issues": [
+    {
+      "id": "D016-01",
+      "severity": "high",
+      "status": "partially_addressed",
+      "before": "No source-fit extinction boundary; closeness alone could not locate a scenario against reported material flammability behavior.",
+      "fix": "Add Eq6.1 normalized PMMA curve and signed O2 margin; independent validation remains open."
+    },
+    {
+      "id": "D016-02",
+      "severity": "high",
+      "status": "prevented",
+      "before": "Using constant positive flow importance would contradict the two source curve branches.",
+      "fix": "Calculate local signed derivatives and interior minimum; verify by independent central differences."
+    },
+    {
+      "id": "D016-03",
+      "severity": "high",
+      "status": "prevented",
+      "before": "Endpoint-only uncertainty could miss the lowest boundary oxygen within a U-shaped interval.",
+      "fix": "Include analytic interior minimum; independent 441-point box check. Missing error bounds remain unknown; outside-window boxes not clipped."
+    },
+    {
+      "id": "D016-04",
+      "severity": "medium",
+      "status": "documented_source_difference",
+      "before": "Source prose says approximately13.5% at minimum while printed fit coefficients give approximately13.607%.",
+      "fix": "Keep coefficients and explain difference rather than silently forcing a chosen minimum."
+    },
+    {
+      "id": "D016-05",
+      "severity": "high",
+      "status": "open",
+      "before": "General material-specific critical classification and independent fit-error estimates remain missing.",
+      "fix": "No operational safe/critical or ignition probability claim; PMMA model does not apply to SIBAL/Nomex."
+    }
+  ]
+}

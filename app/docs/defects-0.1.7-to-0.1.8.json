@@ -1,0 +1,54 @@
+{
+  "from": "0.1.7",
+  "to": "0.1.8",
+  "issues": [
+    {
+      "id": "D018-01",
+      "severity": "high",
+      "status": "partially_addressed",
+      "before": "General similarity did not distinguish closeness to observed combustion transitions.",
+      "fix": "Separate source-event distances and input-error overlap; calibrated critical classification remains open."
+    },
+    {
+      "id": "D018-02",
+      "severity": "high",
+      "status": "prevented",
+      "before": "Treating no-blowoff final flow as threshold or connecting sparse events could invent a continuous boundary.",
+      "fix": "Separate unobserved events, point-only plot, explicit unresolved12mm boundary."
+    },
+    {
+      "id": "D018-03",
+      "severity": "high",
+      "status": "prevented",
+      "before": "Arbitrary weighting of O2 pp and cm/s distances could conceal incompatible tradeoffs.",
+      "fix": "Mechanism-specific Pareto layers invariant to positive unit scaling; separate numerical proximity details."
+    },
+    {
+      "id": "D018-04",
+      "severity": "high",
+      "status": "open_with_limits",
+      "before": "Source errors and transient oxygen/flow histories are not fully known.",
+      "fix": "Input-only box, unknown source uncertainty, nominal oxygen/time caveats and no safety claim."
+    },
+    {
+      "id": "D018-05",
+      "severity": "low",
+      "status": "addressed",
+      "before": "Material-specific transition setup and results had no dedicated UI.",
+      "fix": "Conditional SIBAL mode, point plot, expandable context and reset behavior."
+    },
+    {
+      "id": "D018-06",
+      "severity": "high",
+      "status": "fixed_verified",
+      "before": "New transition module route absent; boundary route used wrong file and MIME. Initial EXE UI did not initialize despite API smoke passing.",
+      "fix": "Separate correct routes. Portable verifier now checks every browser module status, JavaScript MIME and exact bytes. Rebuilt EXE and repeated 93 tests, portable and UI checks.",
+      "evidence": [
+        "server.mjs",
+        "scripts/verify-portable.mjs",
+        "qa/portable-verification.json",
+        "qa/ui-verification-0.1.8.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+/* The two product entry points share the same size and visual priority. */
+header #ai-toggle,header #incident-access{min-height:44px;font-weight:650;flex:0 1 auto}
+.workspace-entry-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.workspace-entry-card{display:flex;flex-direction:column;align-items:flex-start;padding:20px;border:1px solid var(--line,#405362);border-radius:14px;background:var(--panel,#192430);min-width:0}
+.workspace-entry-card h3{margin:0 0 10px;font-size:1.1rem}.workspace-entry-card p{margin:0 0 16px;line-height:1.55;flex:1}.workspace-entry-card button{min-height:44px;width:100%;font-weight:650}.workspace-entry-card small{display:block;margin-top:12px;line-height:1.5}
+.incident-entry-card{border-color:#98764d}.incident-entry-card button{border-color:#b68c55}
+.workspace-entry-grid button:focus-visible{outline:3px solid #77d4c2;outline-offset:3px}
+[data-theme=light] .workspace-entry-card{background:#f3f7fa;color:#142b3b}
+@media(max-width:720px){.workspace-entry-grid{grid-template-columns:1fr}.workspace-entry-card{padding:16px}header #ai-toggle,header #incident-access{flex:1 1 auto}}
+
+header #ai-toggle{white-space:nowrap;min-width:max-content}
+
+@media(max-width:420px){.header-actions{flex-wrap:wrap}header #ai-toggle{flex-basis:100%}header #incident-access{flex:1 1 auto}}

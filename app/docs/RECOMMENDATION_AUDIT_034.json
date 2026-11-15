@@ -1,0 +1,122 @@
+{
+  "version": "0.3.4",
+  "previousVersion": "0.3.3",
+  "requirement": "FIF-043",
+  "date": "2026-11-15",
+  "observed": {
+    "provider": {
+      "name": "Google Gemini",
+      "requestedModel": "gemini-3.1-flash-lite",
+      "delivery": "api",
+      "startedAt": "2026-11-15T01:07:06.920Z",
+      "httpStatus": 200,
+      "responseId": "vAX5asWSONTQ28oP3OzRCA",
+      "modelVersion": "gemini-3.1-flash-lite",
+      "validation": "rejected",
+      "requestFormat": {
+        "contract": "json-local-validation-v1",
+        "mimeType": "application/json",
+        "hasResponseSchema": false,
+        "hasResponseJsonSchema": false,
+        "bytes": 165562,
+        "sha256": "96fda604e7089fd9500ed441f88dca82dd116516f0b66b26bec7b4b9fdfc9ed5"
+      },
+      "usage": {
+        "promptTokenCount": 36059,
+        "candidatesTokenCount": 1582,
+        "totalTokenCount": 37641
+      },
+      "receivedAt": "2026-11-15T01:07:56.240Z"
+    },
+    "error": {
+      "message": "Only replacement updates may include recommendation items.",
+      "code": "ANALYSIS_INVALID",
+      "validation": {
+        "shape": {
+          "stage": "rank",
+          "assessmentsType": "array",
+          "assessmentCount": 2,
+          "recommendationAction": "keep",
+          "recommendationCount": 2
+        },
+        "responseSha256": "40669cc228f8a63c506e8fde413d771b9c31538b3a46728cbeedad8986811d29",
+        "intent": "environment",
+        "candidateCount": 35
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "D034-01",
+      "severity": "high",
+      "title": "Conflicting recommendation operations discarded the entire research reply",
+      "cause": "The saved HTTP 200 receipt records stage=rank, two assessments and keep with two recommendation items. The old validator threw ANALYSIS_INVALID for this contradictory optional update, losing the whole reply. The prompt did not explicitly spell out the empty-list requirement for keep and clear.",
+      "fix": "Use one shared explicit keep/clear/replace contract in both prompt modes. Contain malformed or conflicting recommendation updates as a non-applied partial update. Preserve valid conversation, source assessments and numerical scores without inferring the intended operation.",
+      "implementation": [
+        "lib/recommendations.mjs",
+        "lib/research.mjs",
+        "lib/gemini.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/recommendation-recovery.test.mjs",
+        "qa/release-0.3.4/observed-failure.json",
+        "qa/release-0.3.4/test-results.log",
+        "qa/release-0.3.4/browser-review.json",
+        "qa/release-0.3.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D034-02",
+      "severity": "high",
+      "title": "Optional recommendation recovery must not erase or falsely reconfirm previous advice",
+      "cause": "Simply dropping invalid items or coercing keep/clear into replace could discard earlier candidates or apply unsupported content. The research validator previously marked every ranking reply as recommendationsReviewed even if no optional update was supplied. A normalized absent section could become a false completed review on cache revalidation.",
+      "fix": "Keep replacements atomic: if any item fails its source/quote/content checks, apply none of that update. Keep earlier recommendation and emergency state, with the UI retaining stale status after changed context. Compute review flags on the server; preserve omission as omission across cache validation. Non-ranking turns cannot refresh recommendations.",
+      "implementation": [
+        "lib/recommendations.mjs",
+        "lib/research.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/recommendation-recovery.test.mjs",
+        "qa/release-0.3.4/observed-failure.json",
+        "qa/release-0.3.4/test-results.log",
+        "qa/release-0.3.4/browser-review.json",
+        "qa/release-0.3.4/portable-verification.json"
+      ]
+    },
+    {
+      "id": "D034-03",
+      "severity": "medium",
+      "title": "Partial recommendation validation lacked a visible and durable boundary",
+      "cause": "The prior pipeline exposed the failure as a rejected answer and had no isolated recommendation warning. Caching a sanitized recovery could later turn its keep operation into an apparently complete review.",
+      "fix": "Show a Recommendation update not applied notice, mark the receipt partial, retain bounded action/count/issue diagnostics in the receipt and history, and exclude recovered replies from the answer cache. Normal complete answers retain caching; no automatic retry is added.",
+      "implementation": [
+        "lib/gemini.mjs",
+        "public/conversation-panel.mjs"
+      ],
+      "status": "resolved_in_local_regression",
+      "verification": [
+        "tests/recommendation-recovery.test.mjs",
+        "qa/release-0.3.4/observed-failure.json",
+        "qa/release-0.3.4/test-results.log",
+        "qa/release-0.3.4/browser-review.json",
+        "qa/release-0.3.4/portable-verification.json"
+      ]
+    }
+  ],
+  "verification": [
+    "tests/recommendation-recovery.test.mjs",
+    "qa/release-0.3.4/observed-failure.json",
+    "qa/release-0.3.4/test-results.log",
+    "qa/release-0.3.4/browser-review.json",
+    "qa/release-0.3.4/portable-verification.json"
+  ],
+  "limitations": [
+    "The rejected raw response was not retained. The saved response shape proves keep plus two items, but the items and their scientific support cannot be reconstructed. Controlled fixtures reproduce this operation conflict, not the unseen exact response.",
+    "No live Gemini request was made for this release. The prior 0.3.2 language-only trial is not evidence for this research correction. Fresh live research validation and independent semantic review remain open.",
+    "Mandatory research envelope, source, citation, duplicate-source and numeric-rubric checks still reject invalid research. Partial recovery does not invent scores, repair scientific claims or convert keep/clear to replace.",
+    "Source-supported candidates remain research/design aids, not validated emergency instructions. A verified quotation is not proof of a recommendation's semantic correctness.",
+    "No dataset, physical equation, score weight, model or private credential was changed. Node SEA remains the runtime; NASA NPR 7150.2D Class C remains an incomplete engineering target, not certification."
+  ]
+}
