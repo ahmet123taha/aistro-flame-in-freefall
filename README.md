@@ -49,7 +49,7 @@ The application ZIP and dataset are separate downloads. Local source browsing an
 
 ## Run from source
 
-Use **Node.js 20 or newer** and install the locked dependencies:
+Use **Node.js 22.13 or newer** (required by the locked PDF.js dependency) and install the locked dependencies:
 
 ```powershell
 git clone https://github.com/ahmet123taha/aistro-flame-in-freefall.git

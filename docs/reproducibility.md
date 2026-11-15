@@ -26,7 +26,7 @@ npm ci
 npm test
 ```
 
-The package declares Node.js **>=20**. For full-data execution, use `npm run start:hosted` with these process environment variables:
+The original package declares Node.js **>=20**, but the locked PDF.js dependency requires **>=22.13.0**. Use Node.js 22.13 or newer for source installation. For full-data execution, use `npm run start:hosted` with these process environment variables:
 
 | Variable | Meaning |
 |---|---|
@@ -43,7 +43,7 @@ The legacy `npm start`/`server.mjs` path is metadata-oriented and retains develo
 
 ## Windows packaging
 
-The published Windows x64 package embeds **Node.js 25.9.0** using Node SEA. Running the application requires no installed Node runtime. Rebuilding the Windows executable requires the matching Windows toolchain; the Node >=20 source-runtime floor is not the portable-build requirement.
+The published Windows x64 package embeds **Node.js 25.9.0** using Node SEA. Running the application requires no installed Node runtime. Rebuilding the Windows executable requires the matching Windows toolchain; the dependency runtime minimum is not the portable-build requirement.
 
 On a Windows development machine with that toolchain, from `app/`:
 
