@@ -1,0 +1,30 @@
+{
+  "version": "0.5.3",
+  "publishedAt": "2026-11-15T20:57:09.052715+00:00",
+  "sourceCommit": "e2533e7be50d811b93a30dc0ab92a63c9d6148a5",
+  "tag": "v0.5.3",
+  "releaseUrl": "https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/v0.5.3",
+  "liveUrl": "https://aistro-flame-freefall.duckdns.org",
+  "livePageVersionVerified": true,
+  "assets": [
+    {
+      "name": "SpaceApps1-0.5.3.zip",
+      "bytes": 66345760,
+      "sha256": "92f4072469b65f87a96e2d0bdd8982b7eec70c1348804c7249ea060db4fb1f50",
+      "url": "https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/untagged-d4ab9396e2ec6a6be4c0/SpaceApps1-0.5.3.zip",
+      "asset_id": 752324913,
+      "remote_readback_verified": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 87,
+      "sha256": "caf99010bc9e759098ae79b22dc8e655f27bd742fbbd340c358b54f0b9c054c1",
+      "url": "https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/download/untagged-d4ab9396e2ec6a6be4c0/SHA256SUMS.txt",
+      "asset_id": 752325763,
+      "remote_readback_verified": true
+    }
+  ],
+  "datasetChanged": false,
+  "providerCalls": 0,
+  "sourceBaseline": "docs/source-manifest-0.5.3.json"
+}
