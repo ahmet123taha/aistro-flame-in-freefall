@@ -2,7 +2,7 @@
 
 Download the scientific dataset from the [dataset release](https://github.com/ahmet123taha/aistro-flame-in-freefall/releases/tag/dataset-2026.11.15). It is separate from the Windows portable application so that source code and application updates stay small.
 
-The release is published as independent `Veri_Seti-public-part-*.tar.gz` archives. **All parts are required.** Each archive extracts into the same `Veri_Seti/` directory. `dataset-release.json` lists the published asset URLs, sizes and SHA-256 checksums; `dataset-files.jsonl.gz` records every included file. Uploads may still be in progress until the release manifest is published.
+The completed release contains **114,686 files / 22,509,766,410 uncompressed bytes (22.51 GB)** in 57 independent `Veri_Seti-public-part-*.tar.gz` archives. **All parts are required.** Each archive extracts into the same `Veri_Seti/` directory. `dataset-release.json` lists the published asset URLs, sizes and SHA-256 checksums; `dataset-files.jsonl.gz` records every included file. All archives were downloaded from GitHub and verified against their SHA-256 checksums and the local source inventory.
 
 ## Install with limited free space
 
@@ -19,7 +19,7 @@ Put the resulting `Veri_Seti` directory beside `SpaceApps1.exe`, or select that 
 To verify an already installed dataset without changing it:
 
 ```powershell
-python scripts/verify-dataset.py --root 'D:/AISTROData' --inventory 'dataset-files.jsonl.gz'
+python scripts/verify-dataset.py --root 'D:/AISTROData' --inventory 'D:/AISTROData/.aistro-download-cache/dataset-files.jsonl.gz'
 ```
 
 ## What is included
